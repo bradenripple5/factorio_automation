@@ -1,0 +1,73 @@
+{
+  "blueprint": {
+    "icons": [{
+      "signal": {
+        "type": "item",
+        "name": "rail"
+      },
+      "index": 1
+    }],
+    "entities": [{
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -2,
+          "y": 0
+        },
+        "direction": 1
+      }, {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -2,
+          "y": 0
+        },
+        "direction": 2
+      }, {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -2,
+          "y": 0
+        },
+        "direction": 3
+      }, {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -2,
+          "y": 0
+        },
+        "direction": 4
+      }, {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -2,
+          "y": 0
+        },
+        "direction": 5
+      }, {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -2,
+          "y": 0
+        },
+        "direction": 6
+      }, {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -2,
+          "y": 0
+        },
+        "direction": 7
+      }
+
+
+    ],
+    "item": "blueprint",
+    "version": 68722819072
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "rail"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -6,
+          "y": 0
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 2,
+        "name": "straight-rail",
+        "position": {
+          "x": -4,
+          "y": 0
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 3,
+        "name": "straight-rail",
+        "position": {
+          "x": -2,
+          "y": 0
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 4,
+        "name": "curved-rail",
+        "position": {
+          "x": 3,
+          "y": -1
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 5,
+        "name": "stack-inserter",
+        "position": {
+          "x": -4.5,
+          "y": 1.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 6,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": -4.5,
+          "y": 2.5
+        },
+        "request_filters": [
+          {
+            "index": 8,
+            "name": "coal",
+            "count": 200
+          }
+        ]
+      },
+      {
+        "entity_number": 7,
+        "name": "train-stop",
+        "position": {
+          "x": -2,
+          "y": 2
+        },
+        "direction": 2,
+        "station": "staging 01"
+      },
+      {
+        "entity_number": 8,
+        "name": "rail-signal",
+        "position": {
+          "x": -0.5,
+          "y": 1.5
+        },
+        "direction": 6
+      }
+    ],
+    "item": "blueprint",
+    "version": 68722819072
+  }
+}

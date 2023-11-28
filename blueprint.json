@@ -1,0 +1,79 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -1,
+          "y": -1
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "stack-inserter",
+        "position": {
+          "x": 0,
+          "y": -1
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 3,
+        "name": "stack-inserter",
+        "position": {
+          "x": 1,
+          "y": -1
+        }
+      },
+      {
+        "entity_number": 4,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 1,
+          "y": -2
+        },
+        "request_filters": [
+          {
+            "index": 8,
+            "name": "iron-plate",
+            "count": 2
+          },
+          {
+            "index": 9,
+            "name": "battery",
+            "count": 5
+          }
+        ]
+      },
+      {
+        "entity_number": 5,
+        "name": "logistic-chest-storage",
+        "position": {
+          "x": 0,
+          "y": -2
+        }
+      },
+      {
+        "entity_number": 6,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 0,
+          "y": 1
+        },
+        "recipe": "copper-cable"
+      }
+    ],
+    "item": "blueprint",
+    "version": 68722819072
+  }
+}

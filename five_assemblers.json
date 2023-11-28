@@ -1,0 +1,262 @@
+{
+	"blueprint": {
+		"icons": [{
+			"signal": {
+				"type": "item",
+				"name": "assembling-machine-3"
+			},
+			"index": 1
+		}],
+		"entities": [{
+			"entity_number": 1,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": -10,
+				"y": -2
+			}
+		}, {
+			"entity_number": 2,
+			"name": "stack-inserter",
+			"position": {
+				"x": -9,
+				"y": -2
+			},
+			"direction": 4
+		}, {
+			"entity_number": 3,
+			"name": "logistic-chest-storage",
+			"position": {
+				"x": -9,
+				"y": -3
+			}
+		}, {
+			"entity_number": 4,
+			"name": "stack-inserter",
+			"position": {
+				"x": -8,
+				"y": -2
+			}
+		}, {
+			"entity_number": 5,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -8,
+				"y": -3
+			},
+			"request_filters": [{
+				"index": 1,
+				"name": "electric-engine-unit",
+				"count": 100
+			}, {
+				"index": 2,
+				"name": "electric-furnace",
+				"count": 100
+			}]
+		}, {
+			"entity_number": 6,
+			"name": "logistic-chest-storage",
+			"position": {
+				"x": -4,
+				"y": -2
+			}
+		}, {
+			"entity_number": 7,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -3,
+				"y": -2
+			},
+			"request_filters": [{
+				"index": 1,
+				"name": "electric-engine-unit",
+				"count": 1
+			}, {
+				"index": 2,
+				"name": "electric-furnace",
+				"count": 1
+			}]
+		}, {
+			"entity_number": 8,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": -1,
+				"y": -2
+			}
+		}, {
+			"entity_number": 9,
+			"name": "stack-inserter",
+			"position": {
+				"x": 0,
+				"y": -2
+			},
+			"direction": 4
+		}, {
+			"entity_number": 10,
+			"name": "stack-inserter",
+			"position": {
+				"x": 1,
+				"y": -2
+			}
+		}, {
+			"entity_number": 11,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 1,
+				"y": -3
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 2
+			}, {
+				"index": 9,
+				"name": "battery",
+				"count": 5
+			}]
+		}, {
+			"entity_number": 12,
+			"name": "logistic-chest-storage",
+			"position": {
+				"x": 0,
+				"y": -3
+			}
+		}, {
+			"entity_number": 13,
+			"name": "logistic-chest-storage",
+			"position": {
+				"x": 4,
+				"y": -2
+			}
+		}, {
+			"entity_number": 14,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 9,
+				"y": -2
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 2
+			}, {
+				"index": 9,
+				"name": "battery",
+				"count": 5
+			}]
+		}, {
+			"entity_number": 15,
+			"name": "logistic-chest-storage",
+			"position": {
+				"x": 8,
+				"y": -2
+			}
+		}, {
+			"entity_number": 16,
+			"name": "assembling-machine-3",
+			"position": {
+				"x": -9,
+				"y": 0
+			},
+			"recipe": "production-science-pack"
+		}, {
+			"entity_number": 17,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": -5,
+				"y": -1
+			}
+		}, {
+			"entity_number": 18,
+			"name": "assembling-machine-3",
+			"position": {
+				"x": -4,
+				"y": 1
+			},
+			"recipe": "production-science-pack"
+		}, {
+			"entity_number": 19,
+			"name": "stack-inserter",
+			"position": {
+				"x": -4,
+				"y": -1
+			},
+			"direction": 4
+		}, {
+			"entity_number": 20,
+			"name": "stack-inserter",
+			"position": {
+				"x": -3,
+				"y": -1
+			}
+		}, {
+			"entity_number": 21,
+			"name": "assembling-machine-3",
+			"position": {
+				"x": 0,
+				"y": 0
+			},
+			"recipe": "accumulator"
+		}, {
+			"entity_number": 22,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": 3,
+				"y": -1
+			}
+		}, {
+			"entity_number": 23,
+			"name": "assembling-machine-3",
+			"position": {
+				"x": 4,
+				"y": 1
+			},
+			"recipe": "production-science-pack"
+		}, {
+			"entity_number": 24,
+			"name": "stack-inserter",
+			"position": {
+				"x": 4,
+				"y": -1
+			},
+			"direction": 4
+		}, {
+			"entity_number": 25,
+			"name": "stack-inserter",
+			"position": {
+				"x": 5,
+				"y": -1
+			}
+		}, {
+			"entity_number": 26,
+			"name": "assembling-machine-3",
+			"position": {
+				"x": 8,
+				"y": 1
+			}
+		}, {
+			"entity_number": 27,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": 7,
+				"y": -1
+			}
+		}, {
+			"entity_number": 28,
+			"name": "stack-inserter",
+			"position": {
+				"x": 9,
+				"y": -1
+			}
+		}, {
+			"entity_number": 29,
+			"name": "stack-inserter",
+			"position": {
+				"x": 8,
+				"y": -1
+			},
+			"direction": 4
+		}],
+		"item": "blueprint",
+		"version": 68722819072
+	}
+}
