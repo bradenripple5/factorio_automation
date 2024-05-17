@@ -1,0 +1,35 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 827.5,
+          "y": 80.5
+        },
+        "recipe": "fill-petroleum-gas-barrel"
+      },
+      {
+        "entity_number": 2,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 830.5,
+          "y": 80.5
+        },
+        "recipe": "empty-petroleum-gas-barrel"
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278493696
+  }
+}

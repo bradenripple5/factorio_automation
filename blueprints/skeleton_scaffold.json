@@ -1,0 +1,332 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "radar"
+        },
+        "index": 1
+      },
+      {
+        "signal": {
+          "type": "item",
+          "name": "roboport"
+        },
+        "index": 2
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "radar",
+        "position": {
+          "x": 743.5,
+          "y": -341.5
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 746,
+          "y": -342
+        },
+        "neighbours": [
+          3,
+          6
+        ]
+      },
+      {
+        "entity_number": 3,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 718,
+          "y": -341
+        },
+        "neighbours": [
+          2,
+          7
+        ]
+      },
+      {
+        "entity_number": 4,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 763.5,
+          "y": -340.5
+        },
+        "neighbours": [
+          5
+        ]
+      },
+      {
+        "entity_number": 5,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 762.5,
+          "y": -337.5
+        },
+        "neighbours": [
+          4,
+          6
+        ]
+      },
+      {
+        "entity_number": 6,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 763,
+          "y": -335
+        },
+        "neighbours": [
+          2,
+          8,
+          5
+        ]
+      },
+      {
+        "entity_number": 7,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 694,
+          "y": -326
+        },
+        "neighbours": [
+          9,
+          3
+        ]
+      },
+      {
+        "entity_number": 8,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 762,
+          "y": -326
+        },
+        "neighbours": [
+          6,
+          10,
+          18
+        ]
+      },
+      {
+        "entity_number": 9,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 694.5,
+          "y": -317.5
+        },
+        "neighbours": [
+          7,
+          11
+        ]
+      },
+      {
+        "entity_number": 10,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 762.5,
+          "y": -317.5
+        },
+        "neighbours": [
+          8,
+          12
+        ]
+      },
+      {
+        "entity_number": 11,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 694,
+          "y": -314
+        },
+        "neighbours": [
+          9,
+          15,
+          19
+        ]
+      },
+      {
+        "entity_number": 12,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 762,
+          "y": -314
+        },
+        "neighbours": [
+          10,
+          16,
+          20
+        ]
+      },
+      {
+        "entity_number": 13,
+        "name": "roboport",
+        "position": {
+          "x": 694,
+          "y": -311
+        }
+      },
+      {
+        "entity_number": 14,
+        "name": "roboport",
+        "position": {
+          "x": 762,
+          "y": -311
+        }
+      },
+      {
+        "entity_number": 15,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 694.5,
+          "y": -306.5
+        },
+        "neighbours": [
+          11
+        ]
+      },
+      {
+        "entity_number": 16,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 762.5,
+          "y": -306.5
+        },
+        "neighbours": [
+          12,
+          17,
+          18
+        ]
+      },
+      {
+        "entity_number": 17,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 762.5,
+          "y": -303.5
+        },
+        "neighbours": [
+          16
+        ]
+      },
+      {
+        "entity_number": 18,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 763,
+          "y": -298
+        },
+        "neighbours": [
+          8,
+          16,
+          20,
+          27
+        ]
+      },
+      {
+        "entity_number": 19,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 694,
+          "y": -291
+        },
+        "neighbours": [
+          25,
+          11
+        ]
+      },
+      {
+        "entity_number": 20,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 762,
+          "y": -291
+        },
+        "neighbours": [
+          18,
+          12
+        ]
+      },
+      {
+        "entity_number": 21,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 723.5,
+          "y": -274.5
+        },
+        "neighbours": [
+          25
+        ]
+      },
+      {
+        "entity_number": 22,
+        "name": "roboport",
+        "position": {
+          "x": 727,
+          "y": -274
+        }
+      },
+      {
+        "entity_number": 23,
+        "name": "radar",
+        "position": {
+          "x": 743.5,
+          "y": -273.5
+        }
+      },
+      {
+        "entity_number": 24,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 746,
+          "y": -274
+        },
+        "neighbours": [
+          25,
+          27
+        ]
+      },
+      {
+        "entity_number": 25,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 718,
+          "y": -273
+        },
+        "neighbours": [
+          19,
+          24,
+          21,
+          26
+        ]
+      },
+      {
+        "entity_number": 26,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 724.5,
+          "y": -272.5
+        },
+        "neighbours": [
+          25
+        ]
+      },
+      {
+        "entity_number": 27,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 755,
+          "y": -273
+        },
+        "neighbours": [
+          18,
+          24
+        ]
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278493696
+  }
+}

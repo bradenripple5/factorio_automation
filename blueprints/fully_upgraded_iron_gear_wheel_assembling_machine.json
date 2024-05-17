@@ -1,0 +1,29 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 372.5,
+          "y": -565.5
+        },
+        "recipe": "iron-gear-wheel",
+        "items": {
+          "speed-module-3": 4
+        }
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278493696
+  }
+}

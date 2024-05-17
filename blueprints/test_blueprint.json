@@ -1,0 +1,68 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "big-electric-pole"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 738,
+          "y": 1639
+        },
+        "neighbours": [
+          2,
+          3
+        ]
+      },
+      {
+        "entity_number": 2,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 748,
+          "y": 1639
+        },
+                "auto-connect" : "false",
+
+        "neighbours": [
+          1,
+          4
+        ]
+      },
+      {
+        "entity_number": 3,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 738,
+          "y": 1653
+        },
+        "auto-connect" : "false",
+        "neighbours": [
+          1,
+          4
+        ]
+      },
+      {
+        "entity_number": 4,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 749,
+          "y": 1653
+        },
+        "neighbours": [
+          2,
+          3
+        ]
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278493696
+  }
+}

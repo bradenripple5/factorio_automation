@@ -1,0 +1,1544 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "rail"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 710.5,
+          "y": -494.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "water-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 2,
+        "name": "logistic-chest-storage",
+        "position": {
+          "x": 711.5,
+          "y": -494.5
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 711.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 4,
+        "name": "stack-inserter",
+        "position": {
+          "x": 711.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 5,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 710.5,
+          "y": -492.5
+        },
+        "neighbours": [
+          15
+        ]
+      },
+      {
+        "entity_number": 6,
+        "name": "stack-inserter",
+        "position": {
+          "x": 713.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 7,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 712.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 8,
+        "name": "stack-inserter",
+        "position": {
+          "x": 712.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 9,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 713.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 10,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 714.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 11,
+        "name": "stack-inserter",
+        "position": {
+          "x": 715.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 12,
+        "name": "stack-inserter",
+        "position": {
+          "x": 714.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 13,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 715.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 14,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 716.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 15,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 717.5,
+          "y": -492.5
+        },
+        "neighbours": [
+          5,
+          31
+        ]
+      },
+      {
+        "entity_number": 16,
+        "name": "stack-inserter",
+        "position": {
+          "x": 716.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 17,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 718.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 18,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 719.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 19,
+        "name": "stack-inserter",
+        "position": {
+          "x": 718.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 20,
+        "name": "stack-inserter",
+        "position": {
+          "x": 719.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 21,
+        "name": "stack-inserter",
+        "position": {
+          "x": 721.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 22,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 720.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 23,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 721.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 24,
+        "name": "stack-inserter",
+        "position": {
+          "x": 720.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 25,
+        "name": "stack-inserter",
+        "position": {
+          "x": 722.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 26,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 722.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 27,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 723.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 28,
+        "name": "stack-inserter",
+        "position": {
+          "x": 723.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 29,
+        "name": "stack-inserter",
+        "position": {
+          "x": 725.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 30,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 725.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 31,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 724.5,
+          "y": -492.5
+        },
+        "neighbours": [
+          15,
+          42
+        ]
+      },
+      {
+        "entity_number": 32,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 727.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 33,
+        "name": "stack-inserter",
+        "position": {
+          "x": 727.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 34,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 726.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 35,
+        "name": "stack-inserter",
+        "position": {
+          "x": 726.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 36,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 729.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 37,
+        "name": "stack-inserter",
+        "position": {
+          "x": 729.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 38,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 728.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 39,
+        "name": "stack-inserter",
+        "position": {
+          "x": 728.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 40,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 730.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 41,
+        "name": "stack-inserter",
+        "position": {
+          "x": 730.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 42,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 731.5,
+          "y": -492.5
+        },
+        "neighbours": [
+          31,
+          56
+        ]
+      },
+      {
+        "entity_number": 43,
+        "name": "stack-inserter",
+        "position": {
+          "x": 733.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 44,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 733.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 45,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 732.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 46,
+        "name": "stack-inserter",
+        "position": {
+          "x": 732.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 47,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 735.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 48,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 734.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 49,
+        "name": "stack-inserter",
+        "position": {
+          "x": 734.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 50,
+        "name": "stack-inserter",
+        "position": {
+          "x": 735.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 51,
+        "name": "stack-inserter",
+        "position": {
+          "x": 737.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 52,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 736.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 53,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 737.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 54,
+        "name": "stack-inserter",
+        "position": {
+          "x": 736.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 55,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 739.5,
+          "y": -493.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "coal",
+            "count": 150
+          }
+        ]
+      },
+      {
+        "entity_number": 56,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 738.5,
+          "y": -492.5
+        },
+        "neighbours": [
+          42
+        ]
+      },
+      {
+        "entity_number": 57,
+        "name": "stack-inserter",
+        "position": {
+          "x": 739.5,
+          "y": -492.5
+        }
+      },
+      {
+        "entity_number": 58,
+        "name": "straight-rail",
+        "position": {
+          "x": 709,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 59,
+        "name": "straight-rail",
+        "position": {
+          "x": 711,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 60,
+        "name": "straight-rail",
+        "position": {
+          "x": 713,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 61,
+        "name": "straight-rail",
+        "position": {
+          "x": 715,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 62,
+        "name": "straight-rail",
+        "position": {
+          "x": 717,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 63,
+        "name": "straight-rail",
+        "position": {
+          "x": 719,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 64,
+        "name": "straight-rail",
+        "position": {
+          "x": 721,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 65,
+        "name": "straight-rail",
+        "position": {
+          "x": 723,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 66,
+        "name": "straight-rail",
+        "position": {
+          "x": 725,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 67,
+        "name": "straight-rail",
+        "position": {
+          "x": 727,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 68,
+        "name": "straight-rail",
+        "position": {
+          "x": 729,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 69,
+        "name": "straight-rail",
+        "position": {
+          "x": 731,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 70,
+        "name": "straight-rail",
+        "position": {
+          "x": 733,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 71,
+        "name": "straight-rail",
+        "position": {
+          "x": 735,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 72,
+        "name": "straight-rail",
+        "position": {
+          "x": 737,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 73,
+        "name": "straight-rail",
+        "position": {
+          "x": 739,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 74,
+        "name": "straight-rail",
+        "position": {
+          "x": 741,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 75,
+        "name": "straight-rail",
+        "position": {
+          "x": 743,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 76,
+        "name": "straight-rail",
+        "position": {
+          "x": 745,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 77,
+        "name": "curved-rail",
+        "position": {
+          "x": 748,
+          "y": -488
+        },
+        "direction": 5
+      },
+      {
+        "entity_number": 78,
+        "name": "straight-rail",
+        "position": {
+          "x": 747,
+          "y": -491
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 79,
+        "name": "rail-signal",
+        "position": {
+          "x": 709.5,
+          "y": -489.5
+        },
+        "direction": 6
+      },
+      {
+        "entity_number": 80,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 711.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 81,
+        "name": "stack-inserter",
+        "position": {
+          "x": 711.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 82,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 712.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 83,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 713.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 84,
+        "name": "stack-inserter",
+        "position": {
+          "x": 712.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 85,
+        "name": "stack-inserter",
+        "position": {
+          "x": 713.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 86,
+        "name": "stack-inserter",
+        "position": {
+          "x": 715.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 87,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 715.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 88,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 714.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 89,
+        "name": "stack-inserter",
+        "position": {
+          "x": 714.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 90,
+        "name": "stack-inserter",
+        "position": {
+          "x": 716.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 91,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 716.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 92,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 719.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 93,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 718.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 94,
+        "name": "stack-inserter",
+        "position": {
+          "x": 718.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 95,
+        "name": "stack-inserter",
+        "position": {
+          "x": 719.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 96,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 720.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 97,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 721.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 98,
+        "name": "stack-inserter",
+        "position": {
+          "x": 721.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 99,
+        "name": "stack-inserter",
+        "position": {
+          "x": 720.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 100,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 723.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 101,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 722.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 102,
+        "name": "stack-inserter",
+        "position": {
+          "x": 723.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 103,
+        "name": "stack-inserter",
+        "position": {
+          "x": 722.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 104,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 724.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 105,
+        "name": "stack-inserter",
+        "position": {
+          "x": 725.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 106,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 725.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 107,
+        "name": "stack-inserter",
+        "position": {
+          "x": 726.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 108,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 726.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 109,
+        "name": "stack-inserter",
+        "position": {
+          "x": 727.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 110,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 727.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 111,
+        "name": "stack-inserter",
+        "position": {
+          "x": 728.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 112,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 728.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 113,
+        "name": "stack-inserter",
+        "position": {
+          "x": 729.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 114,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 729.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 115,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 731.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 116,
+        "name": "stack-inserter",
+        "position": {
+          "x": 730.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 117,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 730.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 118,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 732.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 119,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 733.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 120,
+        "name": "stack-inserter",
+        "position": {
+          "x": 732.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 121,
+        "name": "stack-inserter",
+        "position": {
+          "x": 733.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 122,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 735.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 123,
+        "name": "stack-inserter",
+        "position": {
+          "x": 734.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 124,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 734.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 125,
+        "name": "stack-inserter",
+        "position": {
+          "x": 735.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 126,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 737.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 127,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 736.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 128,
+        "name": "stack-inserter",
+        "position": {
+          "x": 737.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 129,
+        "name": "stack-inserter",
+        "position": {
+          "x": 736.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 130,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 739.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 131,
+        "name": "stack-inserter",
+        "position": {
+          "x": 739.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 132,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 740.5,
+          "y": -488.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "petroleum-gas-barrel",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 133,
+        "name": "fast-inserter",
+        "position": {
+          "x": 740.5,
+          "y": -489.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 134,
+        "name": "train-stop",
+        "position": {
+          "x": 745,
+          "y": -489
+        },
+        "direction": 2,
+        "station": ""
+      },
+      {
+        "entity_number": 135,
+        "name": "rail-signal",
+        "position": {
+          "x": 747.5,
+          "y": -489.5
+        },
+        "direction": 6
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278493696
+  }
+}

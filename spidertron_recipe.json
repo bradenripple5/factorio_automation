@@ -1,0 +1,918 @@
+{
+  "exoskeleton-equipment-amount": 4,
+  "exoskeleton-equipment": {
+    "processing-unit-amount": 40,
+    "processing-unit": {
+      "electronic-circuit-amount": 800,
+      "electronic-circuit": {
+        "iron-plate-amount": 1600,
+        "iron-plate": {
+          "iron-ore-amount": 1600,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "copper-cable-amount": 6400,
+        "copper-cable": {
+          "copper-plate-amount": 6400,
+          "copper-plate": {
+            "copper-ore-amount": 6400,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "advanced-circuit-amount": 80,
+      "advanced-circuit": {
+        "electronic-circuit-amount": 160,
+        "electronic-circuit": {
+          "iron-plate-amount": 320,
+          "iron-plate": {
+            "iron-ore-amount": 320,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          },
+          "copper-cable-amount": 1280,
+          "copper-cable": {
+            "copper-plate-amount": 1280,
+            "copper-plate": {
+              "copper-ore-amount": 1280,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        },
+        "plastic-bar-amount": 320,
+        "plastic-bar": {
+          "petroleum-gas-amount": 6400,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          },
+          "coal-amount": 320,
+          "coal": {
+            "coal": 1
+          }
+        },
+        "copper-cable-amount": 640,
+        "copper-cable": {
+          "copper-plate-amount": 640,
+          "copper-plate": {
+            "copper-ore-amount": 640,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "sulfuric-acid-amount": 400,
+      "sulfuric-acid": {
+        "sulfur-amount": 2000,
+        "sulfur": {
+          "water-amount": 60000,
+          "water": {
+            "water": 1
+          },
+          "petroleum-gas-amount": 60000,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          }
+        },
+        "iron-plate-amount": 400,
+        "iron-plate": {
+          "iron-ore-amount": 400,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "water-amount": 40000,
+        "water": {
+          "water": 1
+        }
+      }
+    },
+    "electric-engine-unit-amount": 120,
+    "electric-engine-unit": {
+      "engine-unit-amount": 120,
+      "engine-unit": {
+        "steel-plate-amount": 120,
+        "steel-plate": {
+          "iron-plate-amount": 1200,
+          "iron-plate": {
+            "iron-ore-amount": 1200,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          }
+        },
+        "iron-gear-wheel-amount": 120,
+        "iron-gear-wheel": {
+          "iron-plate-amount": 480,
+          "iron-plate": {
+            "iron-ore-amount": 480,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          }
+        },
+        "pipe-amount": 240,
+        "pipe": {
+          "iron-plate-amount": 480,
+          "iron-plate": {
+            "iron-ore-amount": 480,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          }
+        }
+      },
+      "lubricant-amount": 1800,
+      "lubricant": {
+        "heavy-oil-amount": 18000,
+        "heavy-oil": {
+          "heavy-oil": 1
+        }
+      },
+      "electronic-circuit-amount": 240,
+      "electronic-circuit": {
+        "iron-plate-amount": 480,
+        "iron-plate": {
+          "iron-ore-amount": 480,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "copper-cable-amount": 1920,
+        "copper-cable": {
+          "copper-plate-amount": 1920,
+          "copper-plate": {
+            "copper-ore-amount": 1920,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      }
+    },
+    "steel-plate-amount": 80,
+    "steel-plate": {
+      "iron-plate-amount": 800,
+      "iron-plate": {
+        "iron-ore-amount": 800,
+        "iron-ore": {
+          "iron-ore": 1
+        }
+      }
+    }
+  },
+  "fusion-reactor-equipment-amount": 2,
+  "fusion-reactor-equipment": {
+    "processing-unit-amount": 400,
+    "processing-unit": {
+      "electronic-circuit-amount": 8000,
+      "electronic-circuit": {
+        "iron-plate-amount": 16000,
+        "iron-plate": {
+          "iron-ore-amount": 16000,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "copper-cable-amount": 64000,
+        "copper-cable": {
+          "copper-plate-amount": 64000,
+          "copper-plate": {
+            "copper-ore-amount": 64000,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "advanced-circuit-amount": 800,
+      "advanced-circuit": {
+        "electronic-circuit-amount": 1600,
+        "electronic-circuit": {
+          "iron-plate-amount": 3200,
+          "iron-plate": {
+            "iron-ore-amount": 3200,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          },
+          "copper-cable-amount": 12800,
+          "copper-cable": {
+            "copper-plate-amount": 12800,
+            "copper-plate": {
+              "copper-ore-amount": 12800,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        },
+        "plastic-bar-amount": 3200,
+        "plastic-bar": {
+          "petroleum-gas-amount": 64000,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          },
+          "coal-amount": 3200,
+          "coal": {
+            "coal": 1
+          }
+        },
+        "copper-cable-amount": 6400,
+        "copper-cable": {
+          "copper-plate-amount": 6400,
+          "copper-plate": {
+            "copper-ore-amount": 6400,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "sulfuric-acid-amount": 4000,
+      "sulfuric-acid": {
+        "sulfur-amount": 20000,
+        "sulfur": {
+          "water-amount": 600000,
+          "water": {
+            "water": 1
+          },
+          "petroleum-gas-amount": 600000,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          }
+        },
+        "iron-plate-amount": 4000,
+        "iron-plate": {
+          "iron-ore-amount": 4000,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "water-amount": 400000,
+        "water": {
+          "water": 1
+        }
+      }
+    },
+    "low-density-structure-amount": 100,
+    "low-density-structure": {
+      "steel-plate-amount": 200,
+      "steel-plate": {
+        "iron-plate-amount": 2000,
+        "iron-plate": {
+          "iron-ore-amount": 2000,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        }
+      },
+      "copper-plate-amount": 2000,
+      "copper-plate": {
+        "copper-ore-amount": 2000,
+        "copper-ore": {
+          "copper-ore": 1
+        }
+      },
+      "plastic-bar-amount": 3000,
+      "plastic-bar": {
+        "petroleum-gas-amount": 60000,
+        "petroleum-gas": {
+          "petroleum-gas": 1
+        },
+        "coal-amount": 3000,
+        "coal": {
+          "coal": 1
+        }
+      }
+    }
+  },
+  "rocket-launcher-amount": 4,
+  "rocket-launcher": {
+    "iron-plate-amount": 20,
+    "iron-plate": {
+      "iron-ore-amount": 20,
+      "iron-ore": {
+        "iron-ore": 1
+      }
+    },
+    "iron-gear-wheel-amount": 20,
+    "iron-gear-wheel": {
+      "iron-plate-amount": 80,
+      "iron-plate": {
+        "iron-ore-amount": 80,
+        "iron-ore": {
+          "iron-ore": 1
+        }
+      }
+    },
+    "electronic-circuit-amount": 20,
+    "electronic-circuit": {
+      "iron-plate-amount": 40,
+      "iron-plate": {
+        "iron-ore-amount": 40,
+        "iron-ore": {
+          "iron-ore": 1
+        }
+      },
+      "copper-cable-amount": 160,
+      "copper-cable": {
+        "copper-plate-amount": 160,
+        "copper-plate": {
+          "copper-ore-amount": 160,
+          "copper-ore": {
+            "copper-ore": 1
+          }
+        }
+      }
+    }
+  },
+  "rocket-control-unit-amount": 16,
+  "rocket-control-unit": {
+    "processing-unit-amount": 16,
+    "processing-unit": {
+      "electronic-circuit-amount": 320,
+      "electronic-circuit": {
+        "iron-plate-amount": 640,
+        "iron-plate": {
+          "iron-ore-amount": 640,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "copper-cable-amount": 2560,
+        "copper-cable": {
+          "copper-plate-amount": 2560,
+          "copper-plate": {
+            "copper-ore-amount": 2560,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "advanced-circuit-amount": 32,
+      "advanced-circuit": {
+        "electronic-circuit-amount": 64,
+        "electronic-circuit": {
+          "iron-plate-amount": 128,
+          "iron-plate": {
+            "iron-ore-amount": 128,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          },
+          "copper-cable-amount": 512,
+          "copper-cable": {
+            "copper-plate-amount": 512,
+            "copper-plate": {
+              "copper-ore-amount": 512,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        },
+        "plastic-bar-amount": 128,
+        "plastic-bar": {
+          "petroleum-gas-amount": 2560,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          },
+          "coal-amount": 128,
+          "coal": {
+            "coal": 1
+          }
+        },
+        "copper-cable-amount": 256,
+        "copper-cable": {
+          "copper-plate-amount": 256,
+          "copper-plate": {
+            "copper-ore-amount": 256,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "sulfuric-acid-amount": 160,
+      "sulfuric-acid": {
+        "sulfur-amount": 800,
+        "sulfur": {
+          "water-amount": 24000,
+          "water": {
+            "water": 1
+          },
+          "petroleum-gas-amount": 24000,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          }
+        },
+        "iron-plate-amount": 160,
+        "iron-plate": {
+          "iron-ore-amount": 160,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "water-amount": 16000,
+        "water": {
+          "water": 1
+        }
+      }
+    },
+    "speed-module-amount": 16,
+    "speed-module": {
+      "advanced-circuit-amount": 80,
+      "advanced-circuit": {
+        "electronic-circuit-amount": 160,
+        "electronic-circuit": {
+          "iron-plate-amount": 320,
+          "iron-plate": {
+            "iron-ore-amount": 320,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          },
+          "copper-cable-amount": 1280,
+          "copper-cable": {
+            "copper-plate-amount": 1280,
+            "copper-plate": {
+              "copper-ore-amount": 1280,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        },
+        "plastic-bar-amount": 320,
+        "plastic-bar": {
+          "petroleum-gas-amount": 6400,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          },
+          "coal-amount": 320,
+          "coal": {
+            "coal": 1
+          }
+        },
+        "copper-cable-amount": 640,
+        "copper-cable": {
+          "copper-plate-amount": 640,
+          "copper-plate": {
+            "copper-ore-amount": 640,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "electronic-circuit-amount": 80,
+      "electronic-circuit": {
+        "iron-plate-amount": 160,
+        "iron-plate": {
+          "iron-ore-amount": 160,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "copper-cable-amount": 640,
+        "copper-cable": {
+          "copper-plate-amount": 640,
+          "copper-plate": {
+            "copper-ore-amount": 640,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      }
+    }
+  },
+  "low-density-structure-amount": 150,
+  "low-density-structure": {
+    "steel-plate-amount": 300,
+    "steel-plate": {
+      "iron-plate-amount": 3000,
+      "iron-plate": {
+        "iron-ore-amount": 3000,
+        "iron-ore": {
+          "iron-ore": 1
+        }
+      }
+    },
+    "copper-plate-amount": 3000,
+    "copper-plate": {
+      "copper-ore-amount": 3000,
+      "copper-ore": {
+        "copper-ore": 1
+      }
+    },
+    "plastic-bar-amount": 4500,
+    "plastic-bar": {
+      "petroleum-gas-amount": 90000,
+      "petroleum-gas": {
+        "petroleum-gas": 1
+      },
+      "coal-amount": 4500,
+      "coal": {
+        "coal": 1
+      }
+    }
+  },
+  "radar-amount": 2,
+  "radar": {
+    "electronic-circuit-amount": 10,
+    "electronic-circuit": {
+      "iron-plate-amount": 20,
+      "iron-plate": {
+        "iron-ore-amount": 20,
+        "iron-ore": {
+          "iron-ore": 1
+        }
+      },
+      "copper-cable-amount": 80,
+      "copper-cable": {
+        "copper-plate-amount": 80,
+        "copper-plate": {
+          "copper-ore-amount": 80,
+          "copper-ore": {
+            "copper-ore": 1
+          }
+        }
+      }
+    },
+    "iron-gear-wheel-amount": 10,
+    "iron-gear-wheel": {
+      "iron-plate-amount": 40,
+      "iron-plate": {
+        "iron-ore-amount": 40,
+        "iron-ore": {
+          "iron-ore": 1
+        }
+      }
+    },
+    "iron-plate-amount": 20,
+    "iron-plate": {
+      "iron-ore-amount": 20,
+      "iron-ore": {
+        "iron-ore": 1
+      }
+    }
+  },
+  "effectivity-module-3-amount": 2,
+  "effectivity-module-3": {
+    "effectivity-module-2-amount": 10,
+    "effectivity-module-2": {
+      "effectivity-module-amount": 40,
+      "effectivity-module": {
+        "advanced-circuit-amount": 200,
+        "advanced-circuit": {
+          "electronic-circuit-amount": 400,
+          "electronic-circuit": {
+            "iron-plate-amount": 800,
+            "iron-plate": {
+              "iron-ore-amount": 800,
+              "iron-ore": {
+                "iron-ore": 1
+              }
+            },
+            "copper-cable-amount": 3200,
+            "copper-cable": {
+              "copper-plate-amount": 3200,
+              "copper-plate": {
+                "copper-ore-amount": 3200,
+                "copper-ore": {
+                  "copper-ore": 1
+                }
+              }
+            }
+          },
+          "plastic-bar-amount": 800,
+          "plastic-bar": {
+            "petroleum-gas-amount": 16000,
+            "petroleum-gas": {
+              "petroleum-gas": 1
+            },
+            "coal-amount": 800,
+            "coal": {
+              "coal": 1
+            }
+          },
+          "copper-cable-amount": 1600,
+          "copper-cable": {
+            "copper-plate-amount": 1600,
+            "copper-plate": {
+              "copper-ore-amount": 1600,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        },
+        "electronic-circuit-amount": 200,
+        "electronic-circuit": {
+          "iron-plate-amount": 400,
+          "iron-plate": {
+            "iron-ore-amount": 400,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          },
+          "copper-cable-amount": 1600,
+          "copper-cable": {
+            "copper-plate-amount": 1600,
+            "copper-plate": {
+              "copper-ore-amount": 1600,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        }
+      },
+      "advanced-circuit-amount": 50,
+      "advanced-circuit": {
+        "electronic-circuit-amount": 100,
+        "electronic-circuit": {
+          "iron-plate-amount": 200,
+          "iron-plate": {
+            "iron-ore-amount": 200,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          },
+          "copper-cable-amount": 800,
+          "copper-cable": {
+            "copper-plate-amount": 800,
+            "copper-plate": {
+              "copper-ore-amount": 800,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        },
+        "plastic-bar-amount": 200,
+        "plastic-bar": {
+          "petroleum-gas-amount": 4000,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          },
+          "coal-amount": 200,
+          "coal": {
+            "coal": 1
+          }
+        },
+        "copper-cable-amount": 400,
+        "copper-cable": {
+          "copper-plate-amount": 400,
+          "copper-plate": {
+            "copper-ore-amount": 400,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "processing-unit-amount": 50,
+      "processing-unit": {
+        "electronic-circuit-amount": 1000,
+        "electronic-circuit": {
+          "iron-plate-amount": 2000,
+          "iron-plate": {
+            "iron-ore-amount": 2000,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          },
+          "copper-cable-amount": 8000,
+          "copper-cable": {
+            "copper-plate-amount": 8000,
+            "copper-plate": {
+              "copper-ore-amount": 8000,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        },
+        "advanced-circuit-amount": 100,
+        "advanced-circuit": {
+          "electronic-circuit-amount": 200,
+          "electronic-circuit": {
+            "iron-plate-amount": 400,
+            "iron-plate": {
+              "iron-ore-amount": 400,
+              "iron-ore": {
+                "iron-ore": 1
+              }
+            },
+            "copper-cable-amount": 1600,
+            "copper-cable": {
+              "copper-plate-amount": 1600,
+              "copper-plate": {
+                "copper-ore-amount": 1600,
+                "copper-ore": {
+                  "copper-ore": 1
+                }
+              }
+            }
+          },
+          "plastic-bar-amount": 400,
+          "plastic-bar": {
+            "petroleum-gas-amount": 8000,
+            "petroleum-gas": {
+              "petroleum-gas": 1
+            },
+            "coal-amount": 400,
+            "coal": {
+              "coal": 1
+            }
+          },
+          "copper-cable-amount": 800,
+          "copper-cable": {
+            "copper-plate-amount": 800,
+            "copper-plate": {
+              "copper-ore-amount": 800,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        },
+        "sulfuric-acid-amount": 500,
+        "sulfuric-acid": {
+          "sulfur-amount": 2500,
+          "sulfur": {
+            "water-amount": 75000,
+            "water": {
+              "water": 1
+            },
+            "petroleum-gas-amount": 75000,
+            "petroleum-gas": {
+              "petroleum-gas": 1
+            }
+          },
+          "iron-plate-amount": 500,
+          "iron-plate": {
+            "iron-ore-amount": 500,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          },
+          "water-amount": 50000,
+          "water": {
+            "water": 1
+          }
+        }
+      }
+    },
+    "advanced-circuit-amount": 10,
+    "advanced-circuit": {
+      "electronic-circuit-amount": 20,
+      "electronic-circuit": {
+        "iron-plate-amount": 40,
+        "iron-plate": {
+          "iron-ore-amount": 40,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "copper-cable-amount": 160,
+        "copper-cable": {
+          "copper-plate-amount": 160,
+          "copper-plate": {
+            "copper-ore-amount": 160,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "plastic-bar-amount": 40,
+      "plastic-bar": {
+        "petroleum-gas-amount": 800,
+        "petroleum-gas": {
+          "petroleum-gas": 1
+        },
+        "coal-amount": 40,
+        "coal": {
+          "coal": 1
+        }
+      },
+      "copper-cable-amount": 80,
+      "copper-cable": {
+        "copper-plate-amount": 80,
+        "copper-plate": {
+          "copper-ore-amount": 80,
+          "copper-ore": {
+            "copper-ore": 1
+          }
+        }
+      }
+    },
+    "processing-unit-amount": 10,
+    "processing-unit": {
+      "electronic-circuit-amount": 200,
+      "electronic-circuit": {
+        "iron-plate-amount": 400,
+        "iron-plate": {
+          "iron-ore-amount": 400,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "copper-cable-amount": 1600,
+        "copper-cable": {
+          "copper-plate-amount": 1600,
+          "copper-plate": {
+            "copper-ore-amount": 1600,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "advanced-circuit-amount": 20,
+      "advanced-circuit": {
+        "electronic-circuit-amount": 40,
+        "electronic-circuit": {
+          "iron-plate-amount": 80,
+          "iron-plate": {
+            "iron-ore-amount": 80,
+            "iron-ore": {
+              "iron-ore": 1
+            }
+          },
+          "copper-cable-amount": 320,
+          "copper-cable": {
+            "copper-plate-amount": 320,
+            "copper-plate": {
+              "copper-ore-amount": 320,
+              "copper-ore": {
+                "copper-ore": 1
+              }
+            }
+          }
+        },
+        "plastic-bar-amount": 80,
+        "plastic-bar": {
+          "petroleum-gas-amount": 1600,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          },
+          "coal-amount": 80,
+          "coal": {
+            "coal": 1
+          }
+        },
+        "copper-cable-amount": 160,
+        "copper-cable": {
+          "copper-plate-amount": 160,
+          "copper-plate": {
+            "copper-ore-amount": 160,
+            "copper-ore": {
+              "copper-ore": 1
+            }
+          }
+        }
+      },
+      "sulfuric-acid-amount": 100,
+      "sulfuric-acid": {
+        "sulfur-amount": 500,
+        "sulfur": {
+          "water-amount": 15000,
+          "water": {
+            "water": 1
+          },
+          "petroleum-gas-amount": 15000,
+          "petroleum-gas": {
+            "petroleum-gas": 1
+          }
+        },
+        "iron-plate-amount": 100,
+        "iron-plate": {
+          "iron-ore-amount": 100,
+          "iron-ore": {
+            "iron-ore": 1
+          }
+        },
+        "water-amount": 10000,
+        "water": {
+          "water": 1
+        }
+      }
+    }
+  },
+  "raw-fish-amount": 1,
+  "raw-fish": {
+    "raw-fish": 1
+  }
+}

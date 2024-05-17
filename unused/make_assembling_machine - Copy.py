@@ -1,10 +1,10 @@
 import json
 #ok, so what I have to do here is to 
-# with open ("receiving_station_with_assemblers.json") as f:
-# 	blueprint = json.load(f)
+with open ("receiving_station_with_assemblers.json") as f:
+	blueprint = json.load(f)
 with open ("ingredients.json") as f:
 	ingredients = json.load(f)
-print(ingredients)
+
 
 # print(json.dumps(blueprint,indent =2))
 # print(json.dumps(ingredients[-1],indent=2))
@@ -74,10 +74,9 @@ def getMaterialHeirarchy(item,amount =1):
 		subDict[element["id"]] =  getMaterialHeirarchy(element["id"],element["amount"]*amount)
 	return subDict
 # print(json.dumps(getMaterialHeirarchy("space-science-pack"),indent=2))
-product = "space-science-pack"
-product = "logistic-robot"
-print(json.dumps({product:getMaterialHeirarchy(product)},indent=2))
-# packs = [i for i in ingqredient_dictionary if "pack" in i]
+# product = "space-science-pack"
+# print(json.dumps({product:getMaterialHeirarchy(product)},indent=2))
+# packs = [i for i in ingredient_dictionary if "pack" in i]
 # allitems = set()
 # for pack in packs:
 # 	allitems = allitems.union(getAllNecessaryItems(pack))
@@ -85,13 +84,9 @@ print(json.dumps({product:getMaterialHeirarchy(product)},indent=2))
 # print(len(allitems))
 # print(len(ingredients))
 # print([i["id"] for i in ingredients if "belt" in i["id"]])
-# desired_items = ["atomic-bomb","laser-turret"]
-# for item in desired_items:
-# 	print(item)
-# 	print(getMaterialHeirarchy(item))
 # print([i for i in ingredient_dictionary if "pack" in i])
 # print(json.dumps(ingredient_dictionary["copper-cable"]))
-
+# print(make_assembling_machine("fusion-reactor",1))
 # print(convertoToBlueprint(change_requester_chests_near_requester_station("electronic-circuit")))
 
 

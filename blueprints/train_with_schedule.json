@@ -1,0 +1,794 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "rail"
+        },
+        "index": 1
+      },
+      {
+        "signal": {
+          "type": "item",
+          "name": "cargo-wagon"
+        },
+        "index": 2
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 643.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 2,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 642.5,
+          "y": -560.5
+        },
+        "neighbours": [
+          9
+        ]
+      },
+      {
+        "entity_number": 3,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 644.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 4,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 645.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 5,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 646.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 6,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 647.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 7,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 649.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 8,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 648.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 9,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 649.5,
+          "y": -560.5
+        },
+        "neighbours": [
+          2,
+          18
+        ]
+      },
+      {
+        "entity_number": 10,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 651.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 11,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 650.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 12,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 652.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 13,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 653.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 14,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 654.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 15,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 655.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 16,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 656.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 17,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 657.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 18,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 656.5,
+          "y": -560.5
+        },
+        "neighbours": [
+          9,
+          25
+        ]
+      },
+      {
+        "entity_number": 19,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 659.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 20,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 658.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 21,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 660.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 22,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 661.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 23,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 662.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 24,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 663.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 25,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 663.5,
+          "y": -560.5
+        },
+        "neighbours": [
+          18,
+          32
+        ]
+      },
+      {
+        "entity_number": 26,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 664.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 27,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 665.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 28,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 667.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 29,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 666.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 30,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 669.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 31,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 668.5,
+          "y": -561.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "count": 9600
+          }
+        ]
+      },
+      {
+        "entity_number": 32,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 670.5,
+          "y": -560.5
+        },
+        "neighbours": [
+          25,
+          34
+        ]
+      },
+      {
+        "entity_number": 33,
+        "name": "stack-inserter",
+        "position": {
+          "x": 671.5,
+          "y": -560.5
+        }
+      },
+      {
+        "entity_number": 34,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 676,
+          "y": -561
+        },
+        "neighbours": [
+          32
+        ]
+      },
+      {
+        "entity_number": 35,
+        "name": "straight-rail",
+        "position": {
+          "x": 641,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 36,
+        "name": "cargo-wagon",
+        "position": {
+          "x": 646,
+          "y": -559
+        },
+        "orientation": 0.25,
+        "inventory": null
+      },
+      {
+        "entity_number": 37,
+        "name": "straight-rail",
+        "position": {
+          "x": 643,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 38,
+        "name": "straight-rail",
+        "position": {
+          "x": 645,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 39,
+        "name": "straight-rail",
+        "position": {
+          "x": 647,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 40,
+        "name": "straight-rail",
+        "position": {
+          "x": 649,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 41,
+        "name": "cargo-wagon",
+        "position": {
+          "x": 653,
+          "y": -559
+        },
+        "orientation": 0.25,
+        "inventory": null
+      },
+      {
+        "entity_number": 42,
+        "name": "straight-rail",
+        "position": {
+          "x": 651,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 43,
+        "name": "straight-rail",
+        "position": {
+          "x": 653,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 44,
+        "name": "straight-rail",
+        "position": {
+          "x": 655,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 45,
+        "name": "cargo-wagon",
+        "position": {
+          "x": 660,
+          "y": -559
+        },
+        "orientation": 0.25,
+        "inventory": null
+      },
+      {
+        "entity_number": 46,
+        "name": "straight-rail",
+        "position": {
+          "x": 657,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 47,
+        "name": "straight-rail",
+        "position": {
+          "x": 659,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 48,
+        "name": "straight-rail",
+        "position": {
+          "x": 661,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 49,
+        "name": "straight-rail",
+        "position": {
+          "x": 663,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 50,
+        "name": "cargo-wagon",
+        "position": {
+          "x": 667,
+          "y": -559
+        },
+        "orientation": 0.25,
+        "inventory": null
+      },
+      {
+        "entity_number": 51,
+        "name": "straight-rail",
+        "position": {
+          "x": 665,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 52,
+        "name": "straight-rail",
+        "position": {
+          "x": 667,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 53,
+        "name": "straight-rail",
+        "position": {
+          "x": 669,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 54,
+        "name": "locomotive",
+        "position": {
+          "x": 674,
+          "y": -559
+        },
+        "orientation": 0.25,
+        "items": {
+          "coal": 150
+        }
+      },
+      {
+        "entity_number": 55,
+        "name": "straight-rail",
+        "position": {
+          "x": 671,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 56,
+        "name": "straight-rail",
+        "position": {
+          "x": 673,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 57,
+        "name": "straight-rail",
+        "position": {
+          "x": 675,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 58,
+        "name": "straight-rail",
+        "position": {
+          "x": 677,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 59,
+        "name": "straight-rail",
+        "position": {
+          "x": 679,
+          "y": -559
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 60,
+        "name": "rail-signal",
+        "position": {
+          "x": 641.5,
+          "y": -557.5
+        },
+        "direction": 6
+      },
+      {
+        "entity_number": 61,
+        "name": "train-stop",
+        "position": {
+          "x": 677,
+          "y": -557
+        },
+        "direction": 2,
+        "station": "8bitjoey"
+      },
+      {
+        "entity_number": 62,
+        "name": "rail-signal",
+        "position": {
+          "x": 679.5,
+          "y": -557.5
+        },
+        "direction": 6
+      }
+    ],
+    "schedules": [
+      {
+        "locomotives": [
+          54
+        ],
+        "schedule": [
+          {
+            "station": "8bitjoey",
+            "wait_conditions": [
+              {
+                "compare_type": "or",
+                "type": "full"
+              }
+            ]
+          },
+          {
+            "station": "Daan de Rond",
+            "wait_conditions": [
+              {
+                "compare_type": "or",
+                "type": "empty"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278493696
+  }
+}

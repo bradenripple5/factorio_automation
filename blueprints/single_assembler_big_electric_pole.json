@@ -1,0 +1,87 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 404.5,
+          "y": -48.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "copper-plate",
+            "count": 100
+          },
+          {
+            "index": 2,
+            "name": "steel-plate",
+            "count": 100
+          },
+          {
+            "index": 3,
+            "name": "iron-stick",
+            "count": 100
+          }
+        ]
+      },
+      {
+        "entity_number": 2,
+        "name": "logistic-chest-storage",
+        "position": {
+          "x": 405.5,
+          "y": -48.5
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 403.5,
+          "y": -47.5
+        }
+      },
+      {
+        "entity_number": 4,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 404.5,
+          "y": -45.5
+        },
+        "recipe": "big-electric-pole",
+        "items": {
+          "speed-module-2": 4
+        }
+      },
+      {
+        "entity_number": 5,
+        "name": "stack-inserter",
+        "position": {
+          "x": 405.5,
+          "y": -47.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 6,
+        "name": "stack-inserter",
+        "position": {
+          "x": 404.5,
+          "y": -47.5
+        }
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278493696
+  }
+}

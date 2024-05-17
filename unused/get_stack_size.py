@@ -1,0 +1,1 @@
+path = f"C:\\Program Files\\Factorio\\data\base\\prototypes\\item"

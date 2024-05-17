@@ -1,6 +1,7 @@
 import json
+from recipe_extraction import *
 #ok, so what I have to do here is to 
-with open ("receiving_station_with_assemblers.json") as f:
+with open ("blueprints\\receiving_station_with_assemblers.json") as f:
 	blueprint = json.load(f)
 with open ("ingredients.json") as f:
 	ingredients = json.load(f)
@@ -12,19 +13,19 @@ with open ("ingredients.json") as f:
 from convert_json_to_blueprint_string import convertoToBlueprint
 
 
-def make_assembling_machine(what_you_want_make,multiplication_factor):
-	recipe = [ i for i in ingredients if i["id"] == what_you_want_make][0]["recipe"]["ingredients"]
+def make_assembling_machine(what_you_want_make):
+	recipe = get_recipe(what_you_want_make)
 	#this changes every requester chest to what you want
 	for index, entity in enumerate(blueprint["blueprint"]["entities"]):
 		if entity["name"] == "logistic-chest-requester":
 			blueprint["blueprint"]["entities"][index]["request_filters"] = []
 			for index_, element in enumerate(recipe):
-				blueprint["blueprint"]["entities"][index]["request_filters"] += [{ "index":index_+1,"name":element["id"], "count":int(element["amount"])*multiplication_factor}]
+				blueprint["blueprint"]["entities"][index_]["request_filters"] += [{ "index":index_+1,"name":element["id"], "count":int(element["amount"])*multiplication_factor}]
 	#this changes every assembling machine to what you want
 	for index, entity in enumerate(blueprint["blueprint"]["entities"]):
 		if "assembling-machine" in entity["name"]:
 			blueprint["blueprint"]["entities"][index]["recipe"] = what_you_want_make
-
+	return blueprint
 
 	return blueprint
 def find_receiving_train_stop_coords(blueprint):
@@ -73,20 +74,21 @@ def getMaterialHeirarchy(item,amount =1):
 		subDict[element["id"]+"-amount"] = element["amount"]*amount
 		subDict[element["id"]] =  getMaterialHeirarchy(element["id"],element["amount"]*amount)
 	return subDict
-# print(json.dumps(getMaterialHeirarchy("space-science-pack"),indent=2))
-product = "space-science-pack"
-print(json.dumps({product:getMaterialHeirarchy(product)},indent=2))
-packs = [i for i in ingredient_dictionary if "pack" in i]
-allitems = set()
-for pack in packs:
-	allitems = allitems.union(getAllNecessaryItems(pack))
-print(allitems)
-print(len(allitems))
-print(len(ingredients))
-print([i["id"] for i in ingredients if "belt" in i["id"]])
+
+print(json.dumps(getMaterialHeirarchy("nuclear-reactor"),indent=2))
+# product = "space-science-pack"
+# print(json.dumps({product:getMaterialHeirarchy(product)},indent=2))
+# packs = [i for i in ingredient_dictionary if "pack" in i]
+# allitems = set()
+# for pack in packs:
+# 	allitems = allitems.union(getAllNecessaryItems(pack))
+# print(allitems)
+# print(len(allitems))
+# print(len(ingredients))
+# print([i["id"] for i in ingredients if "belt" in i["id"]])
 # print([i for i in ingredient_dictionary if "pack" in i])
 # print(json.dumps(ingredient_dictionary["copper-cable"]))
-
+# print(make_assembling_machine("fusion-reactor",1))
 # print(convertoToBlueprint(change_requester_chests_near_requester_station("electronic-circuit")))
 
 

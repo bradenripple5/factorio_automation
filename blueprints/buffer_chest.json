@@ -1,0 +1,32 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "logistic-chest-buffer"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "logistic-chest-buffer",
+        "position": {
+          "x": 201.5,
+          "y": -236.5
+        },
+        "request_filters": [
+          {
+            "index": 2,
+            "name": "empty-barrel",
+            "count": 480
+          }
+        ]
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278690304
+  }
+}

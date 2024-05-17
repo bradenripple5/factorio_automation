@@ -1,0 +1,55 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 807.5,
+          "y": 50.5
+        },
+        "direction": 6,
+        "recipe": "fill-petroleum-gas-barrel"
+      },
+      {
+        "entity_number": 2,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 810.5,
+          "y": 50.5
+        },
+        "recipe": "fill-petroleum-gas-barrel"
+      },
+      {
+        "entity_number": 3,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 813.5,
+          "y": 50.5
+        },
+        "direction": 2,
+        "recipe": "fill-petroleum-gas-barrel"
+      },
+      {
+        "entity_number": 4,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 816.5,
+          "y": 50.5
+        },
+        "recipe": "empty-petroleum-gas-barrel"
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278493696
+  }
+}

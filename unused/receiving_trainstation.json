@@ -1,0 +1,1338 @@
+{
+	"blueprint": {
+		"icons": [{
+			"signal": {
+				"type": "item",
+				"name": "rail"
+			},
+			"index": 1
+		}, {
+			"signal": {
+				"type": "item",
+				"name": "logistic-chest-requester"
+			},
+			"index": 2
+		}],
+		"entities": [{
+			"entity_number": 1,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": -16.5,
+				"y": -3.5
+			}
+		}, {
+			"entity_number": 2,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": -13.5,
+				"y": -3.5
+			}
+		}, {
+			"entity_number": 3,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": -7.5,
+				"y": -3.5
+			}
+		}, {
+			"entity_number": 4,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": -4.5,
+				"y": -3.5
+			}
+		}, {
+			"entity_number": 5,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": 1.5,
+				"y": -3.5
+			}
+		}, {
+			"entity_number": 6,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": 4.5,
+				"y": -3.5
+			}
+		}, {
+			"entity_number": 7,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": 10.5,
+				"y": -3.5
+			}
+		}, {
+			"entity_number": 8,
+			"name": "medium-electric-pole",
+			"position": {
+				"x": 13.5,
+				"y": -3.5
+			}
+		}, {
+			"entity_number": 9,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -19.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 10,
+			"name": "stack-inserter",
+			"position": {
+				"x": -19.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 11,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -18.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 12,
+			"name": "stack-inserter",
+			"position": {
+				"x": -18.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 13,
+			"name": "stack-inserter",
+			"position": {
+				"x": -17.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 14,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -17.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 15,
+			"name": "stack-inserter",
+			"position": {
+				"x": -15.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 16,
+			"name": "stack-inserter",
+			"position": {
+				"x": -16.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 17,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -16.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 18,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -15.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 19,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -14.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 20,
+			"name": "stack-inserter",
+			"position": {
+				"x": -13.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 21,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -13.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 22,
+			"name": "stack-inserter",
+			"position": {
+				"x": -14.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 23,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -11.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 24,
+			"name": "stack-inserter",
+			"position": {
+				"x": -11.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 25,
+			"name": "stack-inserter",
+			"position": {
+				"x": -12.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 26,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -12.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 27,
+			"name": "stack-inserter",
+			"position": {
+				"x": -9.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 28,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -9.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 29,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -10.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 30,
+			"name": "stack-inserter",
+			"position": {
+				"x": -10.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 31,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -8.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 32,
+			"name": "stack-inserter",
+			"position": {
+				"x": -8.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 33,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -7.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 34,
+			"name": "stack-inserter",
+			"position": {
+				"x": -7.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 35,
+			"name": "stack-inserter",
+			"position": {
+				"x": -6.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 36,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -6.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 37,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -5.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 38,
+			"name": "stack-inserter",
+			"position": {
+				"x": -5.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 39,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -4.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 40,
+			"name": "stack-inserter",
+			"position": {
+				"x": -4.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 41,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -3.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 42,
+			"name": "stack-inserter",
+			"position": {
+				"x": -3.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 43,
+			"name": "stack-inserter",
+			"position": {
+				"x": -2.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 44,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -2.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 45,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -1.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 46,
+			"name": "stack-inserter",
+			"position": {
+				"x": -1.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 47,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -0.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 48,
+			"name": "stack-inserter",
+			"position": {
+				"x": -0.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 49,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 0.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 50,
+			"name": "stack-inserter",
+			"position": {
+				"x": 0.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 51,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 1.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 52,
+			"name": "stack-inserter",
+			"position": {
+				"x": 1.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 53,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 2.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 54,
+			"name": "stack-inserter",
+			"position": {
+				"x": 2.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 55,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 3.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 56,
+			"name": "stack-inserter",
+			"position": {
+				"x": 3.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 57,
+			"name": "stack-inserter",
+			"position": {
+				"x": 4.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 58,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 4.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 59,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 5.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 60,
+			"name": "stack-inserter",
+			"position": {
+				"x": 5.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 61,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 6.5,
+				"y": -2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 62,
+			"name": "stack-inserter",
+			"position": {
+				"x": 6.5,
+				"y": -1.5
+			}
+		}, {
+			"entity_number": 63,
+			"name": "straight-rail",
+			"position": {
+				"x": -22,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 64,
+			"name": "straight-rail",
+			"position": {
+				"x": -20,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 65,
+			"name": "straight-rail",
+			"position": {
+				"x": -18,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 66,
+			"name": "straight-rail",
+			"position": {
+				"x": -16,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 67,
+			"name": "straight-rail",
+			"position": {
+				"x": -14,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 68,
+			"name": "straight-rail",
+			"position": {
+				"x": -12,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 69,
+			"name": "straight-rail",
+			"position": {
+				"x": -10,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 70,
+			"name": "straight-rail",
+			"position": {
+				"x": -8,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 71,
+			"name": "straight-rail",
+			"position": {
+				"x": -6,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 72,
+			"name": "straight-rail",
+			"position": {
+				"x": -4,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 73,
+			"name": "straight-rail",
+			"position": {
+				"x": -2,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 74,
+			"name": "straight-rail",
+			"position": {
+				"x": 0,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 75,
+			"name": "straight-rail",
+			"position": {
+				"x": 2,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 76,
+			"name": "straight-rail",
+			"position": {
+				"x": 4,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 77,
+			"name": "straight-rail",
+			"position": {
+				"x": 6,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 78,
+			"name": "straight-rail",
+			"position": {
+				"x": 8,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 79,
+			"name": "straight-rail",
+			"position": {
+				"x": 10,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 80,
+			"name": "straight-rail",
+			"position": {
+				"x": 12,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 81,
+			"name": "straight-rail",
+			"position": {
+				"x": 14,
+				"y": 0
+			},
+			"direction": 2
+		}, {
+			"entity_number": 82,
+			"name": "curved-rail",
+			"position": {
+				"x": 19,
+				"y": 1
+			},
+			"direction": 3
+		}, {
+			"entity_number": 83,
+			"name": "stack-inserter",
+			"position": {
+				"x": -19.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 84,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -19.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 85,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -20.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 86,
+			"name": "stack-inserter",
+			"position": {
+				"x": -20.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 87,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -18.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 88,
+			"name": "stack-inserter",
+			"position": {
+				"x": -18.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 89,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -17.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 90,
+			"name": "stack-inserter",
+			"position": {
+				"x": -17.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 91,
+			"name": "stack-inserter",
+			"position": {
+				"x": -16.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 92,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -16.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 93,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -15.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 94,
+			"name": "stack-inserter",
+			"position": {
+				"x": -15.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 95,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -14.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 96,
+			"name": "stack-inserter",
+			"position": {
+				"x": -14.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 97,
+			"name": "stack-inserter",
+			"position": {
+				"x": -13.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 98,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -13.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 99,
+			"name": "stack-inserter",
+			"position": {
+				"x": -12.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 100,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -12.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 101,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -11.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 102,
+			"name": "stack-inserter",
+			"position": {
+				"x": -11.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 103,
+			"name": "stack-inserter",
+			"position": {
+				"x": -9.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 104,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -9.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 105,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -10.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 106,
+			"name": "stack-inserter",
+			"position": {
+				"x": -10.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 107,
+			"name": "stack-inserter",
+			"position": {
+				"x": -8.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 108,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -8.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 109,
+			"name": "stack-inserter",
+			"position": {
+				"x": -7.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 110,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -7.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 111,
+			"name": "stack-inserter",
+			"position": {
+				"x": -6.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 112,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -6.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 113,
+			"name": "stack-inserter",
+			"position": {
+				"x": -5.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 114,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -5.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 115,
+			"name": "stack-inserter",
+			"position": {
+				"x": -4.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 116,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -4.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 117,
+			"name": "stack-inserter",
+			"position": {
+				"x": -3.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 118,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -3.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 119,
+			"name": "stack-inserter",
+			"position": {
+				"x": -2.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 120,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -2.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 121,
+			"name": "stack-inserter",
+			"position": {
+				"x": -1.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 122,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -1.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 123,
+			"name": "stack-inserter",
+			"position": {
+				"x": -0.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 124,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": -0.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 125,
+			"name": "stack-inserter",
+			"position": {
+				"x": 0.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 126,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 0.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 127,
+			"name": "stack-inserter",
+			"position": {
+				"x": 1.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 128,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 1.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 129,
+			"name": "stack-inserter",
+			"position": {
+				"x": 2.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 130,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 2.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 131,
+			"name": "stack-inserter",
+			"position": {
+				"x": 3.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 132,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 3.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 133,
+			"name": "stack-inserter",
+			"position": {
+				"x": 4.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 134,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 4.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 135,
+			"name": "stack-inserter",
+			"position": {
+				"x": 5.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 136,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 5.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 137,
+			"name": "stack-inserter",
+			"position": {
+				"x": 6.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 138,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 6.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 8,
+				"name": "iron-plate",
+				"count": 4000
+			}]
+		}, {
+			"entity_number": 139,
+			"name": "stack-inserter",
+			"position": {
+				"x": 12.5,
+				"y": 1.5
+			},
+			"direction": 4
+		}, {
+			"entity_number": 140,
+			"name": "logistic-chest-requester",
+			"position": {
+				"x": 12.5,
+				"y": 2.5
+			},
+			"request_filters": [{
+				"index": 7,
+				"name": "coal",
+				"count": 300
+			}]
+		}, {
+			"entity_number": 141,
+			"name": "train-stop",
+			"position": {
+				"x": 14,
+				"y": 2
+			},
+			"direction": 2,
+			"station": "receiving"
+		}],
+		"item": "blueprint",
+		"version": 68722819072
+	}
+}
