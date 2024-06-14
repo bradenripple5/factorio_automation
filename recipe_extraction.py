@@ -65,6 +65,15 @@ for file in items_files:
 			if isinstance(item,dict):
 				if "name" in item and item["type"] not in ["item-subgroup","item-group"]:
 					items_dict[item["name"]] = item
+def get_energy(item):
+	try:
+		return recipes_dict[item]["expensive"]["energy_required"]
+	except:
+		try:
+			return recipes_dict[item]["energy_required"]
+		except:
+			return 1
+print(get_energy("advanced-circuit"))
 def is_smelted(item):
 	return item in smelted_list
 def get_recipe(product):
@@ -121,10 +130,26 @@ def get_stack_size(item):
 	# else:
 	# 	ingredients = fullinfo["ingredients"]
 	# return [i[0] if isinstance(i,list) else i["name"] for i in ingredients]print(get_recipe("plastic-bar"))
+def getNestedMaterialHeirarchy(item, amount = 1):
+
+	try:
+		ingredients =  recipes_dict[item]["expensive"]["ingredients"] if "expensive" in recipes_dict[item] else recipes_dict[item]["ingredients"]
+		# return {item:{ingredient[0]+"amount":ingredient[1]*amount, ingredient[0]:{getNestedMaterialHeirarchy(ingredient[0],ingredient[1]*amount*(get_production_time(ingredient[0])//get_production_time(item)))} for ingredient in ingredients}}
+		if item == "advanced-circuit":
+			print(recipes_dict["advanced-circuit"])
+		return_dict = {}
+		return_dict["amount"] = amount
+		return_dict["ingredients"] = [getNestedMaterialHeirarchy(ingredient[0],ingredient[1]*amount ) for  ingredient in ingredients]
+
+		return {item: return_dict}
+	except Exception as e:
+		return {item:amount}
+
 def getMaterialHeirarchy(item):
 	material_dict = defaultdict(int)
 	def get_ingredients(prod, amount = 1):
 		ingredients = recipes_dict[prod]["expensive"]["ingredients"] if "expensive" in recipes_dict[prod] else recipes_dict[prod]["ingredients"]
+		
 		for ingredient in ingredients:
 			material_dict[ingredient[0]] += ingredient[1]*amount
 		for ingredient in ingredients:
@@ -144,8 +169,6 @@ def get_production_time(product):
 		try:
 			return recipes_dict[product]["normal"]["energy_required"]
 		except:
-			if product not in recipes_dict:
-				return 0
 			return 1
 
 def get_production_type(product):
@@ -170,7 +193,13 @@ def get_production_type(product):
 		return "assembling-machine or smelter"
 	except:
 		return "must be crude-oil or some type of ore"
-print(getMaterialHeirarchy("advanced-circuit"))
+with open("advanced-circuit-recipe.json", "w+") as f:
+	f.write(json.dumps(getNestedMaterialHeirarchy("roboport"),indent=2))
+
+
+
+# print(getNestedMaterialHeirarchy("advanced-circuit",6))
+# print(get_recipe("advanced-circuit"))
 # print(get_production_type("advanced-circuit"))
 # products_necessary_for_space_science_pack =  ["low-density-structure", "rocket-fuel", "satellite", "rocket-control-unit","utility-science-pack"]
 # packs = [i+"-science-pack" for i in ["automation","logistic","military","chemical","production","utility"]]

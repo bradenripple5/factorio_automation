@@ -1,0 +1,102 @@
+{
+  "roboport": {
+    "amount": 1,
+    "ingredients": [
+      {
+        "steel-plate": {
+          "amount": 45,
+          "ingredients": [
+            {
+              "iron-plate": {
+                "amount": 450,
+                "ingredients": [
+                  {
+                    "iron-ore": 450
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "iron-gear-wheel": {
+          "amount": 45,
+          "ingredients": [
+            {
+              "iron-plate": {
+                "amount": 180,
+                "ingredients": [
+                  {
+                    "iron-ore": 180
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "advanced-circuit": {
+          "amount": 45,
+          "ingredients": [
+            {
+              "electronic-circuit": {
+                "amount": 90,
+                "ingredients": [
+                  {
+                    "iron-plate": {
+                      "amount": 180,
+                      "ingredients": [
+                        {
+                          "iron-ore": 180
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "copper-cable": {
+                      "amount": 720,
+                      "ingredients": [
+                        {
+                          "copper-plate": {
+                            "amount": 720,
+                            "ingredients": [
+                              {
+                                "copper-ore": 720
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "plastic-bar": 180
+            },
+            {
+              "copper-cable": {
+                "amount": 360,
+                "ingredients": [
+                  {
+                    "copper-plate": {
+                      "amount": 360,
+                      "ingredients": [
+                        {
+                          "copper-ore": 360
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
