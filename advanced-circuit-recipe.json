@@ -56,14 +56,14 @@
                   },
                   {
                     "copper-cable": {
-                      "amount": 720,
+                      "amount": 900,
                       "ingredients": [
                         {
                           "copper-plate": {
-                            "amount": 720,
+                            "amount": 900,
                             "ingredients": [
                               {
-                                "copper-ore": 720
+                                "copper-ore": 900
                               }
                             ]
                           }

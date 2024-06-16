@@ -1,11 +1,22 @@
-import json, os
+import json, os, sys
 from slpp import slpp as lua
 from collections import defaultdict
+import pathlib
+def convertPathForOs(path):
+	if sys.platform != "windows":
+		return str(pathlib.PurePosixPath(path))
+	else:
+		return str(pathlib.PureWindowsPath(path))
 # import json
 
 FAC_HOME = os.getenv("FACTORIO_HOME")
-RECIPE_HOME = FAC_HOME +  f"\\data\\base\\prototypes\\recipe"
-ITEMS_HOME = FAC_HOME + f"\\data\\base\\prototypes\\item"
+relative_recipe_string = "/data/base/prototypes/recipe"
+relative_items_string = "/data/base/prototypes/item"
+relative_items_string,relative_recipe_string = convertPathForOs(relative_items_string),convertPathForOs(relative_recipe_string)
+RECIPE_HOME =  f"{FAC_HOME}{relative_recipe_string}"
+ITEMS_HOME = FAC_HOME + relative_items_string
+RECIPE_HOME, ITEMS_HOME = convertPathForOs(RECIPE_HOME),convertPathForOs(ITEMS_HOME)
+print(ITEMS_HOME,RECIPE_HOME,FAC_HOME,sep = "\n")
 recipe_files = os.listdir(RECIPE_HOME)
 items_files = os.listdir(ITEMS_HOME)
 fluids = []
@@ -20,7 +31,7 @@ chemical_plant_products_from_one_fluid = ["sulfuric-acid","solid-fuel","plastic-
 chemical_plant_fluids_from_one_fluid = ["sulfuric-acid","lubricant"]
 chemical_plant_solids_from_one_fluid = ["solid-fuel","plastic-bar","lubricant","battery","explosives"]
 
-with open(RECIPE_HOME+"\\demo-furnace-recipe.lua") as f:
+with open(RECIPE_HOME+convertPathForOs("//demo-furnace-recipe.lua")) as f:
 	s = f.read()
 	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
 	list_of_recipes =  lua.decode(stripped_string) # actually a list
@@ -29,13 +40,13 @@ with open(RECIPE_HOME+"\\demo-furnace-recipe.lua") as f:
 		if isinstance(item,dict):
 			if "name" in item:
 				smelted_list.add(item["name"])
-RECIPE_LUA_FILE_HOME = FAC_HOME +   f"\\data\\base\\prototypes\\recipe.lua"
+RECIPE_LUA_FILE_HOME = FAC_HOME +   convertPathForOs(f"//data//base//prototypes//recipe//recipe.lua")
 for file in recipe_files+[RECIPE_LUA_FILE_HOME]:
 	if file == RECIPE_LUA_FILE_HOME:
 		with open(file) as f:
 			s = f.read()
 	else:
-		with open (RECIPE_HOME+"\\"+file) as f:
+		with open (RECIPE_HOME+"//"+file) as f:
 			s = f.read()
 	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
 	list_of_recipes =  lua.decode(stripped_string) # actually a list
@@ -50,7 +61,7 @@ for file in recipe_files+[RECIPE_LUA_FILE_HOME]:
 
 items_dict = {}
 for file in items_files:
-	with open (ITEMS_HOME+"\\"+file) as f:
+	with open (ITEMS_HOME+convertPathForOs("/")+file) as f:
 		s = f.read()
 	lines = s.split("\n")
 	if file != "demo-crash-site-item.lua":
@@ -99,7 +110,7 @@ def make_request_filters(product):
 #i.e. the amount of items that can fit into one square of a chest.
 def get_fluids():
 	fluids = set()
-	with open(RECIPE_HOME+"\\"+"fluid-recipe.lua") as f:
+	with open(RECIPE_HOME+convertPathForOs("/")+"fluid-recipe.lua") as f:
 		s = f.read()
 	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
 	list_of_recipes =  lua.decode(stripped_string) # actually a list

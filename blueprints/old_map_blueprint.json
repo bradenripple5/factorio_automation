@@ -1,0 +1,59 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "rail"
+        },
+        "index": 1
+      },
+      {
+        "signal": {
+          "type": "item",
+          "name": "logistic-chest-requester"
+        },
+        "index": 2
+      }
+    ],
+    "random-key":{"'a'": 97, "'b'": 98, "'c'": 99, "'d'": 100, "'e'": 101, "'f'": 102, "'g'": 103, "'h'": 104, "'i'": 105, "'j'": 106, "'k'": 107, "'l'": 108, "'m'": 109, "'n'": 110, "'o'": 111, "'p'": 112, "'q'": 113, "'r'": 114, "'s'": 115, "'t'": 116, "'u'": 117, "'v'": 118, "'w'": 119, "'x'": 120, "'y'": 121}
+,
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 0,
+          "y": -3
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "stack-inserter",
+        "position": {
+          "x": 0,
+          "y": -2
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "stack-inserter",
+        "position": {
+          "x": 0,
+          "y": 1
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 4,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 0,
+          "y": 2
+        }
+      }
+    ],
+    "item": "blueprint",
+    "version": 68722819072
+  }
+}
