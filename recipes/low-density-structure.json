@@ -1,0 +1,37 @@
+{
+  "low-density-structure": {
+    "ingredients": [
+      {
+        "steel-plate": {
+          "ingredients": [
+            {
+              "iron-plate": {
+                "ingredients": [
+                  {
+                    "iron-ore": 1
+                  }
+                ],
+                "amount": 1
+              }
+            }
+          ],
+          "amount": 1
+        }
+      },
+      {
+        "copper-plate": {
+          "ingredients": [
+            {
+              "copper-ore": 1
+            }
+          ],
+          "amount": 1
+        }
+      },
+      {
+        "plastic-bar": 30
+      }
+    ],
+    "amount": 3
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "science-pack-1": {
+    "amount": 6,
+    "ingredients": {
+      "copper-plate": {
+        "amount": 4.199999999999999,
+        "ingredients": {
+          "copper-ore": {
+            "amount": 1.1999999999999997,
+            "ingredients": null
+          }
+        }
+      },
+      "iron-gear-wheel": {
+        "amount": 0.6000000000000001,
+        "ingredients": {
+          "iron-plate": {
+            "amount": 16.800000000000004,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 4.800000000000001,
+                "ingredients": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

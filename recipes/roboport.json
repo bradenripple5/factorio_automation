@@ -1,0 +1,102 @@
+{
+  "roboport": {
+    "ingredients": [
+      {
+        "steel-plate": {
+          "ingredients": [
+            {
+              "iron-plate": {
+                "ingredients": [
+                  {
+                    "iron-ore": 1
+                  }
+                ],
+                "amount": 1
+              }
+            }
+          ],
+          "amount": 1
+        }
+      },
+      {
+        "iron-gear-wheel": {
+          "ingredients": [
+            {
+              "iron-plate": {
+                "ingredients": [
+                  {
+                    "iron-ore": 1
+                  }
+                ],
+                "amount": 1
+              }
+            }
+          ],
+          "amount": 1
+        }
+      },
+      {
+        "advanced-circuit": {
+          "ingredients": [
+            {
+              "electronic-circuit": {
+                "ingredients": [
+                  {
+                    "iron-plate": {
+                      "ingredients": [
+                        {
+                          "iron-ore": 2
+                        }
+                      ],
+                      "amount": 2
+                    }
+                  },
+                  {
+                    "copper-cable": {
+                      "ingredients": [
+                        {
+                          "copper-plate": {
+                            "ingredients": [
+                              {
+                                "copper-ore": 4
+                              }
+                            ],
+                            "amount": 4
+                          }
+                        }
+                      ],
+                      "amount": 1
+                    }
+                  }
+                ],
+                "amount": 1
+              }
+            },
+            {
+              "plastic-bar": 4
+            },
+            {
+              "copper-cable": {
+                "ingredients": [
+                  {
+                    "copper-plate": {
+                      "ingredients": [
+                        {
+                          "copper-ore": 4
+                        }
+                      ],
+                      "amount": 4
+                    }
+                  }
+                ],
+                "amount": 1
+              }
+            }
+          ],
+          "amount": 1
+        }
+      }
+    ],
+    "amount": 1
+  }
+}

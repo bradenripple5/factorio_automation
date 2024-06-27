@@ -1,0 +1,312 @@
+{
+  "satellite": {
+    "ingredients": [
+      {
+        "low-density-structure": {
+          "ingredients": [
+            {
+              "steel-plate": {
+                "ingredients": [
+                  {
+                    "iron-plate": {
+                      "ingredients": [
+                        {
+                          "iron-ore": 1
+                        }
+                      ],
+                      "amount": 1
+                    }
+                  }
+                ],
+                "amount": 1
+              }
+            },
+            {
+              "copper-plate": {
+                "ingredients": [
+                  {
+                    "copper-ore": 1
+                  }
+                ],
+                "amount": 1
+              }
+            },
+            {
+              "plastic-bar": 10
+            }
+          ],
+          "amount": 1
+        }
+      },
+      {
+        "solar-panel": {
+          "ingredients": [
+            {
+              "steel-plate": {
+                "ingredients": [
+                  {
+                    "iron-plate": {
+                      "ingredients": [
+                        {
+                          "iron-ore": 1
+                        }
+                      ],
+                      "amount": 1
+                    }
+                  }
+                ],
+                "amount": 1
+              }
+            },
+            {
+              "electronic-circuit": {
+                "ingredients": [
+                  {
+                    "iron-plate": {
+                      "ingredients": [
+                        {
+                          "iron-ore": 2
+                        }
+                      ],
+                      "amount": 2
+                    }
+                  },
+                  {
+                    "copper-cable": {
+                      "ingredients": [
+                        {
+                          "copper-plate": {
+                            "ingredients": [
+                              {
+                                "copper-ore": 4
+                              }
+                            ],
+                            "amount": 4
+                          }
+                        }
+                      ],
+                      "amount": 1
+                    }
+                  }
+                ],
+                "amount": 1
+              }
+            },
+            {
+              "copper-plate": {
+                "ingredients": [
+                  {
+                    "copper-ore": 1
+                  }
+                ],
+                "amount": 1
+              }
+            }
+          ],
+          "amount": 1
+        }
+      },
+      {
+        "accumulator": {
+          "ingredients": [
+            {
+              "iron-plate": {
+                "ingredients": [
+                  {
+                    "iron-ore": 2
+                  }
+                ],
+                "amount": 2
+              }
+            },
+            {
+              "battery": 5
+            }
+          ],
+          "amount": 1
+        }
+      },
+      {
+        "radar": {
+          "ingredients": [
+            {
+              "electronic-circuit": {
+                "ingredients": [
+                  {
+                    "iron-plate": {
+                      "ingredients": [
+                        {
+                          "iron-ore": 2
+                        }
+                      ],
+                      "amount": 2
+                    }
+                  },
+                  {
+                    "copper-cable": {
+                      "ingredients": [
+                        {
+                          "copper-plate": {
+                            "ingredients": [
+                              {
+                                "copper-ore": 4
+                              }
+                            ],
+                            "amount": 4
+                          }
+                        }
+                      ],
+                      "amount": 1
+                    }
+                  }
+                ],
+                "amount": 1
+              }
+            },
+            {
+              "iron-gear-wheel": {
+                "ingredients": [
+                  {
+                    "iron-plate": {
+                      "ingredients": [
+                        {
+                          "iron-ore": 1
+                        }
+                      ],
+                      "amount": 1
+                    }
+                  }
+                ],
+                "amount": 1
+              }
+            },
+            {
+              "iron-plate": {
+                "ingredients": [
+                  {
+                    "iron-ore": 1
+                  }
+                ],
+                "amount": 1
+              }
+            }
+          ],
+          "amount": 1
+        }
+      },
+      {
+        "processing-unit": {
+          "ingredients": [
+            {
+              "electronic-circuit": {
+                "ingredients": [
+                  {
+                    "iron-plate": {
+                      "ingredients": [
+                        {
+                          "iron-ore": 2
+                        }
+                      ],
+                      "amount": 2
+                    }
+                  },
+                  {
+                    "copper-cable": {
+                      "ingredients": [
+                        {
+                          "copper-plate": {
+                            "ingredients": [
+                              {
+                                "copper-ore": 4
+                              }
+                            ],
+                            "amount": 4
+                          }
+                        }
+                      ],
+                      "amount": 1
+                    }
+                  }
+                ],
+                "amount": 1
+              }
+            },
+            {
+              "advanced-circuit": {
+                "ingredients": [
+                  {
+                    "electronic-circuit": {
+                      "ingredients": [
+                        {
+                          "iron-plate": {
+                            "ingredients": [
+                              {
+                                "iron-ore": 2
+                              }
+                            ],
+                            "amount": 2
+                          }
+                        },
+                        {
+                          "copper-cable": {
+                            "ingredients": [
+                              {
+                                "copper-plate": {
+                                  "ingredients": [
+                                    {
+                                      "copper-ore": 4
+                                    }
+                                  ],
+                                  "amount": 4
+                                }
+                              }
+                            ],
+                            "amount": 1
+                          }
+                        }
+                      ],
+                      "amount": 1
+                    }
+                  },
+                  {
+                    "plastic-bar": 12
+                  },
+                  {
+                    "copper-cable": {
+                      "ingredients": [
+                        {
+                          "copper-plate": {
+                            "ingredients": [
+                              {
+                                "copper-ore": 4
+                              }
+                            ],
+                            "amount": 4
+                          }
+                        }
+                      ],
+                      "amount": 1
+                    }
+                  }
+                ],
+                "amount": 3
+              }
+            }
+          ],
+          "amount": 1
+        }
+      },
+      {
+        "rocket-fuel": {
+          "ingredients": [
+            {
+              "solid-fuel": 10
+            }
+          ],
+          "amount": 1
+        }
+      }
+    ],
+    "amount": 2
+  }
+}

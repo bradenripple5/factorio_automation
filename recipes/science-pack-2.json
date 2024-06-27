@@ -1,0 +1,91 @@
+{
+  "science-pack-2": {
+    "amount": 6,
+    "ingredients": {
+      "inserter": {
+        "amount": 0.5,
+        "ingredients": {
+          "electronic-circuit": {
+            "amount": 0.5,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 7.0,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 2.0,
+                    "ingredients": null
+                  }
+                }
+              },
+              "copper-cable": {
+                "amount": 5.0,
+                "ingredients": {
+                  "copper-plate": {
+                    "amount": 35.0,
+                    "ingredients": {
+                      "copper-ore": {
+                        "amount": 10.0,
+                        "ingredients": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "iron-gear-wheel": {
+            "amount": 0.5,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 14.0,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 4.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "iron-plate": {
+            "amount": 3.5,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 1.0,
+                "ingredients": null
+              }
+            }
+          }
+        }
+      },
+      "transport-belt": {
+        "amount": 0.5,
+        "ingredients": {
+          "iron-plate": {
+            "amount": 3.5,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 1.0,
+                "ingredients": null
+              }
+            }
+          },
+          "iron-gear-wheel": {
+            "amount": 0.5,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 14.0,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 4.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

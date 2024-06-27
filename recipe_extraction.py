@@ -1,7 +1,7 @@
-import json, os, sys
+import json, os, sys, math, pathlib
 from slpp import slpp as lua
 from collections import defaultdict
-import pathlib
+from fraction import Fraction
 def convertPathForOs(path):
 	if sys.platform != "windows":
 		return str(pathlib.PurePosixPath(path))
@@ -16,7 +16,6 @@ relative_items_string,relative_recipe_string = convertPathForOs(relative_items_s
 RECIPE_HOME =  f"{FAC_HOME}{relative_recipe_string}"
 ITEMS_HOME = FAC_HOME + relative_items_string
 RECIPE_HOME, ITEMS_HOME = convertPathForOs(RECIPE_HOME),convertPathForOs(ITEMS_HOME)
-print(ITEMS_HOME,RECIPE_HOME,FAC_HOME,sep = "\n")
 recipe_files = os.listdir(RECIPE_HOME)
 items_files = os.listdir(ITEMS_HOME)
 fluids = []
@@ -84,7 +83,6 @@ def get_energy(item):
 			return recipes_dict[item]["energy_required"]
 		except:
 			return 1
-print(get_energy("advanced-circuit"))
 def is_smelted(item):
 	return item in smelted_list
 def get_recipe(product):
@@ -141,20 +139,6 @@ def get_stack_size(item):
 	# else:
 	# 	ingredients = fullinfo["ingredients"]
 	# return [i[0] if isinstance(i,list) else i["name"] for i in ingredients]print(get_recipe("plastic-bar"))
-def getNestedMaterialHeirarchy(item, amount = 1):
-
-	try:
-		ingredients =  recipes_dict[item]["expensive"]["ingredients"] if "expensive" in recipes_dict[item] else recipes_dict[item]["ingredients"]
-		# return {item:{ingredient[0]+"amount":ingredient[1]*amount, ingredient[0]:{getNestedMaterialHeirarchy(ingredient[0],ingredient[1]*amount*(get_production_time(ingredient[0])//get_production_time(item)))} for ingredient in ingredients}}
-		if item == "advanced-circuit":
-			print(recipes_dict["advanced-circuit"])
-		return_dict = {}
-		return_dict["amount"] = amount
-		return_dict["ingredients"] = [getNestedMaterialHeirarchy(ingredient[0],ingredient[1]*amount ) for  ingredient in ingredients]
-
-		return {item: return_dict}
-	except Exception as e:
-		return {item:amount}
 
 def getMaterialHeirarchy(item):
 	material_dict = defaultdict(int)
@@ -174,11 +158,13 @@ def getMaterialHeirarchy(item):
 	return dict(material_dict)
 #i.e. where the product is produced, in a smelter, assembling-machine, or a chemical-plant, or a centrifuge, refinery here not included
 def get_production_time(product):
+
 	try:
-		return recipes_dict[product]["energy_required"]
+		return recipes_dict[product]["expensive"]["energy_required"]
 	except:
+
 		try:
-			return recipes_dict[product]["normal"]["energy_required"]
+			return recipes_dict[product]["energy_required"]
 		except:
 			return 1
 
@@ -204,41 +190,92 @@ def get_production_type(product):
 		return "assembling-machine or smelter"
 	except:
 		return "must be crude-oil or some type of ore"
-with open("advanced-circuit-recipe.json", "w+") as f:
-	f.write(json.dumps(getNestedMaterialHeirarchy("roboport"),indent=2))
+
+
+def getMaterialNeededAccountingForTime(item,raw_material,amount =1):
+	if item == raw_material	or "ore" in item or "oil" in item:
+		return amount 
 
 
 
-# print(getNestedMaterialHeirarchy("advanced-circuit",6))
-# print(get_recipe("advanced-circuit"))
-# print(get_production_type("advanced-circuit"))
-# products_necessary_for_space_science_pack =  ["low-density-structure", "rocket-fuel", "satellite", "rocket-control-unit","utility-science-pack"]
-# packs = [i+"-science-pack" for i in ["automation","logistic","military","chemical","production","utility"]]
+	ingredients =  recipes_dict[item]["expensive"]["ingredients"] if "expensive" in recipes_dict[item] else recipes_dict[item]["ingredients"]		
+	for ingredient in ingredients:
+		ingredient_name = ingredient[0]
+		ingredient_amount = ingredient[1]
+		time_ratio = get_production_time(ingredient_name)/get_production_time(item)
 
-# # print(sum([ sum(getMaterialHeirarchy(i).values()) for i in packs+products_necessary_for_space_science_pack]))
-# nuclear_heirarchy =  (getMaterialHeirarchy("nuclear-reactor"))
-# nuclear_list = [k for k in nuclear_heirarchy]
-# print(( {k:[v, get_production_time(k)] for k,v in nuclear_heirarchy.items()}))
-# total_dict = defaultdict(int)
-# for i in ["processing-unit","low-density-structure"]:
-# 	for element in getMaterialHeirarchy(i):
-# 		total_dict[element] += 1
-# 	total_dict.update(getMaterialHeirarchy(i))
-# # print(getMaterialHeirarchy(i))
-# print(dict(total_dict))
-# print(recipes_dict["rocket-silo"])
-# problem_items = []
-# for item in items_dict:
-# 	try:
-# 		get_stack_size(item)
-# 	except:
-# 		problem_items.append(item)
-# # print(problem_items)
-# # print(len(items_dict),len(recipes_dict))
-# items_not_in_recipes_dict = []
-# for item in items_dict:
-# 	if item not in recipes_dict:
-# 		items_not_in_recipes_dict.append(item)
-# print(make_request_filters("plastic-bar"))
-# print(is_smelted("stone-brick"))
-# print(get_recipe("steel-plate"))
+		print(time_ratio, " = time_ratio for ", ingredient_name, item)
+		# print("new_amount = ", amount*ingredient_amount*get_production_time(ingredient_name))
+		recursive = getMaterialNeededAccountingForTime(ingredient[0], raw_material, amount*ingredient_amount*time_ratio)
+		if recursive:
+			return  recursive
+
+def makeMaterialHeirarchy(item,amount = 1):
+	total = 0
+
+	def makeMaterialHeirarchyRecursive(item,amount=1):
+		nonlocal total
+		if any([i in item for i in ["coal","gas","ore","water","oil","stone"]]):
+				return None
+
+		return_dict = {}
+		ingredients =  recipes_dict[item]["expensive"]["ingredients"] if "expensive" in recipes_dict[item] else recipes_dict[item]["ingredients"]
+		new_ingredients = []
+		for i in ingredients:
+			if isinstance(i,dict):
+				if "name" in i and "amount" in i:
+					new_ingredients.append([i["name"],i["amount"]])
+			else:
+				new_ingredients.append(i)		
+		ingredients = new_ingredients
+		for ingredient in ingredients:
+			ingredient_name = ingredient[0]
+			ingredient_amount = ingredient[1]
+			time_ratio = get_production_time(ingredient_name)/get_production_time(item)
+			amount_for_ingredient = amount*ingredient_amount*time_ratio
+			total+=amount_for_ingredient
+			return_dict[ingredient_name] = { "amount": amount_for_ingredient, "ingredients": makeMaterialHeirarchyRecursive(ingredient_name,amount_for_ingredient) }
+		return return_dict
+	ingredients_dictionary = makeMaterialHeirarchyRecursive(item,amount)
+	print(item, total)
+	return {item: {"amount": amount, "ingredients": ingredients_dictionary}}
+
+def getNestedMaterialHeirarchy(item, amount = 1):
+		return_dict = {}
+		try:
+			ingredients =  recipes_dict[item]["expensive"]["ingredients"] if "expensive" in recipes_dict[item] else recipes_dict[item]["ingredients"]		
+			if len(ingredients) > 1:
+				if type(ingredients[0]) != type(ingredients[-1]):
+					ingredients = ingredients[:-1]
+			# for ingredient in ingredients:
+			# 	if ingredient
+			new_amount = 1/ (min([getNestedMaterialHeirarchy(amount*ingredient[1]*get_production_time(ingredient[0])/get_production_time(item)) for ingredient in ingredients]))
+			
+			amount = new_amount
+			# if item == "plastic-bar":
+			print(item,amount, "item, amount")
+			amount = math.ceil(amount)
+			return_dict["ingredients"] = [getNestedMaterialHeirarchy(ingredient[0],amount*ingredient[1]*get_production_time(ingredient[0])/get_production_time(item)) for  ingredient in ingredients]
+
+
+		except Exception as e:
+			return {item:amount}
+		# print(new_amount,item)
+		# print(amount, [amount*ingredient[1]*get_production_time(ingredient[0])/get_production_time(item) for ingredient in ingredients])
+		return_dict["amount"] = amount
+
+		return {item: return_dict}
+
+
+
+
+for key in recipes_dict:
+	if "science" in key:
+		print(key)
+items = ["science-pack-3","military-science-pack","rocket-control-unit"]#"advanced-circuit"]#,"roboport","rocket-control-unit","low-density-structure","satellite"]
+items = [i for i in recipes_dict if "science" in i]
+for item in items:
+	with open(convertPathForOs(f"recipes/{item}.json"), "w+") as f:
+		f.write(json.dumps(makeMaterialHeirarchy(item,6),indent=2))
+
+print(recipes_dict["electronic-circuit"])

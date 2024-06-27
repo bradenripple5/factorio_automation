@@ -1,0 +1,104 @@
+{
+  "military-science-pack": {
+    "amount": 6,
+    "ingredients": {
+      "piercing-rounds-magazine": {
+        "amount": 1.7999999999999998,
+        "ingredients": {
+          "firearm-magazine": {
+            "amount": 0.29999999999999993,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 8.399999999999999,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 2.3999999999999995,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "steel-plate": {
+            "amount": 20.999999999999996,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 21.0,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 6.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "copper-plate": {
+            "amount": 10.5,
+            "ingredients": {
+              "copper-ore": {
+                "amount": 3.0,
+                "ingredients": null
+              }
+            }
+          }
+        }
+      },
+      "grenade": {
+        "amount": 4.800000000000001,
+        "ingredients": {
+          "iron-plate": {
+            "amount": 10.500000000000002,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 3.0000000000000004,
+                "ingredients": null
+              }
+            }
+          },
+          "coal": {
+            "amount": 6.000000000000001,
+            "ingredients": null
+          }
+        }
+      },
+      "gun-turret": {
+        "amount": 4.800000000000001,
+        "ingredients": {
+          "iron-gear-wheel": {
+            "amount": 3.0000000000000004,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 84.00000000000001,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 24.000000000000004,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "copper-plate": {
+            "amount": 21.000000000000004,
+            "ingredients": {
+              "copper-ore": {
+                "amount": 6.000000000000001,
+                "ingredients": null
+              }
+            }
+          },
+          "iron-plate": {
+            "amount": 42.00000000000001,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 12.000000000000002,
+                "ingredients": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
