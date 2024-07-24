@@ -1,0 +1,88 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 563.5,
+          "y": -122.5
+        },
+        "recipe": "speed-module-2",
+        "items": {
+          "speed-module": 4
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 562.5,
+          "y": -120.5
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "stack-inserter",
+        "position": {
+          "x": 563.5,
+          "y": -120.5
+        }
+      },
+      {
+        "entity_number": 4,
+        "name": "stack-inserter",
+        "position": {
+          "x": 564.5,
+          "y": -120.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 5,
+        "name": "logistic-chest-storage",
+        "position": {
+          "x": 563.5,
+          "y": -119.5
+        }
+      },
+      {
+        "entity_number": 6,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 564.5,
+          "y": -119.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "processing-unit",
+            "count": 100
+          },
+          {
+            "index": 2,
+            "name": "advanced-circuit",
+            "count": 200
+          },
+          {
+            "index": 3,
+            "name": "speed-module",
+            "count": 50
+          }
+        ],
+        "request_from_buffers": true
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278690304
+  }
+}

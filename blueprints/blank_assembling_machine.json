@@ -1,0 +1,25 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": -101.5,
+          "y": -440.5
+        }
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278821376
+  }
+}

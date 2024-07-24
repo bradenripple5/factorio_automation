@@ -1,4 +1,4 @@
-import json, os, sys, math, pathlib
+import json, os, sys, math, pathlib, math, numpy
 from slpp import slpp as lua
 from collections import defaultdict
 from fraction import Fraction
@@ -28,7 +28,9 @@ chemical_plant_fluids_from_two_fluids = ["light-oil","petroleum-gas"]
 chemical_plant_solids_from_two_fluids = ["sulfur"]
 chemical_plant_products_from_one_fluid = ["sulfuric-acid","solid-fuel","plastic-bar","lubricant","battery","explosives"]
 chemical_plant_fluids_from_one_fluid = ["sulfuric-acid","lubricant"]
-chemical_plant_solids_from_one_fluid = ["solid-fuel","plastic-bar","lubricant","battery","explosives"]
+chemical_plant_solids_from_one_fluid = ["solid-fuel","plastic-bar","lubricant","battery","explosives","processing-unit"]
+raw_materials = ["wood","petroleum-gas","raw-fish","water","crude-oil","coal","stone","copper-ore","iron-ore","water","light-oil","heavy-oil","petroleum-gas"]
+
 
 with open(RECIPE_HOME+convertPathForOs("//demo-furnace-recipe.lua")) as f:
 	s = f.read()
@@ -40,6 +42,9 @@ with open(RECIPE_HOME+convertPathForOs("//demo-furnace-recipe.lua")) as f:
 			if "name" in item:
 				smelted_list.add(item["name"])
 RECIPE_LUA_FILE_HOME = FAC_HOME +   convertPathForOs(f"//data//base//prototypes//recipe//recipe.lua")
+OTHER_RECIPE_LUA_FILE_HOME = FAC_HOME +   convertPathForOs(f"//data//base//prototypes//recipe.lua")
+
+
 for file in recipe_files+[RECIPE_LUA_FILE_HOME]:
 	if file == RECIPE_LUA_FILE_HOME:
 		with open(file) as f:
@@ -57,6 +62,18 @@ for file in recipe_files+[RECIPE_LUA_FILE_HOME]:
 				if file == "demo-recipe.lua":
 					recipe["energy_required"] = 0.5
 				recipes_dict[recipe["name"]] = recipe
+
+	with open(OTHER_RECIPE_LUA_FILE_HOME) as f:
+		s = f.read()
+
+stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
+list_of_recipes =  lua.decode(stripped_string) # actually a list
+# print(json.dumps(list_of_recipes,indent=2))
+for index,recipe in enumerate(list_of_recipes[:]):
+	recipes_list.append(recipe)
+	if isinstance(recipe,dict):
+		if "name" in recipe:
+			recipes_dict[recipe["name"]] = recipe
 
 items_dict = {}
 for file in items_files:
@@ -95,7 +112,7 @@ def get_recipe(product):
 	else:
 		ingredients = fullinfo["ingredients"]
 	return [i[0] if isinstance(i,list) else i["name"] for i in ingredients]
-def make_request_filters(product):
+def make_request_filters(product,fluid_only = False):
 	ingredients = get_recipe(product)
 	stack_sizes = {}
 	request_filters =[]
@@ -125,6 +142,8 @@ fluids = get_fluids()
 for fluid in fluids:
 	recipes_dict["fill-"+fluid+"-barrel"] = {"ingredients": [["empty-barrel",1]]}
 	recipes_dict["empty-"+fluid+"-barrel"] ={"ingredients": [[fluid+"-barrel",1]]}
+def is_fluid(product):
+	return product in fluids
 def get_stack_size(item):
 	if "barrel" in item:
 		item = "empty-barrel"
@@ -175,6 +194,8 @@ def get_production_type(product):
 		#vs chemical-plant with two liquids
 		#vs, possibly a refinery
 	try:
+		if product == "processing-unit":
+			return "processing-unit"
 		if product in chemical_plant_fluids_from_two_fluids:
 			return "chemical_plant_fluids_from_two_fluids"
 		if product in chemical_plant_solids_from_two_fluids:
@@ -191,24 +212,6 @@ def get_production_type(product):
 	except:
 		return "must be crude-oil or some type of ore"
 
-
-def getMaterialNeededAccountingForTime(item,raw_material,amount =1):
-	if item == raw_material	or "ore" in item or "oil" in item:
-		return amount 
-
-
-
-	ingredients =  recipes_dict[item]["expensive"]["ingredients"] if "expensive" in recipes_dict[item] else recipes_dict[item]["ingredients"]		
-	for ingredient in ingredients:
-		ingredient_name = ingredient[0]
-		ingredient_amount = ingredient[1]
-		time_ratio = get_production_time(ingredient_name)/get_production_time(item)
-
-		print(time_ratio, " = time_ratio for ", ingredient_name, item)
-		# print("new_amount = ", amount*ingredient_amount*get_production_time(ingredient_name))
-		recursive = getMaterialNeededAccountingForTime(ingredient[0], raw_material, amount*ingredient_amount*time_ratio)
-		if recursive:
-			return  recursive
 
 def makeMaterialHeirarchy(item,amount = 1):
 	total = 0
@@ -236,46 +239,71 @@ def makeMaterialHeirarchy(item,amount = 1):
 			total+=amount_for_ingredient
 			return_dict[ingredient_name] = { "amount": amount_for_ingredient, "ingredients": makeMaterialHeirarchyRecursive(ingredient_name,amount_for_ingredient) }
 		return return_dict
+		if "gas" in item or "water" in item or "raw-fish" in item:
+			return {item: {"amount": 1}}
+
 	ingredients_dictionary = makeMaterialHeirarchyRecursive(item,amount)
-	print(item, total)
+	print(item,total)
 	return {item: {"amount": amount, "ingredients": ingredients_dictionary}}
 
-def getNestedMaterialHeirarchy(item, amount = 1):
-		return_dict = {}
-		try:
-			ingredients =  recipes_dict[item]["expensive"]["ingredients"] if "expensive" in recipes_dict[item] else recipes_dict[item]["ingredients"]		
-			if len(ingredients) > 1:
-				if type(ingredients[0]) != type(ingredients[-1]):
-					ingredients = ingredients[:-1]
-			# for ingredient in ingredients:
-			# 	if ingredient
-			new_amount = 1/ (min([getNestedMaterialHeirarchy(amount*ingredient[1]*get_production_time(ingredient[0])/get_production_time(item)) for ingredient in ingredients]))
-			
-			amount = new_amount
-			# if item == "plastic-bar":
-			print(item,amount, "item, amount")
-			amount = math.ceil(amount)
-			return_dict["ingredients"] = [getNestedMaterialHeirarchy(ingredient[0],amount*ingredient[1]*get_production_time(ingredient[0])/get_production_time(item)) for  ingredient in ingredients]
+def makeTrainSchedules(material_heirarchy):
+	train_schedules = defaultdict(int)
+
+	def rec(m,parent_station):
+		nonlocal train_schedules
+		if "ingredients" in m:
+			if m["ingredients"] != None:
+
+				for i in m["ingredients"]:
+					
+					if i in train_schedules:
+						train_schedules[i]+=m["amount"]
+					else:
+						train_schedules[i]=m["amount"]
+					rec(m["ingredients"][i],parent_station)
+		else:
+			rec(m[first_element],parent_station)
+
+	rec(material_heirarchy)
+	return train_schedules
+
+def get_non_raw_materials_from_material_heirarchy(material_heirarchy):
+	total_materials = defaultdict(int)
+	def recurse(sub_heirarchy):
+		nonlocal total_materials
+		for item in sub_heirarchy:
+			if item not in raw_materials:
+				total_materials[item]+=sub_heirarchy[item]["amount"]
+				if sub_heirarchy[item]["ingredients"] != None:
+					recurse(sub_heirarchy[item]["ingredients"])
+	recurse(material_heirarchy)
+	return {i:numpy.round(v) for i,v in dict(sorted(total_materials.items(),key = lambda item:item[0])).items()}
 
 
-		except Exception as e:
-			return {item:amount}
-		# print(new_amount,item)
-		# print(amount, [amount*ingredient[1]*get_production_time(ingredient[0])/get_production_time(item) for ingredient in ingredients])
-		return_dict["amount"] = amount
+#the next step is to match physical trains with schedules
 
-		return {item: return_dict}
+# print(is_smelted("copper-plate"))
+# with open("speed-module-heirarchy.json", "w+") as f:
+# 	f.write(json.dumps(makeMaterialHeirarchy("speed-module"),indent=2))
+# print(makeTrainSchedules(makeMaterialHeirarchy("speed-module")))
+# print(get_non_raw_materials_from_material_heirarchy(makeMaterialHeirarchy("speed-module")))
+# print(make_request_filters("processing-unit"))
+# print(get_recipe("processing-unit"))
+# print([i for i in get_recipe("processing-unit") if is_fluid(i)])
+# categories = set()
+# recipes_dict["raw-fish"] = {"name":"raw-fish","energy_required":1, "ingredients":[]}
+# for i in recipes_dict:
+# 	if "category" in recipes_dict[i]:
+# 		categories.add(recipes_dict[i]["category"])
+# print(categories)
+# print(recipes_dict["spidertron"])
 
+# for key in recipes_dict:
+# 	if "science" in key:
+# 		print(key)
+# items = ["military-science-pack","rocket-control-unit","spidertron"]#"advanced-circuit"]#,"roboport","rocket-control-unit","low-density-structure","satellite"]
+# items = [i for i in recipes_dict if "science" in i] + items
+# for item in items:
+# 	with open(convertPathForOs(f"recipes/{item}.json"), "w+") as f:
+# 		f.write(json.dumps(makeMaterialHeirarchy(item,1),indent=2))
 
-
-
-for key in recipes_dict:
-	if "science" in key:
-		print(key)
-items = ["science-pack-3","military-science-pack","rocket-control-unit"]#"advanced-circuit"]#,"roboport","rocket-control-unit","low-density-structure","satellite"]
-items = [i for i in recipes_dict if "science" in i]
-for item in items:
-	with open(convertPathForOs(f"recipes/{item}.json"), "w+") as f:
-		f.write(json.dumps(makeMaterialHeirarchy(item,6),indent=2))
-
-print(recipes_dict["electronic-circuit"])

@@ -1,0 +1,27 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": 860.5,
+          "y": 198.5
+        },
+        "direction": 2,
+        "recipe": "processing-unit"
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278821376
+  }
+}

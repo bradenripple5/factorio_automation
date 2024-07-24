@@ -1,0 +1,95 @@
+{
+  "speed-module": {
+    "amount": 1,
+    "ingredients": {
+      "advanced-circuit": {
+        "amount": 2.0,
+        "ingredients": {
+          "electronic-circuit": {
+            "amount": 0.6666666666666666,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 4.266666666666667,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 1.3333333333333333,
+                    "ingredients": null
+                  }
+                }
+              },
+              "copper-cable": {
+                "amount": 5.333333333333333,
+                "ingredients": {
+                  "copper-plate": {
+                    "amount": 17.066666666666666,
+                    "ingredients": {
+                      "copper-ore": {
+                        "amount": 5.333333333333333,
+                        "ingredients": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "plastic-bar": {
+            "amount": 1.3333333333333333,
+            "ingredients": {
+              "petroleum-gas": {
+                "amount": 26.666666666666664,
+                "ingredients": null
+              },
+              "coal": {
+                "amount": 1.3333333333333333,
+                "ingredients": null
+              }
+            }
+          },
+          "copper-cable": {
+            "amount": 2.6666666666666665,
+            "ingredients": {
+              "copper-plate": {
+                "amount": 8.533333333333333,
+                "ingredients": {
+                  "copper-ore": {
+                    "amount": 2.6666666666666665,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "electronic-circuit": {
+        "amount": 0.3333333333333333,
+        "ingredients": {
+          "iron-plate": {
+            "amount": 2.1333333333333333,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 0.6666666666666666,
+                "ingredients": null
+              }
+            }
+          },
+          "copper-cable": {
+            "amount": 2.6666666666666665,
+            "ingredients": {
+              "copper-plate": {
+                "amount": 8.533333333333333,
+                "ingredients": {
+                  "copper-ore": {
+                    "amount": 2.6666666666666665,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

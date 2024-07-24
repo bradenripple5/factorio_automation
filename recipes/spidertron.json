@@ -1,0 +1,1259 @@
+{
+  "spidertron": {
+    "amount": 1,
+    "ingredients": {
+      "exoskeleton-equipment": {
+        "amount": 4.0,
+        "ingredients": {
+          "processing-unit": {
+            "amount": 40.0,
+            "ingredients": {
+              "electronic-circuit": {
+                "amount": 80.0,
+                "ingredients": {
+                  "iron-plate": {
+                    "amount": 512.0,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 160.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 640.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 2048.0,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 640.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "advanced-circuit": {
+                "amount": 48.0,
+                "ingredients": {
+                  "electronic-circuit": {
+                    "amount": 16.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 102.4,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 32.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 128.0,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 409.6,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 128.0,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "plastic-bar": {
+                    "amount": 32.0,
+                    "ingredients": {
+                      "petroleum-gas": {
+                        "amount": 640.0,
+                        "ingredients": null
+                      },
+                      "coal": {
+                        "amount": 32.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 64.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 204.8,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 64.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "sulfuric-acid": {
+                "amount": 40.0,
+                "ingredients": {
+                  "sulfur": {
+                    "amount": 200.0,
+                    "ingredients": {
+                      "water": {
+                        "amount": 6000.0,
+                        "ingredients": null
+                      },
+                      "petroleum-gas": {
+                        "amount": 6000.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "iron-plate": {
+                    "amount": 128.0,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 40.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "water": {
+                    "amount": 4000.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "electric-engine-unit": {
+            "amount": 120.0,
+            "ingredients": {
+              "engine-unit": {
+                "amount": 120.0,
+                "ingredients": {
+                  "steel-plate": {
+                    "amount": 384.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 384.0,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 120.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "iron-gear-wheel": {
+                    "amount": 12.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 153.60000000000002,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 48.00000000000001,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "pipe": {
+                    "amount": 24.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 153.60000000000002,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 48.00000000000001,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "lubricant": {
+                "amount": 180.0,
+                "ingredients": {
+                  "heavy-oil": {
+                    "amount": 1800.0,
+                    "ingredients": null
+                  }
+                }
+              },
+              "electronic-circuit": {
+                "amount": 24.0,
+                "ingredients": {
+                  "iron-plate": {
+                    "amount": 153.60000000000002,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 48.00000000000001,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 192.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 614.4000000000001,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 192.00000000000003,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "steel-plate": {
+            "amount": 256.0,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 256.0,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 80.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "fusion-reactor-equipment": {
+        "amount": 2.0,
+        "ingredients": {
+          "processing-unit": {
+            "amount": 400.0,
+            "ingredients": {
+              "electronic-circuit": {
+                "amount": 800.0,
+                "ingredients": {
+                  "iron-plate": {
+                    "amount": 5120.0,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 1600.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 6400.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 20480.0,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 6400.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "advanced-circuit": {
+                "amount": 480.0,
+                "ingredients": {
+                  "electronic-circuit": {
+                    "amount": 160.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 1024.0,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 320.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 1280.0,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 4096.0,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 1280.0,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "plastic-bar": {
+                    "amount": 320.0,
+                    "ingredients": {
+                      "petroleum-gas": {
+                        "amount": 6400.0,
+                        "ingredients": null
+                      },
+                      "coal": {
+                        "amount": 320.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 640.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 2048.0,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 640.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "sulfuric-acid": {
+                "amount": 400.0,
+                "ingredients": {
+                  "sulfur": {
+                    "amount": 2000.0,
+                    "ingredients": {
+                      "water": {
+                        "amount": 60000.0,
+                        "ingredients": null
+                      },
+                      "petroleum-gas": {
+                        "amount": 60000.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "iron-plate": {
+                    "amount": 1280.0,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 400.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "water": {
+                    "amount": 40000.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "low-density-structure": {
+            "amount": 200.0,
+            "ingredients": {
+              "steel-plate": {
+                "amount": 640.0,
+                "ingredients": {
+                  "iron-plate": {
+                    "amount": 640.0,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 200.0,
+                        "ingredients": null
+                      }
+                    }
+                  }
+                }
+              },
+              "copper-plate": {
+                "amount": 640.0,
+                "ingredients": {
+                  "copper-ore": {
+                    "amount": 200.0,
+                    "ingredients": null
+                  }
+                }
+              },
+              "plastic-bar": {
+                "amount": 300.0,
+                "ingredients": {
+                  "petroleum-gas": {
+                    "amount": 6000.0,
+                    "ingredients": null
+                  },
+                  "coal": {
+                    "amount": 300.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "rocket-launcher": {
+        "amount": 4.0,
+        "ingredients": {
+          "iron-plate": {
+            "amount": 6.4,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 2.0,
+                "ingredients": null
+              }
+            }
+          },
+          "iron-gear-wheel": {
+            "amount": 2.0,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 25.6,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 8.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "electronic-circuit": {
+            "amount": 2.0,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 12.8,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 4.0,
+                    "ingredients": null
+                  }
+                }
+              },
+              "copper-cable": {
+                "amount": 16.0,
+                "ingredients": {
+                  "copper-plate": {
+                    "amount": 51.2,
+                    "ingredients": {
+                      "copper-ore": {
+                        "amount": 16.0,
+                        "ingredients": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "rocket-control-unit": {
+        "amount": 48.0,
+        "ingredients": {
+          "processing-unit": {
+            "amount": 16.0,
+            "ingredients": {
+              "electronic-circuit": {
+                "amount": 32.0,
+                "ingredients": {
+                  "iron-plate": {
+                    "amount": 204.8,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 64.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 256.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 819.2,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 256.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "advanced-circuit": {
+                "amount": 19.2,
+                "ingredients": {
+                  "electronic-circuit": {
+                    "amount": 6.3999999999999995,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 40.96,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 12.8,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 51.199999999999996,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 163.84,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 51.2,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "plastic-bar": {
+                    "amount": 12.799999999999999,
+                    "ingredients": {
+                      "petroleum-gas": {
+                        "amount": 255.99999999999997,
+                        "ingredients": null
+                      },
+                      "coal": {
+                        "amount": 12.799999999999999,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 25.599999999999998,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 81.92,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 25.6,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "sulfuric-acid": {
+                "amount": 16.0,
+                "ingredients": {
+                  "sulfur": {
+                    "amount": 80.0,
+                    "ingredients": {
+                      "water": {
+                        "amount": 2400.0,
+                        "ingredients": null
+                      },
+                      "petroleum-gas": {
+                        "amount": 2400.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "iron-plate": {
+                    "amount": 51.2,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 16.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "water": {
+                    "amount": 1600.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "speed-module": {
+            "amount": 24.0,
+            "ingredients": {
+              "advanced-circuit": {
+                "amount": 48.0,
+                "ingredients": {
+                  "electronic-circuit": {
+                    "amount": 16.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 102.4,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 32.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 128.0,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 409.6,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 128.0,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "plastic-bar": {
+                    "amount": 32.0,
+                    "ingredients": {
+                      "petroleum-gas": {
+                        "amount": 640.0,
+                        "ingredients": null
+                      },
+                      "coal": {
+                        "amount": 32.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 64.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 204.8,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 64.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "electronic-circuit": {
+                "amount": 8.0,
+                "ingredients": {
+                  "iron-plate": {
+                    "amount": 51.2,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 16.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 64.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 204.8,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 64.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "low-density-structure": {
+        "amount": 300.0,
+        "ingredients": {
+          "steel-plate": {
+            "amount": 960.0,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 960.0,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 300.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "copper-plate": {
+            "amount": 960.0,
+            "ingredients": {
+              "copper-ore": {
+                "amount": 300.0,
+                "ingredients": null
+              }
+            }
+          },
+          "plastic-bar": {
+            "amount": 450.0,
+            "ingredients": {
+              "petroleum-gas": {
+                "amount": 9000.0,
+                "ingredients": null
+              },
+              "coal": {
+                "amount": 450.0,
+                "ingredients": null
+              }
+            }
+          }
+        }
+      },
+      "radar": {
+        "amount": 0.2,
+        "ingredients": {
+          "electronic-circuit": {
+            "amount": 1.0,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 6.4,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 2.0,
+                    "ingredients": null
+                  }
+                }
+              },
+              "copper-cable": {
+                "amount": 8.0,
+                "ingredients": {
+                  "copper-plate": {
+                    "amount": 25.6,
+                    "ingredients": {
+                      "copper-ore": {
+                        "amount": 8.0,
+                        "ingredients": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "iron-gear-wheel": {
+            "amount": 1.0,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 12.8,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 4.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "iron-plate": {
+            "amount": 6.4,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 2.0,
+                "ingredients": null
+              }
+            }
+          }
+        }
+      },
+      "effectivity-module-3": {
+        "amount": 12.0,
+        "ingredients": {
+          "effectivity-module-2": {
+            "amount": 30.0,
+            "ingredients": {
+              "effectivity-module": {
+                "amount": 60.0,
+                "ingredients": {
+                  "advanced-circuit": {
+                    "amount": 120.0,
+                    "ingredients": {
+                      "electronic-circuit": {
+                        "amount": 40.0,
+                        "ingredients": {
+                          "iron-plate": {
+                            "amount": 256.0,
+                            "ingredients": {
+                              "iron-ore": {
+                                "amount": 80.0,
+                                "ingredients": null
+                              }
+                            }
+                          },
+                          "copper-cable": {
+                            "amount": 320.0,
+                            "ingredients": {
+                              "copper-plate": {
+                                "amount": 1024.0,
+                                "ingredients": {
+                                  "copper-ore": {
+                                    "amount": 320.0,
+                                    "ingredients": null
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "plastic-bar": {
+                        "amount": 80.0,
+                        "ingredients": {
+                          "petroleum-gas": {
+                            "amount": 1600.0,
+                            "ingredients": null
+                          },
+                          "coal": {
+                            "amount": 80.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 160.0,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 512.0,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 160.0,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "electronic-circuit": {
+                    "amount": 20.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 128.0,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 40.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 160.0,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 512.0,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 160.0,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "advanced-circuit": {
+                "amount": 30.0,
+                "ingredients": {
+                  "electronic-circuit": {
+                    "amount": 10.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 64.0,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 20.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 80.0,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 256.0,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 80.0,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "plastic-bar": {
+                    "amount": 20.0,
+                    "ingredients": {
+                      "petroleum-gas": {
+                        "amount": 400.0,
+                        "ingredients": null
+                      },
+                      "coal": {
+                        "amount": 20.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 40.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 128.0,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 40.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "processing-unit": {
+                "amount": 50.0,
+                "ingredients": {
+                  "electronic-circuit": {
+                    "amount": 100.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 640.0,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 200.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 800.0,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 2560.0,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 800.0,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "advanced-circuit": {
+                    "amount": 60.0,
+                    "ingredients": {
+                      "electronic-circuit": {
+                        "amount": 20.0,
+                        "ingredients": {
+                          "iron-plate": {
+                            "amount": 128.0,
+                            "ingredients": {
+                              "iron-ore": {
+                                "amount": 40.0,
+                                "ingredients": null
+                              }
+                            }
+                          },
+                          "copper-cable": {
+                            "amount": 160.0,
+                            "ingredients": {
+                              "copper-plate": {
+                                "amount": 512.0,
+                                "ingredients": {
+                                  "copper-ore": {
+                                    "amount": 160.0,
+                                    "ingredients": null
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "plastic-bar": {
+                        "amount": 40.0,
+                        "ingredients": {
+                          "petroleum-gas": {
+                            "amount": 800.0,
+                            "ingredients": null
+                          },
+                          "coal": {
+                            "amount": 40.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 80.0,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 256.0,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 80.0,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "sulfuric-acid": {
+                    "amount": 50.0,
+                    "ingredients": {
+                      "sulfur": {
+                        "amount": 250.0,
+                        "ingredients": {
+                          "water": {
+                            "amount": 7500.0,
+                            "ingredients": null
+                          },
+                          "petroleum-gas": {
+                            "amount": 7500.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "iron-plate": {
+                        "amount": 160.0,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 50.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "water": {
+                        "amount": 5000.0,
+                        "ingredients": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "advanced-circuit": {
+            "amount": 6.0,
+            "ingredients": {
+              "electronic-circuit": {
+                "amount": 2.0,
+                "ingredients": {
+                  "iron-plate": {
+                    "amount": 12.8,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 4.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 16.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 51.2,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 16.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "plastic-bar": {
+                "amount": 4.0,
+                "ingredients": {
+                  "petroleum-gas": {
+                    "amount": 80.0,
+                    "ingredients": null
+                  },
+                  "coal": {
+                    "amount": 4.0,
+                    "ingredients": null
+                  }
+                }
+              },
+              "copper-cable": {
+                "amount": 8.0,
+                "ingredients": {
+                  "copper-plate": {
+                    "amount": 25.6,
+                    "ingredients": {
+                      "copper-ore": {
+                        "amount": 8.0,
+                        "ingredients": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "processing-unit": {
+            "amount": 10.0,
+            "ingredients": {
+              "electronic-circuit": {
+                "amount": 20.0,
+                "ingredients": {
+                  "iron-plate": {
+                    "amount": 128.0,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 40.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 160.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 512.0,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 160.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "advanced-circuit": {
+                "amount": 12.0,
+                "ingredients": {
+                  "electronic-circuit": {
+                    "amount": 4.0,
+                    "ingredients": {
+                      "iron-plate": {
+                        "amount": 25.6,
+                        "ingredients": {
+                          "iron-ore": {
+                            "amount": 8.0,
+                            "ingredients": null
+                          }
+                        }
+                      },
+                      "copper-cable": {
+                        "amount": 32.0,
+                        "ingredients": {
+                          "copper-plate": {
+                            "amount": 102.4,
+                            "ingredients": {
+                              "copper-ore": {
+                                "amount": 32.0,
+                                "ingredients": null
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "plastic-bar": {
+                    "amount": 8.0,
+                    "ingredients": {
+                      "petroleum-gas": {
+                        "amount": 160.0,
+                        "ingredients": null
+                      },
+                      "coal": {
+                        "amount": 8.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "copper-cable": {
+                    "amount": 16.0,
+                    "ingredients": {
+                      "copper-plate": {
+                        "amount": 51.2,
+                        "ingredients": {
+                          "copper-ore": {
+                            "amount": 16.0,
+                            "ingredients": null
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "sulfuric-acid": {
+                "amount": 10.0,
+                "ingredients": {
+                  "sulfur": {
+                    "amount": 50.0,
+                    "ingredients": {
+                      "water": {
+                        "amount": 1500.0,
+                        "ingredients": null
+                      },
+                      "petroleum-gas": {
+                        "amount": 1500.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "iron-plate": {
+                    "amount": 32.0,
+                    "ingredients": {
+                      "iron-ore": {
+                        "amount": 10.0,
+                        "ingredients": null
+                      }
+                    }
+                  },
+                  "water": {
+                    "amount": 1000.0,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "raw-fish": {
+        "amount": 0.1,
+        "ingredients": {}
+      }
+    }
+  }
+}

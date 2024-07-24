@@ -1,0 +1,30 @@
+{
+  "automation-science-pack": {
+    "amount": 1,
+    "ingredients": {
+      "copper-plate": {
+        "amount": 0.64,
+        "ingredients": {
+          "copper-ore": {
+            "amount": 0.2,
+            "ingredients": null
+          }
+        }
+      },
+      "iron-gear-wheel": {
+        "amount": 0.2,
+        "ingredients": {
+          "iron-plate": {
+            "amount": 2.5600000000000005,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 0.8000000000000002,
+                "ingredients": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

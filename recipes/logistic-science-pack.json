@@ -1,0 +1,91 @@
+{
+  "logistic-science-pack": {
+    "amount": 1,
+    "ingredients": {
+      "inserter": {
+        "amount": 0.16666666666666666,
+        "ingredients": {
+          "electronic-circuit": {
+            "amount": 0.16666666666666666,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 1.0666666666666667,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 0.3333333333333333,
+                    "ingredients": null
+                  }
+                }
+              },
+              "copper-cable": {
+                "amount": 1.3333333333333333,
+                "ingredients": {
+                  "copper-plate": {
+                    "amount": 4.266666666666667,
+                    "ingredients": {
+                      "copper-ore": {
+                        "amount": 1.3333333333333333,
+                        "ingredients": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "iron-gear-wheel": {
+            "amount": 0.16666666666666666,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 2.1333333333333333,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 0.6666666666666666,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          },
+          "iron-plate": {
+            "amount": 0.5333333333333333,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 0.16666666666666666,
+                "ingredients": null
+              }
+            }
+          }
+        }
+      },
+      "transport-belt": {
+        "amount": 0.16666666666666666,
+        "ingredients": {
+          "iron-plate": {
+            "amount": 0.5333333333333333,
+            "ingredients": {
+              "iron-ore": {
+                "amount": 0.16666666666666666,
+                "ingredients": null
+              }
+            }
+          },
+          "iron-gear-wheel": {
+            "amount": 0.16666666666666666,
+            "ingredients": {
+              "iron-plate": {
+                "amount": 2.1333333333333333,
+                "ingredients": {
+                  "iron-ore": {
+                    "amount": 0.6666666666666666,
+                    "ingredients": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

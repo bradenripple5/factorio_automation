@@ -1,0 +1,37 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "logistic-chest-requester"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": -44.5,
+          "y": -459.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "water-barrel",
+            "count": 240
+          },
+          {
+            "index": 2,
+            "name": "petroleum-gas-barrel",
+            "count": 240
+          }
+        ]
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278821376
+  }
+}
