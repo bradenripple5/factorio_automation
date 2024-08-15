@@ -102,26 +102,8 @@ def get_energy(item):
 			return 1
 def is_smelted(item):
 	return item in smelted_list
-def get_recipe(product):
-	if product not in recipes_dict:
-		return None
-	fullinfo = recipes_dict[product]
-	# print(fullinfo,"fullinfo")
-	if "normal" in fullinfo:
-		ingredients = fullinfo["normal"]["ingredients"]
-	else:
-		ingredients = fullinfo["ingredients"]
-	return [i[0] if isinstance(i,list) else i["name"] for i in ingredients]
-def make_request_filters(product,fluid_only = False):
-	ingredients = get_recipe(product)
-	stack_sizes = {}
-	request_filters =[]
-	for index, ingredient in enumerate(ingredients):
-		if ingredient in fluids:
-			request_filters.append({ "index":index+1,"name":ingredient+"-barrel", "count": int(get_stack_size(ingredient)*(48/len(ingredients)))})
-		else:	
-			request_filters.append({ "index":index+1,"name":ingredient+"-barrel"*(ingredient in fluids), "count": int(get_stack_size(ingredient)*(48/len(ingredients)))})
-	return request_filters
+
+
 #i.e. the amount of items that can fit into one square of a chest.
 def get_fluids():
 	fluids = set()
@@ -188,11 +170,6 @@ def get_production_time(product):
 			return 1
 
 def get_production_type(product):
-	#assembling or smelter, 
-		#vs assembling with liquid
-		#vs chemical-plant with one liquid
-		#vs chemical-plant with two liquids
-		#vs, possibly a refinery
 	try:
 		if product == "processing-unit":
 			return "processing-unit"
@@ -243,7 +220,7 @@ def makeMaterialHeirarchy(item,amount = 1):
 			return {item: {"amount": 1}}
 
 	ingredients_dictionary = makeMaterialHeirarchyRecursive(item,amount)
-	print(item,total)
+	# print(item,total)
 	return {item: {"amount": amount, "ingredients": ingredients_dictionary}}
 
 def makeTrainSchedules(material_heirarchy):
@@ -279,7 +256,32 @@ def get_non_raw_materials_from_material_heirarchy(material_heirarchy):
 	recurse(material_heirarchy)
 	return {i:numpy.round(v) for i,v in dict(sorted(total_materials.items(),key = lambda item:item[0])).items()}
 
+def get_recipe(product):
 
+	if product not in recipes_dict:
+		return None
+	fullinfo = recipes_dict[product]
+	# print(fullinfo,"fullinfo")
+	if "normal" in fullinfo:
+		ingredients = fullinfo["normal"]["ingredients"]
+	else:
+		ingredients = fullinfo["ingredients"]
+	return [i[0] if isinstance(i,list) else i["name"] for i in ingredients]
+
+def make_request_filters(product,fluid_only = False):
+	# print(product, "make_request_filters")
+	# print(recipes_dict[product])
+	ingredients = get_recipe(product)
+	# print(ingredients, ' = ingredients')
+	stack_sizes = {}
+	request_filters =[]
+	for index, ingredient in enumerate(ingredients):
+		if ingredient in fluids:
+			request_filters.append({ "index":index+1,"name":ingredient+"-barrel", "count": int(get_stack_size(ingredient)*(48/len(ingredients)))})
+		else:	
+			request_filters.append({ "index":index+1,"name":ingredient+"-barrel"*(ingredient in fluids), "count": int(get_stack_size(ingredient)*(48/len(ingredients)))})
+	return request_filters
+# print(make_request_filters("advanced-circuit"))
 #the next step is to match physical trains with schedules
 
 # print(is_smelted("copper-plate"))

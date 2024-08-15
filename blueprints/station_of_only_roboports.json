@@ -1,0 +1,1705 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "rail"
+        },
+        "index": 1
+      },
+      {
+        "signal": {
+          "type": "item",
+          "name": "roboport"
+        },
+        "index": 2
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 1919.5,
+          "y": 679.5
+        },
+        "neighbours": [
+          47,
+          193
+        ]
+      },
+      {
+        "entity_number": 2,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 679
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "straight-rail",
+        "position": {
+          "x": 1931,
+          "y": 679
+        }
+      },
+      {
+        "entity_number": 4,
+        "name": "rail-signal",
+        "position": {
+          "x": 1933.5,
+          "y": 679.5
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 5,
+        "name": "rail-signal",
+        "position": {
+          "x": 1970.5,
+          "y": 679.5
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 6,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 679
+        }
+      },
+      {
+        "entity_number": 7,
+        "name": "straight-rail",
+        "position": {
+          "x": 1919,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 8,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 9,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 681
+        }
+      },
+      {
+        "entity_number": 10,
+        "name": "straight-rail",
+        "position": {
+          "x": 1923,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 11,
+        "name": "curved-rail",
+        "position": {
+          "x": 1928,
+          "y": 682
+        },
+        "direction": 6
+      },
+      {
+        "entity_number": 12,
+        "name": "straight-rail",
+        "position": {
+          "x": 1925,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 13,
+        "name": "straight-rail",
+        "position": {
+          "x": 1927,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 14,
+        "name": "straight-rail",
+        "position": {
+          "x": 1929,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 15,
+        "name": "straight-rail",
+        "position": {
+          "x": 1931,
+          "y": 681
+        }
+      },
+      {
+        "entity_number": 16,
+        "name": "straight-rail",
+        "position": {
+          "x": 1931,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 17,
+        "name": "straight-rail",
+        "position": {
+          "x": 1933,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 18,
+        "name": "straight-rail",
+        "position": {
+          "x": 1935,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 19,
+        "name": "straight-rail",
+        "position": {
+          "x": 1937,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 20,
+        "name": "straight-rail",
+        "position": {
+          "x": 1939,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 21,
+        "name": "straight-rail",
+        "position": {
+          "x": 1941,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 22,
+        "name": "straight-rail",
+        "position": {
+          "x": 1943,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 23,
+        "name": "straight-rail",
+        "position": {
+          "x": 1945,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 24,
+        "name": "straight-rail",
+        "position": {
+          "x": 1947,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 25,
+        "name": "straight-rail",
+        "position": {
+          "x": 1949,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 26,
+        "name": "straight-rail",
+        "position": {
+          "x": 1951,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 27,
+        "name": "straight-rail",
+        "position": {
+          "x": 1953,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 28,
+        "name": "straight-rail",
+        "position": {
+          "x": 1955,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 29,
+        "name": "straight-rail",
+        "position": {
+          "x": 1957,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 30,
+        "name": "straight-rail",
+        "position": {
+          "x": 1959,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 31,
+        "name": "straight-rail",
+        "position": {
+          "x": 1961,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 32,
+        "name": "straight-rail",
+        "position": {
+          "x": 1963,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 33,
+        "name": "straight-rail",
+        "position": {
+          "x": 1965,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 34,
+        "name": "straight-rail",
+        "position": {
+          "x": 1967,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 35,
+        "name": "straight-rail",
+        "position": {
+          "x": 1969,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 36,
+        "name": "straight-rail",
+        "position": {
+          "x": 1971,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 37,
+        "name": "curved-rail",
+        "position": {
+          "x": 1976,
+          "y": 682
+        },
+        "direction": 3
+      },
+      {
+        "entity_number": 38,
+        "name": "straight-rail",
+        "position": {
+          "x": 1973,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 39,
+        "name": "straight-rail",
+        "position": {
+          "x": 1973,
+          "y": 681
+        }
+      },
+      {
+        "entity_number": 40,
+        "name": "straight-rail",
+        "position": {
+          "x": 1975,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 41,
+        "name": "straight-rail",
+        "position": {
+          "x": 1977,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 42,
+        "name": "straight-rail",
+        "position": {
+          "x": 1979,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 43,
+        "name": "straight-rail",
+        "position": {
+          "x": 1981,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 44,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 681
+        }
+      },
+      {
+        "entity_number": 45,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 46,
+        "name": "straight-rail",
+        "position": {
+          "x": 1985,
+          "y": 681
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 47,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 1918.5,
+          "y": 682.5
+        },
+        "neighbours": [
+          1,
+          193
+        ]
+      },
+      {
+        "entity_number": 48,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 683
+        }
+      },
+      {
+        "entity_number": 49,
+        "name": "straight-rail",
+        "position": {
+          "x": 1925,
+          "y": 685
+        },
+        "direction": 7
+      },
+      {
+        "entity_number": 50,
+        "name": "straight-rail",
+        "position": {
+          "x": 1931,
+          "y": 683
+        }
+      },
+      {
+        "entity_number": 51,
+        "name": "straight-rail",
+        "position": {
+          "x": 1973,
+          "y": 683
+        }
+      },
+      {
+        "entity_number": 52,
+        "name": "straight-rail",
+        "position": {
+          "x": 1979,
+          "y": 685
+        },
+        "direction": 1
+      },
+      {
+        "entity_number": 53,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 683
+        }
+      },
+      {
+        "entity_number": 54,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 685
+        }
+      },
+      {
+        "entity_number": 55,
+        "name": "curved-rail",
+        "position": {
+          "x": 1922,
+          "y": 688
+        },
+        "direction": 1
+      },
+      {
+        "entity_number": 56,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 1954,
+          "y": 685
+        }
+      },
+      {
+        "entity_number": 57,
+        "name": "curved-rail",
+        "position": {
+          "x": 1982,
+          "y": 688
+        }
+      },
+      {
+        "entity_number": 58,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 685
+        }
+      },
+      {
+        "entity_number": 59,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 687
+        }
+      },
+      {
+        "entity_number": 60,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 687
+        }
+      },
+      {
+        "entity_number": 61,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 689
+        }
+      },
+      {
+        "entity_number": 62,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 689
+        }
+      },
+      {
+        "entity_number": 63,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 691
+        }
+      },
+      {
+        "entity_number": 64,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 691
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 65,
+        "name": "straight-rail",
+        "position": {
+          "x": 1981,
+          "y": 691
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 66,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 691
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 67,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 691
+        }
+      },
+      {
+        "entity_number": 68,
+        "name": "straight-rail",
+        "position": {
+          "x": 1985,
+          "y": 691
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 69,
+        "name": "rail-signal",
+        "position": {
+          "x": 1919.5,
+          "y": 692.5
+        }
+      },
+      {
+        "entity_number": 70,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 693
+        }
+      },
+      {
+        "entity_number": 71,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 693
+        }
+      },
+      {
+        "entity_number": 72,
+        "name": "rail-signal",
+        "position": {
+          "x": 1984.5,
+          "y": 692.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 73,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 695
+        }
+      },
+      {
+        "entity_number": 74,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 695
+        }
+      },
+      {
+        "entity_number": 75,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 697
+        }
+      },
+      {
+        "entity_number": 76,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 697
+        }
+      },
+      {
+        "entity_number": 77,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 699
+        }
+      },
+      {
+        "entity_number": 78,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 699
+        }
+      },
+      {
+        "entity_number": 79,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 701
+        }
+      },
+      {
+        "entity_number": 80,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 701
+        }
+      },
+      {
+        "entity_number": 81,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 703
+        }
+      },
+      {
+        "entity_number": 82,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 703
+        }
+      },
+      {
+        "entity_number": 83,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 705
+        }
+      },
+      {
+        "entity_number": 84,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 705
+        }
+      },
+      {
+        "entity_number": 85,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 707
+        }
+      },
+      {
+        "entity_number": 86,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 707
+        }
+      },
+      {
+        "entity_number": 87,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 709
+        }
+      },
+      {
+        "entity_number": 88,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 709
+        }
+      },
+      {
+        "entity_number": 89,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 711
+        }
+      },
+      {
+        "entity_number": 90,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 711
+        }
+      },
+      {
+        "entity_number": 91,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 713
+        }
+      },
+      {
+        "entity_number": 92,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 713
+        }
+      },
+      {
+        "entity_number": 93,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 715
+        }
+      },
+      {
+        "entity_number": 94,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 715
+        }
+      },
+      {
+        "entity_number": 95,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 717
+        }
+      },
+      {
+        "entity_number": 96,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 717
+        }
+      },
+      {
+        "entity_number": 97,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 719
+        }
+      },
+      {
+        "entity_number": 98,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 719
+        }
+      },
+      {
+        "entity_number": 99,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 721
+        }
+      },
+      {
+        "entity_number": 100,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 721
+        }
+      },
+      {
+        "entity_number": 101,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 723
+        }
+      },
+      {
+        "entity_number": 102,
+        "name": "roboport",
+        "position": {
+          "x": 1948,
+          "y": 724
+        }
+      },
+      {
+        "entity_number": 103,
+        "name": "roboport",
+        "position": {
+          "x": 1952,
+          "y": 724
+        }
+      },
+      {
+        "entity_number": 104,
+        "name": "roboport",
+        "position": {
+          "x": 1956,
+          "y": 724
+        }
+      },
+      {
+        "entity_number": 105,
+        "name": "roboport",
+        "position": {
+          "x": 1960,
+          "y": 724
+        }
+      },
+      {
+        "entity_number": 106,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 723
+        }
+      },
+      {
+        "entity_number": 107,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 725
+        }
+      },
+      {
+        "entity_number": 108,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 725
+        }
+      },
+      {
+        "entity_number": 109,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 727
+        }
+      },
+      {
+        "entity_number": 110,
+        "name": "roboport",
+        "position": {
+          "x": 1948,
+          "y": 728
+        }
+      },
+      {
+        "entity_number": 111,
+        "name": "roboport",
+        "position": {
+          "x": 1952,
+          "y": 728
+        }
+      },
+      {
+        "entity_number": 112,
+        "name": "roboport",
+        "position": {
+          "x": 1956,
+          "y": 728
+        }
+      },
+      {
+        "entity_number": 113,
+        "name": "roboport",
+        "position": {
+          "x": 1960,
+          "y": 728
+        }
+      },
+      {
+        "entity_number": 114,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 727
+        }
+      },
+      {
+        "entity_number": 115,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 729
+        }
+      },
+      {
+        "entity_number": 116,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 729
+        }
+      },
+      {
+        "entity_number": 117,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 731
+        }
+      },
+      {
+        "entity_number": 118,
+        "name": "roboport",
+        "position": {
+          "x": 1948,
+          "y": 732
+        }
+      },
+      {
+        "entity_number": 119,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 1951,
+          "y": 732
+        },
+        "neighbours": [
+          128,
+          150
+        ]
+      },
+      {
+        "entity_number": 120,
+        "name": "roboport",
+        "position": {
+          "x": 1956,
+          "y": 732
+        }
+      },
+      {
+        "entity_number": 121,
+        "name": "roboport",
+        "position": {
+          "x": 1960,
+          "y": 732
+        }
+      },
+      {
+        "entity_number": 122,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 731
+        }
+      },
+      {
+        "entity_number": 123,
+        "name": "rail-signal",
+        "position": {
+          "x": 1984.5,
+          "y": 731.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 124,
+        "name": "rail-signal",
+        "position": {
+          "x": 1919.5,
+          "y": 732.5
+        }
+      },
+      {
+        "entity_number": 125,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 733
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 126,
+        "name": "curved-rail",
+        "position": {
+          "x": 1922,
+          "y": 736
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 127,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 733
+        }
+      },
+      {
+        "entity_number": 128,
+        "name": "substation",
+        "position": {
+          "x": 1953,
+          "y": 733
+        },
+        "neighbours": [
+          119
+        ]
+      },
+      {
+        "entity_number": 129,
+        "name": "curved-rail",
+        "position": {
+          "x": 1982,
+          "y": 736
+        },
+        "direction": 5
+      },
+      {
+        "entity_number": 130,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 733
+        }
+      },
+      {
+        "entity_number": 131,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 733
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 132,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 735
+        }
+      },
+      {
+        "entity_number": 133,
+        "name": "roboport",
+        "position": {
+          "x": 1948,
+          "y": 736
+        }
+      },
+      {
+        "entity_number": 134,
+        "name": "roboport",
+        "position": {
+          "x": 1952,
+          "y": 736
+        }
+      },
+      {
+        "entity_number": 135,
+        "name": "roboport",
+        "position": {
+          "x": 1956,
+          "y": 736
+        }
+      },
+      {
+        "entity_number": 136,
+        "name": "roboport",
+        "position": {
+          "x": 1960,
+          "y": 736
+        }
+      },
+      {
+        "entity_number": 137,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 735
+        }
+      },
+      {
+        "entity_number": 138,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 737
+        }
+      },
+      {
+        "entity_number": 139,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 737
+        }
+      },
+      {
+        "entity_number": 140,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 739
+        }
+      },
+      {
+        "entity_number": 141,
+        "name": "straight-rail",
+        "position": {
+          "x": 1925,
+          "y": 739
+        },
+        "direction": 5
+      },
+      {
+        "entity_number": 142,
+        "name": "curved-rail",
+        "position": {
+          "x": 1928,
+          "y": 742
+        },
+        "direction": 7
+      },
+      {
+        "entity_number": 143,
+        "name": "roboport",
+        "position": {
+          "x": 1948,
+          "y": 740
+        }
+      },
+      {
+        "entity_number": 144,
+        "name": "roboport",
+        "position": {
+          "x": 1952,
+          "y": 740
+        }
+      },
+      {
+        "entity_number": 145,
+        "name": "roboport",
+        "position": {
+          "x": 1960,
+          "y": 740
+        }
+      },
+      {
+        "entity_number": 146,
+        "name": "curved-rail",
+        "position": {
+          "x": 1976,
+          "y": 742
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 147,
+        "name": "straight-rail",
+        "position": {
+          "x": 1979,
+          "y": 739
+        },
+        "direction": 3
+      },
+      {
+        "entity_number": 148,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 739
+        }
+      },
+      {
+        "entity_number": 149,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 741
+        }
+      },
+      {
+        "entity_number": 150,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 1956,
+          "y": 741
+        },
+        "neighbours": [
+          119
+        ]
+      },
+      {
+        "entity_number": 151,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 741
+        }
+      },
+      {
+        "entity_number": 152,
+        "name": "straight-rail",
+        "position": {
+          "x": 1919,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 153,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 154,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 743
+        }
+      },
+      {
+        "entity_number": 155,
+        "name": "straight-rail",
+        "position": {
+          "x": 1923,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 156,
+        "name": "straight-rail",
+        "position": {
+          "x": 1925,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 157,
+        "name": "straight-rail",
+        "position": {
+          "x": 1927,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 158,
+        "name": "straight-rail",
+        "position": {
+          "x": 1929,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 159,
+        "name": "straight-rail",
+        "position": {
+          "x": 1931,
+          "y": 743
+        }
+      },
+      {
+        "entity_number": 160,
+        "name": "straight-rail",
+        "position": {
+          "x": 1931,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 161,
+        "name": "straight-rail",
+        "position": {
+          "x": 1933,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 162,
+        "name": "straight-rail",
+        "position": {
+          "x": 1935,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 163,
+        "name": "straight-rail",
+        "position": {
+          "x": 1937,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 164,
+        "name": "straight-rail",
+        "position": {
+          "x": 1939,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 165,
+        "name": "straight-rail",
+        "position": {
+          "x": 1941,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 166,
+        "name": "straight-rail",
+        "position": {
+          "x": 1943,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 167,
+        "name": "straight-rail",
+        "position": {
+          "x": 1945,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 168,
+        "name": "straight-rail",
+        "position": {
+          "x": 1947,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 169,
+        "name": "straight-rail",
+        "position": {
+          "x": 1949,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 170,
+        "name": "straight-rail",
+        "position": {
+          "x": 1951,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 171,
+        "name": "straight-rail",
+        "position": {
+          "x": 1953,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 172,
+        "name": "straight-rail",
+        "position": {
+          "x": 1955,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 173,
+        "name": "straight-rail",
+        "position": {
+          "x": 1957,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 174,
+        "name": "straight-rail",
+        "position": {
+          "x": 1959,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 175,
+        "name": "straight-rail",
+        "position": {
+          "x": 1961,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 176,
+        "name": "straight-rail",
+        "position": {
+          "x": 1963,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 177,
+        "name": "straight-rail",
+        "position": {
+          "x": 1965,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 178,
+        "name": "straight-rail",
+        "position": {
+          "x": 1967,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 179,
+        "name": "straight-rail",
+        "position": {
+          "x": 1969,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 180,
+        "name": "straight-rail",
+        "position": {
+          "x": 1971,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 181,
+        "name": "straight-rail",
+        "position": {
+          "x": 1973,
+          "y": 743
+        }
+      },
+      {
+        "entity_number": 182,
+        "name": "straight-rail",
+        "position": {
+          "x": 1973,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 183,
+        "name": "straight-rail",
+        "position": {
+          "x": 1975,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 184,
+        "name": "straight-rail",
+        "position": {
+          "x": 1977,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 185,
+        "name": "straight-rail",
+        "position": {
+          "x": 1979,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 186,
+        "name": "straight-rail",
+        "position": {
+          "x": 1981,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 187,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 743
+        }
+      },
+      {
+        "entity_number": 188,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 189,
+        "name": "straight-rail",
+        "position": {
+          "x": 1985,
+          "y": 743
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 190,
+        "name": "straight-rail",
+        "position": {
+          "x": 1921,
+          "y": 745
+        }
+      },
+      {
+        "entity_number": 191,
+        "name": "straight-rail",
+        "position": {
+          "x": 1931,
+          "y": 745
+        }
+      },
+      {
+        "entity_number": 192,
+        "name": "rail-signal",
+        "position": {
+          "x": 1933.5,
+          "y": 744.5
+        },
+        "direction": 6
+      },
+      {
+        "entity_number": 193,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 1946.5,
+          "y": 744.5
+        },
+        "neighbours": [
+          47,
+          1
+        ]
+      },
+      {
+        "entity_number": 194,
+        "name": "rail-signal",
+        "position": {
+          "x": 1970.5,
+          "y": 744.5
+        },
+        "direction": 6
+      },
+      {
+        "entity_number": 195,
+        "name": "straight-rail",
+        "position": {
+          "x": 1973,
+          "y": 745
+        }
+      },
+      {
+        "entity_number": 196,
+        "name": "straight-rail",
+        "position": {
+          "x": 1983,
+          "y": 745
+        }
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278821376
+  }
+}

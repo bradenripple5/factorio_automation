@@ -1,0 +1,43 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "rail"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -299,
+          "y": 989
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "straight-rail",
+        "position": {
+          "x": -299,
+          "y": 989
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 3,
+        "name": "straight-rail",
+        "position": {
+          "x": -297,
+          "y": 989
+        },
+        "direction": 2
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278821376
+  }
+}

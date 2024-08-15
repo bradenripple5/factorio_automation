@@ -26,6 +26,7 @@ console.timeLog("reticulating splines");
 });
 
 function getProximityDictionary(blueprint, numberOfNeighbors) {
+  console.log(blueprint)
   const poleLocationDictionary = {};
   for (let i = 0; i < blueprint.blueprint.entities.length; i++) {
     const entity = blueprint.blueprint.entities[i];

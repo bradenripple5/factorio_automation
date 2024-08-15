@@ -1,0 +1,19 @@
+{
+  "deconstruction_planner": {
+    "settings": {
+      "entity_filters": [
+        {
+          "name": "straight-rail",
+          "index": 0,
+          "position":{
+            "x": 0,
+            "y":0
+          }
+        }
+      ],as
+      "tile_selection_mode": 2
+    },
+    "item": "deconstruction-planner",
+    "version": 281479278821376
+  }
+}
