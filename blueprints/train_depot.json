@@ -20,42 +20,6 @@
       },
       {
         "entity_number": 2,
-        "name": "rail-signal",
-        "position": {
-          "x": 632.5,
-          "y": 135.5
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 3,
-        "name": "rail-signal",
-        "position": {
-          "x": 639.5,
-          "y": 135.5
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 4,
-        "name": "rail-signal",
-        "position": {
-          "x": 680.5,
-          "y": 135.5
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 5,
-        "name": "rail-signal",
-        "position": {
-          "x": 687.5,
-          "y": 135.5
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 6,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -63,7 +27,16 @@
         }
       },
       {
-        "entity_number": 7,
+        "entity_number": 3,
+        "name": "straight-rail",
+        "position": {
+          "x": 627,
+          "y": 137
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 4,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -71,7 +44,7 @@
         }
       },
       {
-        "entity_number": 8,
+        "entity_number": 5,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -80,7 +53,7 @@
         "direction": 2
       },
       {
-        "entity_number": 9,
+        "entity_number": 6,
         "name": "straight-rail",
         "position": {
           "x": 631,
@@ -89,7 +62,7 @@
         "direction": 2
       },
       {
-        "entity_number": 10,
+        "entity_number": 7,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -98,7 +71,7 @@
         "direction": 6
       },
       {
-        "entity_number": 11,
+        "entity_number": 8,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -107,7 +80,7 @@
         "direction": 2
       },
       {
-        "entity_number": 12,
+        "entity_number": 9,
         "name": "straight-rail",
         "position": {
           "x": 635,
@@ -116,7 +89,7 @@
         "direction": 2
       },
       {
-        "entity_number": 13,
+        "entity_number": 10,
         "name": "straight-rail",
         "position": {
           "x": 637,
@@ -125,7 +98,7 @@
         "direction": 2
       },
       {
-        "entity_number": 14,
+        "entity_number": 11,
         "name": "straight-rail",
         "position": {
           "x": 639,
@@ -134,7 +107,7 @@
         "direction": 2
       },
       {
-        "entity_number": 15,
+        "entity_number": 12,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -143,7 +116,7 @@
         "direction": 2
       },
       {
-        "entity_number": 16,
+        "entity_number": 13,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -152,7 +125,7 @@
         "direction": 2
       },
       {
-        "entity_number": 17,
+        "entity_number": 14,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -161,7 +134,7 @@
         "direction": 2
       },
       {
-        "entity_number": 18,
+        "entity_number": 15,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -170,7 +143,7 @@
         "direction": 2
       },
       {
-        "entity_number": 19,
+        "entity_number": 16,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -179,7 +152,7 @@
         "direction": 2
       },
       {
-        "entity_number": 20,
+        "entity_number": 17,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -188,7 +161,7 @@
         "direction": 2
       },
       {
-        "entity_number": 21,
+        "entity_number": 18,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -197,7 +170,7 @@
         "direction": 2
       },
       {
-        "entity_number": 22,
+        "entity_number": 19,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -206,7 +179,7 @@
         "direction": 2
       },
       {
-        "entity_number": 23,
+        "entity_number": 20,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -215,7 +188,7 @@
         "direction": 2
       },
       {
-        "entity_number": 24,
+        "entity_number": 21,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -224,7 +197,7 @@
         "direction": 2
       },
       {
-        "entity_number": 25,
+        "entity_number": 22,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -233,7 +206,7 @@
         "direction": 2
       },
       {
-        "entity_number": 26,
+        "entity_number": 23,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -242,7 +215,7 @@
         "direction": 2
       },
       {
-        "entity_number": 27,
+        "entity_number": 24,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -251,7 +224,7 @@
         "direction": 2
       },
       {
-        "entity_number": 28,
+        "entity_number": 25,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -260,7 +233,7 @@
         "direction": 2
       },
       {
-        "entity_number": 29,
+        "entity_number": 26,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -269,7 +242,7 @@
         "direction": 2
       },
       {
-        "entity_number": 30,
+        "entity_number": 27,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -278,7 +251,7 @@
         "direction": 2
       },
       {
-        "entity_number": 31,
+        "entity_number": 28,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -287,7 +260,7 @@
         "direction": 2
       },
       {
-        "entity_number": 32,
+        "entity_number": 29,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -296,7 +269,7 @@
         "direction": 2
       },
       {
-        "entity_number": 33,
+        "entity_number": 30,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -305,7 +278,7 @@
         "direction": 2
       },
       {
-        "entity_number": 34,
+        "entity_number": 31,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -314,7 +287,7 @@
         "direction": 2
       },
       {
-        "entity_number": 35,
+        "entity_number": 32,
         "name": "straight-rail",
         "position": {
           "x": 681,
@@ -323,7 +296,7 @@
         "direction": 2
       },
       {
-        "entity_number": 36,
+        "entity_number": 33,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -332,7 +305,7 @@
         "direction": 3
       },
       {
-        "entity_number": 37,
+        "entity_number": 34,
         "name": "straight-rail",
         "position": {
           "x": 683,
@@ -341,7 +314,7 @@
         "direction": 2
       },
       {
-        "entity_number": 38,
+        "entity_number": 35,
         "name": "straight-rail",
         "position": {
           "x": 685,
@@ -350,7 +323,7 @@
         "direction": 2
       },
       {
-        "entity_number": 39,
+        "entity_number": 36,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -359,7 +332,7 @@
         "direction": 2
       },
       {
-        "entity_number": 40,
+        "entity_number": 37,
         "name": "straight-rail",
         "position": {
           "x": 689,
@@ -368,7 +341,7 @@
         "direction": 2
       },
       {
-        "entity_number": 41,
+        "entity_number": 38,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -376,7 +349,7 @@
         }
       },
       {
-        "entity_number": 42,
+        "entity_number": 39,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -385,7 +358,7 @@
         "direction": 2
       },
       {
-        "entity_number": 43,
+        "entity_number": 40,
         "name": "straight-rail",
         "position": {
           "x": 693,
@@ -394,7 +367,7 @@
         "direction": 2
       },
       {
-        "entity_number": 44,
+        "entity_number": 41,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -402,7 +375,7 @@
         }
       },
       {
-        "entity_number": 45,
+        "entity_number": 42,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -411,7 +384,7 @@
         "direction": 7
       },
       {
-        "entity_number": 46,
+        "entity_number": 43,
         "name": "rail-signal",
         "position": {
           "x": 639.5,
@@ -420,17 +393,17 @@
         "direction": 2
       },
       {
-        "entity_number": 47,
+        "entity_number": 44,
         "name": "train-stop",
         "position": {
           "x": 641,
           "y": 139
         },
         "direction": 6,
-        "station": ""
+        "station": "coal stop 1a"
       },
       {
-        "entity_number": 48,
+        "entity_number": 45,
         "name": "stack-inserter",
         "position": {
           "x": 643.5,
@@ -438,7 +411,7 @@
         }
       },
       {
-        "entity_number": 49,
+        "entity_number": 46,
         "name": "logistic-chest-requester",
         "position": {
           "x": 643.5,
@@ -453,18 +426,18 @@
         ]
       },
       {
-        "entity_number": 50,
+        "entity_number": 47,
         "name": "medium-electric-pole",
         "position": {
           "x": 648.5,
           "y": 138.5
         },
         "neighbours": [
-          92
+          89
         ]
       },
       {
-        "entity_number": 51,
+        "entity_number": 48,
         "name": "rail-signal",
         "position": {
           "x": 675.5,
@@ -473,7 +446,7 @@
         "direction": 2
       },
       {
-        "entity_number": 52,
+        "entity_number": 49,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -482,7 +455,7 @@
         "direction": 1
       },
       {
-        "entity_number": 53,
+        "entity_number": 50,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -490,7 +463,7 @@
         }
       },
       {
-        "entity_number": 54,
+        "entity_number": 51,
         "name": "rail-signal",
         "position": {
           "x": 692.5,
@@ -499,7 +472,7 @@
         "direction": 4
       },
       {
-        "entity_number": 55,
+        "entity_number": 52,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -508,7 +481,7 @@
         "direction": 1
       },
       {
-        "entity_number": 56,
+        "entity_number": 53,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -516,7 +489,7 @@
         }
       },
       {
-        "entity_number": 57,
+        "entity_number": 54,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -525,7 +498,7 @@
         "direction": 6
       },
       {
-        "entity_number": 58,
+        "entity_number": 55,
         "name": "locomotive",
         "position": {
           "x": 644,
@@ -537,7 +510,7 @@
         }
       },
       {
-        "entity_number": 59,
+        "entity_number": 56,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -546,7 +519,7 @@
         "direction": 2
       },
       {
-        "entity_number": 60,
+        "entity_number": 57,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -555,7 +528,7 @@
         "direction": 2
       },
       {
-        "entity_number": 61,
+        "entity_number": 58,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -564,7 +537,7 @@
         "direction": 2
       },
       {
-        "entity_number": 62,
+        "entity_number": 59,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -573,7 +546,7 @@
         "direction": 2
       },
       {
-        "entity_number": 63,
+        "entity_number": 60,
         "name": "cargo-wagon",
         "position": {
           "x": 651,
@@ -583,7 +556,7 @@
         "inventory": null
       },
       {
-        "entity_number": 64,
+        "entity_number": 61,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -592,7 +565,7 @@
         "direction": 2
       },
       {
-        "entity_number": 65,
+        "entity_number": 62,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -601,7 +574,7 @@
         "direction": 2
       },
       {
-        "entity_number": 66,
+        "entity_number": 63,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -610,7 +583,7 @@
         "direction": 2
       },
       {
-        "entity_number": 67,
+        "entity_number": 64,
         "name": "cargo-wagon",
         "position": {
           "x": 658,
@@ -620,7 +593,7 @@
         "inventory": null
       },
       {
-        "entity_number": 68,
+        "entity_number": 65,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -629,7 +602,7 @@
         "direction": 2
       },
       {
-        "entity_number": 69,
+        "entity_number": 66,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -638,7 +611,7 @@
         "direction": 2
       },
       {
-        "entity_number": 70,
+        "entity_number": 67,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -647,7 +620,7 @@
         "direction": 2
       },
       {
-        "entity_number": 71,
+        "entity_number": 68,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -656,7 +629,7 @@
         "direction": 2
       },
       {
-        "entity_number": 72,
+        "entity_number": 69,
         "name": "cargo-wagon",
         "position": {
           "x": 665,
@@ -666,7 +639,7 @@
         "inventory": null
       },
       {
-        "entity_number": 73,
+        "entity_number": 70,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -675,7 +648,7 @@
         "direction": 2
       },
       {
-        "entity_number": 74,
+        "entity_number": 71,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -684,7 +657,7 @@
         "direction": 2
       },
       {
-        "entity_number": 75,
+        "entity_number": 72,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -693,7 +666,7 @@
         "direction": 2
       },
       {
-        "entity_number": 76,
+        "entity_number": 73,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -702,7 +675,7 @@
         "direction": 2
       },
       {
-        "entity_number": 77,
+        "entity_number": 74,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -711,7 +684,7 @@
         "direction": 2
       },
       {
-        "entity_number": 78,
+        "entity_number": 75,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -720,7 +693,7 @@
         "direction": 2
       },
       {
-        "entity_number": 79,
+        "entity_number": 76,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -729,7 +702,7 @@
         "direction": 2
       },
       {
-        "entity_number": 80,
+        "entity_number": 77,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -738,7 +711,7 @@
         "direction": 2
       },
       {
-        "entity_number": 81,
+        "entity_number": 78,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -747,7 +720,7 @@
         "direction": 2
       },
       {
-        "entity_number": 82,
+        "entity_number": 79,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -756,7 +729,7 @@
         "direction": 3
       },
       {
-        "entity_number": 83,
+        "entity_number": 80,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -764,7 +737,7 @@
         }
       },
       {
-        "entity_number": 84,
+        "entity_number": 81,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -772,7 +745,7 @@
         }
       },
       {
-        "entity_number": 85,
+        "entity_number": 82,
         "name": "rail-signal",
         "position": {
           "x": 627.5,
@@ -780,7 +753,7 @@
         }
       },
       {
-        "entity_number": 86,
+        "entity_number": 83,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -788,7 +761,7 @@
         }
       },
       {
-        "entity_number": 87,
+        "entity_number": 84,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -797,7 +770,7 @@
         "direction": 7
       },
       {
-        "entity_number": 88,
+        "entity_number": 85,
         "name": "rail-signal",
         "position": {
           "x": 639.5,
@@ -806,17 +779,17 @@
         "direction": 2
       },
       {
-        "entity_number": 89,
+        "entity_number": 86,
         "name": "train-stop",
         "position": {
           "x": 641,
           "y": 143
         },
         "direction": 6,
-        "station": ""
+        "station": "coal stop 2b"
       },
       {
-        "entity_number": 90,
+        "entity_number": 87,
         "name": "logistic-chest-requester",
         "position": {
           "x": 643.5,
@@ -832,7 +805,7 @@
         "request_from_buffers": true
       },
       {
-        "entity_number": 91,
+        "entity_number": 88,
         "name": "stack-inserter",
         "position": {
           "x": 643.5,
@@ -840,19 +813,19 @@
         }
       },
       {
-        "entity_number": 92,
+        "entity_number": 89,
         "name": "medium-electric-pole",
         "position": {
           "x": 645.5,
           "y": 142.5
         },
         "neighbours": [
-          50,
-          172
+          47,
+          169
         ]
       },
       {
-        "entity_number": 93,
+        "entity_number": 90,
         "name": "rail-signal",
         "position": {
           "x": 675.5,
@@ -861,7 +834,7 @@
         "direction": 2
       },
       {
-        "entity_number": 94,
+        "entity_number": 91,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -870,7 +843,7 @@
         "direction": 1
       },
       {
-        "entity_number": 95,
+        "entity_number": 92,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -878,7 +851,7 @@
         }
       },
       {
-        "entity_number": 96,
+        "entity_number": 93,
         "name": "rail-signal",
         "position": {
           "x": 692.5,
@@ -887,7 +860,7 @@
         "direction": 4
       },
       {
-        "entity_number": 97,
+        "entity_number": 94,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -896,7 +869,7 @@
         "direction": 1
       },
       {
-        "entity_number": 98,
+        "entity_number": 95,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -904,7 +877,7 @@
         }
       },
       {
-        "entity_number": 99,
+        "entity_number": 96,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -913,7 +886,7 @@
         "direction": 6
       },
       {
-        "entity_number": 100,
+        "entity_number": 97,
         "name": "locomotive",
         "position": {
           "x": 644,
@@ -925,7 +898,7 @@
         }
       },
       {
-        "entity_number": 101,
+        "entity_number": 98,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -934,7 +907,7 @@
         "direction": 2
       },
       {
-        "entity_number": 102,
+        "entity_number": 99,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -943,7 +916,7 @@
         "direction": 2
       },
       {
-        "entity_number": 103,
+        "entity_number": 100,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -952,7 +925,7 @@
         "direction": 2
       },
       {
-        "entity_number": 104,
+        "entity_number": 101,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -961,7 +934,7 @@
         "direction": 2
       },
       {
-        "entity_number": 105,
+        "entity_number": 102,
         "name": "cargo-wagon",
         "position": {
           "x": 651,
@@ -971,7 +944,7 @@
         "inventory": null
       },
       {
-        "entity_number": 106,
+        "entity_number": 103,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -980,7 +953,7 @@
         "direction": 2
       },
       {
-        "entity_number": 107,
+        "entity_number": 104,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -989,7 +962,7 @@
         "direction": 2
       },
       {
-        "entity_number": 108,
+        "entity_number": 105,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -998,7 +971,7 @@
         "direction": 2
       },
       {
-        "entity_number": 109,
+        "entity_number": 106,
         "name": "cargo-wagon",
         "position": {
           "x": 658,
@@ -1008,7 +981,7 @@
         "inventory": null
       },
       {
-        "entity_number": 110,
+        "entity_number": 107,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -1017,7 +990,7 @@
         "direction": 2
       },
       {
-        "entity_number": 111,
+        "entity_number": 108,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -1026,7 +999,7 @@
         "direction": 2
       },
       {
-        "entity_number": 112,
+        "entity_number": 109,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -1035,7 +1008,7 @@
         "direction": 2
       },
       {
-        "entity_number": 113,
+        "entity_number": 110,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -1044,7 +1017,7 @@
         "direction": 2
       },
       {
-        "entity_number": 114,
+        "entity_number": 111,
         "name": "cargo-wagon",
         "position": {
           "x": 665,
@@ -1054,7 +1027,7 @@
         "inventory": null
       },
       {
-        "entity_number": 115,
+        "entity_number": 112,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -1063,7 +1036,7 @@
         "direction": 2
       },
       {
-        "entity_number": 116,
+        "entity_number": 113,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -1072,7 +1045,7 @@
         "direction": 2
       },
       {
-        "entity_number": 117,
+        "entity_number": 114,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -1081,7 +1054,7 @@
         "direction": 2
       },
       {
-        "entity_number": 118,
+        "entity_number": 115,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -1090,7 +1063,7 @@
         "direction": 2
       },
       {
-        "entity_number": 119,
+        "entity_number": 116,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -1099,7 +1072,7 @@
         "direction": 2
       },
       {
-        "entity_number": 120,
+        "entity_number": 117,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -1108,7 +1081,7 @@
         "direction": 2
       },
       {
-        "entity_number": 121,
+        "entity_number": 118,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -1117,7 +1090,7 @@
         "direction": 2
       },
       {
-        "entity_number": 122,
+        "entity_number": 119,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -1126,7 +1099,7 @@
         "direction": 2
       },
       {
-        "entity_number": 123,
+        "entity_number": 120,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -1135,7 +1108,7 @@
         "direction": 2
       },
       {
-        "entity_number": 124,
+        "entity_number": 121,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -1144,7 +1117,7 @@
         "direction": 3
       },
       {
-        "entity_number": 125,
+        "entity_number": 122,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -1152,7 +1125,7 @@
         }
       },
       {
-        "entity_number": 126,
+        "entity_number": 123,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -1160,7 +1133,7 @@
         }
       },
       {
-        "entity_number": 127,
+        "entity_number": 124,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -1168,7 +1141,7 @@
         }
       },
       {
-        "entity_number": 128,
+        "entity_number": 125,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -1177,7 +1150,7 @@
         "direction": 7
       },
       {
-        "entity_number": 129,
+        "entity_number": 126,
         "name": "rail-signal",
         "position": {
           "x": 639.5,
@@ -1186,17 +1159,17 @@
         "direction": 2
       },
       {
-        "entity_number": 130,
+        "entity_number": 127,
         "name": "train-stop",
         "position": {
           "x": 641,
           "y": 147
         },
         "direction": 6,
-        "station": ""
+        "station": "coal stop 3"
       },
       {
-        "entity_number": 131,
+        "entity_number": 128,
         "name": "logistic-chest-requester",
         "position": {
           "x": 643.5,
@@ -1211,7 +1184,7 @@
         ]
       },
       {
-        "entity_number": 132,
+        "entity_number": 129,
         "name": "stack-inserter",
         "position": {
           "x": 643.5,
@@ -1219,7 +1192,7 @@
         }
       },
       {
-        "entity_number": 133,
+        "entity_number": 130,
         "name": "rail-signal",
         "position": {
           "x": 675.5,
@@ -1228,7 +1201,7 @@
         "direction": 2
       },
       {
-        "entity_number": 134,
+        "entity_number": 131,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -1237,7 +1210,7 @@
         "direction": 1
       },
       {
-        "entity_number": 135,
+        "entity_number": 132,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -1245,7 +1218,7 @@
         }
       },
       {
-        "entity_number": 136,
+        "entity_number": 133,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -1254,7 +1227,7 @@
         "direction": 1
       },
       {
-        "entity_number": 137,
+        "entity_number": 134,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -1262,7 +1235,7 @@
         }
       },
       {
-        "entity_number": 138,
+        "entity_number": 135,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -1271,7 +1244,7 @@
         "direction": 6
       },
       {
-        "entity_number": 139,
+        "entity_number": 136,
         "name": "locomotive",
         "position": {
           "x": 644,
@@ -1283,7 +1256,7 @@
         }
       },
       {
-        "entity_number": 140,
+        "entity_number": 137,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -1292,7 +1265,7 @@
         "direction": 2
       },
       {
-        "entity_number": 141,
+        "entity_number": 138,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -1301,7 +1274,7 @@
         "direction": 2
       },
       {
-        "entity_number": 142,
+        "entity_number": 139,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -1310,7 +1283,7 @@
         "direction": 2
       },
       {
-        "entity_number": 143,
+        "entity_number": 140,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -1319,7 +1292,7 @@
         "direction": 2
       },
       {
-        "entity_number": 144,
+        "entity_number": 141,
         "name": "cargo-wagon",
         "position": {
           "x": 651,
@@ -1329,7 +1302,7 @@
         "inventory": null
       },
       {
-        "entity_number": 145,
+        "entity_number": 142,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -1338,7 +1311,7 @@
         "direction": 2
       },
       {
-        "entity_number": 146,
+        "entity_number": 143,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -1347,7 +1320,7 @@
         "direction": 2
       },
       {
-        "entity_number": 147,
+        "entity_number": 144,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -1356,7 +1329,7 @@
         "direction": 2
       },
       {
-        "entity_number": 148,
+        "entity_number": 145,
         "name": "cargo-wagon",
         "position": {
           "x": 658,
@@ -1366,7 +1339,7 @@
         "inventory": null
       },
       {
-        "entity_number": 149,
+        "entity_number": 146,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -1375,7 +1348,7 @@
         "direction": 2
       },
       {
-        "entity_number": 150,
+        "entity_number": 147,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -1384,7 +1357,7 @@
         "direction": 2
       },
       {
-        "entity_number": 151,
+        "entity_number": 148,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -1393,7 +1366,7 @@
         "direction": 2
       },
       {
-        "entity_number": 152,
+        "entity_number": 149,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -1402,7 +1375,7 @@
         "direction": 2
       },
       {
-        "entity_number": 153,
+        "entity_number": 150,
         "name": "cargo-wagon",
         "position": {
           "x": 665,
@@ -1412,7 +1385,7 @@
         "inventory": null
       },
       {
-        "entity_number": 154,
+        "entity_number": 151,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -1421,7 +1394,7 @@
         "direction": 2
       },
       {
-        "entity_number": 155,
+        "entity_number": 152,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -1430,7 +1403,7 @@
         "direction": 2
       },
       {
-        "entity_number": 156,
+        "entity_number": 153,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -1439,7 +1412,7 @@
         "direction": 2
       },
       {
-        "entity_number": 157,
+        "entity_number": 154,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -1448,7 +1421,7 @@
         "direction": 2
       },
       {
-        "entity_number": 158,
+        "entity_number": 155,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -1457,7 +1430,7 @@
         "direction": 2
       },
       {
-        "entity_number": 159,
+        "entity_number": 156,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -1466,7 +1439,7 @@
         "direction": 2
       },
       {
-        "entity_number": 160,
+        "entity_number": 157,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -1475,7 +1448,7 @@
         "direction": 2
       },
       {
-        "entity_number": 161,
+        "entity_number": 158,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -1484,7 +1457,7 @@
         "direction": 2
       },
       {
-        "entity_number": 162,
+        "entity_number": 159,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -1493,7 +1466,7 @@
         "direction": 2
       },
       {
-        "entity_number": 163,
+        "entity_number": 160,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -1502,7 +1475,7 @@
         "direction": 3
       },
       {
-        "entity_number": 164,
+        "entity_number": 161,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -1510,7 +1483,7 @@
         }
       },
       {
-        "entity_number": 165,
+        "entity_number": 162,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -1518,7 +1491,7 @@
         }
       },
       {
-        "entity_number": 166,
+        "entity_number": 163,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -1526,7 +1499,7 @@
         }
       },
       {
-        "entity_number": 167,
+        "entity_number": 164,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -1535,7 +1508,7 @@
         "direction": 7
       },
       {
-        "entity_number": 168,
+        "entity_number": 165,
         "name": "rail-signal",
         "position": {
           "x": 639.5,
@@ -1544,17 +1517,17 @@
         "direction": 2
       },
       {
-        "entity_number": 169,
+        "entity_number": 166,
         "name": "train-stop",
         "position": {
           "x": 641,
           "y": 151
         },
         "direction": 6,
-        "station": ""
+        "station": "coal stop 4"
       },
       {
-        "entity_number": 170,
+        "entity_number": 167,
         "name": "logistic-chest-requester",
         "position": {
           "x": 643.5,
@@ -1570,7 +1543,7 @@
         "request_from_buffers": true
       },
       {
-        "entity_number": 171,
+        "entity_number": 168,
         "name": "stack-inserter",
         "position": {
           "x": 643.5,
@@ -1578,19 +1551,19 @@
         }
       },
       {
-        "entity_number": 172,
+        "entity_number": 169,
         "name": "medium-electric-pole",
         "position": {
           "x": 645.5,
           "y": 150.5
         },
         "neighbours": [
-          92,
-          254
+          89,
+          251
         ]
       },
       {
-        "entity_number": 173,
+        "entity_number": 170,
         "name": "rail-signal",
         "position": {
           "x": 675.5,
@@ -1599,7 +1572,7 @@
         "direction": 2
       },
       {
-        "entity_number": 174,
+        "entity_number": 171,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -1608,7 +1581,7 @@
         "direction": 1
       },
       {
-        "entity_number": 175,
+        "entity_number": 172,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -1616,7 +1589,7 @@
         }
       },
       {
-        "entity_number": 176,
+        "entity_number": 173,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -1625,7 +1598,7 @@
         "direction": 1
       },
       {
-        "entity_number": 177,
+        "entity_number": 174,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -1633,7 +1606,7 @@
         }
       },
       {
-        "entity_number": 178,
+        "entity_number": 175,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -1642,7 +1615,7 @@
         "direction": 6
       },
       {
-        "entity_number": 179,
+        "entity_number": 176,
         "name": "locomotive",
         "position": {
           "x": 644,
@@ -1654,7 +1627,7 @@
         }
       },
       {
-        "entity_number": 180,
+        "entity_number": 177,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -1663,7 +1636,7 @@
         "direction": 2
       },
       {
-        "entity_number": 181,
+        "entity_number": 178,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -1672,7 +1645,7 @@
         "direction": 2
       },
       {
-        "entity_number": 182,
+        "entity_number": 179,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -1681,7 +1654,7 @@
         "direction": 2
       },
       {
-        "entity_number": 183,
+        "entity_number": 180,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -1690,7 +1663,7 @@
         "direction": 2
       },
       {
-        "entity_number": 184,
+        "entity_number": 181,
         "name": "cargo-wagon",
         "position": {
           "x": 651,
@@ -1700,7 +1673,7 @@
         "inventory": null
       },
       {
-        "entity_number": 185,
+        "entity_number": 182,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -1709,7 +1682,7 @@
         "direction": 2
       },
       {
-        "entity_number": 186,
+        "entity_number": 183,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -1718,7 +1691,7 @@
         "direction": 2
       },
       {
-        "entity_number": 187,
+        "entity_number": 184,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -1727,7 +1700,7 @@
         "direction": 2
       },
       {
-        "entity_number": 188,
+        "entity_number": 185,
         "name": "cargo-wagon",
         "position": {
           "x": 658,
@@ -1737,7 +1710,7 @@
         "inventory": null
       },
       {
-        "entity_number": 189,
+        "entity_number": 186,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -1746,7 +1719,7 @@
         "direction": 2
       },
       {
-        "entity_number": 190,
+        "entity_number": 187,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -1755,7 +1728,7 @@
         "direction": 2
       },
       {
-        "entity_number": 191,
+        "entity_number": 188,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -1764,7 +1737,7 @@
         "direction": 2
       },
       {
-        "entity_number": 192,
+        "entity_number": 189,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -1773,7 +1746,7 @@
         "direction": 2
       },
       {
-        "entity_number": 193,
+        "entity_number": 190,
         "name": "cargo-wagon",
         "position": {
           "x": 665,
@@ -1783,7 +1756,7 @@
         "inventory": null
       },
       {
-        "entity_number": 194,
+        "entity_number": 191,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -1792,7 +1765,7 @@
         "direction": 2
       },
       {
-        "entity_number": 195,
+        "entity_number": 192,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -1801,7 +1774,7 @@
         "direction": 2
       },
       {
-        "entity_number": 196,
+        "entity_number": 193,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -1810,7 +1783,7 @@
         "direction": 2
       },
       {
-        "entity_number": 197,
+        "entity_number": 194,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -1819,7 +1792,7 @@
         "direction": 2
       },
       {
-        "entity_number": 198,
+        "entity_number": 195,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -1828,7 +1801,7 @@
         "direction": 2
       },
       {
-        "entity_number": 199,
+        "entity_number": 196,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -1837,7 +1810,7 @@
         "direction": 2
       },
       {
-        "entity_number": 200,
+        "entity_number": 197,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -1846,7 +1819,7 @@
         "direction": 2
       },
       {
-        "entity_number": 201,
+        "entity_number": 198,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -1855,7 +1828,7 @@
         "direction": 2
       },
       {
-        "entity_number": 202,
+        "entity_number": 199,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -1864,7 +1837,7 @@
         "direction": 2
       },
       {
-        "entity_number": 203,
+        "entity_number": 200,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -1873,7 +1846,7 @@
         "direction": 3
       },
       {
-        "entity_number": 204,
+        "entity_number": 201,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -1881,7 +1854,7 @@
         }
       },
       {
-        "entity_number": 205,
+        "entity_number": 202,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -1889,7 +1862,7 @@
         }
       },
       {
-        "entity_number": 206,
+        "entity_number": 203,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -1898,7 +1871,7 @@
         "direction": 4
       },
       {
-        "entity_number": 207,
+        "entity_number": 204,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -1906,7 +1879,7 @@
         }
       },
       {
-        "entity_number": 208,
+        "entity_number": 205,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -1915,7 +1888,7 @@
         "direction": 7
       },
       {
-        "entity_number": 209,
+        "entity_number": 206,
         "name": "rail-signal",
         "position": {
           "x": 639.5,
@@ -1924,17 +1897,17 @@
         "direction": 2
       },
       {
-        "entity_number": 210,
+        "entity_number": 207,
         "name": "train-stop",
         "position": {
           "x": 641,
           "y": 155
         },
         "direction": 6,
-        "station": ""
+        "station": "coal stop 5"
       },
       {
-        "entity_number": 211,
+        "entity_number": 208,
         "name": "logistic-chest-requester",
         "position": {
           "x": 643.5,
@@ -1949,7 +1922,7 @@
         ]
       },
       {
-        "entity_number": 212,
+        "entity_number": 209,
         "name": "stack-inserter",
         "position": {
           "x": 643.5,
@@ -1957,7 +1930,7 @@
         }
       },
       {
-        "entity_number": 213,
+        "entity_number": 210,
         "name": "rail-signal",
         "position": {
           "x": 675.5,
@@ -1966,7 +1939,7 @@
         "direction": 2
       },
       {
-        "entity_number": 214,
+        "entity_number": 211,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -1975,7 +1948,7 @@
         "direction": 5
       },
       {
-        "entity_number": 215,
+        "entity_number": 212,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -1984,7 +1957,7 @@
         "direction": 1
       },
       {
-        "entity_number": 216,
+        "entity_number": 213,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -1992,7 +1965,7 @@
         }
       },
       {
-        "entity_number": 217,
+        "entity_number": 214,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -2001,7 +1974,7 @@
         "direction": 1
       },
       {
-        "entity_number": 218,
+        "entity_number": 215,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -2009,7 +1982,7 @@
         }
       },
       {
-        "entity_number": 219,
+        "entity_number": 216,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -2018,7 +1991,7 @@
         "direction": 6
       },
       {
-        "entity_number": 220,
+        "entity_number": 217,
         "name": "locomotive",
         "position": {
           "x": 644,
@@ -2030,7 +2003,7 @@
         }
       },
       {
-        "entity_number": 221,
+        "entity_number": 218,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -2039,7 +2012,7 @@
         "direction": 2
       },
       {
-        "entity_number": 222,
+        "entity_number": 219,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -2048,7 +2021,7 @@
         "direction": 2
       },
       {
-        "entity_number": 223,
+        "entity_number": 220,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -2057,7 +2030,7 @@
         "direction": 2
       },
       {
-        "entity_number": 224,
+        "entity_number": 221,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -2066,7 +2039,7 @@
         "direction": 2
       },
       {
-        "entity_number": 225,
+        "entity_number": 222,
         "name": "cargo-wagon",
         "position": {
           "x": 651,
@@ -2076,7 +2049,7 @@
         "inventory": null
       },
       {
-        "entity_number": 226,
+        "entity_number": 223,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -2085,7 +2058,7 @@
         "direction": 2
       },
       {
-        "entity_number": 227,
+        "entity_number": 224,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -2094,7 +2067,7 @@
         "direction": 2
       },
       {
-        "entity_number": 228,
+        "entity_number": 225,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -2103,7 +2076,7 @@
         "direction": 2
       },
       {
-        "entity_number": 229,
+        "entity_number": 226,
         "name": "cargo-wagon",
         "position": {
           "x": 658,
@@ -2113,7 +2086,7 @@
         "inventory": null
       },
       {
-        "entity_number": 230,
+        "entity_number": 227,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -2122,7 +2095,7 @@
         "direction": 2
       },
       {
-        "entity_number": 231,
+        "entity_number": 228,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -2131,7 +2104,7 @@
         "direction": 2
       },
       {
-        "entity_number": 232,
+        "entity_number": 229,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -2140,7 +2113,7 @@
         "direction": 2
       },
       {
-        "entity_number": 233,
+        "entity_number": 230,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -2149,7 +2122,7 @@
         "direction": 2
       },
       {
-        "entity_number": 234,
+        "entity_number": 231,
         "name": "cargo-wagon",
         "position": {
           "x": 665,
@@ -2159,7 +2132,7 @@
         "inventory": null
       },
       {
-        "entity_number": 235,
+        "entity_number": 232,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -2168,7 +2141,7 @@
         "direction": 2
       },
       {
-        "entity_number": 236,
+        "entity_number": 233,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -2177,7 +2150,7 @@
         "direction": 2
       },
       {
-        "entity_number": 237,
+        "entity_number": 234,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -2186,7 +2159,7 @@
         "direction": 2
       },
       {
-        "entity_number": 238,
+        "entity_number": 235,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -2195,7 +2168,7 @@
         "direction": 2
       },
       {
-        "entity_number": 239,
+        "entity_number": 236,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -2204,7 +2177,7 @@
         "direction": 2
       },
       {
-        "entity_number": 240,
+        "entity_number": 237,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -2213,7 +2186,7 @@
         "direction": 2
       },
       {
-        "entity_number": 241,
+        "entity_number": 238,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -2222,7 +2195,7 @@
         "direction": 2
       },
       {
-        "entity_number": 242,
+        "entity_number": 239,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -2231,7 +2204,7 @@
         "direction": 2
       },
       {
-        "entity_number": 243,
+        "entity_number": 240,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -2240,7 +2213,7 @@
         "direction": 2
       },
       {
-        "entity_number": 244,
+        "entity_number": 241,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -2249,7 +2222,7 @@
         "direction": 3
       },
       {
-        "entity_number": 245,
+        "entity_number": 242,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -2257,7 +2230,7 @@
         }
       },
       {
-        "entity_number": 246,
+        "entity_number": 243,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -2265,7 +2238,7 @@
         }
       },
       {
-        "entity_number": 247,
+        "entity_number": 244,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -2274,7 +2247,7 @@
         "direction": 4
       },
       {
-        "entity_number": 248,
+        "entity_number": 245,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -2282,7 +2255,7 @@
         }
       },
       {
-        "entity_number": 249,
+        "entity_number": 246,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -2291,7 +2264,7 @@
         "direction": 7
       },
       {
-        "entity_number": 250,
+        "entity_number": 247,
         "name": "rail-signal",
         "position": {
           "x": 639.5,
@@ -2300,17 +2273,17 @@
         "direction": 2
       },
       {
-        "entity_number": 251,
+        "entity_number": 248,
         "name": "train-stop",
         "position": {
           "x": 641,
           "y": 159
         },
         "direction": 6,
-        "station": ""
+        "station": "coal stop 6"
       },
       {
-        "entity_number": 252,
+        "entity_number": 249,
         "name": "logistic-chest-requester",
         "position": {
           "x": 643.5,
@@ -2326,7 +2299,7 @@
         "request_from_buffers": true
       },
       {
-        "entity_number": 253,
+        "entity_number": 250,
         "name": "stack-inserter",
         "position": {
           "x": 643.5,
@@ -2334,44 +2307,44 @@
         }
       },
       {
-        "entity_number": 254,
+        "entity_number": 251,
         "name": "medium-electric-pole",
         "position": {
           "x": 645.5,
           "y": 158.5
         },
         "neighbours": [
-          172,
-          255,
-          298
+          169,
+          252,
+          295
         ]
       },
       {
-        "entity_number": 255,
+        "entity_number": 252,
         "name": "big-electric-pole",
         "position": {
           "x": 651,
           "y": 159
         },
         "neighbours": [
-          254,
-          256
+          251,
+          253
         ]
       },
       {
-        "entity_number": 256,
+        "entity_number": 253,
         "name": "big-electric-pole",
         "position": {
           "x": 672,
           "y": 159
         },
         "neighbours": [
-          255,
-          343
+          252,
+          340
         ]
       },
       {
-        "entity_number": 257,
+        "entity_number": 254,
         "name": "rail-signal",
         "position": {
           "x": 675.5,
@@ -2380,7 +2353,7 @@
         "direction": 2
       },
       {
-        "entity_number": 258,
+        "entity_number": 255,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -2389,7 +2362,7 @@
         "direction": 5
       },
       {
-        "entity_number": 259,
+        "entity_number": 256,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -2398,7 +2371,7 @@
         "direction": 1
       },
       {
-        "entity_number": 260,
+        "entity_number": 257,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -2406,7 +2379,7 @@
         }
       },
       {
-        "entity_number": 261,
+        "entity_number": 258,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -2415,7 +2388,7 @@
         "direction": 1
       },
       {
-        "entity_number": 262,
+        "entity_number": 259,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -2423,7 +2396,7 @@
         }
       },
       {
-        "entity_number": 263,
+        "entity_number": 260,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -2432,7 +2405,7 @@
         "direction": 5
       },
       {
-        "entity_number": 264,
+        "entity_number": 261,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -2441,7 +2414,7 @@
         "direction": 7
       },
       {
-        "entity_number": 265,
+        "entity_number": 262,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -2450,7 +2423,7 @@
         "direction": 6
       },
       {
-        "entity_number": 266,
+        "entity_number": 263,
         "name": "locomotive",
         "position": {
           "x": 644,
@@ -2462,7 +2435,7 @@
         }
       },
       {
-        "entity_number": 267,
+        "entity_number": 264,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -2471,7 +2444,7 @@
         "direction": 2
       },
       {
-        "entity_number": 268,
+        "entity_number": 265,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -2480,7 +2453,7 @@
         "direction": 2
       },
       {
-        "entity_number": 269,
+        "entity_number": 266,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -2489,7 +2462,7 @@
         "direction": 2
       },
       {
-        "entity_number": 270,
+        "entity_number": 267,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -2498,7 +2471,7 @@
         "direction": 2
       },
       {
-        "entity_number": 271,
+        "entity_number": 268,
         "name": "cargo-wagon",
         "position": {
           "x": 651,
@@ -2508,7 +2481,7 @@
         "inventory": null
       },
       {
-        "entity_number": 272,
+        "entity_number": 269,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -2517,7 +2490,7 @@
         "direction": 2
       },
       {
-        "entity_number": 273,
+        "entity_number": 270,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -2526,7 +2499,7 @@
         "direction": 2
       },
       {
-        "entity_number": 274,
+        "entity_number": 271,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -2535,7 +2508,7 @@
         "direction": 2
       },
       {
-        "entity_number": 275,
+        "entity_number": 272,
         "name": "cargo-wagon",
         "position": {
           "x": 658,
@@ -2545,7 +2518,7 @@
         "inventory": null
       },
       {
-        "entity_number": 276,
+        "entity_number": 273,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -2554,7 +2527,7 @@
         "direction": 2
       },
       {
-        "entity_number": 277,
+        "entity_number": 274,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -2563,7 +2536,7 @@
         "direction": 2
       },
       {
-        "entity_number": 278,
+        "entity_number": 275,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -2572,7 +2545,7 @@
         "direction": 2
       },
       {
-        "entity_number": 279,
+        "entity_number": 276,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -2581,7 +2554,7 @@
         "direction": 2
       },
       {
-        "entity_number": 280,
+        "entity_number": 277,
         "name": "cargo-wagon",
         "position": {
           "x": 665,
@@ -2591,7 +2564,7 @@
         "inventory": null
       },
       {
-        "entity_number": 281,
+        "entity_number": 278,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -2600,7 +2573,7 @@
         "direction": 2
       },
       {
-        "entity_number": 282,
+        "entity_number": 279,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -2609,7 +2582,7 @@
         "direction": 2
       },
       {
-        "entity_number": 283,
+        "entity_number": 280,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -2618,7 +2591,7 @@
         "direction": 2
       },
       {
-        "entity_number": 284,
+        "entity_number": 281,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -2627,7 +2600,7 @@
         "direction": 2
       },
       {
-        "entity_number": 285,
+        "entity_number": 282,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -2636,7 +2609,7 @@
         "direction": 2
       },
       {
-        "entity_number": 286,
+        "entity_number": 283,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -2645,7 +2618,7 @@
         "direction": 2
       },
       {
-        "entity_number": 287,
+        "entity_number": 284,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -2654,7 +2627,7 @@
         "direction": 2
       },
       {
-        "entity_number": 288,
+        "entity_number": 285,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -2663,7 +2636,7 @@
         "direction": 2
       },
       {
-        "entity_number": 289,
+        "entity_number": 286,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -2672,7 +2645,7 @@
         "direction": 2
       },
       {
-        "entity_number": 290,
+        "entity_number": 287,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -2681,7 +2654,7 @@
         "direction": 2
       },
       {
-        "entity_number": 291,
+        "entity_number": 288,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -2690,7 +2663,7 @@
         "direction": 3
       },
       {
-        "entity_number": 292,
+        "entity_number": 289,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -2699,7 +2672,7 @@
         "direction": 3
       },
       {
-        "entity_number": 293,
+        "entity_number": 290,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -2707,7 +2680,7 @@
         }
       },
       {
-        "entity_number": 294,
+        "entity_number": 291,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -2715,7 +2688,7 @@
         }
       },
       {
-        "entity_number": 295,
+        "entity_number": 292,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -2724,7 +2697,7 @@
         "direction": 4
       },
       {
-        "entity_number": 296,
+        "entity_number": 293,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -2732,7 +2705,7 @@
         }
       },
       {
-        "entity_number": 297,
+        "entity_number": 294,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -2741,18 +2714,18 @@
         "direction": 7
       },
       {
-        "entity_number": 298,
+        "entity_number": 295,
         "name": "big-electric-pole",
         "position": {
           "x": 639,
           "y": 163
         },
         "neighbours": [
-          254
+          251
         ]
       },
       {
-        "entity_number": 299,
+        "entity_number": 296,
         "name": "stack-inserter",
         "position": {
           "x": 675.5,
@@ -2760,19 +2733,19 @@
         }
       },
       {
-        "entity_number": 300,
+        "entity_number": 297,
         "name": "medium-electric-pole",
         "position": {
           "x": 674.5,
           "y": 163.5
         },
         "neighbours": [
-          304,
-          343
+          301,
+          340
         ]
       },
       {
-        "entity_number": 301,
+        "entity_number": 298,
         "name": "logistic-chest-requester",
         "position": {
           "x": 677.5,
@@ -2787,7 +2760,7 @@
         ]
       },
       {
-        "entity_number": 302,
+        "entity_number": 299,
         "name": "stack-inserter",
         "position": {
           "x": 677.5,
@@ -2795,7 +2768,7 @@
         }
       },
       {
-        "entity_number": 303,
+        "entity_number": 300,
         "name": "logistic-chest-requester",
         "position": {
           "x": 676.5,
@@ -2811,18 +2784,18 @@
         "request_from_buffers": true
       },
       {
-        "entity_number": 304,
+        "entity_number": 301,
         "name": "big-electric-pole",
         "position": {
           "x": 682,
           "y": 163
         },
         "neighbours": [
-          300
+          297
         ]
       },
       {
-        "entity_number": 305,
+        "entity_number": 302,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -2831,7 +2804,7 @@
         "direction": 5
       },
       {
-        "entity_number": 306,
+        "entity_number": 303,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -2840,7 +2813,7 @@
         "direction": 1
       },
       {
-        "entity_number": 307,
+        "entity_number": 304,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -2848,7 +2821,7 @@
         }
       },
       {
-        "entity_number": 308,
+        "entity_number": 305,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -2857,7 +2830,7 @@
         "direction": 1
       },
       {
-        "entity_number": 309,
+        "entity_number": 306,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -2865,7 +2838,7 @@
         }
       },
       {
-        "entity_number": 310,
+        "entity_number": 307,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -2874,7 +2847,7 @@
         "direction": 5
       },
       {
-        "entity_number": 311,
+        "entity_number": 308,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -2883,7 +2856,7 @@
         "direction": 7
       },
       {
-        "entity_number": 312,
+        "entity_number": 309,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -2892,7 +2865,7 @@
         "direction": 2
       },
       {
-        "entity_number": 313,
+        "entity_number": 310,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -2901,7 +2874,7 @@
         "direction": 2
       },
       {
-        "entity_number": 314,
+        "entity_number": 311,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -2910,7 +2883,7 @@
         "direction": 2
       },
       {
-        "entity_number": 315,
+        "entity_number": 312,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -2919,7 +2892,7 @@
         "direction": 2
       },
       {
-        "entity_number": 316,
+        "entity_number": 313,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -2928,7 +2901,7 @@
         "direction": 2
       },
       {
-        "entity_number": 317,
+        "entity_number": 314,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -2937,7 +2910,7 @@
         "direction": 2
       },
       {
-        "entity_number": 318,
+        "entity_number": 315,
         "name": "cargo-wagon",
         "position": {
           "x": 655,
@@ -2947,7 +2920,7 @@
         "inventory": null
       },
       {
-        "entity_number": 319,
+        "entity_number": 316,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -2956,7 +2929,7 @@
         "direction": 2
       },
       {
-        "entity_number": 320,
+        "entity_number": 317,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -2965,7 +2938,7 @@
         "direction": 2
       },
       {
-        "entity_number": 321,
+        "entity_number": 318,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -2974,7 +2947,7 @@
         "direction": 2
       },
       {
-        "entity_number": 322,
+        "entity_number": 319,
         "name": "cargo-wagon",
         "position": {
           "x": 662,
@@ -2984,7 +2957,7 @@
         "inventory": null
       },
       {
-        "entity_number": 323,
+        "entity_number": 320,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -2993,7 +2966,7 @@
         "direction": 2
       },
       {
-        "entity_number": 324,
+        "entity_number": 321,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -3002,7 +2975,7 @@
         "direction": 2
       },
       {
-        "entity_number": 325,
+        "entity_number": 322,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -3011,7 +2984,7 @@
         "direction": 2
       },
       {
-        "entity_number": 326,
+        "entity_number": 323,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -3020,7 +2993,7 @@
         "direction": 2
       },
       {
-        "entity_number": 327,
+        "entity_number": 324,
         "name": "cargo-wagon",
         "position": {
           "x": 669,
@@ -3030,7 +3003,7 @@
         "inventory": null
       },
       {
-        "entity_number": 328,
+        "entity_number": 325,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -3039,7 +3012,7 @@
         "direction": 2
       },
       {
-        "entity_number": 329,
+        "entity_number": 326,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -3048,7 +3021,7 @@
         "direction": 2
       },
       {
-        "entity_number": 330,
+        "entity_number": 327,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -3057,7 +3030,7 @@
         "direction": 2
       },
       {
-        "entity_number": 331,
+        "entity_number": 328,
         "name": "locomotive",
         "position": {
           "x": 676,
@@ -3065,11 +3038,11 @@
         },
         "orientation": 0.25,
         "items": {
-          "coal": 244
+          "coal": 150
         }
       },
       {
-        "entity_number": 332,
+        "entity_number": 329,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -3078,7 +3051,7 @@
         "direction": 2
       },
       {
-        "entity_number": 333,
+        "entity_number": 330,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -3087,7 +3060,7 @@
         "direction": 2
       },
       {
-        "entity_number": 334,
+        "entity_number": 331,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -3096,7 +3069,7 @@
         "direction": 2
       },
       {
-        "entity_number": 335,
+        "entity_number": 332,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -3105,7 +3078,7 @@
         "direction": 2
       },
       {
-        "entity_number": 336,
+        "entity_number": 333,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -3114,7 +3087,7 @@
         "direction": 2
       },
       {
-        "entity_number": 337,
+        "entity_number": 334,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -3123,7 +3096,7 @@
         "direction": 3
       },
       {
-        "entity_number": 338,
+        "entity_number": 335,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -3131,7 +3104,7 @@
         }
       },
       {
-        "entity_number": 339,
+        "entity_number": 336,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -3139,7 +3112,7 @@
         }
       },
       {
-        "entity_number": 340,
+        "entity_number": 337,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -3148,7 +3121,7 @@
         "direction": 4
       },
       {
-        "entity_number": 341,
+        "entity_number": 338,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -3156,7 +3129,7 @@
         }
       },
       {
-        "entity_number": 342,
+        "entity_number": 339,
         "name": "rail-signal",
         "position": {
           "x": 644.5,
@@ -3165,20 +3138,20 @@
         "direction": 6
       },
       {
-        "entity_number": 343,
+        "entity_number": 340,
         "name": "medium-electric-pole",
         "position": {
           "x": 674.5,
           "y": 167.5
         },
         "neighbours": [
-          256,
-          300,
-          420
+          253,
+          297,
+          417
         ]
       },
       {
-        "entity_number": 344,
+        "entity_number": 341,
         "name": "logistic-chest-requester",
         "position": {
           "x": 676.5,
@@ -3194,17 +3167,17 @@
         "request_from_buffers": true
       },
       {
-        "entity_number": 345,
+        "entity_number": 342,
         "name": "train-stop",
         "position": {
           "x": 679,
           "y": 167
         },
         "direction": 2,
-        "station": ""
+        "station": "Spielmann"
       },
       {
-        "entity_number": 346,
+        "entity_number": 343,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -3213,7 +3186,7 @@
         "direction": 5
       },
       {
-        "entity_number": 347,
+        "entity_number": 344,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -3221,7 +3194,7 @@
         }
       },
       {
-        "entity_number": 348,
+        "entity_number": 345,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -3229,7 +3202,7 @@
         }
       },
       {
-        "entity_number": 349,
+        "entity_number": 346,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -3238,7 +3211,7 @@
         "direction": 5
       },
       {
-        "entity_number": 350,
+        "entity_number": 347,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -3247,7 +3220,7 @@
         "direction": 7
       },
       {
-        "entity_number": 351,
+        "entity_number": 348,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -3256,7 +3229,7 @@
         "direction": 2
       },
       {
-        "entity_number": 352,
+        "entity_number": 349,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -3265,7 +3238,7 @@
         "direction": 2
       },
       {
-        "entity_number": 353,
+        "entity_number": 350,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -3274,7 +3247,7 @@
         "direction": 2
       },
       {
-        "entity_number": 354,
+        "entity_number": 351,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -3283,7 +3256,7 @@
         "direction": 2
       },
       {
-        "entity_number": 355,
+        "entity_number": 352,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -3292,7 +3265,7 @@
         "direction": 2
       },
       {
-        "entity_number": 356,
+        "entity_number": 353,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -3301,7 +3274,7 @@
         "direction": 2
       },
       {
-        "entity_number": 357,
+        "entity_number": 354,
         "name": "cargo-wagon",
         "position": {
           "x": 655,
@@ -3311,7 +3284,7 @@
         "inventory": null
       },
       {
-        "entity_number": 358,
+        "entity_number": 355,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -3320,7 +3293,7 @@
         "direction": 2
       },
       {
-        "entity_number": 359,
+        "entity_number": 356,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -3329,7 +3302,7 @@
         "direction": 2
       },
       {
-        "entity_number": 360,
+        "entity_number": 357,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -3338,7 +3311,7 @@
         "direction": 2
       },
       {
-        "entity_number": 361,
+        "entity_number": 358,
         "name": "cargo-wagon",
         "position": {
           "x": 662,
@@ -3348,7 +3321,7 @@
         "inventory": null
       },
       {
-        "entity_number": 362,
+        "entity_number": 359,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -3357,7 +3330,7 @@
         "direction": 2
       },
       {
-        "entity_number": 363,
+        "entity_number": 360,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -3366,7 +3339,7 @@
         "direction": 2
       },
       {
-        "entity_number": 364,
+        "entity_number": 361,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -3375,7 +3348,7 @@
         "direction": 2
       },
       {
-        "entity_number": 365,
+        "entity_number": 362,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -3384,7 +3357,7 @@
         "direction": 2
       },
       {
-        "entity_number": 366,
+        "entity_number": 363,
         "name": "cargo-wagon",
         "position": {
           "x": 669,
@@ -3394,7 +3367,7 @@
         "inventory": null
       },
       {
-        "entity_number": 367,
+        "entity_number": 364,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -3403,7 +3376,7 @@
         "direction": 2
       },
       {
-        "entity_number": 368,
+        "entity_number": 365,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -3412,7 +3385,7 @@
         "direction": 2
       },
       {
-        "entity_number": 369,
+        "entity_number": 366,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -3421,7 +3394,7 @@
         "direction": 2
       },
       {
-        "entity_number": 370,
+        "entity_number": 367,
         "name": "locomotive",
         "position": {
           "x": 676,
@@ -3433,7 +3406,7 @@
         }
       },
       {
-        "entity_number": 371,
+        "entity_number": 368,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -3442,7 +3415,7 @@
         "direction": 2
       },
       {
-        "entity_number": 372,
+        "entity_number": 369,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -3451,7 +3424,7 @@
         "direction": 2
       },
       {
-        "entity_number": 373,
+        "entity_number": 370,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -3460,7 +3433,7 @@
         "direction": 2
       },
       {
-        "entity_number": 374,
+        "entity_number": 371,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -3469,7 +3442,7 @@
         "direction": 2
       },
       {
-        "entity_number": 375,
+        "entity_number": 372,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -3478,7 +3451,7 @@
         "direction": 2
       },
       {
-        "entity_number": 376,
+        "entity_number": 373,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -3487,7 +3460,7 @@
         "direction": 3
       },
       {
-        "entity_number": 377,
+        "entity_number": 374,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -3495,7 +3468,7 @@
         }
       },
       {
-        "entity_number": 378,
+        "entity_number": 375,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -3504,7 +3477,7 @@
         "direction": 4
       },
       {
-        "entity_number": 379,
+        "entity_number": 376,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -3512,7 +3485,7 @@
         }
       },
       {
-        "entity_number": 380,
+        "entity_number": 377,
         "name": "rail-signal",
         "position": {
           "x": 644.5,
@@ -3521,7 +3494,7 @@
         "direction": 6
       },
       {
-        "entity_number": 381,
+        "entity_number": 378,
         "name": "stack-inserter",
         "position": {
           "x": 676.5,
@@ -3530,7 +3503,7 @@
         "direction": 4
       },
       {
-        "entity_number": 382,
+        "entity_number": 379,
         "name": "logistic-chest-requester",
         "position": {
           "x": 676.5,
@@ -3545,17 +3518,17 @@
         ]
       },
       {
-        "entity_number": 383,
+        "entity_number": 380,
         "name": "train-stop",
         "position": {
           "x": 679,
           "y": 171
         },
         "direction": 2,
-        "station": ""
+        "station": "coal stop 8"
       },
       {
-        "entity_number": 384,
+        "entity_number": 381,
         "name": "rail-signal",
         "position": {
           "x": 680.5,
@@ -3564,7 +3537,7 @@
         "direction": 6
       },
       {
-        "entity_number": 385,
+        "entity_number": 382,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -3573,7 +3546,7 @@
         "direction": 5
       },
       {
-        "entity_number": 386,
+        "entity_number": 383,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -3581,7 +3554,7 @@
         }
       },
       {
-        "entity_number": 387,
+        "entity_number": 384,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -3589,7 +3562,7 @@
         }
       },
       {
-        "entity_number": 388,
+        "entity_number": 385,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -3598,7 +3571,7 @@
         "direction": 5
       },
       {
-        "entity_number": 389,
+        "entity_number": 386,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -3607,7 +3580,7 @@
         "direction": 7
       },
       {
-        "entity_number": 390,
+        "entity_number": 387,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -3616,7 +3589,7 @@
         "direction": 2
       },
       {
-        "entity_number": 391,
+        "entity_number": 388,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -3625,7 +3598,7 @@
         "direction": 2
       },
       {
-        "entity_number": 392,
+        "entity_number": 389,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -3634,7 +3607,7 @@
         "direction": 2
       },
       {
-        "entity_number": 393,
+        "entity_number": 390,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -3643,7 +3616,7 @@
         "direction": 2
       },
       {
-        "entity_number": 394,
+        "entity_number": 391,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -3652,7 +3625,7 @@
         "direction": 2
       },
       {
-        "entity_number": 395,
+        "entity_number": 392,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -3661,7 +3634,7 @@
         "direction": 2
       },
       {
-        "entity_number": 396,
+        "entity_number": 393,
         "name": "cargo-wagon",
         "position": {
           "x": 655,
@@ -3671,7 +3644,7 @@
         "inventory": null
       },
       {
-        "entity_number": 397,
+        "entity_number": 394,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -3680,7 +3653,7 @@
         "direction": 2
       },
       {
-        "entity_number": 398,
+        "entity_number": 395,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -3689,7 +3662,7 @@
         "direction": 2
       },
       {
-        "entity_number": 399,
+        "entity_number": 396,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -3698,7 +3671,7 @@
         "direction": 2
       },
       {
-        "entity_number": 400,
+        "entity_number": 397,
         "name": "cargo-wagon",
         "position": {
           "x": 662,
@@ -3708,7 +3681,7 @@
         "inventory": null
       },
       {
-        "entity_number": 401,
+        "entity_number": 398,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -3717,7 +3690,7 @@
         "direction": 2
       },
       {
-        "entity_number": 402,
+        "entity_number": 399,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -3726,7 +3699,7 @@
         "direction": 2
       },
       {
-        "entity_number": 403,
+        "entity_number": 400,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -3735,7 +3708,7 @@
         "direction": 2
       },
       {
-        "entity_number": 404,
+        "entity_number": 401,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -3744,7 +3717,7 @@
         "direction": 2
       },
       {
-        "entity_number": 405,
+        "entity_number": 402,
         "name": "cargo-wagon",
         "position": {
           "x": 669,
@@ -3754,7 +3727,7 @@
         "inventory": null
       },
       {
-        "entity_number": 406,
+        "entity_number": 403,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -3763,7 +3736,7 @@
         "direction": 2
       },
       {
-        "entity_number": 407,
+        "entity_number": 404,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -3772,7 +3745,7 @@
         "direction": 2
       },
       {
-        "entity_number": 408,
+        "entity_number": 405,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -3781,7 +3754,7 @@
         "direction": 2
       },
       {
-        "entity_number": 409,
+        "entity_number": 406,
         "name": "locomotive",
         "position": {
           "x": 676,
@@ -3793,7 +3766,7 @@
         }
       },
       {
-        "entity_number": 410,
+        "entity_number": 407,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -3802,7 +3775,7 @@
         "direction": 2
       },
       {
-        "entity_number": 411,
+        "entity_number": 408,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -3811,7 +3784,7 @@
         "direction": 2
       },
       {
-        "entity_number": 412,
+        "entity_number": 409,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -3820,7 +3793,7 @@
         "direction": 2
       },
       {
-        "entity_number": 413,
+        "entity_number": 410,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -3829,7 +3802,7 @@
         "direction": 2
       },
       {
-        "entity_number": 414,
+        "entity_number": 411,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -3838,7 +3811,7 @@
         "direction": 2
       },
       {
-        "entity_number": 415,
+        "entity_number": 412,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -3847,7 +3820,7 @@
         "direction": 3
       },
       {
-        "entity_number": 416,
+        "entity_number": 413,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -3855,7 +3828,7 @@
         }
       },
       {
-        "entity_number": 417,
+        "entity_number": 414,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -3864,7 +3837,7 @@
         "direction": 4
       },
       {
-        "entity_number": 418,
+        "entity_number": 415,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -3872,7 +3845,7 @@
         }
       },
       {
-        "entity_number": 419,
+        "entity_number": 416,
         "name": "rail-signal",
         "position": {
           "x": 644.5,
@@ -3881,19 +3854,19 @@
         "direction": 6
       },
       {
-        "entity_number": 420,
+        "entity_number": 417,
         "name": "medium-electric-pole",
         "position": {
           "x": 674.5,
           "y": 175.5
         },
         "neighbours": [
-          343,
-          499
+          340,
+          496
         ]
       },
       {
-        "entity_number": 421,
+        "entity_number": 418,
         "name": "logistic-chest-requester",
         "position": {
           "x": 676.5,
@@ -3909,7 +3882,7 @@
         "request_from_buffers": true
       },
       {
-        "entity_number": 422,
+        "entity_number": 419,
         "name": "stack-inserter",
         "position": {
           "x": 676.5,
@@ -3918,17 +3891,17 @@
         "direction": 4
       },
       {
-        "entity_number": 423,
+        "entity_number": 420,
         "name": "train-stop",
         "position": {
           "x": 679,
           "y": 175
         },
         "direction": 2,
-        "station": ""
+        "station": "coal stop 9"
       },
       {
-        "entity_number": 424,
+        "entity_number": 421,
         "name": "rail-signal",
         "position": {
           "x": 680.5,
@@ -3937,7 +3910,7 @@
         "direction": 6
       },
       {
-        "entity_number": 425,
+        "entity_number": 422,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -3946,7 +3919,7 @@
         "direction": 5
       },
       {
-        "entity_number": 426,
+        "entity_number": 423,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -3954,7 +3927,7 @@
         }
       },
       {
-        "entity_number": 427,
+        "entity_number": 424,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -3962,7 +3935,7 @@
         }
       },
       {
-        "entity_number": 428,
+        "entity_number": 425,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -3971,7 +3944,7 @@
         "direction": 5
       },
       {
-        "entity_number": 429,
+        "entity_number": 426,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -3980,7 +3953,7 @@
         "direction": 7
       },
       {
-        "entity_number": 430,
+        "entity_number": 427,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -3989,7 +3962,7 @@
         "direction": 2
       },
       {
-        "entity_number": 431,
+        "entity_number": 428,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -3998,7 +3971,7 @@
         "direction": 2
       },
       {
-        "entity_number": 432,
+        "entity_number": 429,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -4007,7 +3980,7 @@
         "direction": 2
       },
       {
-        "entity_number": 433,
+        "entity_number": 430,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -4016,7 +3989,7 @@
         "direction": 2
       },
       {
-        "entity_number": 434,
+        "entity_number": 431,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -4025,7 +3998,7 @@
         "direction": 2
       },
       {
-        "entity_number": 435,
+        "entity_number": 432,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -4034,7 +4007,7 @@
         "direction": 2
       },
       {
-        "entity_number": 436,
+        "entity_number": 433,
         "name": "cargo-wagon",
         "position": {
           "x": 655,
@@ -4044,7 +4017,7 @@
         "inventory": null
       },
       {
-        "entity_number": 437,
+        "entity_number": 434,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -4053,7 +4026,7 @@
         "direction": 2
       },
       {
-        "entity_number": 438,
+        "entity_number": 435,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -4062,7 +4035,7 @@
         "direction": 2
       },
       {
-        "entity_number": 439,
+        "entity_number": 436,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -4071,7 +4044,7 @@
         "direction": 2
       },
       {
-        "entity_number": 440,
+        "entity_number": 437,
         "name": "cargo-wagon",
         "position": {
           "x": 662,
@@ -4081,7 +4054,7 @@
         "inventory": null
       },
       {
-        "entity_number": 441,
+        "entity_number": 438,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -4090,7 +4063,7 @@
         "direction": 2
       },
       {
-        "entity_number": 442,
+        "entity_number": 439,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -4099,7 +4072,7 @@
         "direction": 2
       },
       {
-        "entity_number": 443,
+        "entity_number": 440,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -4108,7 +4081,7 @@
         "direction": 2
       },
       {
-        "entity_number": 444,
+        "entity_number": 441,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -4117,7 +4090,7 @@
         "direction": 2
       },
       {
-        "entity_number": 445,
+        "entity_number": 442,
         "name": "cargo-wagon",
         "position": {
           "x": 669,
@@ -4127,7 +4100,7 @@
         "inventory": null
       },
       {
-        "entity_number": 446,
+        "entity_number": 443,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -4136,7 +4109,7 @@
         "direction": 2
       },
       {
-        "entity_number": 447,
+        "entity_number": 444,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -4145,7 +4118,7 @@
         "direction": 2
       },
       {
-        "entity_number": 448,
+        "entity_number": 445,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -4154,7 +4127,7 @@
         "direction": 2
       },
       {
-        "entity_number": 449,
+        "entity_number": 446,
         "name": "locomotive",
         "position": {
           "x": 676,
@@ -4166,7 +4139,7 @@
         }
       },
       {
-        "entity_number": 450,
+        "entity_number": 447,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -4175,7 +4148,7 @@
         "direction": 2
       },
       {
-        "entity_number": 451,
+        "entity_number": 448,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -4184,7 +4157,7 @@
         "direction": 2
       },
       {
-        "entity_number": 452,
+        "entity_number": 449,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -4193,7 +4166,7 @@
         "direction": 2
       },
       {
-        "entity_number": 453,
+        "entity_number": 450,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -4202,7 +4175,7 @@
         "direction": 2
       },
       {
-        "entity_number": 454,
+        "entity_number": 451,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -4211,7 +4184,7 @@
         "direction": 2
       },
       {
-        "entity_number": 455,
+        "entity_number": 452,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -4220,7 +4193,7 @@
         "direction": 3
       },
       {
-        "entity_number": 456,
+        "entity_number": 453,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -4228,7 +4201,7 @@
         }
       },
       {
-        "entity_number": 457,
+        "entity_number": 454,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -4237,7 +4210,7 @@
         "direction": 4
       },
       {
-        "entity_number": 458,
+        "entity_number": 455,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -4245,7 +4218,7 @@
         }
       },
       {
-        "entity_number": 459,
+        "entity_number": 456,
         "name": "rail-signal",
         "position": {
           "x": 644.5,
@@ -4254,7 +4227,7 @@
         "direction": 6
       },
       {
-        "entity_number": 460,
+        "entity_number": 457,
         "name": "logistic-chest-requester",
         "position": {
           "x": 676.5,
@@ -4269,7 +4242,7 @@
         ]
       },
       {
-        "entity_number": 461,
+        "entity_number": 458,
         "name": "stack-inserter",
         "position": {
           "x": 676.5,
@@ -4278,17 +4251,17 @@
         "direction": 4
       },
       {
-        "entity_number": 462,
+        "entity_number": 459,
         "name": "train-stop",
         "position": {
           "x": 679,
           "y": 179
         },
         "direction": 2,
-        "station": ""
+        "station": "coal stop 10"
       },
       {
-        "entity_number": 463,
+        "entity_number": 460,
         "name": "rail-signal",
         "position": {
           "x": 680.5,
@@ -4297,7 +4270,7 @@
         "direction": 6
       },
       {
-        "entity_number": 464,
+        "entity_number": 461,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -4306,7 +4279,7 @@
         "direction": 5
       },
       {
-        "entity_number": 465,
+        "entity_number": 462,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -4314,7 +4287,7 @@
         }
       },
       {
-        "entity_number": 466,
+        "entity_number": 463,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -4322,7 +4295,7 @@
         }
       },
       {
-        "entity_number": 467,
+        "entity_number": 464,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -4331,7 +4304,7 @@
         "direction": 5
       },
       {
-        "entity_number": 468,
+        "entity_number": 465,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -4340,10 +4313,37 @@
         "direction": 7
       },
       {
-        "entity_number": 469,
+        "entity_number": 466,
         "name": "straight-rail",
         "position": {
           "x": 641,
+          "y": 181
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 467,
+        "name": "straight-rail",
+        "position": {
+          "x": 643,
+          "y": 181
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 468,
+        "name": "straight-rail",
+        "position": {
+          "x": 645,
+          "y": 181
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 469,
+        "name": "straight-rail",
+        "position": {
+          "x": 647,
           "y": 181
         },
         "direction": 2
@@ -4352,7 +4352,7 @@
         "entity_number": 470,
         "name": "straight-rail",
         "position": {
-          "x": 643,
+          "x": 649,
           "y": 181
         },
         "direction": 2
@@ -4361,25 +4361,26 @@
         "entity_number": 471,
         "name": "straight-rail",
         "position": {
-          "x": 645,
+          "x": 651,
           "y": 181
         },
         "direction": 2
       },
       {
         "entity_number": 472,
-        "name": "straight-rail",
+        "name": "cargo-wagon",
         "position": {
-          "x": 647,
+          "x": 655,
           "y": 181
         },
-        "direction": 2
+        "orientation": 0.25,
+        "inventory": null
       },
       {
         "entity_number": 473,
         "name": "straight-rail",
         "position": {
-          "x": 649,
+          "x": 653,
           "y": 181
         },
         "direction": 2
@@ -4388,35 +4389,35 @@
         "entity_number": 474,
         "name": "straight-rail",
         "position": {
-          "x": 651,
+          "x": 655,
           "y": 181
         },
         "direction": 2
       },
       {
         "entity_number": 475,
+        "name": "straight-rail",
+        "position": {
+          "x": 657,
+          "y": 181
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 476,
         "name": "cargo-wagon",
         "position": {
-          "x": 655,
+          "x": 662,
           "y": 181
         },
         "orientation": 0.25,
         "inventory": null
       },
       {
-        "entity_number": 476,
-        "name": "straight-rail",
-        "position": {
-          "x": 653,
-          "y": 181
-        },
-        "direction": 2
-      },
-      {
         "entity_number": 477,
         "name": "straight-rail",
         "position": {
-          "x": 655,
+          "x": 659,
           "y": 181
         },
         "direction": 2
@@ -4425,44 +4426,44 @@
         "entity_number": 478,
         "name": "straight-rail",
         "position": {
-          "x": 657,
-          "y": 181
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 479,
-        "name": "cargo-wagon",
-        "position": {
-          "x": 662,
-          "y": 181
-        },
-        "orientation": 0.25,
-        "inventory": null
-      },
-      {
-        "entity_number": 480,
-        "name": "straight-rail",
-        "position": {
-          "x": 659,
-          "y": 181
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 481,
-        "name": "straight-rail",
-        "position": {
           "x": 661,
           "y": 181
         },
         "direction": 2
       },
       {
-        "entity_number": 482,
+        "entity_number": 479,
         "name": "straight-rail",
         "position": {
           "x": 663,
+          "y": 181
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 480,
+        "name": "straight-rail",
+        "position": {
+          "x": 665,
+          "y": 181
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 481,
+        "name": "cargo-wagon",
+        "position": {
+          "x": 669,
+          "y": 181
+        },
+        "orientation": 0.25,
+        "inventory": null
+      },
+      {
+        "entity_number": 482,
+        "name": "straight-rail",
+        "position": {
+          "x": 667,
           "y": 181
         },
         "direction": 2
@@ -4471,35 +4472,37 @@
         "entity_number": 483,
         "name": "straight-rail",
         "position": {
-          "x": 665,
+          "x": 669,
           "y": 181
         },
         "direction": 2
       },
       {
         "entity_number": 484,
-        "name": "cargo-wagon",
-        "position": {
-          "x": 669,
-          "y": 181
-        },
-        "orientation": 0.25,
-        "inventory": null
-      },
-      {
-        "entity_number": 485,
         "name": "straight-rail",
         "position": {
-          "x": 667,
+          "x": 671,
           "y": 181
         },
         "direction": 2
       },
       {
+        "entity_number": 485,
+        "name": "locomotive",
+        "position": {
+          "x": 676,
+          "y": 181
+        },
+        "orientation": 0.25,
+        "items": {
+          "coal": 150
+        }
+      },
+      {
         "entity_number": 486,
         "name": "straight-rail",
         "position": {
-          "x": 669,
+          "x": 673,
           "y": 181
         },
         "direction": 2
@@ -4508,43 +4511,13 @@
         "entity_number": 487,
         "name": "straight-rail",
         "position": {
-          "x": 671,
-          "y": 181
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 488,
-        "name": "locomotive",
-        "position": {
-          "x": 676,
-          "y": 181
-        },
-        "orientation": 0.25,
-        "items": {
-          "coal": 150
-        }
-      },
-      {
-        "entity_number": 489,
-        "name": "straight-rail",
-        "position": {
-          "x": 673,
-          "y": 181
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 490,
-        "name": "straight-rail",
-        "position": {
           "x": 675,
           "y": 181
         },
         "direction": 2
       },
       {
-        "entity_number": 491,
+        "entity_number": 488,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -4553,7 +4526,7 @@
         "direction": 2
       },
       {
-        "entity_number": 492,
+        "entity_number": 489,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -4562,7 +4535,7 @@
         "direction": 2
       },
       {
-        "entity_number": 493,
+        "entity_number": 490,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -4571,7 +4544,7 @@
         "direction": 2
       },
       {
-        "entity_number": 494,
+        "entity_number": 491,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -4580,7 +4553,7 @@
         "direction": 3
       },
       {
-        "entity_number": 495,
+        "entity_number": 492,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -4588,7 +4561,7 @@
         }
       },
       {
-        "entity_number": 496,
+        "entity_number": 493,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -4597,7 +4570,7 @@
         "direction": 4
       },
       {
-        "entity_number": 497,
+        "entity_number": 494,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -4605,7 +4578,7 @@
         }
       },
       {
-        "entity_number": 498,
+        "entity_number": 495,
         "name": "rail-signal",
         "position": {
           "x": 644.5,
@@ -4614,19 +4587,19 @@
         "direction": 6
       },
       {
-        "entity_number": 499,
+        "entity_number": 496,
         "name": "medium-electric-pole",
         "position": {
           "x": 674.5,
           "y": 183.5
         },
         "neighbours": [
-          420,
-          579
+          417,
+          576
         ]
       },
       {
-        "entity_number": 500,
+        "entity_number": 497,
         "name": "logistic-chest-requester",
         "position": {
           "x": 676.5,
@@ -4642,7 +4615,7 @@
         "request_from_buffers": true
       },
       {
-        "entity_number": 501,
+        "entity_number": 498,
         "name": "stack-inserter",
         "position": {
           "x": 676.5,
@@ -4651,17 +4624,17 @@
         "direction": 4
       },
       {
-        "entity_number": 502,
+        "entity_number": 499,
         "name": "train-stop",
         "position": {
           "x": 679,
           "y": 183
         },
         "direction": 2,
-        "station": ""
+        "station": "coal stop 11"
       },
       {
-        "entity_number": 503,
+        "entity_number": 500,
         "name": "rail-signal",
         "position": {
           "x": 680.5,
@@ -4670,7 +4643,7 @@
         "direction": 6
       },
       {
-        "entity_number": 504,
+        "entity_number": 501,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -4679,7 +4652,7 @@
         "direction": 5
       },
       {
-        "entity_number": 505,
+        "entity_number": 502,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -4687,7 +4660,7 @@
         }
       },
       {
-        "entity_number": 506,
+        "entity_number": 503,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -4695,7 +4668,7 @@
         }
       },
       {
-        "entity_number": 507,
+        "entity_number": 504,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -4704,7 +4677,7 @@
         "direction": 5
       },
       {
-        "entity_number": 508,
+        "entity_number": 505,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -4713,10 +4686,37 @@
         "direction": 7
       },
       {
-        "entity_number": 509,
+        "entity_number": 506,
         "name": "straight-rail",
         "position": {
           "x": 641,
+          "y": 185
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 507,
+        "name": "straight-rail",
+        "position": {
+          "x": 643,
+          "y": 185
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 508,
+        "name": "straight-rail",
+        "position": {
+          "x": 645,
+          "y": 185
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 509,
+        "name": "straight-rail",
+        "position": {
+          "x": 647,
           "y": 185
         },
         "direction": 2
@@ -4725,7 +4725,7 @@
         "entity_number": 510,
         "name": "straight-rail",
         "position": {
-          "x": 643,
+          "x": 649,
           "y": 185
         },
         "direction": 2
@@ -4734,40 +4734,13 @@
         "entity_number": 511,
         "name": "straight-rail",
         "position": {
-          "x": 645,
-          "y": 185
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 512,
-        "name": "straight-rail",
-        "position": {
-          "x": 647,
-          "y": 185
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 513,
-        "name": "straight-rail",
-        "position": {
-          "x": 649,
-          "y": 185
-        },
-        "direction": 2
-      },
-      {
-        "entity_number": 514,
-        "name": "straight-rail",
-        "position": {
           "x": 651,
           "y": 185
         },
         "direction": 2
       },
       {
-        "entity_number": 515,
+        "entity_number": 512,
         "name": "cargo-wagon",
         "position": {
           "x": 655,
@@ -4777,7 +4750,7 @@
         "inventory": null
       },
       {
-        "entity_number": 516,
+        "entity_number": 513,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -4786,7 +4759,7 @@
         "direction": 2
       },
       {
-        "entity_number": 517,
+        "entity_number": 514,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -4795,7 +4768,7 @@
         "direction": 2
       },
       {
-        "entity_number": 518,
+        "entity_number": 515,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -4804,7 +4777,7 @@
         "direction": 2
       },
       {
-        "entity_number": 519,
+        "entity_number": 516,
         "name": "cargo-wagon",
         "position": {
           "x": 662,
@@ -4814,7 +4787,7 @@
         "inventory": null
       },
       {
-        "entity_number": 520,
+        "entity_number": 517,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -4823,7 +4796,7 @@
         "direction": 2
       },
       {
-        "entity_number": 521,
+        "entity_number": 518,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -4832,7 +4805,7 @@
         "direction": 2
       },
       {
-        "entity_number": 522,
+        "entity_number": 519,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -4841,7 +4814,7 @@
         "direction": 2
       },
       {
-        "entity_number": 523,
+        "entity_number": 520,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -4850,7 +4823,7 @@
         "direction": 2
       },
       {
-        "entity_number": 524,
+        "entity_number": 521,
         "name": "cargo-wagon",
         "position": {
           "x": 669,
@@ -4860,7 +4833,7 @@
         "inventory": null
       },
       {
-        "entity_number": 525,
+        "entity_number": 522,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -4869,7 +4842,7 @@
         "direction": 2
       },
       {
-        "entity_number": 526,
+        "entity_number": 523,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -4878,7 +4851,7 @@
         "direction": 2
       },
       {
-        "entity_number": 527,
+        "entity_number": 524,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -4887,7 +4860,7 @@
         "direction": 2
       },
       {
-        "entity_number": 528,
+        "entity_number": 525,
         "name": "locomotive",
         "position": {
           "x": 676,
@@ -4899,7 +4872,7 @@
         }
       },
       {
-        "entity_number": 529,
+        "entity_number": 526,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -4908,7 +4881,7 @@
         "direction": 2
       },
       {
-        "entity_number": 530,
+        "entity_number": 527,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -4917,7 +4890,7 @@
         "direction": 2
       },
       {
-        "entity_number": 531,
+        "entity_number": 528,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -4926,7 +4899,7 @@
         "direction": 2
       },
       {
-        "entity_number": 532,
+        "entity_number": 529,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -4935,7 +4908,7 @@
         "direction": 2
       },
       {
-        "entity_number": 533,
+        "entity_number": 530,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -4944,7 +4917,7 @@
         "direction": 2
       },
       {
-        "entity_number": 534,
+        "entity_number": 531,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -4953,7 +4926,7 @@
         "direction": 3
       },
       {
-        "entity_number": 535,
+        "entity_number": 532,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -4961,7 +4934,7 @@
         }
       },
       {
-        "entity_number": 536,
+        "entity_number": 533,
         "name": "rail-signal",
         "position": {
           "x": 627.5,
@@ -4969,7 +4942,7 @@
         }
       },
       {
-        "entity_number": 537,
+        "entity_number": 534,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -4977,7 +4950,7 @@
         }
       },
       {
-        "entity_number": 538,
+        "entity_number": 535,
         "name": "rail-signal",
         "position": {
           "x": 644.5,
@@ -4986,7 +4959,7 @@
         "direction": 6
       },
       {
-        "entity_number": 539,
+        "entity_number": 536,
         "name": "logistic-chest-requester",
         "position": {
           "x": 676.5,
@@ -5001,7 +4974,7 @@
         ]
       },
       {
-        "entity_number": 540,
+        "entity_number": 537,
         "name": "stack-inserter",
         "position": {
           "x": 676.5,
@@ -5010,17 +4983,17 @@
         "direction": 4
       },
       {
-        "entity_number": 541,
+        "entity_number": 538,
         "name": "train-stop",
         "position": {
           "x": 679,
           "y": 187
         },
         "direction": 2,
-        "station": ""
+        "station": "coal stop 12"
       },
       {
-        "entity_number": 542,
+        "entity_number": 539,
         "name": "rail-signal",
         "position": {
           "x": 680.5,
@@ -5029,7 +5002,7 @@
         "direction": 6
       },
       {
-        "entity_number": 543,
+        "entity_number": 540,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -5037,7 +5010,7 @@
         }
       },
       {
-        "entity_number": 544,
+        "entity_number": 541,
         "name": "rail-signal",
         "position": {
           "x": 692.5,
@@ -5046,7 +5019,7 @@
         "direction": 4
       },
       {
-        "entity_number": 545,
+        "entity_number": 542,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -5054,7 +5027,7 @@
         }
       },
       {
-        "entity_number": 546,
+        "entity_number": 543,
         "name": "curved-rail",
         "position": {
           "x": 630,
@@ -5063,7 +5036,7 @@
         "direction": 4
       },
       {
-        "entity_number": 547,
+        "entity_number": 544,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -5072,7 +5045,7 @@
         "direction": 5
       },
       {
-        "entity_number": 548,
+        "entity_number": 545,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -5081,7 +5054,7 @@
         "direction": 7
       },
       {
-        "entity_number": 549,
+        "entity_number": 546,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -5090,7 +5063,7 @@
         "direction": 2
       },
       {
-        "entity_number": 550,
+        "entity_number": 547,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -5099,7 +5072,7 @@
         "direction": 2
       },
       {
-        "entity_number": 551,
+        "entity_number": 548,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -5108,7 +5081,7 @@
         "direction": 2
       },
       {
-        "entity_number": 552,
+        "entity_number": 549,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -5117,7 +5090,7 @@
         "direction": 2
       },
       {
-        "entity_number": 553,
+        "entity_number": 550,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -5126,7 +5099,7 @@
         "direction": 2
       },
       {
-        "entity_number": 554,
+        "entity_number": 551,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -5135,7 +5108,7 @@
         "direction": 2
       },
       {
-        "entity_number": 555,
+        "entity_number": 552,
         "name": "cargo-wagon",
         "position": {
           "x": 655,
@@ -5145,7 +5118,7 @@
         "inventory": null
       },
       {
-        "entity_number": 556,
+        "entity_number": 553,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -5154,7 +5127,7 @@
         "direction": 2
       },
       {
-        "entity_number": 557,
+        "entity_number": 554,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -5163,7 +5136,7 @@
         "direction": 2
       },
       {
-        "entity_number": 558,
+        "entity_number": 555,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -5172,7 +5145,7 @@
         "direction": 2
       },
       {
-        "entity_number": 559,
+        "entity_number": 556,
         "name": "cargo-wagon",
         "position": {
           "x": 662,
@@ -5182,7 +5155,7 @@
         "inventory": null
       },
       {
-        "entity_number": 560,
+        "entity_number": 557,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -5191,7 +5164,7 @@
         "direction": 2
       },
       {
-        "entity_number": 561,
+        "entity_number": 558,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -5200,7 +5173,7 @@
         "direction": 2
       },
       {
-        "entity_number": 562,
+        "entity_number": 559,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -5209,7 +5182,7 @@
         "direction": 2
       },
       {
-        "entity_number": 563,
+        "entity_number": 560,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -5218,7 +5191,7 @@
         "direction": 2
       },
       {
-        "entity_number": 564,
+        "entity_number": 561,
         "name": "cargo-wagon",
         "position": {
           "x": 669,
@@ -5228,7 +5201,7 @@
         "inventory": null
       },
       {
-        "entity_number": 565,
+        "entity_number": 562,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -5237,7 +5210,7 @@
         "direction": 2
       },
       {
-        "entity_number": 566,
+        "entity_number": 563,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -5246,7 +5219,7 @@
         "direction": 2
       },
       {
-        "entity_number": 567,
+        "entity_number": 564,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -5255,7 +5228,7 @@
         "direction": 2
       },
       {
-        "entity_number": 568,
+        "entity_number": 565,
         "name": "locomotive",
         "position": {
           "x": 676,
@@ -5267,7 +5240,7 @@
         }
       },
       {
-        "entity_number": 569,
+        "entity_number": 566,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -5276,7 +5249,7 @@
         "direction": 2
       },
       {
-        "entity_number": 570,
+        "entity_number": 567,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -5285,7 +5258,7 @@
         "direction": 2
       },
       {
-        "entity_number": 571,
+        "entity_number": 568,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -5294,7 +5267,7 @@
         "direction": 2
       },
       {
-        "entity_number": 572,
+        "entity_number": 569,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -5303,7 +5276,7 @@
         "direction": 2
       },
       {
-        "entity_number": 573,
+        "entity_number": 570,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -5312,7 +5285,7 @@
         "direction": 2
       },
       {
-        "entity_number": 574,
+        "entity_number": 571,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -5321,7 +5294,7 @@
         "direction": 3
       },
       {
-        "entity_number": 575,
+        "entity_number": 572,
         "name": "curved-rail",
         "position": {
           "x": 690,
@@ -5330,7 +5303,7 @@
         "direction": 5
       },
       {
-        "entity_number": 576,
+        "entity_number": 573,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -5338,7 +5311,7 @@
         }
       },
       {
-        "entity_number": 577,
+        "entity_number": 574,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -5346,7 +5319,7 @@
         }
       },
       {
-        "entity_number": 578,
+        "entity_number": 575,
         "name": "rail-signal",
         "position": {
           "x": 644.5,
@@ -5355,19 +5328,19 @@
         "direction": 6
       },
       {
-        "entity_number": 579,
+        "entity_number": 576,
         "name": "medium-electric-pole",
         "position": {
           "x": 674.5,
           "y": 191.5
         },
         "neighbours": [
-          499,
-          616
+          496,
+          613
         ]
       },
       {
-        "entity_number": 580,
+        "entity_number": 577,
         "name": "logistic-chest-requester",
         "position": {
           "x": 676.5,
@@ -5383,7 +5356,7 @@
         "request_from_buffers": true
       },
       {
-        "entity_number": 581,
+        "entity_number": 578,
         "name": "stack-inserter",
         "position": {
           "x": 676.5,
@@ -5392,17 +5365,17 @@
         "direction": 4
       },
       {
-        "entity_number": 582,
+        "entity_number": 579,
         "name": "train-stop",
         "position": {
           "x": 679,
           "y": 191
         },
         "direction": 2,
-        "station": ""
+        "station": "coal stop 13"
       },
       {
-        "entity_number": 583,
+        "entity_number": 580,
         "name": "rail-signal",
         "position": {
           "x": 680.5,
@@ -5411,7 +5384,7 @@
         "direction": 6
       },
       {
-        "entity_number": 584,
+        "entity_number": 581,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -5419,7 +5392,7 @@
         }
       },
       {
-        "entity_number": 585,
+        "entity_number": 582,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -5427,7 +5400,7 @@
         }
       },
       {
-        "entity_number": 586,
+        "entity_number": 583,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -5436,7 +5409,7 @@
         "direction": 2
       },
       {
-        "entity_number": 587,
+        "entity_number": 584,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -5445,7 +5418,7 @@
         "direction": 2
       },
       {
-        "entity_number": 588,
+        "entity_number": 585,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -5454,7 +5427,7 @@
         "direction": 2
       },
       {
-        "entity_number": 589,
+        "entity_number": 586,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -5463,7 +5436,7 @@
         "direction": 2
       },
       {
-        "entity_number": 590,
+        "entity_number": 587,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -5472,7 +5445,7 @@
         "direction": 2
       },
       {
-        "entity_number": 591,
+        "entity_number": 588,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -5481,7 +5454,7 @@
         "direction": 2
       },
       {
-        "entity_number": 592,
+        "entity_number": 589,
         "name": "cargo-wagon",
         "position": {
           "x": 655,
@@ -5491,7 +5464,7 @@
         "inventory": null
       },
       {
-        "entity_number": 593,
+        "entity_number": 590,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -5500,7 +5473,7 @@
         "direction": 2
       },
       {
-        "entity_number": 594,
+        "entity_number": 591,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -5509,7 +5482,7 @@
         "direction": 2
       },
       {
-        "entity_number": 595,
+        "entity_number": 592,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -5518,7 +5491,7 @@
         "direction": 2
       },
       {
-        "entity_number": 596,
+        "entity_number": 593,
         "name": "cargo-wagon",
         "position": {
           "x": 662,
@@ -5528,7 +5501,7 @@
         "inventory": null
       },
       {
-        "entity_number": 597,
+        "entity_number": 594,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -5537,7 +5510,7 @@
         "direction": 2
       },
       {
-        "entity_number": 598,
+        "entity_number": 595,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -5546,7 +5519,7 @@
         "direction": 2
       },
       {
-        "entity_number": 599,
+        "entity_number": 596,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -5555,7 +5528,7 @@
         "direction": 2
       },
       {
-        "entity_number": 600,
+        "entity_number": 597,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -5564,7 +5537,7 @@
         "direction": 2
       },
       {
-        "entity_number": 601,
+        "entity_number": 598,
         "name": "cargo-wagon",
         "position": {
           "x": 669,
@@ -5574,7 +5547,7 @@
         "inventory": null
       },
       {
-        "entity_number": 602,
+        "entity_number": 599,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -5583,7 +5556,7 @@
         "direction": 2
       },
       {
-        "entity_number": 603,
+        "entity_number": 600,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -5592,7 +5565,7 @@
         "direction": 2
       },
       {
-        "entity_number": 604,
+        "entity_number": 601,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -5601,7 +5574,7 @@
         "direction": 2
       },
       {
-        "entity_number": 605,
+        "entity_number": 602,
         "name": "locomotive",
         "position": {
           "x": 676,
@@ -5613,7 +5586,7 @@
         }
       },
       {
-        "entity_number": 606,
+        "entity_number": 603,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -5622,7 +5595,7 @@
         "direction": 2
       },
       {
-        "entity_number": 607,
+        "entity_number": 604,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -5631,7 +5604,7 @@
         "direction": 2
       },
       {
-        "entity_number": 608,
+        "entity_number": 605,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -5640,7 +5613,7 @@
         "direction": 2
       },
       {
-        "entity_number": 609,
+        "entity_number": 606,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -5649,7 +5622,7 @@
         "direction": 2
       },
       {
-        "entity_number": 610,
+        "entity_number": 607,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -5657,7 +5630,7 @@
         }
       },
       {
-        "entity_number": 611,
+        "entity_number": 608,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -5665,7 +5638,7 @@
         }
       },
       {
-        "entity_number": 612,
+        "entity_number": 609,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -5674,7 +5647,7 @@
         "direction": 5
       },
       {
-        "entity_number": 613,
+        "entity_number": 610,
         "name": "curved-rail",
         "position": {
           "x": 636,
@@ -5683,7 +5656,7 @@
         "direction": 7
       },
       {
-        "entity_number": 614,
+        "entity_number": 611,
         "name": "rail-signal",
         "position": {
           "x": 644.5,
@@ -5692,7 +5665,7 @@
         "direction": 6
       },
       {
-        "entity_number": 615,
+        "entity_number": 612,
         "name": "radar",
         "position": {
           "x": 664.5,
@@ -5700,19 +5673,19 @@
         }
       },
       {
-        "entity_number": 616,
+        "entity_number": 613,
         "name": "big-electric-pole",
         "position": {
           "x": 669,
           "y": 196
         },
         "neighbours": [
-          579,
-          626
+          576,
+          623
         ]
       },
       {
-        "entity_number": 617,
+        "entity_number": 614,
         "name": "logistic-chest-requester",
         "position": {
           "x": 676.5,
@@ -5728,7 +5701,7 @@
         "request_from_buffers": true
       },
       {
-        "entity_number": 618,
+        "entity_number": 615,
         "name": "stack-inserter",
         "position": {
           "x": 676.5,
@@ -5737,17 +5710,17 @@
         "direction": 4
       },
       {
-        "entity_number": 619,
+        "entity_number": 616,
         "name": "train-stop",
         "position": {
           "x": 679,
           "y": 195
         },
         "direction": 2,
-        "station": ""
+        "station": "coal stop 14"
       },
       {
-        "entity_number": 620,
+        "entity_number": 617,
         "name": "rail-signal",
         "position": {
           "x": 680.5,
@@ -5756,7 +5729,7 @@
         "direction": 6
       },
       {
-        "entity_number": 621,
+        "entity_number": 618,
         "name": "curved-rail",
         "position": {
           "x": 684,
@@ -5765,7 +5738,7 @@
         "direction": 2
       },
       {
-        "entity_number": 622,
+        "entity_number": 619,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -5774,7 +5747,7 @@
         "direction": 3
       },
       {
-        "entity_number": 623,
+        "entity_number": 620,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -5782,7 +5755,7 @@
         }
       },
       {
-        "entity_number": 624,
+        "entity_number": 621,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -5790,30 +5763,30 @@
         }
       },
       {
-        "entity_number": 625,
+        "entity_number": 622,
         "name": "big-electric-pole",
         "position": {
           "x": 661,
           "y": 197
         },
         "neighbours": [
-          626
+          623
         ]
       },
       {
-        "entity_number": 626,
+        "entity_number": 623,
         "name": "medium-electric-pole",
         "position": {
           "x": 666.5,
           "y": 196.5
         },
         "neighbours": [
-          616,
-          625
+          613,
+          622
         ]
       },
       {
-        "entity_number": 627,
+        "entity_number": 624,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -5821,7 +5794,7 @@
         }
       },
       {
-        "entity_number": 628,
+        "entity_number": 625,
         "name": "straight-rail",
         "position": {
           "x": 627,
@@ -5830,7 +5803,7 @@
         "direction": 2
       },
       {
-        "entity_number": 629,
+        "entity_number": 626,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -5839,7 +5812,7 @@
         "direction": 2
       },
       {
-        "entity_number": 630,
+        "entity_number": 627,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -5847,7 +5820,7 @@
         }
       },
       {
-        "entity_number": 631,
+        "entity_number": 628,
         "name": "straight-rail",
         "position": {
           "x": 631,
@@ -5856,7 +5829,7 @@
         "direction": 2
       },
       {
-        "entity_number": 632,
+        "entity_number": 629,
         "name": "straight-rail",
         "position": {
           "x": 633,
@@ -5865,7 +5838,7 @@
         "direction": 2
       },
       {
-        "entity_number": 633,
+        "entity_number": 630,
         "name": "straight-rail",
         "position": {
           "x": 635,
@@ -5874,7 +5847,7 @@
         "direction": 2
       },
       {
-        "entity_number": 634,
+        "entity_number": 631,
         "name": "straight-rail",
         "position": {
           "x": 637,
@@ -5883,7 +5856,7 @@
         "direction": 2
       },
       {
-        "entity_number": 635,
+        "entity_number": 632,
         "name": "straight-rail",
         "position": {
           "x": 639,
@@ -5892,7 +5865,7 @@
         "direction": 2
       },
       {
-        "entity_number": 636,
+        "entity_number": 633,
         "name": "straight-rail",
         "position": {
           "x": 641,
@@ -5901,7 +5874,7 @@
         "direction": 2
       },
       {
-        "entity_number": 637,
+        "entity_number": 634,
         "name": "straight-rail",
         "position": {
           "x": 643,
@@ -5910,7 +5883,7 @@
         "direction": 2
       },
       {
-        "entity_number": 638,
+        "entity_number": 635,
         "name": "straight-rail",
         "position": {
           "x": 645,
@@ -5919,7 +5892,7 @@
         "direction": 2
       },
       {
-        "entity_number": 639,
+        "entity_number": 636,
         "name": "straight-rail",
         "position": {
           "x": 647,
@@ -5928,7 +5901,7 @@
         "direction": 2
       },
       {
-        "entity_number": 640,
+        "entity_number": 637,
         "name": "straight-rail",
         "position": {
           "x": 649,
@@ -5937,7 +5910,7 @@
         "direction": 2
       },
       {
-        "entity_number": 641,
+        "entity_number": 638,
         "name": "straight-rail",
         "position": {
           "x": 651,
@@ -5946,7 +5919,7 @@
         "direction": 2
       },
       {
-        "entity_number": 642,
+        "entity_number": 639,
         "name": "straight-rail",
         "position": {
           "x": 653,
@@ -5955,7 +5928,7 @@
         "direction": 2
       },
       {
-        "entity_number": 643,
+        "entity_number": 640,
         "name": "straight-rail",
         "position": {
           "x": 655,
@@ -5964,7 +5937,7 @@
         "direction": 2
       },
       {
-        "entity_number": 644,
+        "entity_number": 641,
         "name": "straight-rail",
         "position": {
           "x": 657,
@@ -5973,7 +5946,7 @@
         "direction": 2
       },
       {
-        "entity_number": 645,
+        "entity_number": 642,
         "name": "straight-rail",
         "position": {
           "x": 659,
@@ -5982,7 +5955,7 @@
         "direction": 2
       },
       {
-        "entity_number": 646,
+        "entity_number": 643,
         "name": "straight-rail",
         "position": {
           "x": 661,
@@ -5991,7 +5964,7 @@
         "direction": 2
       },
       {
-        "entity_number": 647,
+        "entity_number": 644,
         "name": "straight-rail",
         "position": {
           "x": 663,
@@ -6000,7 +5973,7 @@
         "direction": 2
       },
       {
-        "entity_number": 648,
+        "entity_number": 645,
         "name": "straight-rail",
         "position": {
           "x": 665,
@@ -6009,7 +5982,7 @@
         "direction": 2
       },
       {
-        "entity_number": 649,
+        "entity_number": 646,
         "name": "straight-rail",
         "position": {
           "x": 667,
@@ -6018,7 +5991,7 @@
         "direction": 2
       },
       {
-        "entity_number": 650,
+        "entity_number": 647,
         "name": "straight-rail",
         "position": {
           "x": 669,
@@ -6027,7 +6000,7 @@
         "direction": 2
       },
       {
-        "entity_number": 651,
+        "entity_number": 648,
         "name": "straight-rail",
         "position": {
           "x": 671,
@@ -6036,7 +6009,7 @@
         "direction": 2
       },
       {
-        "entity_number": 652,
+        "entity_number": 649,
         "name": "straight-rail",
         "position": {
           "x": 673,
@@ -6045,7 +6018,7 @@
         "direction": 2
       },
       {
-        "entity_number": 653,
+        "entity_number": 650,
         "name": "straight-rail",
         "position": {
           "x": 675,
@@ -6054,7 +6027,7 @@
         "direction": 2
       },
       {
-        "entity_number": 654,
+        "entity_number": 651,
         "name": "straight-rail",
         "position": {
           "x": 677,
@@ -6063,7 +6036,7 @@
         "direction": 2
       },
       {
-        "entity_number": 655,
+        "entity_number": 652,
         "name": "straight-rail",
         "position": {
           "x": 679,
@@ -6072,7 +6045,7 @@
         "direction": 2
       },
       {
-        "entity_number": 656,
+        "entity_number": 653,
         "name": "straight-rail",
         "position": {
           "x": 681,
@@ -6081,7 +6054,7 @@
         "direction": 2
       },
       {
-        "entity_number": 657,
+        "entity_number": 654,
         "name": "straight-rail",
         "position": {
           "x": 683,
@@ -6090,7 +6063,7 @@
         "direction": 2
       },
       {
-        "entity_number": 658,
+        "entity_number": 655,
         "name": "straight-rail",
         "position": {
           "x": 685,
@@ -6099,7 +6072,7 @@
         "direction": 2
       },
       {
-        "entity_number": 659,
+        "entity_number": 656,
         "name": "straight-rail",
         "position": {
           "x": 687,
@@ -6108,7 +6081,7 @@
         "direction": 2
       },
       {
-        "entity_number": 660,
+        "entity_number": 657,
         "name": "straight-rail",
         "position": {
           "x": 689,
@@ -6117,7 +6090,7 @@
         "direction": 2
       },
       {
-        "entity_number": 661,
+        "entity_number": 658,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -6125,7 +6098,7 @@
         }
       },
       {
-        "entity_number": 662,
+        "entity_number": 659,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -6134,7 +6107,7 @@
         "direction": 2
       },
       {
-        "entity_number": 663,
+        "entity_number": 660,
         "name": "straight-rail",
         "position": {
           "x": 629,
@@ -6142,7 +6115,7 @@
         }
       },
       {
-        "entity_number": 664,
+        "entity_number": 661,
         "name": "rail-signal",
         "position": {
           "x": 642.5,
@@ -6151,7 +6124,7 @@
         "direction": 6
       },
       {
-        "entity_number": 665,
+        "entity_number": 662,
         "name": "rail-signal",
         "position": {
           "x": 679.5,
@@ -6160,7 +6133,7 @@
         "direction": 6
       },
       {
-        "entity_number": 666,
+        "entity_number": 663,
         "name": "straight-rail",
         "position": {
           "x": 691,
@@ -6171,7 +6144,7 @@
     "schedules": [
       {
         "locomotives": [
-          58
+          55
         ],
         "schedule": [
           {
@@ -6196,7 +6169,7 @@
       },
       {
         "locomotives": [
-          100
+          97
         ],
         "schedule": [
           {
@@ -6206,7 +6179,7 @@
       },
       {
         "locomotives": [
-          139
+          136
         ],
         "schedule": [
           {
@@ -6216,7 +6189,7 @@
       },
       {
         "locomotives": [
-          179
+          176
         ],
         "schedule": [
           {
@@ -6226,7 +6199,7 @@
       },
       {
         "locomotives": [
-          220
+          217
         ],
         "schedule": [
           {
@@ -6236,7 +6209,7 @@
       },
       {
         "locomotives": [
-          266
+          263
         ],
         "schedule": [
           {
@@ -6246,9 +6219,9 @@
       },
       {
         "locomotives": [
-          331,
-          370,
-          605
+          328,
+          367,
+          602
         ],
         "schedule": [
           {
@@ -6258,7 +6231,7 @@
       },
       {
         "locomotives": [
-          409
+          406
         ],
         "schedule": [
           {
@@ -6268,7 +6241,7 @@
       },
       {
         "locomotives": [
-          449
+          446
         ],
         "schedule": [
           {
@@ -6278,7 +6251,7 @@
       },
       {
         "locomotives": [
-          488
+          485
         ],
         "schedule": [
           {
@@ -6288,7 +6261,7 @@
       },
       {
         "locomotives": [
-          528
+          525
         ],
         "schedule": [
           {
@@ -6298,7 +6271,7 @@
       },
       {
         "locomotives": [
-          568
+          565
         ],
         "schedule": [
           {

@@ -10,12 +10,15 @@ def convertPathForOs(path):
 # import json
 
 FAC_HOME = os.getenv("FACTORIO_HOME")
+# RECIPE_HOME should equal C:\Program Files\Factorio\data\base\prototypes\recipe.lua
 relative_recipe_string = "/data/base/prototypes/recipe"
 relative_items_string = "/data/base/prototypes/item"
 relative_items_string,relative_recipe_string = convertPathForOs(relative_items_string),convertPathForOs(relative_recipe_string)
 RECIPE_HOME =  f"{FAC_HOME}{relative_recipe_string}"
 ITEMS_HOME = FAC_HOME + relative_items_string
 RECIPE_HOME, ITEMS_HOME = convertPathForOs(RECIPE_HOME),convertPathForOs(ITEMS_HOME)
+print(RECIPE_HOME, " = recipe home")
+
 recipe_files = os.listdir(RECIPE_HOME)
 items_files = os.listdir(ITEMS_HOME)
 fluids = []
@@ -41,21 +44,29 @@ with open(RECIPE_HOME+convertPathForOs("//demo-furnace-recipe.lua")) as f:
 		if isinstance(item,dict):
 			if "name" in item:
 				smelted_list.add(item["name"])
+
 RECIPE_LUA_FILE_HOME = FAC_HOME +   convertPathForOs(f"//data//base//prototypes//recipe//recipe.lua")
 OTHER_RECIPE_LUA_FILE_HOME = FAC_HOME +   convertPathForOs(f"//data//base//prototypes//recipe.lua")
 
-
-for file in recipe_files+[RECIPE_LUA_FILE_HOME]:
-	if file == RECIPE_LUA_FILE_HOME:
+for file in recipe_files+[RECIPE_LUA_FILE_HOME]+[OTHER_RECIPE_LUA_FILE_HOME]:
+	if file == OTHER_RECIPE_LUA_FILE_HOME:
 		with open(file) as f:
 			s = f.read()
+			s = "".join(s.split("\n\n")[2:]).strip().removeprefix("data:extend\n(").removesuffix(")")
+
+	elif file == RECIPE_LUA_FILE_HOME:
+		with open(file) as f:
+			s = f.read()
+
 	else:
 		with open (RECIPE_HOME+"//"+file) as f:
 			s = f.read()
+			# print(s)
+
 	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
 	list_of_recipes =  lua.decode(stripped_string) # actually a list
-	# print(json.dumps(list_of_recipes,indent=2))
 	for index,recipe in enumerate(list_of_recipes[:]):
+
 		recipes_list.append(recipe)
 		if isinstance(recipe,dict):
 			if "name" in recipe:
@@ -63,12 +74,13 @@ for file in recipe_files+[RECIPE_LUA_FILE_HOME]:
 					recipe["energy_required"] = 0.5
 				recipes_dict[recipe["name"]] = recipe
 
-	with open(OTHER_RECIPE_LUA_FILE_HOME) as f:
-		s = f.read()
+
+
 
 stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
 list_of_recipes =  lua.decode(stripped_string) # actually a list
-# print(json.dumps(list_of_recipes,indent=2))
+# if OTHER_RECIPE_LUA_FILE_HOME == file:
+# 	print(list_of_recipes, " = stripped_string")
 for index,recipe in enumerate(list_of_recipes[:]):
 	recipes_list.append(recipe)
 	if isinstance(recipe,dict):
@@ -92,6 +104,7 @@ for file in items_files:
 			if isinstance(item,dict):
 				if "name" in item and item["type"] not in ["item-subgroup","item-group"]:
 					items_dict[item["name"]] = item
+
 def get_energy(item):
 	try:
 		return recipes_dict[item]["expensive"]["energy_required"]
@@ -124,9 +137,13 @@ fluids = get_fluids()
 for fluid in fluids:
 	recipes_dict["fill-"+fluid+"-barrel"] = {"ingredients": [["empty-barrel",1]]}
 	recipes_dict["empty-"+fluid+"-barrel"] ={"ingredients": [[fluid+"-barrel",1]]}
+
+
 def is_fluid(product):
 	return product in fluids
 def get_stack_size(item):
+	if "module" in item:
+		return 50
 	if "barrel" in item:
 		item = "empty-barrel"
 	if item in fluids:
@@ -142,20 +159,32 @@ def get_stack_size(item):
 	# return [i[0] if isinstance(i,list) else i["name"] for i in ingredients]print(get_recipe("plastic-bar"))
 
 def getMaterialHeirarchy(item):
+	non_addables = []
 	material_dict = defaultdict(int)
 	def get_ingredients(prod, amount = 1):
 		ingredients = recipes_dict[prod]["expensive"]["ingredients"] if "expensive" in recipes_dict[prod] else recipes_dict[prod]["ingredients"]
-		
 		for ingredient in ingredients:
-			material_dict[ingredient[0]] += ingredient[1]*amount
+			if isinstance(ingredient, dict):
+				material_dict[ingredient["name"]] += ingredient["amount"]
+			else:
+				material_dict[ingredient[0]] += ingredient[1]*amount
 		for ingredient in ingredients:
-			if "ore" not in ingredient[0] and "ore" not in ingredient[0] and ingredient[0] not in ["wood","petroleum-gas","raw-fish","water","crude-oil","coal","stone"]:
+
+			if isinstance(ingredient,dict):
+				name,amount = ingredient["name"],ingredient["amount"]
+			else:
+				name,amount = ingredient[:2]
+
+			if "ore" not in name and name not in ["wood","petroleum-gas","raw-fish","water","crude-oil","coal","stone"]:
 					try:
-						get_ingredients(ingredient[0],ingredient[1])
+						get_ingredients(name,amount)
 					except:
-						print("non_addable", ingredient[0])
+						non_addables.append(name)
+
 		
 	get_ingredients(item)
+	if non_addables:
+		print(non_addables, ' = non_addables')
 	return dict(material_dict)
 #i.e. where the product is produced, in a smelter, assembling-machine, or a chemical-plant, or a centrifuge, refinery here not included
 def get_production_time(product):
@@ -266,21 +295,54 @@ def get_recipe(product):
 		ingredients = fullinfo["normal"]["ingredients"]
 	else:
 		ingredients = fullinfo["ingredients"]
+	# print(f"fullinfo = {json.dumps(fullinfo,indent=2)}")
 	return [i[0] if isinstance(i,list) else i["name"] for i in ingredients]
 
 def make_request_filters(product,fluid_only = False):
 	# print(product, "make_request_filters")
 	# print(recipes_dict[product])
 	ingredients = get_recipe(product)
-	# print(ingredients, ' = ingredients')
+
 	stack_sizes = {}
 	request_filters =[]
 	for index, ingredient in enumerate(ingredients):
-		if ingredient in fluids:
-			request_filters.append({ "index":index+1,"name":ingredient+"-barrel", "count": int(get_stack_size(ingredient)*(48/len(ingredients)))})
-		else:	
-			request_filters.append({ "index":index+1,"name":ingredient+"-barrel"*(ingredient in fluids), "count": int(get_stack_size(ingredient)*(48/len(ingredients)))})
+		# print(ingredient)
+		try:
+			if ingredient in fluids:
+				request_filters.append({ "index":index+1,"name":ingredient+"-barrel", "count": int(get_stack_size(ingredient)*(48/len(ingredients)))})
+			else:	
+				request_filters.append({ "index":index+1,"name":ingredient+"-barrel"*(ingredient in fluids), "count": int(get_stack_size(ingredient)*(48/len(ingredients)))})
+		except:
+			print(f"cannot add {ingredient} to logistics request chest")
 	return request_filters
+
+import numpy as np
+
+def make_inserter_sequence(product, max_val=3):
+	data = {k["name"]:k["count"] for k in make_request_filters(product) if "barrel" not in  k["name"] }
+
+	# print(data)
+	if data == {}:
+		return None
+	values = list(data.values())
+	# print([type(i) for i in values])
+	minval = min(values)
+
+	for i in [j for j in range(max_val,0,-1)]+[j for j in range(max_val,25)]:
+		candidate  = [int(p) for p in list(np.array([(k/minval)*i for k in values ]))]
+
+		factor = minval//i
+		factored_back_in = [int(b) for b in list(np.array(candidate)*factor)]
+		# print(candidate,factor,list(np.array(candidate)*factor),values)
+		# print([type(b) for b in factored_back_in])
+		if all( [factored_back_in[r] == values[r] for r in range(len(factored_back_in))]):
+			keys = [k for k in data.keys()]
+			return { keys[k]:candidate[k] for k in range(len(keys))}
+	
+
+
+
+# print([i for i in recipes_dict if "belt" in i])
 # print(make_request_filters("advanced-circuit"))
 #the next step is to match physical trains with schedules
 

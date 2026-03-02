@@ -1,8 +1,14 @@
 import json
 from recipe_extraction import *
+import pyperclip 
+from convert_json_to_blueprint_string import *
+
 #ok, so what I have to do here is to 
-with open ("blueprints\\receiving_station_with_assemblers.json") as f:
-	blueprint = json.load(f)
+# with open ("blueprints\\receiving_station_with_assemblers.json") as f:
+# with open ("blueprints\\electric_engine_unit.json") as f:
+with open ("blueprints\\assembling_machines\\mining_drill") as f:
+	blueprint = convertoToJson(f.read())
+	print("blueprint equals = ",json.dumps(blueprint,indent=2))
 with open ("ingredients.json") as f:
 	ingredients = json.load(f)
 
@@ -10,21 +16,21 @@ with open ("ingredients.json") as f:
 # print(json.dumps(blueprint,indent =2))
 # print(json.dumps(ingredients[-1],indent=2))
 
-from convert_json_to_blueprint_string import convertoToBlueprint
 
 
 def make_assembling_machine(what_you_want_make):
+	print(f"what_you_want_make = {what_you_want_make}")
 	recipe = get_recipe(what_you_want_make)
+	print(f"recipe = {recipe}")
 	#this changes every requester chest to what you want
 	for index, entity in enumerate(blueprint["blueprint"]["entities"]):
-		if entity["name"] == "logistic-chest-requester":
-			blueprint["blueprint"]["entities"][index]["request_filters"] = []
-			for index_, element in enumerate(recipe):
-				blueprint["blueprint"]["entities"][index_]["request_filters"] += [{ "index":index_+1,"name":element["id"], "count":int(element["amount"])*multiplication_factor}]
-	#this changes every assembling machine to what you want
-	for index, entity in enumerate(blueprint["blueprint"]["entities"]):
-		if "assembling-machine" in entity["name"]:
+		print(f"entity name = {entity['name']}")
+		if entity["name"] == "requester-chest":
+			print(f"entity = {entity}")
+			blueprint["blueprint"]["entities"][index]["request_filters"]["sections"] =[{"index":1,"filters": [{"index":i+1,"name":v,"count":100,  "quality": "normal", "comparator": "="} for i,v in enumerate(recipe)]}]
+		elif "assembling-machine" in entity["name"]:
 			blueprint["blueprint"]["entities"][index]["recipe"] = what_you_want_make
+	print(f"resultant blueprint = {json.dumps(blueprint,indent=2)}")
 	return blueprint
 
 	return blueprint
@@ -75,7 +81,8 @@ def getMaterialHeirarchy(item,amount =1):
 		subDict[element["id"]] =  getMaterialHeirarchy(element["id"],element["amount"]*amount)
 	return subDict
 
-print(json.dumps(getMaterialHeirarchy("nuclear-reactor"),indent=2))
+# print(json.dumps(getMaterialHeirarchy("nuclear-reactor"),indent=2))
+pyperclip.copy(convertoToBlueprint(make_assembling_machine("steel-chest")))
 # product = "space-science-pack"
 # print(json.dumps({product:getMaterialHeirarchy(product)},indent=2))
 # packs = [i for i in ingredient_dictionary if "pack" in i]
@@ -97,4 +104,4 @@ print(json.dumps(getMaterialHeirarchy("nuclear-reactor"),indent=2))
 # print(convertoToBlueprint(blueprint))
 # print(json.dumps(make_assembling_machine("production-science-pack"),indent=2))
 
-# print(json.dumps(data["blueprint"]["entities"][3]["request_filters"],indent=2))
+# pyperclip.copy(json.dumps(data["blueprint"]["entities"][3]["request_filters"],indent=2))

@@ -1,0 +1,210 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "name": "rail"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "locomotive",
+        "position": {
+          "x": -510.125,
+          "y": 879
+        },
+        "enable_logistics_while_moving": false,
+        "orientation": 0.75,
+        "color": {
+          "r": 0.949999988079071,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "items": [
+          {
+            "id": {
+              "name": "coal"
+            },
+            "items": {
+              "in_inventory": [
+                {
+                  "inventory": 1,
+                  "stack": 0,
+                  "count": 40
+                },
+                {
+                  "inventory": 1,
+                  "stack": 1,
+                  "count": 50
+                },
+                {
+                  "inventory": 1,
+                  "stack": 2,
+                  "count": 50
+                },
+                {
+                  "inventory": 1,
+                  "stack": 0,
+                  "count": 4
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "entity_number": 2,
+        "name": "cargo-wagon",
+        "position": {
+          "x": -503.125,
+          "y": 879
+        },
+        "enable_logistics_while_moving": false,
+        "orientation": 0.75,
+        "inventory": null
+      },
+      {
+        "entity_number": 3,
+        "name": "cargo-wagon",
+        "position": {
+          "x": -557,
+          "y": 891
+        },
+        "enable_logistics_while_moving": false,
+        "orientation": 0.25,
+        "inventory": null
+      },
+      {
+        "entity_number": 4,
+        "name": "locomotive",
+        "position": {
+          "x": -550,
+          "y": 891
+        },
+        "enable_logistics_while_moving": false,
+        "orientation": 0.25,
+        "color": {
+          "r": 0.949999988079071,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "items": [
+          {
+            "id": {
+              "name": "coal"
+            },
+            "items": {
+              "in_inventory": [
+                {
+                  "inventory": 1,
+                  "stack": 0,
+                  "count": 44
+                },
+                {
+                  "inventory": 1,
+                  "stack": 1,
+                  "count": 50
+                },
+                {
+                  "inventory": 1,
+                  "stack": 2,
+                  "count": 50
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "schedules": [
+      {
+        "locomotives": [
+          1
+        ],
+        "schedule": {
+          "records": [
+            {
+              "station": "coal fuel pickup",
+              "wait_conditions": [
+                {
+                  "compare_type": "and",
+                  "type": "full"
+                }
+              ]
+            },
+            {
+              "station": "coal fuel dropoff",
+              "wait_conditions": [
+                {
+                  "compare_type": "and",
+                  "type": "empty"
+                }
+              ]
+            },
+            {
+              "station": "iron ore dropoff",
+              "wait_conditions": [
+                {
+                  "compare_type": "and",
+                  "type": "full"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "locomotives": [
+          4
+        ],
+        "schedule": {
+          "records": [
+            {
+              "station": "coal fuel pickup",
+              "wait_conditions": [
+                {
+                  "compare_type": "and",
+                  "type": "full"
+                }
+              ]
+            },
+            {
+              "station": "coal fuel dropoff",
+              "wait_conditions": [
+                {
+                  "compare_type": "and",
+                  "type": "empty"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "stock_connections": [
+      {
+        "stock": 1,
+        "back": 2
+      },
+      {
+        "stock": 2,
+        "front": 1
+      },
+      {
+        "stock": 3,
+        "front": 4
+      },
+      {
+        "stock": 4,
+        "back": 3
+      }
+    ],
+    "item": "blueprint",
+    "version": 562949955518464
+  }
+}

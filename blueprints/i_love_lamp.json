@@ -1,0 +1,33 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "name": "small-lamp"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "id":1,
+        "name": "small-lamp",
+        "position": {
+          "x": -108.5,
+          "y": -410.5
+        },
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "constant": 0,
+            "comparator": ">"
+          },
+          "connect_to_logistic_network": true
+        }
+      }
+    ],
+    "item": "blueprint",
+    "version": 562949955518464
+  }
+}

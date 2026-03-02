@@ -1,0 +1,780 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "name": "decider-combinator"
+        },
+        "index": 1
+      },
+      {
+        "signal": {
+          "name": "substation"
+        },
+        "index": 2
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "decider-combinator",
+        "position": {
+          "x": -137,
+          "y": -420.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "constant": 30,
+                "comparator": ">"
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "type": "virtual",
+                  "name": "signal-1"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "decider-combinator",
+        "position": {
+          "x": -135,
+          "y": -420.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "constant": 40
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "type": "virtual",
+                  "name": "signal-1"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "decider-combinator",
+        "position": {
+          "x": -124,
+          "y": -420.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "constant": 70,
+                "comparator": ">"
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "type": "virtual",
+                  "name": "signal-1"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 4,
+        "name": "decider-combinator",
+        "position": {
+          "x": -122,
+          "y": -420.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "constant": 80
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "type": "virtual",
+                  "name": "signal-1"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 5,
+        "name": "substation",
+        "position": {
+          "x": -142,
+          "y": -419
+        }
+      },
+      {
+        "entity_number": 6,
+        "name": "arithmetic-combinator",
+        "position": {
+          "x": -136,
+          "y": -419.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "arithmetic_conditions": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-1"
+            },
+            "second_signal": {
+              "type": "virtual",
+              "name": "signal-1"
+            },
+            "operation": "AND",
+            "output_signal": {
+              "name": "electronic-circuit"
+            }
+          }
+        }
+      },
+      {
+        "entity_number": 7,
+        "name": "selector-combinator",
+        "position": {
+          "x": -134,
+          "y": -419.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "operation": "select",
+          "select_max": true,
+          "index_signal": {
+            "type": "virtual",
+            "name": "signal-1"
+          }
+        }
+      },
+      {
+        "entity_number": 8,
+        "name": "substation",
+        "position": {
+          "x": -129,
+          "y": -419
+        }
+      },
+      {
+        "entity_number": 9,
+        "name": "arithmetic-combinator",
+        "position": {
+          "x": -123,
+          "y": -419.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "arithmetic_conditions": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-1"
+            },
+            "second_signal": {
+              "type": "virtual",
+              "name": "signal-1"
+            },
+            "operation": "AND",
+            "output_signal": {
+              "name": "electronic-circuit"
+            }
+          }
+        }
+      },
+      {
+        "entity_number": 10,
+        "name": "selector-combinator",
+        "position": {
+          "x": -121,
+          "y": -419.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "operation": "select",
+          "select_max": true,
+          "index_signal": {
+            "type": "virtual",
+            "name": "signal-1"
+          }
+        }
+      },
+      {
+        "entity_number": 11,
+        "name": "decider-combinator",
+        "position": {
+          "x": -140,
+          "y": -416.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "constant": 100,
+                "comparator": ">"
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 12,
+        "name": "decider-combinator",
+        "position": {
+          "x": -137,
+          "y": -417.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "constant": 200,
+                "comparator": "="
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "name": "steel-chest"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 13,
+        "name": "decider-combinator",
+        "position": {
+          "x": -137,
+          "y": -416.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "constant": 70,
+                "comparator": "="
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "name": "iron-plate"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 14,
+        "name": "steel-chest",
+        "position": {
+          "x": -134.5,
+          "y": -417.5
+        }
+      },
+      {
+        "entity_number": 15,
+        "name": "steel-chest",
+        "position": {
+          "x": -132.5,
+          "y": -417.5
+        }
+      },
+      {
+        "entity_number": 16,
+        "name": "small-lamp",
+        "position": {
+          "x": -133.5,
+          "y": -417.5
+        },
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "name": "electronic-circuit"
+            },
+            "constant": 1,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 17,
+        "name": "small-lamp",
+        "position": {
+          "x": -120.5,
+          "y": -417.5
+        },
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "name": "electronic-circuit"
+            },
+            "constant": 2,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 18,
+        "name": "constant-combinator",
+        "position": {
+          "x": -142.5,
+          "y": -415.5
+        },
+        "control_behavior": {
+          "sections": {
+            "sections": [
+              {
+                "index": 1,
+                "filters": [
+                  {
+                    "index": 1,
+                    "type": "virtual",
+                    "name": "signal-T",
+                    "quality": "normal",
+                    "comparator": "=",
+                    "count": 1
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 19,
+        "name": "arithmetic-combinator",
+        "position": {
+          "x": -140,
+          "y": -415.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "arithmetic_conditions": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "second_constant": 80,
+            "operation": "%",
+            "output_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            }
+          }
+        }
+      },
+      {
+        "entity_number": 20,
+        "name": "decider-combinator",
+        "position": {
+          "x": -137,
+          "y": -415.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "constant": 45,
+                "comparator": "="
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "name": "storage-chest"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 21,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -136.5,
+          "y": -414.5
+        }
+      },
+      {
+        "entity_number": 22,
+        "name": "steel-chest",
+        "position": {
+          "x": -133.5,
+          "y": -414.5
+        }
+      },
+      {
+        "entity_number": 23,
+        "name": "decider-combinator",
+        "position": {
+          "x": -137,
+          "y": -413.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "constant": 20,
+                "comparator": "="
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "name": "requester-chest"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 24,
+        "name": "fast-inserter",
+        "position": {
+          "x": -133.5,
+          "y": -413.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-anything"
+            },
+            "constant": 1,
+            "comparator": "="
+          },
+          "circuit_set_filters": true,
+          "circuit_read_hand_contents": true,
+          "circuit_hand_read_mode": 1,
+          "circuit_set_stack_size": true,
+          "stack_control_input_signal": {
+            "type": "virtual",
+            "name": "signal-T"
+          }
+        },
+        "use_filters": true
+      },
+      {
+        "entity_number": 25,
+        "name": "steel-chest",
+        "position": {
+          "x": -133.5,
+          "y": -412.5
+        }
+      },
+      {
+        "entity_number": 26,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -130.5,
+          "y": -413.5
+        }
+      },
+      {
+        "entity_number": 27,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -123.5,
+          "y": -413.5
+        }
+      }
+    ],
+    "wires": [
+      [
+        1,
+        1,
+        19,
+        3
+      ],
+      [
+        1,
+        3,
+        6,
+        1
+      ],
+      [
+        2,
+        1,
+        19,
+        3
+      ],
+      [
+        2,
+        4,
+        6,
+        2
+      ],
+      [
+        3,
+        1,
+        8,
+        1
+      ],
+      [
+        3,
+        3,
+        9,
+        1
+      ],
+      [
+        4,
+        4,
+        9,
+        2
+      ],
+      [
+        5,
+        1,
+        8,
+        1
+      ],
+      [
+        5,
+        1,
+        19,
+        3
+      ],
+      [
+        5,
+        5,
+        21,
+        5
+      ],
+      [
+        6,
+        3,
+        7,
+        1
+      ],
+      [
+        6,
+        3,
+        26,
+        1
+      ],
+      [
+        6,
+        4,
+        16,
+        2
+      ],
+      [
+        8,
+        1,
+        9,
+        1
+      ],
+      [
+        8,
+        5,
+        21,
+        5
+      ],
+      [
+        8,
+        5,
+        26,
+        5
+      ],
+      [
+        9,
+        3,
+        10,
+        1
+      ],
+      [
+        9,
+        4,
+        17,
+        2
+      ],
+      [
+        11,
+        2,
+        11,
+        4
+      ],
+      [
+        11,
+        2,
+        18,
+        2
+      ],
+      [
+        11,
+        2,
+        19,
+        2
+      ],
+      [
+        11,
+        4,
+        19,
+        4
+      ],
+      [
+        12,
+        1,
+        19,
+        3
+      ],
+      [
+        12,
+        3,
+        24,
+        1
+      ],
+      [
+        13,
+        1,
+        19,
+        3
+      ],
+      [
+        13,
+        3,
+        24,
+        1
+      ],
+      [
+        17,
+        1,
+        27,
+        1
+      ],
+      [
+        19,
+        2,
+        19,
+        4
+      ],
+      [
+        19,
+        3,
+        20,
+        1
+      ],
+      [
+        19,
+        3,
+        23,
+        1
+      ],
+      [
+        20,
+        3,
+        24,
+        1
+      ],
+      [
+        23,
+        3,
+        24,
+        1
+      ],
+      [
+        26,
+        1,
+        27,
+        1
+      ],
+      [
+        26,
+        5,
+        27,
+        5
+      ]
+    ],
+    "item": "blueprint",
+    "version": 562949955518464
+  }
+}

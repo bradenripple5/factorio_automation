@@ -1,0 +1,87 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "type": "item",
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 43,
+        "name": "logistic-chest-requester",
+        "position": {
+          "x": 460.5,
+          "y": -48.5
+        },
+        "request_filters": [
+          {
+            "index": 1,
+            "name": "low-density-structure",
+            "count": 160
+          },
+          {
+            "index": 2,
+            "name": "processing-unit",
+            "count": 1600
+          },
+          {
+            "index": 3,
+            "name": "flying-robot-frame",
+            "count": 800
+          }
+        ]
+      },
+      {
+        "entity_number": 44,
+        "name": "logistic-chest-storage",
+        "position": {
+          "x": 461.5,
+          "y": -48.5
+        }
+      },
+      {
+        "entity_number": 45,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": 459.5,
+          "y": -47.5
+        }
+      },
+      {
+        "entity_number": 46,
+        "name": "assembling-machine-2",
+        "position": {
+          "x": 460.5,
+          "y": -45.5
+        },
+        "recipe": "utility-science-pack",
+        "items": {
+          "speed-module-3": 4
+        }
+      },
+      {
+        "entity_number": 47,
+        "name": "stack-inserter",
+        "position": {
+          "x": 461.5,
+          "y": -47.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 48,
+        "name": "stack-inserter",
+        "position": {
+          "x": 460.5,
+          "y": -47.5
+        }
+      }
+    ],
+    "item": "blueprint",
+    "version": 281479278493696
+  }
+}
