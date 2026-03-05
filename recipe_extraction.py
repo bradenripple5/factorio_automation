@@ -285,9 +285,21 @@ def get_non_raw_materials_from_material_heirarchy(material_heirarchy):
 	recurse(material_heirarchy)
 	return {i:numpy.round(v) for i,v in dict(sorted(total_materials.items(),key = lambda item:item[0])).items()}
 
-def get_recipe(product):
+RECIPE_ALIASES = {
+	"wall": "stone-wall",
+}
 
-	if product not in recipes_dict:
+def resolve_recipe_name(product):
+	"""
+	Return a canonical recipe key from user-facing shorthand.
+	"""
+	if product in recipes_dict:
+		return product
+	return RECIPE_ALIASES.get(product)
+
+def get_recipe(product):
+	product = resolve_recipe_name(product)
+	if product is None:
 		return None
 	fullinfo = recipes_dict[product]
 	# print(fullinfo,"fullinfo")

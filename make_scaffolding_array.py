@@ -2,6 +2,8 @@ import json,copy,pyperclip,math,time,random,os
 from collections import defaultdict
 from convert_json_to_blueprint_string import *
 from make_station import *
+from make_assembling_machine import make_assembling_machine
+
 
 filename = "new_map_scaffold"
 # filename = "test_blueprint"
@@ -91,7 +93,25 @@ def neighbourify(blueprint,number_of_neighbors = 3):
 		if v["name"] == "big-electric-pole":
 			v["neighbours"] = proximity_dictionary[v["entity_number"]]
 	return blueprint
+def normalize_blueprint(bp):
+
+    entities = bp["blueprint"]["entities"]
+
+    # 1. Re-number entities cleanly
+    for i, entity in enumerate(entities):
+        entity["entity_number"] = i + 1
+
+    # 2. Remove neighbours
+    for entity in entities:
+        entity.pop("neighbours", None)
+
+    # 3. Disable auto-connect
+    for entity in entities:
+        entity["auto-connect"] = "false"
+
+    return bp
 def add_entities_to_blueprint_n_times(blueprint,number_of_times,offset_x,offset_y):
+	print("add_entities_to_blueprint_n_times called")
 	blueprint_copy = copy.deepcopy(blueprint)
 	empty_blueprint = copy.deepcopy(blueprint)
 	empty_blueprint["blueprint"]["entities"] = []
@@ -110,7 +130,7 @@ def add_entities_to_blueprint_n_times(blueprint,number_of_times,offset_x,offset_
 			if "neighbours" in v_copy:
 				v_copy["neighbours"] = [k+blueprint_length for k in v["neighbours"]]
 			new_blueprint["blueprint"]["entities"].append(v_copy)
-		connect_segments(blueprint,new_blueprint,40)
+		# connect_segments(blueprint,new_blueprint,40)
 
 	return blueprint
 
@@ -125,7 +145,7 @@ def make_m_by_n_array_of_blueprint(blueprint,m,n,offset_x,offset_y):
 
 
 def connect_segments(blueprint_one, blueprint_two, distance_threshold):
-
+	print('connect segments called')
 	def find_two_connecting_poles_from_two_segments():
 		first_division = blueprint_one["blueprint"]["entities"]
 		second_divsion = blueprint_two["blueprint"]["entities"]
@@ -148,31 +168,43 @@ def connect_segments(blueprint_one, blueprint_two, distance_threshold):
 		blueprint_one["blueprint"]["entities"][entity_one["entity_number"]-1]["neighbours"].append(entity_two["entity_number"])
 		blueprint_one["blueprint"]["entities"][entity_two["entity_number"]-1]["neighbours"].append(entity_one["entity_number"])
 
+if __name__ == "__main__":
+	# 	for i,v in enumerate(blueprint_1["blueprint"]["entities"]):
+	bp = make_assembling_machine("advanced-circuit")
+	offset_x,offset_y= 4,4
+	blueprint_array = make_m_by_n_array_of_blueprint(bp, 1, 6, offset_x-1, offset_y-1)
+	print("SCAFFOLD FORMAT:")
+	print(scaffold_blueprint.keys())
+	print(scaffold_blueprint["blueprint"].keys())
 
-# 	for i,v in enumerate(blueprint_1["blueprint"]["entities"]):
-for i,v in enumerate(scaffold_blueprint["blueprint"]["entities"]):
-	scaffold_blueprint["blueprint"]["entities"][i]["auto-connect"] = "false"
-	scaffold_blueprint["blueprint"]["entities"][i]["neighbours"] = []
+	print("ASSEMBLER FORMAT:")
+	print(bp.keys())
+	print(bp["blueprint"].keys())
+	pyperclip.copy(convertoToBlueprint(blueprint_array))
+	print("Blueprint copied")
+	# for i,v in enumerate(scaffold_blueprint["blueprint"]["entities"]):
+	# 	scaffold_blueprint["blueprint"]["entities"][i]["auto-connect"] = "false"
+	# 	scaffold_blueprint["blueprint"]["entities"][i]["neighbours"] = []
 
 
-offset_x,offset_y = get_x_and_y_distance(scaffold_blueprint)
-# scaffold_blueprint = neighbourify(scaffold_blueprint,5)
-# doubled_blueprint = add_entities_to_blueprint(make_blueprint_offset_copy(scaffold_blueprint,offset_x,offset_y-2),scaffold_blueprint)
-# blueprint_array = add_entities_to_blueprint_n_times(scaffold_blueprint,8,offset_x,0)
-# scaffold_blueprint = neighbourify(scaffold_blueprint,3)
-blueprint_to_be_copied = make_station("advanced-circuit")
-with open("blueprints\\advanced-circuit.json","w+") as f:
-	f.write(json.dumps(blueprint_to_be_copied, indent=2))
-array_length = 20
-blueprint_array = make_m_by_n_array_of_blueprint(blueprint_to_be_copied,1,6,offset_x-1,offset_y-1)
-T = time.time()
-# blueprint_array = neighbourify(blueprint_array,3)
-print(time.time()-T)
-blueprint_array = neighbourify(blueprint_array,4)
+	# offset_x,offset_y = get_x_and_y_distance(scaffold_blueprint)
+	# # scaffold_blueprint = neighbourify(scaffold_blueprint,5)
+	# # doubled_blueprint = add_entities_to_blueprint(make_blueprint_offset_copy(scaffold_blueprint,offset_x,offset_y-2),scaffold_blueprint)
+	# # blueprint_array = add_entities_to_blueprint_n_times(scaffold_blueprint,8,offset_x,0)
+	# # scaffold_blueprint = neighbourify(scaffold_blueprint,3)
+	# blueprint_to_be_copied = make_station("advanced-circuit")
+	# with open("blueprints\\advanced-circuit.json","w+") as f:
+	# 	f.write(json.dumps(blueprint_to_be_copied, indent=2))
+	# array_length = 20
+	# blueprint_array = make_m_by_n_array_of_blueprint(blueprint_to_be_copied,1,6,offset_x-1,offset_y-1)
+	# T = time.time()
+	# # blueprint_array = neighbourify(blueprint_array,3)
+	# print(time.time()-T)
+	# blueprint_array = neighbourify(blueprint_array,4)
 
-# with open("blueprint_with_neighbourify.json","w+") as f:
-# 	f.write(json.dumps(blueprint_array, indent =2 ))
-pyperclip.copy(convertoToBlueprint(blueprint_array))
+	# # with open("blueprint_with_neighbourify.json","w+") as f:
+	# # 	f.write(json.dumps(blueprint_array, indent =2 ))
+	# pyperclip.copy(convertoToBlueprint(blueprint_array))
 
 #ideally we'd locate TWO electric poles close enough to each other, one from the old blueprint one from the new
 # and connect the two. this might not solve the problem when dealing with two poles 

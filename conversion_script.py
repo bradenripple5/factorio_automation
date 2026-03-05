@@ -74,9 +74,11 @@ def getMaterialHeirarchy(item,amount =1):
 		subDict[element["id"]] =  getMaterialHeirarchy(element["id"],element["amount"]*amount)
 	return subDict
 # print(json.dumps(getMaterialHeirarchy("space-science-pack"),indent=2))
-product = "space-science-pack"
-product = "logistic-robot"
-print(json.dumps({product:getMaterialHeirarchy(product)},indent=2))
+	
+if __name__ == "__main__":
+	product = "space-science-pack"
+	product = "logistic-robot"
+	print(json.dumps({product:getMaterialHeirarchy(product)},indent=2))
 # packs = [i for i in ingqredient_dictionary if "pack" in i]
 # allitems = set()
 # for pack in packs:

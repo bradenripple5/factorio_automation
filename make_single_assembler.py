@@ -53,7 +53,8 @@ def get_x_and_y_distance(blueprint):
 	for i,v in enumerate(blueprint["blueprint"]["entities"]):
 		# if v["name"] == "roboport":
 
-		x,y = v["position"].values()
+		x = v["position"]["x"]
+		y = v["position"]["y"]
 		if x < mininum_x:
 			mininum_x = x
 		if x > maximum_x:
@@ -257,6 +258,39 @@ def generate_schedule(train_stop_type = "dropoff", locomotive_number=1, product 
 		          ]
 		        }
 		      }
+import copy
+
+def make_assembler_series(recipe_name, count=5, spacing=3):
+    base_entities = blueprint["blueprint"]["entities"]
+    
+    # find one assembler to copy
+    base_assembler = next(
+        e for e in base_entities
+        if "assembling-machine" in e["name"]
+    )
+    
+    max_entity_number = max(e["entity_number"] for e in base_entities)
+    
+    new_entities = []
+
+    for i in range(count):
+        new_assembler = copy.deepcopy(base_assembler)
+
+        max_entity_number += 1
+        new_assembler["entity_number"] = max_entity_number
+
+        # offset X position
+        new_assembler["position"]["x"] += i * spacing
+        
+        # set recipe
+        new_assembler["recipe"] = recipe_name
+        
+        new_entities.append(new_assembler)
+
+    blueprint["blueprint"]["entities"].extend(new_entities)
+
+    return blueprint
+
 def find_nearest(type, coords, map):
 	mindist = 10000
 	return_entity = None
@@ -268,7 +302,6 @@ def find_nearest(type, coords, map):
 				current_dist = mindist
 
 	return return_entity
-goods = []
 
 # for item in ["express-transport-belt"]:
 # 	map_production = [ [v]*i for v,i in getMaterialHeirarchy(item).items() if v not in raw_materials+["lubricant"]]
@@ -304,8 +337,10 @@ goods = []
 #         entity["position"]["y"] += delta_y
 
 #     return new_blueprint
-s = "0eNp9j9EOgjAMRf+lz4OIMpD9ijFkYKONW8FtGAnh390w+uhj23vPvV2gMxOOjjiAWoD6gT2o0wKerqxN2rG2CAq092g7Q3zNrO5vxJgdYBVAfMEXqGI9C0AOFAg/hG2YW55shy4KxF+SgHHw0TxwyozArKjqXS4FzKBqWecyZjnsaUyIbjL3jNijC5H9PbSPSZuYGQU8OBvrp1IU0CbL708BT3R+S5LVvimbRkpZHMuqXNc3UgxaRA=="
-print(json.dumps(convertoToJson(s),indent=2))
+if __name__ == "__main__":
+	pyperclip.copy(convertoToBlueprint(make_assembler_series("burner-mining-drill", 5)))
+	# s = "0eNp9j9EOgjAMRf+lz4OIMpD9ijFkYKONW8FtGAnh390w+uhj23vPvV2gMxOOjjiAWoD6gT2o0wKerqxN2rG2CAq092g7Q3zNrO5vxJgdYBVAfMEXqGI9C0AOFAg/hG2YW55shy4KxF+SgHHw0TxwyozArKjqXS4FzKBqWecyZjnsaUyIbjL3jNijC5H9PbSPSZuYGQU8OBvrp1IU0CbL708BT3R+S5LVvimbRkpZHMuqXNc3UgxaRA=="
+	# print(json.dumps(convertoToJson(s),indent=2))
 # print(json.dumps(t,indent=2))
 # pyperclip.copy(convertoToBlueprint(make_single_assembler("fast-inserter")))
 # pyperclip.copy(convertoToBlueprint(make_single_assembler("empty-lubricant-barrel")))
