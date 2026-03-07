@@ -1,4 +1,5 @@
 import json
+import os
 import copy
 from recipe_extraction import *
 import pyperclip 
@@ -19,7 +20,8 @@ from convert_json_to_blueprint_string import *
 
 
 def make_assembling_machine(what_you_want_make):
-	with open ("blueprints\\assembling_machines\\mining_drill") as f:
+	blueprint_path = os.path.join("blueprints", "assembling_machines", "mining_drill")
+	with open(blueprint_path) as f:
 		blueprint = convertoToJson(f.read())
 
 	recipe_name = resolve_recipe_name(what_you_want_make)
@@ -27,7 +29,13 @@ def make_assembling_machine(what_you_want_make):
 	if recipe is None:
 		raise ValueError(f"unknown recipe: {what_you_want_make}")
 	machine_name = "assembling-machine-2"
-	if is_smelted(recipe_name) or "plate" in recipe_name or recipe_name in ["stone", "brick"]:
+	recipe_info = recipes_dict.get(recipe_name, {})
+	recipe_category = recipe_info.get("category")
+	if recipe_category == "chemistry":
+		machine_name = "chemical-plant"
+	elif recipe_category == "oil-processing":
+		machine_name = "oil-refinery"
+	elif recipe_category == "smelting" or is_smelted(recipe_name) or "plate" in recipe_name or recipe_name in ["stone", "brick", "stone-brick"]:
 		machine_name = "electric-furnace"
 	requestable_ingredients = [ingredient for ingredient in recipe if not is_fluid(ingredient)]
 	#this changes every requester chest to what you want
@@ -37,6 +45,9 @@ def make_assembling_machine(what_you_want_make):
 		elif "assembling-machine" in entity["name"]:
 			blueprint["blueprint"]["entities"][index]["name"] = machine_name
 			blueprint["blueprint"]["entities"][index]["recipe"] = recipe_name
+			if machine_name == "chemical-plant":
+				# Ensure fluid inlets face south.
+				blueprint["blueprint"]["entities"][index]["direction"] = 12
 	return blueprint
 
 	return blueprint

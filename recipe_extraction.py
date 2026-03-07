@@ -9,18 +9,168 @@ def convertPathForOs(path):
 		return str(pathlib.PureWindowsPath(path))
 # import json
 
-FAC_HOME = os.getenv("FACTORIO_HOME")
-# RECIPE_HOME should equal C:\Program Files\Factorio\data\base\prototypes\recipe.lua
-relative_recipe_string = "/data/base/prototypes/recipe"
-relative_items_string = "/data/base/prototypes/item"
-relative_items_string,relative_recipe_string = convertPathForOs(relative_items_string),convertPathForOs(relative_recipe_string)
-RECIPE_HOME =  f"{FAC_HOME}{relative_recipe_string}"
-ITEMS_HOME = FAC_HOME + relative_items_string
-RECIPE_HOME, ITEMS_HOME = convertPathForOs(RECIPE_HOME),convertPathForOs(ITEMS_HOME)
-print(RECIPE_HOME, " = recipe home")
+def _strip_lua_comments(s):
+	out = []
+	i = 0
+	in_string = None
+	in_long_comment = False
+	while i < len(s):
+		ch = s[i]
+		nxt = s[i+1] if i + 1 < len(s) else ""
 
-recipe_files = os.listdir(RECIPE_HOME)
-items_files = os.listdir(ITEMS_HOME)
+		if in_long_comment:
+			if ch == "]" and nxt == "]":
+				in_long_comment = False
+				i += 2
+				continue
+			i += 1
+			continue
+
+		if in_string:
+			out.append(ch)
+			if ch == "\\":
+				if i + 1 < len(s):
+					out.append(s[i+1])
+					i += 2
+					continue
+			elif ch == in_string:
+				in_string = None
+			i += 1
+			continue
+
+		if ch in ["'", '"']:
+			in_string = ch
+			out.append(ch)
+			i += 1
+			continue
+
+		if ch == "-" and nxt == "-":
+			third = s[i+2] if i + 2 < len(s) else ""
+			fourth = s[i+3] if i + 3 < len(s) else ""
+			if third == "[" and fourth == "[":
+				in_long_comment = True
+				i += 4
+				continue
+			while i < len(s) and s[i] != "\n":
+				i += 1
+			continue
+
+		out.append(ch)
+		i += 1
+	return "".join(out)
+
+def _extract_data_extend_tables(s):
+	clean = _strip_lua_comments(s)
+	tables = []
+	search = 0
+	while True:
+		idx = clean.find("data:extend", search)
+		if idx == -1:
+			break
+		start = clean.find("(", idx)
+		if start == -1:
+			break
+		i = start + 1
+		depth = 1
+		in_string = None
+		while i < len(clean) and depth > 0:
+			ch = clean[i]
+			if in_string:
+				if ch == "\\":
+					i += 2
+					continue
+				if ch == in_string:
+					in_string = None
+				i += 1
+				continue
+			if ch in ["'", '"']:
+				in_string = ch
+				i += 1
+				continue
+			if ch == "(":
+				depth += 1
+			elif ch == ")":
+				depth -= 1
+			i += 1
+		end = i - 1
+		if depth == 0:
+			tables.append(clean[start + 1:end].strip())
+		search = i
+	return tables
+
+def _decode_data_extend_list(s):
+	results = []
+	for table_str in _extract_data_extend_tables(s):
+		try:
+			decoded = lua.decode(table_str)
+		except Exception:
+			continue
+		if isinstance(decoded, list):
+			results.extend(decoded)
+		else:
+			results.append(decoded)
+	return results
+
+FAC_HOME = os.getenv("FACTORIO_HOME")
+if not FAC_HOME:
+	raise RuntimeError("FACTORIO_HOME is not set; please point it to the Factorio install directory.")
+
+def resolve_recipe_sources(fac_home):
+	proto_home = pathlib.Path(fac_home) / "data" / "base" / "prototypes"
+	recipe_dir_candidates = [proto_home / "recipe", proto_home / "recipes"]
+	recipe_paths = []
+	recipe_home = None
+
+	for d in recipe_dir_candidates:
+		if d.is_dir():
+			recipe_home = d
+			recipe_paths.extend([d / f for f in os.listdir(d)])
+
+	if not recipe_paths and proto_home.is_dir():
+		# Newer versions may keep recipe files directly under prototypes.
+		recipe_home = proto_home
+		recipe_paths.extend(sorted(proto_home.glob("*recipe*.lua")))
+
+	# Ensure these are included if present.
+	recipe_paths.extend([
+		proto_home / "recipe.lua",
+		proto_home / "recipe" / "recipe.lua",
+	])
+
+	seen = set()
+	unique_paths = []
+	for p in recipe_paths:
+		p = pathlib.Path(p)
+		if not p.is_file():
+			continue
+		if p in seen:
+			continue
+		seen.add(p)
+		unique_paths.append(p)
+
+	return recipe_home, unique_paths, proto_home
+
+RECIPE_HOME, recipe_paths, PROTOTYPE_HOME = resolve_recipe_sources(FAC_HOME)
+print(convertPathForOs(str(RECIPE_HOME)), " = recipe home")
+
+def resolve_item_sources(proto_home):
+	item_dir_candidates = [proto_home / "item", proto_home / "items"]
+	for d in item_dir_candidates:
+		if d.is_dir():
+			return d, [d / f for f in os.listdir(d)]
+
+	item_lua = proto_home / "item.lua"
+	if item_lua.is_file():
+		return proto_home, [item_lua]
+
+	# Last resort: include any file that looks like it defines items.
+	globbed = sorted(proto_home.glob("item*.lua"))
+	if globbed:
+		return proto_home, globbed
+
+	raise RuntimeError(f"Could not find items directory or item.lua under {proto_home}")
+
+ITEMS_HOME, item_paths = resolve_item_sources(PROTOTYPE_HOME)
 fluids = []
 recipes_dict = {}
 recipes_list = []
@@ -35,50 +185,48 @@ chemical_plant_solids_from_one_fluid = ["solid-fuel","plastic-bar","lubricant","
 raw_materials = ["wood","petroleum-gas","raw-fish","water","crude-oil","coal","stone","copper-ore","iron-ore","water","light-oil","heavy-oil","petroleum-gas"]
 
 
-with open(RECIPE_HOME+convertPathForOs("//demo-furnace-recipe.lua")) as f:
-	s = f.read()
-	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-	list_of_recipes =  lua.decode(stripped_string) # actually a list
-	# print(json.dumps(list_of_recipes,indent=2))
-	for index,item in enumerate(list_of_recipes[:]):
-		if isinstance(item,dict):
-			if "name" in item:
-				smelted_list.add(item["name"])
+demo_furnace_path = pathlib.Path(RECIPE_HOME) / "demo-furnace-recipe.lua"
+if not demo_furnace_path.is_file():
+	alt_demo = PROTOTYPE_HOME / "recipe" / "demo-furnace-recipe.lua"
+	if alt_demo.is_file():
+		demo_furnace_path = alt_demo
 
-RECIPE_LUA_FILE_HOME = FAC_HOME +   convertPathForOs(f"//data//base//prototypes//recipe//recipe.lua")
-OTHER_RECIPE_LUA_FILE_HOME = FAC_HOME +   convertPathForOs(f"//data//base//prototypes//recipe.lua")
+# In Factorio 2.0, demo-furnace-recipe.lua may not exist. If missing, skip smelted_list bootstrap.
+if demo_furnace_path.is_file():
+	with open(demo_furnace_path) as f:
+		s = f.read()
+		list_of_recipes = _decode_data_extend_list(s)
+		# print(json.dumps(list_of_recipes,indent=2))
+		for index,item in enumerate(list_of_recipes[:]):
+			if isinstance(item,dict):
+				if "name" in item:
+					smelted_list.add(item["name"])
 
-for file in recipe_files+[RECIPE_LUA_FILE_HOME]+[OTHER_RECIPE_LUA_FILE_HOME]:
-	if file == OTHER_RECIPE_LUA_FILE_HOME:
-		with open(file) as f:
-			s = f.read()
-			s = "".join(s.split("\n\n")[2:]).strip().removeprefix("data:extend\n(").removesuffix(")")
+RECIPE_LUA_FILE_HOME = pathlib.Path(FAC_HOME) / "data" / "base" / "prototypes" / "recipe" / "recipe.lua"
+OTHER_RECIPE_LUA_FILE_HOME = pathlib.Path(FAC_HOME) / "data" / "base" / "prototypes" / "recipe.lua"
 
-	elif file == RECIPE_LUA_FILE_HOME:
-		with open(file) as f:
-			s = f.read()
+for file in recipe_paths:
+	with open(file) as f:
+		s = f.read()
+		# print(s)
 
-	else:
-		with open (RECIPE_HOME+"//"+file) as f:
-			s = f.read()
-			# print(s)
+	if "data:extend" not in s:
+		continue
 
-	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-	list_of_recipes =  lua.decode(stripped_string) # actually a list
+	list_of_recipes = _decode_data_extend_list(s)
 	for index,recipe in enumerate(list_of_recipes[:]):
 
 		recipes_list.append(recipe)
 		if isinstance(recipe,dict):
 			if "name" in recipe:
-				if file == "demo-recipe.lua":
+				if pathlib.Path(file).name == "demo-recipe.lua":
 					recipe["energy_required"] = 0.5
 				recipes_dict[recipe["name"]] = recipe
 
 
 
 
-stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-list_of_recipes =  lua.decode(stripped_string) # actually a list
+list_of_recipes = _decode_data_extend_list(s)
 # if OTHER_RECIPE_LUA_FILE_HOME == file:
 # 	print(list_of_recipes, " = stripped_string")
 for index,recipe in enumerate(list_of_recipes[:]):
@@ -88,16 +236,15 @@ for index,recipe in enumerate(list_of_recipes[:]):
 			recipes_dict[recipe["name"]] = recipe
 
 items_dict = {}
-for file in items_files:
-	with open (ITEMS_HOME+convertPathForOs("/")+file) as f:
+for file in item_paths:
+	with open(file) as f:
 		s = f.read()
 	lines = s.split("\n")
-	if file != "demo-crash-site-item.lua":
+	if pathlib.Path(file).name != "demo-crash-site-item.lua":
 		lines = s.split("\n")
 		if "require" in lines[0]:
 			s = "\n".join(lines[1:])
-		stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-		list_of_recipes =  lua.decode(stripped_string) # actually a list
+		list_of_recipes = _decode_data_extend_list(s)
 		# print(json.dumps(list_of_recipes,indent=2))
 		for index,item in enumerate(list_of_recipes[:]):
 
@@ -120,18 +267,32 @@ def is_smelted(item):
 #i.e. the amount of items that can fit into one square of a chest.
 def get_fluids():
 	fluids = set()
-	with open(RECIPE_HOME+convertPathForOs("/")+"fluid-recipe.lua") as f:
-		s = f.read()
-	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-	list_of_recipes =  lua.decode(stripped_string) # actually a list
-	# print(json.dumps(list_of_recipes,indent=2))
-	for index,recipe in enumerate(list_of_recipes[:]):
-		if isinstance(recipe,dict):
-			for key in ["results","ingredients"]:
-				if key in recipe:
-					for i in recipe[key]:
-						if i["type"] == "fluid":
-							fluids.add(i["name"])
+	fluid_recipe_path = pathlib.Path(RECIPE_HOME) / "fluid-recipe.lua"
+	if not fluid_recipe_path.is_file():
+		alt_fluid_recipe = PROTOTYPE_HOME / "fluid-recipe.lua"
+		fluid_recipe_path = alt_fluid_recipe if alt_fluid_recipe.is_file() else fluid_recipe_path
+	if fluid_recipe_path.is_file():
+		with open(fluid_recipe_path) as f:
+			s = f.read()
+		list_of_recipes = _decode_data_extend_list(s)
+		# print(json.dumps(list_of_recipes,indent=2))
+		for index,recipe in enumerate(list_of_recipes[:]):
+			if isinstance(recipe,dict):
+				for key in ["results","ingredients"]:
+					if key in recipe:
+						for i in recipe[key]:
+							if i["type"] == "fluid":
+								fluids.add(i["name"])
+
+	# Factorio 2.0 has fluid definitions in fluid.lua
+	fluid_defs_path = PROTOTYPE_HOME / "fluid.lua"
+	if fluid_defs_path.is_file():
+		with open(fluid_defs_path) as f:
+			s = f.read()
+		list_of_fluids = _decode_data_extend_list(s)
+		for index,fluid in enumerate(list_of_fluids[:]):
+			if isinstance(fluid,dict) and "name" in fluid:
+				fluids.add(fluid["name"])
 	return fluids
 fluids = get_fluids()
 for fluid in fluids:
@@ -382,4 +543,3 @@ def make_inserter_sequence(product, max_val=3):
 # for item in items:
 # 	with open(convertPathForOs(f"recipes/{item}.json"), "w+") as f:
 # 		f.write(json.dumps(makeMaterialHeirarchy(item,1),indent=2))
-
