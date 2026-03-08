@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Factorio Patch Overlay</title>
+  </head>
+  <body>
+    <h1>Factorio Patch Overlay</h1>
+    <div>
+      <button id="upload-btn" type="button">Upload Screenshot</button>
+      <button id="latest-btn" type="button">Load Latest Screenshot</button>
+      <button id="clipboard-btn" type="button">Load From Clipboard</button>
+      <button id="edges-btn" type="button">Edge Detect</button>
+      <button id="edges-overlay-btn" type="button">Edge Overlay</button>
+      <button id="color-filter-btn" type="button">Color Filter</button>
+      <input id="file-input" type="file" accept="image/*" hidden />
+    </div>
+    <div style="margin-top: 8px;">
+      <label for="edge-threshold">Edge Threshold:</label>
+      <input
+        id="edge-threshold"
+        type="range"
+        min="0"
+        max="255"
+        value="80"
+        style="display: block; width: 100%; margin-top: 6px;"
+      />
+      <span id="edge-threshold-value">80</span>
+      <label style="margin-left: 16px;">
+        <input id="checker-only" type="checkbox" />
+        Checkerboard Only
+      </label>
+    </div>
+    <div style="margin-top: 8px;">
+      <label for="color-range">Color Range (tolerance):</label>
+      <input
+        id="color-range"
+        type="range"
+        min="0"
+        max="180"
+        value="35"
+        style="display: block; width: 100%; margin-top: 6px;"
+      />
+      <span id="color-range-value">35</span>
+    </div>
+    <div style="margin-top: 8px;">
+      <label for="checker-density">Checker Density:</label>
+      <input
+        id="checker-density"
+        type="range"
+        min="0"
+        max="100"
+        value="55"
+        style="display: block; width: 100%; margin-top: 6px;"
+      />
+      <span id="checker-density-value">55</span>
+    </div>
+    <div id="status" style="margin-top: 8px; color: #b00020;"></div>
+    <div>
+      <img id="preview" alt="Screenshot preview" style="max-width: 100%; margin-top: 16px;" />
+    </div>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <script type="module">
+      const uploadBtn = document.getElementById("upload-btn");
+      const latestBtn = document.getElementById("latest-btn");
+      const clipboardBtn = document.getElementById("clipboard-btn");
+      const edgesBtn = document.getElementById("edges-btn");
+      const edgesOverlayBtn = document.getElementById("edges-overlay-btn");
+      const colorFilterBtn = document.getElementById("color-filter-btn");
+      const fileInput = document.getElementById("file-input");
+      const preview = document.getElementById("preview");
+      const status = document.getElementById("status");
+      const canvas = document.getElementById("canvas");
+      const edgeThreshold = document.getElementById("edge-threshold");
+      const edgeThresholdValue = document.getElementById("edge-threshold-value");
+      const checkerOnly = document.getElementById("checker-only");
+      const checkerDensity = document.getElementById("checker-density");
+      const checkerDensityValue = document.getElementById("checker-density-value");
+      const colorRange = document.getElementById("color-range");
+      const colorRangeValue = document.getElementById("color-range-value");
+      let originalSrc = "";
+
+      uploadBtn.addEventListener("click", () => {
+        fileInput.click();
+      });
+
+      fileInput.addEventListener("change", () => {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+        const url = URL.createObjectURL(file);
+        preview.src = url;
+        originalSrc = url;
+        status.textContent = "";
+      });
+
+      latestBtn.addEventListener("click", async () => {
+        try {
+          const resp = await fetch(`/api/latest-screenshot?t=${Date.now()}`);
+          if (!resp.ok) {
+            const msg = await resp.text();
+            status.textContent = `Failed to load latest screenshot: ${msg}`;
+            return;
+          }
+          const blob = await resp.blob();
+          const url = URL.createObjectURL(blob);
+          preview.src = url;
+          originalSrc = url;
+          status.textContent = "";
+        } catch (err) {
+          status.textContent = `Error loading latest screenshot: ${err}`;
+        }
+      });
+
+      clipboardBtn.addEventListener("click", async () => {
+        try {
+          if (!navigator.clipboard || !navigator.clipboard.read) {
+            status.textContent = "Clipboard image access not supported in this browser.";
+            return;
+          }
+          const items = await navigator.clipboard.read();
+          for (const item of items) {
+            for (const type of item.types) {
+              if (type.startsWith("image/")) {
+                const blob = await item.getType(type);
+                const url = URL.createObjectURL(blob);
+                preview.src = url;
+                originalSrc = url;
+                status.textContent = "";
+                return;
+              }
+            }
+          }
+          status.textContent = "Clipboard does not contain an image.";
+        } catch (err) {
+          status.textContent = `Clipboard error: ${err}`;
+        }
+      });
+
+      edgeThreshold.addEventListener("input", () => {
+        edgeThresholdValue.textContent = edgeThreshold.value;
+        edgesOverlayBtn.click();
+      });
+      checkerDensity.addEventListener("input", () => {
+        checkerDensityValue.textContent = checkerDensity.value;
+        if (checkerOnly.checked) {
+          edgesOverlayBtn.click();
+        }
+      });
+      colorRange.addEventListener("input", () => {
+        colorRangeValue.textContent = colorRange.value;
+      });
+
+      function buildCheckerMask(gray, width, height, delta = 20, windowSize = 5, densityThreshold = 0.55) {
+        const base = new Uint8ClampedArray(width * height);
+        for (let y = 0; y < height - 1; y++) {
+          for (let x = 0; x < width - 1; x++) {
+            const a = gray[y * width + x];
+            const b = gray[y * width + (x + 1)];
+            const c = gray[(y + 1) * width + x];
+            const d = gray[(y + 1) * width + (x + 1)];
+            const maxv = Math.max(a, b, c, d);
+            const minv = Math.min(a, b, c, d);
+            if (maxv - minv >= delta) {
+              const idx = y * width + x;
+              base[idx] = 1;
+              base[idx + 1] = 1;
+              base[idx + width] = 1;
+              base[idx + width + 1] = 1;
+            }
+          }
+        }
+        // Box-filter density
+        const mask = new Uint8ClampedArray(width * height);
+        const r = Math.floor(windowSize / 2);
+        const area = windowSize * windowSize;
+        for (let y = r; y < height - r; y++) {
+          for (let x = r; x < width - r; x++) {
+            let sum = 0;
+            for (let yy = -r; yy <= r; yy++) {
+              for (let xx = -r; xx <= r; xx++) {
+                sum += base[(y + yy) * width + (x + xx)];
+              }
+            }
+            if (sum / area >= densityThreshold) {
+              mask[y * width + x] = 1;
+            }
+          }
+        }
+        return mask;
+      }
+
+      edgesBtn.addEventListener("click", async () => {
+        if (!preview.src) {
+          status.textContent = "Load an image first.";
+          return;
+        }
+        status.textContent = "";
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const { data, width, height } = imageData;
+          const gray = new Uint8ClampedArray(width * height);
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            gray[i / 4] = (0.299 * r + 0.587 * g + 0.114 * b) | 0;
+          }
+          const out = new Uint8ClampedArray(width * height);
+          const checkerMask = checkerOnly.checked
+            ? buildCheckerMask(
+                gray,
+                width,
+                height,
+                20,
+                5,
+                parseInt(checkerDensity.value, 10) / 100
+              )
+            : null;
+          const gxKernel = [-1, 0, 1, -2, 0, 2, -1, 0, 1];
+          const gyKernel = [1, 2, 1, 0, 0, 0, -1, -2, -1];
+          const threshold = parseInt(edgeThreshold.value, 10);
+          for (let y = 1; y < height - 1; y++) {
+            for (let x = 1; x < width - 1; x++) {
+              if (checkerMask && !checkerMask[y * width + x]) {
+                continue;
+              }
+              let gx = 0;
+              let gy = 0;
+              let k = 0;
+              for (let ky = -1; ky <= 1; ky++) {
+                for (let kx = -1; kx <= 1; kx++) {
+                  const val = gray[(y + ky) * width + (x + kx)];
+                  gx += val * gxKernel[k];
+                  gy += val * gyKernel[k];
+                  k++;
+                }
+              }
+              const mag = Math.sqrt(gx * gx + gy * gy);
+              out[y * width + x] = mag > threshold ? 255 : 0;
+            }
+          }
+          for (let i = 0; i < data.length; i += 4) {
+            const v = out[i / 4];
+            data[i] = v;
+            data[i + 1] = v;
+            data[i + 2] = v;
+            data[i + 3] = 255;
+          }
+          ctx.putImageData(imageData, 0, 0);
+          preview.src = canvas.toDataURL("image/png");
+        };
+        img.onerror = () => {
+          status.textContent = "Failed to load image for edge detection.";
+        };
+        img.src = originalSrc || preview.src;
+      });
+
+      edgesOverlayBtn.addEventListener("click", async () => {
+        if (!preview.src) {
+          status.textContent = "Load an image first.";
+          return;
+        }
+        status.textContent = "";
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const { data, width, height } = imageData;
+          const gray = new Uint8ClampedArray(width * height);
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            gray[i / 4] = (0.299 * r + 0.587 * g + 0.114 * b) | 0;
+          }
+          const checkerMask = checkerOnly.checked
+            ? buildCheckerMask(
+                gray,
+                width,
+                height,
+                20,
+                5,
+                parseInt(checkerDensity.value, 10) / 100
+              )
+            : null;
+          const gxKernel = [-1, 0, 1, -2, 0, 2, -1, 0, 1];
+          const gyKernel = [1, 2, 1, 0, 0, 0, -1, -2, -1];
+          const threshold = parseInt(edgeThreshold.value, 10);
+          for (let y = 1; y < height - 1; y++) {
+            for (let x = 1; x < width - 1; x++) {
+              if (checkerMask && !checkerMask[y * width + x]) {
+                continue;
+              }
+              let gx = 0;
+              let gy = 0;
+              let k = 0;
+              for (let ky = -1; ky <= 1; ky++) {
+                for (let kx = -1; kx <= 1; kx++) {
+                  const val = gray[(y + ky) * width + (x + kx)];
+                  gx += val * gxKernel[k];
+                  gy += val * gyKernel[k];
+                  k++;
+                }
+              }
+              const mag = Math.sqrt(gx * gx + gy * gy);
+              if (mag > threshold) {
+                const idx = (y * width + x) * 4;
+                data[idx] = 0;
+                data[idx + 1] = 0;
+                data[idx + 2] = 0;
+                data[idx + 3] = 255;
+              }
+            }
+          }
+          ctx.putImageData(imageData, 0, 0);
+          preview.src = canvas.toDataURL("image/png");
+        };
+        img.onerror = () => {
+          status.textContent = "Failed to load image for edge overlay.";
+        };
+        img.src = originalSrc || preview.src;
+      });
+
+      colorFilterBtn.addEventListener("click", async () => {
+        if (!preview.src) {
+          status.textContent = "Load an image first.";
+          return;
+        }
+        status.textContent = "Click a color in the image to filter by.";
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const { data, width, height } = imageData;
+
+          const clickHandler = (e) => {
+            const rect = preview.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const x = Math.floor((e.clientX - rect.left) * scaleX);
+            const y = Math.floor((e.clientY - rect.top) * scaleY);
+            if (x < 0 || y < 0 || x >= width || y >= height) return;
+            const idx = (y * width + x) * 4;
+            const tr = data[idx];
+            const tg = data[idx + 1];
+            const tb = data[idx + 2];
+            const tol = parseInt(colorRange.value, 10);
+            for (let i = 0; i < data.length; i += 4) {
+              const r = data[i];
+              const g = data[i + 1];
+              const b = data[i + 2];
+              const dist =
+                Math.abs(r - tr) + Math.abs(g - tg) + Math.abs(b - tb);
+              if (dist > tol * 3) {
+                data[i] = 0;
+                data[i + 1] = 0;
+                data[i + 2] = 0;
+                data[i + 3] = 255;
+              }
+            }
+            ctx.putImageData(imageData, 0, 0);
+            preview.src = canvas.toDataURL("image/png");
+            status.textContent = "";
+            preview.removeEventListener("click", clickHandler);
+          };
+
+          preview.addEventListener("click", clickHandler);
+        };
+        img.onerror = () => {
+          status.textContent = "Failed to load image for color filter.";
+        };
+        img.src = originalSrc || preview.src;
+      });
+
+      // Auto-load latest screenshot on page load.
+      window.addEventListener("load", () => {
+        latestBtn.click();
+      });
+    </script>
+  </body>
+</html>

@@ -1,5 +1,11 @@
 {
+  "scripts": {
+    "dev": "vite --config server/vite.config.js"
+  },
   "dependencies": {
     "codex": "^0.2.3"
+  },
+  "devDependencies": {
+    "vite": "^6.2.2"
   }
 }

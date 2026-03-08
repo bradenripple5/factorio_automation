@@ -287,16 +287,21 @@ if __name__ == "__main__":
   items = None
   columns = None
   include_deps = False
+  print_counts = False
+  no_clipboard = False
   help_text = (
       "Usage:\n"
       "  python run_program.py [--with-deps|--deps|-d] <item> <count> [<item> <count> ...] <columns>\n"
       "  python run_program.py --modules <module>=<count|max>\n"
+      "  python run_program.py --print-counts [--no-clipboard] [--with-deps|--deps|-d] <item> <count> ... <columns>\n"
       "\n"
       "Default behavior:\n"
       "  Makes an array of assembling machines for the provided items.\n"
       "\n"
       "Flags:\n"
       "  --with-deps, --deps, -d   Include balanced dependency machines.\n"
+      "  --print-counts            Print computed machine counts.\n"
+      "  --no-clipboard            Skip copying output to clipboard.\n"
       "  --modules, --module       Apply modules using clipboard blueprint by default.\n"
       "                           Optionally add file=<path> to read from a file.\n"
       "  -h, --help                Show this help.\n"
@@ -304,6 +309,8 @@ if __name__ == "__main__":
       "Examples:\n"
       "  python run_program.py iron-plate 5 electronic-circuit 5 3\n"
       "  python run_program.py --deps iron-plate 5 electronic-circuit 5 3\n"
+      "  python run_program.py --print-counts --deps iron-plate 5 electronic-circuit 5 3\n"
+      "  python run_program.py --no-clipboard iron-plate 5 3\n"
       "  python run_program.py --modules speed-module-1=max\n"
       "  python run_program.py --modules speed-module-1=max file=blueprint\n"
   )
@@ -312,6 +319,12 @@ if __name__ == "__main__":
     if "-h" in args or "--help" in args:
       print(help_text)
       sys.exit(0)
+    if "--print-counts" in args:
+      print_counts = True
+      args = [a for a in args if a != "--print-counts"]
+    if "--no-clipboard" in args:
+      no_clipboard = True
+      args = [a for a in args if a != "--no-clipboard"]
     if "--modules" in args or "--module" in args:
       try:
         idx = args.index("--modules") if "--modules" in args else args.index("--module")
@@ -400,12 +413,24 @@ if __name__ == "__main__":
 
     if include_deps:
       order, machine_counts = compute_balanced_dependency_counts(target_counts)
+      if print_counts:
+        print("Machine counts (including dependencies):")
+        for product in order:
+          count = machine_counts.get(product, 0)
+          if count:
+            print(f"{product}: {count}")
       for product in order:
         if product in target_counts:
           continue
         count = machine_counts.get(product, 0)
         if count > 0:
           items.extend([product] * count)
+    elif print_counts:
+      print("Machine counts (targets only):")
+      for product in target_products:
+        count = target_counts.get(product, 0)
+        if count:
+          print(f"{product}: {count}")
 
   raw_set = set(raw_materials)
   all_non_raw_products = sorted(
@@ -436,5 +461,6 @@ if __name__ == "__main__":
       # ["efficiency-module","efficiency-module-2","efficiency-module-3","productivity-module","productivity-module-2","productivity-module-3","speed-module","speed-module-2","speed-module-3","belt-immunity-equipment","express-splitter","express-transport-belt","express-underground-belt","fast-splitter","fast-transport-belt","fast-underground-belt","splitter","transport-belt","underground-belt"]
   )
   print(convertoToBlueprint(bp))
-  pyperclip.copy(convertoToBlueprint(bp))
+  if not no_clipboard:
+    pyperclip.copy(convertoToBlueprint(bp))
 # {'blueprint': {'icons': [{'signal': {'name': 'assembling-machine-2'}, 'index': 1}], 'entities': [{'entity_number': 1, 'name': 'requester-chest', 'position': {'x': -2.5, 'y': 89.5}, 'request_filters': {'sections': [{'index': 1, 'filters': [{'index': 2, 'name': 'stone-brick', 'quality': 'normal', 'comparator': '=', 'count': 1000}]}]}}, {'entity_number': 2, 'name': 'active-provider-chest', 'position': {'x': -3.5, 'y': 89.5}}, {'entity_number': 3, 'name': 'fast-inserter', 'position': {'x': -3.5, 'y': 90.5}, 'direction': 8}, {'entity_number': 4, 'name': 'fast-inserter', 'position': {'x': -2.5, 'y': 90.5}}, {'entity_number': 5, 'name': 'assembling-machine-2', 'position': {'x': -2.5, 'y': 92.5}, 'recipe': 'stone-wall', 'recipe_quality': 'normal'}], 'item': 'blueprint', 'version': 562949955911682}}
