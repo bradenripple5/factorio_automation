@@ -4,82 +4,277 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Factorio Patch Overlay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css" />
+    <style>
+      #controls-panel {
+        max-height: calc(100vh - 56px);
+        overflow-y: auto;
+        padding-right: 6px;
+      }
+
+      @media (max-width: 980px) {
+        #controls-panel {
+          max-height: none;
+          overflow-y: visible;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>Factorio Patch Overlay</h1>
-    <div>
-      <button id="upload-btn" type="button">Upload Screenshot</button>
-      <button id="latest-btn" type="button">Load Latest Screenshot</button>
-      <button id="clipboard-btn" type="button">Load From Clipboard</button>
-      <button id="edges-btn" type="button">Edge Detect</button>
-      <button id="edges-overlay-btn" type="button">Edge Overlay</button>
-      <button id="color-filter-btn" type="button">Color Filter</button>
-      <input id="file-input" type="file" accept="image/*" hidden />
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+      <h1 style="margin: 0;">Factorio Patch Overlay</h1>
+      <button id="toggle-controls-btn" type="button">Collapse Controls</button>
     </div>
-    <div style="margin-top: 8px;">
-      <label for="edge-threshold">Edge Threshold:</label>
-      <input
-        id="edge-threshold"
-        type="range"
-        min="0"
-        max="255"
-        value="80"
-        style="display: block; width: 100%; margin-top: 6px;"
-      />
-      <span id="edge-threshold-value">80</span>
-      <label style="margin-left: 16px;">
-        <input id="checker-only" type="checkbox" />
-        Checkerboard Only
-      </label>
-    </div>
-    <div style="margin-top: 8px;">
-      <label for="color-range">Color Range (tolerance):</label>
-      <input
-        id="color-range"
-        type="range"
-        min="0"
-        max="180"
-        value="35"
-        style="display: block; width: 100%; margin-top: 6px;"
-      />
-      <span id="color-range-value">35</span>
-    </div>
-    <div style="margin-top: 8px;">
-      <label for="checker-density">Checker Density:</label>
-      <input
-        id="checker-density"
-        type="range"
-        min="0"
-        max="100"
-        value="55"
-        style="display: block; width: 100%; margin-top: 6px;"
-      />
-      <span id="checker-density-value">55</span>
-    </div>
-    <div id="status" style="margin-top: 8px; color: #b00020;"></div>
-    <div>
-      <img id="preview" alt="Screenshot preview" style="max-width: 100%; margin-top: 16px;" />
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start;">
+      <div id="image-panel" style="flex: 1 1 640px; min-width: 320px;">
+        <img id="preview" alt="Screenshot preview" style="max-width: 100%; margin-top: 8px;" />
+      </div>
+      <div id="controls-panel" style="flex: 1 1 420px; min-width: 320px;">
+        <div>
+          <button id="upload-btn" type="button">Upload Screenshot</button>
+          <button id="latest-btn" type="button">Load Latest Screenshot</button>
+          <button id="clipboard-btn" type="button">Load From Clipboard</button>
+          <button id="reload-btn" type="button">Reload</button>
+          <button id="target-filter-btn" type="button">Color Filter</button>
+          <button id="edges-btn" type="button">Edge Detect</button>
+          <button id="edges-overlay-btn" type="button">Edge Overlay</button>
+          <input id="file-input" type="file" accept="image/*" hidden />
+        </div>
+        <div style="margin-top: 8px; padding: 8px; border: 1px solid #ccc;">
+          <strong>Color Blob Pattern Overlay</strong>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 8px;">
+            <label for="color-blob-threshold" style="width: 72px;">Similarity</label>
+            <span id="color-blob-threshold-value" style="width: 28px; text-align: right;">28</span>
+            <input id="color-blob-threshold" type="range" min="0" max="255" value="28" style="flex: 1;" />
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 8px;">
+            <label for="color-blob-radius" style="width: 72px;">Radius</label>
+            <span id="color-blob-radius-value" style="width: 28px; text-align: right;">2</span>
+            <input id="color-blob-radius" type="range" min="1" max="8" value="2" style="flex: 1;" />
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 8px;">
+            <label for="color-blob-aspect" style="width: 72px;">Aspect</label>
+            <span id="color-blob-aspect-value" style="width: 28px; text-align: right;">4.0</span>
+            <input id="color-blob-aspect" type="range" min="1" max="10" step="0.1" value="4.0" style="flex: 1;" />
+          </div>
+          <div style="margin-top: 8px;">
+            <label>
+              <input id="color-blob-run-pattern" type="checkbox" checked />
+              Run color blob pattern overlay
+            </label>
+          </div>
+          <div style="margin-top: 8px;">
+            <label>
+              <input id="color-blob-use-target-filter" type="checkbox" />
+              Constrain to target color +/- tolerance
+            </label>
+          </div>
+          <div style="margin-top: 8px; font-weight: 600;">RGB Inclusion Filters</div>
+          <div id="color-blob-include-filters" style="margin-top: 6px; display: flex; flex-direction: column; gap: 8px;"></div>
+          <div style="margin-top: 6px;">
+            <button id="color-blob-add-filter" type="button" title="Add inclusion filter">+</button>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 8px;">
+            <label for="color-blob-min-area" style="width: 72px;">Min Area</label>
+            <input id="color-blob-min-area" type="number" min="1" value="90" style="width: 96px;" />
+            <label for="color-blob-max-area" style="width: 72px;">Max Area</label>
+            <input id="color-blob-max-area" type="number" min="1" value="1000" style="width: 110px;" />
+            <button id="color-blob-btn" type="button">Pattern Blobs</button>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 8px;">
+            <label>
+              <input id="color-blob-resource-mask" type="checkbox" />
+              Limit search to pixels matching resources_separated_by_color_ranges.json
+            </label>
+          </div>
+        </div>
+        <div style="margin-top: 8px;">
+          <label for="edge-threshold">Edge Threshold:</label>
+          <input
+            id="edge-threshold"
+            type="range"
+            min="0"
+            max="255"
+            value="80"
+            style="display: block; width: 100%; margin-top: 6px;"
+          />
+          <span id="edge-threshold-value">80</span>
+          <label style="margin-left: 16px;">
+            <input id="checker-only" type="checkbox" />
+            Checkerboard Only
+          </label>
+        </div>
+        <div style="margin-top: 8px; padding: 8px; border: 1px solid #ccc;">
+          <strong>K-Means Filter</strong>
+          <div style="margin-top: 8px; display: flex; align-items: center; gap: 8px;">
+            <label for="kmeans-k" style="width: 20px;">K</label>
+            <span id="kmeans-k-value" style="width: 24px; text-align: right;">5</span>
+            <input id="kmeans-k" type="range" min="2" max="16" value="5" style="flex: 1;" />
+            <button id="kmeans-btn" type="button">Apply K-Means</button>
+          </div>
+        </div>
+        <div style="margin-top: 8px; padding: 8px; border: 1px solid #ccc;">
+          <strong>RGB Range Filter</strong>
+          <div style="display: flex; gap: 16px; margin-top: 8px; align-items: center;">
+            <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+              <label for="min-color-picker" style="width: 86px;">Lower Color</label>
+              <input id="min-color-picker" type="color" value="#000000" />
+            </div>
+            <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+              <label for="max-color-picker" style="width: 86px;">Upper Color</label>
+              <input id="max-color-picker" type="color" value="#ffffff" />
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+            <label for="rgb-range-r" style="width: 46px;">R</label>
+            <span id="rgb-range-r-value" style="width: 90px; text-align: right;">0-255</span>
+            <input id="rgb-range-r" type="text" value="" style="flex: 1;" />
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+            <label for="rgb-range-g" style="width: 46px;">G</label>
+            <span id="rgb-range-g-value" style="width: 90px; text-align: right;">0-255</span>
+            <input id="rgb-range-g" type="text" value="" style="flex: 1;" />
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+            <label for="rgb-range-b" style="width: 46px;">B</label>
+            <span id="rgb-range-b-value" style="width: 90px; text-align: right;">0-255</span>
+            <input id="rgb-range-b" type="text" value="" style="flex: 1;" />
+          </div>
+        </div>
+        <div style="margin-top: 8px; padding: 8px; border: 1px solid #ccc;">
+          <strong>Target Color +/- Filter</strong>
+          <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px;">
+            <label for="target-color-picker" style="width: 84px;">Color</label>
+            <input id="target-color-picker" type="color" value="#808080" />
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px;">
+            <label for="target-tolerance" style="width: 84px;">Tolerance</label>
+            <span id="target-tolerance-value" style="width: 32px; text-align: right;">30</span>
+            <input id="target-tolerance" type="range" min="0" max="128" value="30" style="flex: 1;" />
+          </div>
+        </div>
+        <div style="margin-top: 8px; padding: 8px; border: 1px solid #ccc;">
+          <strong>Save Resource Range</strong>
+          <div id="resource-buttons" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;"></div>
+          <button id="copy-resource-json-btn" type="button" style="margin-top: 8px;">Copy JSON</button>
+          <button id="update-resource-json-btn" type="button" style="margin-top: 8px; margin-left: 8px;">Update JSON File</button>
+          <pre id="resource-ranges-output" style="margin-top: 8px; max-height: 180px; overflow: auto; background: #f5f5f5; padding: 8px;">{}</pre>
+        </div>
+        <div style="margin-top: 8px; padding: 8px; border: 1px solid #ccc;">
+          <strong>Resource Patch Overlay</strong>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 8px;">
+            <label for="overlay-resource-select" style="width: 72px;">Resource</label>
+            <select id="overlay-resource-select" style="flex: 1;"></select>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 8px;">
+            <label for="overlay-min-area" style="width: 72px;">Min Area</label>
+            <input id="overlay-min-area" type="number" min="1" value="120" style="width: 96px;" />
+            <button id="overlay-resource-btn" type="button">Overlay Patches</button>
+          </div>
+        </div>
+        <div style="margin-top: 8px;">
+          <label for="checker-density">Pixel Density:</label>
+          <input
+            id="checker-density"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.45"
+            style="display: block; width: 100%; margin-top: 6px;"
+          />
+          <span id="checker-density-value">0.45</span>
+        </div>
+        <div id="status" style="margin-top: 8px; color: #b00020;"></div>
+      </div>
     </div>
     <canvas id="canvas" style="display:none;"></canvas>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
     <script type="module">
       const uploadBtn = document.getElementById("upload-btn");
+      const toggleControlsBtn = document.getElementById("toggle-controls-btn");
       const latestBtn = document.getElementById("latest-btn");
       const clipboardBtn = document.getElementById("clipboard-btn");
+      const reloadBtn = document.getElementById("reload-btn");
+      const targetFilterBtn = document.getElementById("target-filter-btn");
       const edgesBtn = document.getElementById("edges-btn");
       const edgesOverlayBtn = document.getElementById("edges-overlay-btn");
-      const colorFilterBtn = document.getElementById("color-filter-btn");
       const fileInput = document.getElementById("file-input");
       const preview = document.getElementById("preview");
       const status = document.getElementById("status");
       const canvas = document.getElementById("canvas");
+      const imagePanel = document.getElementById("image-panel");
+      const controlsPanel = document.getElementById("controls-panel");
       const edgeThreshold = document.getElementById("edge-threshold");
       const edgeThresholdValue = document.getElementById("edge-threshold-value");
       const checkerOnly = document.getElementById("checker-only");
       const checkerDensity = document.getElementById("checker-density");
       const checkerDensityValue = document.getElementById("checker-density-value");
-      const colorRange = document.getElementById("color-range");
-      const colorRangeValue = document.getElementById("color-range-value");
+      const kmeansK = document.getElementById("kmeans-k");
+      const kmeansKValue = document.getElementById("kmeans-k-value");
+      const kmeansBtn = document.getElementById("kmeans-btn");
+      const rgbRangeR = document.getElementById("rgb-range-r");
+      const rgbRangeG = document.getElementById("rgb-range-g");
+      const rgbRangeB = document.getElementById("rgb-range-b");
+      const rgbRangeRValue = document.getElementById("rgb-range-r-value");
+      const rgbRangeGValue = document.getElementById("rgb-range-g-value");
+      const rgbRangeBValue = document.getElementById("rgb-range-b-value");
+      const minColorPicker = document.getElementById("min-color-picker");
+      const maxColorPicker = document.getElementById("max-color-picker");
+      const targetColorPicker = document.getElementById("target-color-picker");
+      const targetTolerance = document.getElementById("target-tolerance");
+      const targetToleranceValue = document.getElementById("target-tolerance-value");
+      const resourceButtons = document.getElementById("resource-buttons");
+      const resourceRangesOutput = document.getElementById("resource-ranges-output");
+      const copyResourceJsonBtn = document.getElementById("copy-resource-json-btn");
+      const updateResourceJsonBtn = document.getElementById("update-resource-json-btn");
+      const overlayResourceSelect = document.getElementById("overlay-resource-select");
+      const overlayMinArea = document.getElementById("overlay-min-area");
+      const overlayResourceBtn = document.getElementById("overlay-resource-btn");
+      const colorBlobThreshold = document.getElementById("color-blob-threshold");
+      const colorBlobThresholdValue = document.getElementById("color-blob-threshold-value");
+      const colorBlobRadius = document.getElementById("color-blob-radius");
+      const colorBlobRadiusValue = document.getElementById("color-blob-radius-value");
+      const colorBlobAspect = document.getElementById("color-blob-aspect");
+      const colorBlobAspectValue = document.getElementById("color-blob-aspect-value");
+      const colorBlobRunPattern = document.getElementById("color-blob-run-pattern");
+      const colorBlobUseTargetFilter = document.getElementById("color-blob-use-target-filter");
+      const colorBlobIncludeFilters = document.getElementById("color-blob-include-filters");
+      const colorBlobAddFilter = document.getElementById("color-blob-add-filter");
+      const colorBlobMinArea = document.getElementById("color-blob-min-area");
+      const colorBlobMaxArea = document.getElementById("color-blob-max-area");
+      const colorBlobResourceMask = document.getElementById("color-blob-resource-mask");
+      const colorBlobBtn = document.getElementById("color-blob-btn");
+      const resourceTypes = [
+        "iron-ore",
+        "copper-ore",
+        "coal",
+        "stone",
+        "uranium-ore",
+        "crude-oil",
+        "water",
+        "trees",
+      ];
+      const resourceRanges = {};
+      let overlayRangesCache = null;
+      const samplerCanvas = document.createElement("canvas");
+      const samplerCtx = samplerCanvas.getContext("2d", { willReadFrequently: true });
+      let samplerReady = false;
+      let samplerLoadToken = 0;
+      let overlayRedrawTimer = null;
+      let colorBlobRedrawTimer = null;
+      let hoverEvent = null;
+      let hoverQueued = false;
+      let sampledX = null;
+      let sampledY = null;
+      let targetFilterActive = false;
+      let targetFilterBaseSrc = "";
       let originalSrc = "";
+      let colorBlobFilterIdCounter = 0;
+      let rgbRangeRSlider = null;
+      let rgbRangeGSlider = null;
+      let rgbRangeBSlider = null;
 
       uploadBtn.addEventListener("click", () => {
         fileInput.click();
@@ -136,20 +331,1253 @@
           status.textContent = `Clipboard error: ${err}`;
         }
       });
+      reloadBtn.addEventListener("click", () => {
+        if (!originalSrc && !preview.src) {
+          status.textContent = "Load an image first.";
+          return;
+        }
+        if (targetFilterActive) {
+          setTargetFilterActive(false);
+        }
+        preview.src = originalSrc || preview.src;
+        status.textContent = "";
+      });
+      toggleControlsBtn.addEventListener("click", () => {
+        const hidden = controlsPanel.style.display === "none";
+        if (hidden) {
+          controlsPanel.style.display = "";
+          imagePanel.style.flex = "1 1 640px";
+          toggleControlsBtn.textContent = "Collapse Controls";
+        } else {
+          controlsPanel.style.display = "none";
+          imagePanel.style.flex = "1 1 100%";
+          toggleControlsBtn.textContent = "Show Controls";
+        }
+      });
 
       edgeThreshold.addEventListener("input", () => {
         edgeThresholdValue.textContent = edgeThreshold.value;
         edgesOverlayBtn.click();
       });
       checkerDensity.addEventListener("input", () => {
-        checkerDensityValue.textContent = checkerDensity.value;
+        checkerDensityValue.textContent = Number.parseFloat(checkerDensity.value).toFixed(2);
         if (checkerOnly.checked) {
           edgesOverlayBtn.click();
         }
+        if (preview.src && overlayResourceSelect.value) {
+          if (overlayRedrawTimer) {
+            clearTimeout(overlayRedrawTimer);
+          }
+          overlayRedrawTimer = setTimeout(() => {
+            overlayRedrawTimer = null;
+            overlayResourcePatches();
+          }, 120);
+        }
       });
-      colorRange.addEventListener("input", () => {
-        colorRangeValue.textContent = colorRange.value;
+      kmeansK.addEventListener("input", () => {
+        kmeansKValue.textContent = kmeansK.value;
       });
+
+      function nearestCentroidIndex(r, g, b, centroids) {
+        let bestIdx = 0;
+        let bestDist = Number.POSITIVE_INFINITY;
+        for (let i = 0; i < centroids.length; i++) {
+          const dr = r - centroids[i][0];
+          const dg = g - centroids[i][1];
+          const db = b - centroids[i][2];
+          const dist = dr * dr + dg * dg + db * db;
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestIdx = i;
+          }
+        }
+        return bestIdx;
+      }
+
+      function applyKMeansFilter() {
+        if (!preview.src) {
+          status.textContent = "Load an image first.";
+          return;
+        }
+        status.textContent = "Applying K-means filter...";
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const { data, width, height } = imageData;
+          const pixelCount = width * height;
+          if (pixelCount === 0) {
+            status.textContent = "Image has no pixels.";
+            return;
+          }
+
+          const k = parseInt(kmeansK.value, 10);
+          const sampleTarget = 20000;
+          const stride = Math.max(1, Math.floor(pixelCount / sampleTarget));
+          const samples = [];
+          for (let i = 0; i < pixelCount; i += stride) {
+            const idx = i * 4;
+            samples.push([data[idx], data[idx + 1], data[idx + 2]]);
+          }
+          if (samples.length === 0) {
+            samples.push([data[0], data[1], data[2]]);
+          }
+
+          const centroids = [];
+          for (let c = 0; c < k; c++) {
+            const sampleIdx = Math.floor((c * (samples.length - 1)) / Math.max(1, k - 1));
+            centroids.push(samples[sampleIdx].slice());
+          }
+
+          const iterations = 8;
+          for (let iter = 0; iter < iterations; iter++) {
+            const sums = Array.from({ length: k }, () => [0, 0, 0]);
+            const counts = new Uint32Array(k);
+            for (let i = 0; i < samples.length; i++) {
+              const r = samples[i][0];
+              const g = samples[i][1];
+              const b = samples[i][2];
+              const cIdx = nearestCentroidIndex(r, g, b, centroids);
+              sums[cIdx][0] += r;
+              sums[cIdx][1] += g;
+              sums[cIdx][2] += b;
+              counts[cIdx] += 1;
+            }
+            for (let c = 0; c < k; c++) {
+              if (counts[c] > 0) {
+                centroids[c][0] = Math.round(sums[c][0] / counts[c]);
+                centroids[c][1] = Math.round(sums[c][1] / counts[c]);
+                centroids[c][2] = Math.round(sums[c][2] / counts[c]);
+              } else {
+                const sampleIdx = (iter * 977 + c * 101) % samples.length;
+                centroids[c] = samples[sampleIdx].slice();
+              }
+            }
+          }
+
+          for (let i = 0; i < pixelCount; i++) {
+            const idx = i * 4;
+            const cIdx = nearestCentroidIndex(data[idx], data[idx + 1], data[idx + 2], centroids);
+            data[idx] = centroids[cIdx][0];
+            data[idx + 1] = centroids[cIdx][1];
+            data[idx + 2] = centroids[cIdx][2];
+            data[idx + 3] = 255;
+          }
+
+          ctx.putImageData(imageData, 0, 0);
+          preview.src = canvas.toDataURL("image/png");
+          status.textContent = "";
+        };
+        img.onerror = () => {
+          status.textContent = "Failed to load image for K-means filter.";
+        };
+        img.src = originalSrc || preview.src;
+      }
+      kmeansBtn.addEventListener("click", applyKMeansFilter);
+      function formatRangeLabel(from, to) {
+        return `${from}-${to}`;
+      }
+      function getMainRgbBounds() {
+        return {
+          lowR: rgbRangeRSlider.result.from,
+          highR: rgbRangeRSlider.result.to,
+          lowG: rgbRangeGSlider.result.from,
+          highG: rgbRangeGSlider.result.to,
+          lowB: rgbRangeBSlider.result.from,
+          highB: rgbRangeBSlider.result.to,
+        };
+      }
+      function updateRgbSliderLabels() {
+        const bounds = getMainRgbBounds();
+        rgbRangeRValue.textContent = formatRangeLabel(bounds.lowR, bounds.highR);
+        rgbRangeGValue.textContent = formatRangeLabel(bounds.lowG, bounds.highG);
+        rgbRangeBValue.textContent = formatRangeLabel(bounds.lowB, bounds.highB);
+        minColorPicker.value = rgbToHex(
+          bounds.lowR,
+          bounds.lowG,
+          bounds.lowB
+        );
+        maxColorPicker.value = rgbToHex(
+          bounds.highR,
+          bounds.highG,
+          bounds.highB
+        );
+      }
+      function createDoubleRangeSlider(input, valueLabel, options, onChange) {
+        $(input).ionRangeSlider({
+          skin: "round",
+          type: "double",
+          min: options.min,
+          max: options.max,
+          from: options.from,
+          to: options.to,
+          grid: false,
+          onStart(data) {
+            valueLabel.textContent = formatRangeLabel(data.from, data.to);
+          },
+          onChange(data) {
+            valueLabel.textContent = formatRangeLabel(data.from, data.to);
+            onChange(data);
+          },
+        });
+        return $(input).data("ionRangeSlider");
+      }
+      function initializeMainRgbRangeSliders() {
+        const handleChange = () => {
+          updateRgbSliderLabels();
+          applyColorFilter();
+        };
+        rgbRangeRSlider = createDoubleRangeSlider(rgbRangeR, rgbRangeRValue, {
+          min: 0,
+          max: 255,
+          from: 0,
+          to: 255,
+        }, handleChange);
+        rgbRangeGSlider = createDoubleRangeSlider(rgbRangeG, rgbRangeGValue, {
+          min: 0,
+          max: 255,
+          from: 0,
+          to: 255,
+        }, handleChange);
+        rgbRangeBSlider = createDoubleRangeSlider(rgbRangeB, rgbRangeBValue, {
+          min: 0,
+          max: 255,
+          from: 0,
+          to: 255,
+        }, handleChange);
+        updateRgbSliderLabels();
+      }
+      function channelToHex(n) {
+        return n.toString(16).padStart(2, "0");
+      }
+      function rgbToHex(r, g, b) {
+        return `#${channelToHex(r)}${channelToHex(g)}${channelToHex(b)}`;
+      }
+      function scheduleColorBlobRedraw() {
+        if (!preview.src) {
+          return;
+        }
+        if (colorBlobRedrawTimer) {
+          clearTimeout(colorBlobRedrawTimer);
+        }
+        colorBlobRedrawTimer = setTimeout(() => {
+          colorBlobRedrawTimer = null;
+          applyColorBlobPatterns();
+        }, 120);
+      }
+      function buildColorBlobRangeControl(channel, initialLow, initialHigh) {
+        const wrap = document.createElement("div");
+        wrap.style.display = "flex";
+        wrap.style.alignItems = "center";
+        wrap.style.gap = "6px";
+        wrap.style.flex = "1";
+
+        const label = document.createElement("label");
+        label.textContent = channel;
+        label.style.width = "40px";
+
+        const valueSpan = document.createElement("span");
+        valueSpan.textContent = formatRangeLabel(initialLow, initialHigh);
+        valueSpan.style.width = "90px";
+        valueSpan.style.textAlign = "right";
+
+        const slider = document.createElement("input");
+        slider.type = "text";
+        slider.style.flex = "1";
+
+        wrap.appendChild(label);
+        wrap.appendChild(valueSpan);
+        wrap.appendChild(slider);
+        return { wrap, slider, valueSpan };
+      }
+      function addColorBlobIncludeFilter(initial = null) {
+        const filterId = ++colorBlobFilterIdCounter;
+        const values = {
+          minR: initial?.minR ?? 0,
+          maxR: initial?.maxR ?? 255,
+          minG: initial?.minG ?? 0,
+          maxG: initial?.maxG ?? 255,
+          minB: initial?.minB ?? 0,
+          maxB: initial?.maxB ?? 255,
+        };
+
+        const card = document.createElement("div");
+        card.dataset.filterId = String(filterId);
+        card.style.border = "1px solid #ccc";
+        card.style.padding = "6px";
+
+        const header = document.createElement("div");
+        header.style.display = "flex";
+        header.style.justifyContent = "space-between";
+        header.style.alignItems = "center";
+        header.style.marginBottom = "6px";
+
+        const title = document.createElement("strong");
+        title.textContent = `Filter ${filterId}`;
+
+        const controls = document.createElement("div");
+        controls.style.display = "flex";
+        controls.style.gap = "6px";
+
+        const collapseBtn = document.createElement("button");
+        collapseBtn.type = "button";
+        collapseBtn.textContent = "Collapse";
+
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.textContent = "Remove";
+        removeBtn.disabled = colorBlobIncludeFilters.children.length === 0;
+        removeBtn.addEventListener("click", () => {
+          card.remove();
+          updateColorBlobFilterButtons();
+          scheduleColorBlobRedraw();
+        });
+
+        const body = document.createElement("div");
+
+        collapseBtn.addEventListener("click", () => {
+          const collapsed = body.style.display === "none";
+          body.style.display = collapsed ? "" : "none";
+          collapseBtn.textContent = collapsed ? "Collapse" : "Expand";
+        });
+
+        header.appendChild(title);
+        controls.appendChild(collapseBtn);
+        controls.appendChild(removeBtn);
+        header.appendChild(controls);
+
+        const row1 = document.createElement("div");
+        row1.style.display = "flex";
+        row1.style.gap = "12px";
+        row1.style.marginBottom = "6px";
+        const rangeR = buildColorBlobRangeControl("R", values.minR, values.maxR);
+        row1.appendChild(rangeR.wrap);
+
+        const row2 = document.createElement("div");
+        row2.style.display = "flex";
+        row2.style.gap = "12px";
+        row2.style.marginBottom = "6px";
+        const rangeG = buildColorBlobRangeControl("G", values.minG, values.maxG);
+        row2.appendChild(rangeG.wrap);
+
+        const row3 = document.createElement("div");
+        row3.style.display = "flex";
+        row3.style.gap = "12px";
+        const rangeB = buildColorBlobRangeControl("B", values.minB, values.maxB);
+        row3.appendChild(rangeB.wrap);
+
+        card._filterInputs = {
+          r: null,
+          g: null,
+          b: null,
+        };
+        card._removeBtn = removeBtn;
+
+        card.appendChild(header);
+        body.appendChild(row1);
+        body.appendChild(row2);
+        body.appendChild(row3);
+        card.appendChild(body);
+        colorBlobIncludeFilters.appendChild(card);
+        card._filterInputs.r = createDoubleRangeSlider(rangeR.slider, rangeR.valueSpan, {
+          min: 0,
+          max: 255,
+          from: values.minR,
+          to: values.maxR,
+        }, scheduleColorBlobRedraw);
+        card._filterInputs.g = createDoubleRangeSlider(rangeG.slider, rangeG.valueSpan, {
+          min: 0,
+          max: 255,
+          from: values.minG,
+          to: values.maxG,
+        }, scheduleColorBlobRedraw);
+        card._filterInputs.b = createDoubleRangeSlider(rangeB.slider, rangeB.valueSpan, {
+          min: 0,
+          max: 255,
+          from: values.minB,
+          to: values.maxB,
+        }, scheduleColorBlobRedraw);
+        updateColorBlobFilterButtons();
+      }
+      function updateColorBlobFilterButtons() {
+        const cards = Array.from(colorBlobIncludeFilters.children);
+        for (const card of cards) {
+          if (card._removeBtn) {
+            card._removeBtn.disabled = cards.length <= 1;
+          }
+        }
+      }
+      function getColorBlobIncludeFilters() {
+        return Array.from(colorBlobIncludeFilters.children).map((card) => {
+          const inputs = card._filterInputs;
+          return {
+            lowR: inputs.r.result.from,
+            highR: inputs.r.result.to,
+            lowG: inputs.g.result.from,
+            highG: inputs.g.result.to,
+            lowB: inputs.b.result.from,
+            highB: inputs.b.result.to,
+          };
+        });
+      }
+      function pixelMatchesIncludeFilters(r, g, b, filters) {
+        if (filters.length === 0) {
+          return true;
+        }
+        for (const filter of filters) {
+          if (
+            r >= filter.lowR && r <= filter.highR &&
+            g >= filter.lowG && g <= filter.highG &&
+            b >= filter.lowB && b <= filter.highB
+          ) {
+            return true;
+          }
+        }
+        return false;
+      }
+      function pixelMatchesTargetTolerance(r, g, b) {
+        const targetRgb = hexToRgb(targetColorPicker.value);
+        const tol = parseInt(targetTolerance.value, 10);
+        return (
+          Math.abs(r - targetRgb.r) <= tol &&
+          Math.abs(g - targetRgb.g) <= tol &&
+          Math.abs(b - targetRgb.b) <= tol
+        );
+      }
+      function hexToRgb(hex) {
+        const value = hex.replace("#", "");
+        return {
+          r: parseInt(value.slice(0, 2), 16),
+          g: parseInt(value.slice(2, 4), 16),
+          b: parseInt(value.slice(4, 6), 16),
+        };
+      }
+      function refreshSamplerFromPreview() {
+        if (!preview.src || !samplerCtx) {
+          samplerReady = false;
+          return;
+        }
+        const token = ++samplerLoadToken;
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          if (token !== samplerLoadToken) {
+            return;
+          }
+          samplerCanvas.width = img.naturalWidth;
+          samplerCanvas.height = img.naturalHeight;
+          samplerCtx.drawImage(img, 0, 0);
+          samplerReady = true;
+        };
+        img.onerror = () => {
+          if (token === samplerLoadToken) {
+            samplerReady = false;
+          }
+        };
+        img.src = preview.src;
+      }
+      function pickHoverTargetColor(evt) {
+        if (targetFilterActive) {
+          return;
+        }
+        if (!samplerReady || !samplerCtx) {
+          return;
+        }
+        const rect = preview.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) {
+          return;
+        }
+        const px = Math.floor((evt.clientX - rect.left) * (samplerCanvas.width / rect.width));
+        const py = Math.floor((evt.clientY - rect.top) * (samplerCanvas.height / rect.height));
+        const x = Math.max(0, Math.min(samplerCanvas.width - 1, px));
+        const y = Math.max(0, Math.min(samplerCanvas.height - 1, py));
+        sampledX = x;
+        sampledY = y;
+        setTargetColorFromSamplerPixel(x, y);
+      }
+      function setTargetColorFromSamplerPixel(x, y) {
+        const pixel = samplerCtx.getImageData(x, y, 1, 1).data;
+        const hex = rgbToHex(pixel[0], pixel[1], pixel[2]);
+        if (targetColorPicker.value !== hex) {
+          targetColorPicker.value = hex;
+          updateTargetFilterButtonStyle();
+          if (targetFilterActive && targetFilterBaseSrc) {
+            applyTargetColorFilter(targetFilterBaseSrc);
+          }
+        }
+      }
+      function nudgeSampledPixel(dx, dy) {
+        if (targetFilterActive || !samplerReady || !samplerCtx) {
+          return;
+        }
+        if (sampledX === null || sampledY === null) {
+          sampledX = Math.floor(samplerCanvas.width / 2);
+          sampledY = Math.floor(samplerCanvas.height / 2);
+        }
+        sampledX = Math.max(0, Math.min(samplerCanvas.width - 1, sampledX + dx));
+        sampledY = Math.max(0, Math.min(samplerCanvas.height - 1, sampledY + dy));
+        setTargetColorFromSamplerPixel(sampledX, sampledY);
+      }
+      function isFormFieldFocused() {
+        const activeTag = document.activeElement ? document.activeElement.tagName : "";
+        return activeTag === "INPUT" || activeTag === "TEXTAREA" || activeTag === "SELECT";
+      }
+      const previewObserver = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.type === "attributes" && mutation.attributeName === "src") {
+            refreshSamplerFromPreview();
+          }
+        }
+      });
+      previewObserver.observe(preview, { attributes: true, attributeFilter: ["src"] });
+      preview.addEventListener("mousemove", (evt) => {
+        hoverEvent = evt;
+        if (hoverQueued) {
+          return;
+        }
+        hoverQueued = true;
+        requestAnimationFrame(() => {
+          hoverQueued = false;
+          if (hoverEvent) {
+            pickHoverTargetColor(hoverEvent);
+          }
+        });
+      });
+      function applyColorFilter() {
+        if (!preview.src) {
+          return;
+        }
+        status.textContent = "";
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const { data } = imageData;
+          const { lowR, highR, lowG, highG, lowB, highB } = getMainRgbBounds();
+
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            const inRange =
+              r >= lowR && r <= highR &&
+              g >= lowG && g <= highG &&
+              b >= lowB && b <= highB;
+            if (!inRange) {
+              data[i] = 0;
+              data[i + 1] = 0;
+              data[i + 2] = 0;
+            }
+            data[i + 3] = 255;
+          }
+          ctx.putImageData(imageData, 0, 0);
+          preview.src = canvas.toDataURL("image/png");
+        };
+        img.onerror = () => {
+          status.textContent = "Failed to load image for color filter.";
+        };
+        img.src = originalSrc || preview.src;
+      }
+      function applyTargetColorFilter(sourceOverride = null) {
+        if (!preview.src) {
+          return;
+        }
+        status.textContent = "";
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const { data } = imageData;
+          const targetRgb = hexToRgb(targetColorPicker.value);
+          const tol = parseInt(targetTolerance.value, 10);
+
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            const inRange =
+              Math.abs(r - targetRgb.r) <= tol &&
+              Math.abs(g - targetRgb.g) <= tol &&
+              Math.abs(b - targetRgb.b) <= tol;
+            if (!inRange) {
+              data[i] = 0;
+              data[i + 1] = 0;
+              data[i + 2] = 0;
+            }
+            data[i + 3] = 255;
+          }
+          ctx.putImageData(imageData, 0, 0);
+          preview.src = canvas.toDataURL("image/png");
+        };
+        img.onerror = () => {
+          status.textContent = "Failed to load image for target color filter.";
+        };
+        img.src = sourceOverride || originalSrc || preview.src;
+      }
+      function updateTargetFilterButtonStyle() {
+        targetFilterBtn.style.backgroundColor = targetColorPicker.value;
+        targetFilterBtn.style.color = "#111";
+        if (targetFilterActive) {
+          targetFilterBtn.style.border = "2px solid #222";
+          targetFilterBtn.style.boxShadow = "inset 0 0 0 2px rgba(0,0,0,0.25)";
+        } else {
+          targetFilterBtn.style.border = "";
+          targetFilterBtn.style.boxShadow = "";
+        }
+      }
+      function setTargetFilterActive(nextActive) {
+        targetFilterActive = nextActive;
+        if (targetFilterActive) {
+          if (!preview.src) {
+            status.textContent = "Load an image first.";
+            targetFilterActive = false;
+            updateTargetFilterButtonStyle();
+            return;
+          }
+          targetFilterBaseSrc = preview.src;
+          applyTargetColorFilter(targetFilterBaseSrc);
+        } else if (targetFilterBaseSrc) {
+          preview.src = targetFilterBaseSrc;
+          targetFilterBaseSrc = "";
+        }
+        updateTargetFilterButtonStyle();
+      }
+      function getCurrentColorRange() {
+        const targetRgb = hexToRgb(targetColorPicker.value);
+        const tol = parseInt(targetTolerance.value, 10);
+        const low = [
+          Math.max(0, targetRgb.r - tol),
+          Math.max(0, targetRgb.g - tol),
+          Math.max(0, targetRgb.b - tol),
+        ];
+        const high = [
+          Math.min(255, targetRgb.r + tol),
+          Math.min(255, targetRgb.g + tol),
+          Math.min(255, targetRgb.b + tol),
+        ];
+        return [low, high];
+      }
+      function renderResourceRanges() {
+        resourceRangesOutput.textContent = JSON.stringify(resourceRanges, null, 2);
+      }
+      function renderOverlayResourceOptions(resourceMap) {
+        const keys = Object.keys(resourceMap || {});
+        overlayResourceSelect.innerHTML = "";
+        for (const key of keys) {
+          const option = document.createElement("option");
+          option.value = key;
+          option.textContent = key;
+          overlayResourceSelect.appendChild(option);
+        }
+      }
+      async function getRangesForOverlay() {
+        if (overlayRangesCache) {
+          return overlayRangesCache;
+        }
+        try {
+          const resp = await fetch(`/resources_separated_by_color_ranges.json?t=${Date.now()}`);
+          if (resp.ok) {
+            const parsed = await resp.json();
+            if (parsed && typeof parsed === "object") {
+              overlayRangesCache = parsed;
+              return overlayRangesCache;
+            }
+          }
+        } catch (_err) {
+          // Fallback below if file is not available.
+        }
+        if (Object.keys(resourceRanges).length > 0) {
+          overlayRangesCache = resourceRanges;
+          return overlayRangesCache;
+        }
+        throw new Error("No resource ranges found.");
+      }
+      function getValidatedRange(resourceMap, resourceName) {
+        const range = resourceMap[resourceName];
+        if (!Array.isArray(range) || range.length !== 2) {
+          throw new Error(`Invalid range format for ${resourceName}.`);
+        }
+        const low = range[0];
+        const high = range[1];
+        if (!Array.isArray(low) || !Array.isArray(high) || low.length !== 3 || high.length !== 3) {
+          throw new Error(`Invalid RGB bounds for ${resourceName}.`);
+        }
+        return [
+          [Math.max(0, low[0] | 0), Math.max(0, low[1] | 0), Math.max(0, low[2] | 0)],
+          [Math.min(255, high[0] | 0), Math.min(255, high[1] | 0), Math.min(255, high[2] | 0)],
+        ];
+      }
+      async function overlayResourcePatches() {
+        if (!preview.src) {
+          status.textContent = "Load an image first.";
+          return;
+        }
+        const resourceName = overlayResourceSelect.value;
+        if (!resourceName) {
+          status.textContent = "No resource selected.";
+          return;
+        }
+        const minArea = Math.max(1, parseInt(overlayMinArea.value || "1", 10));
+        let ranges;
+        try {
+          ranges = await getRangesForOverlay();
+        } catch (err) {
+          status.textContent = `Failed to load ranges: ${err.message || err}`;
+          return;
+        }
+        let bounds;
+        try {
+          bounds = getValidatedRange(ranges, resourceName);
+        } catch (err) {
+          status.textContent = err.message || String(err);
+          return;
+        }
+        if (targetFilterActive) {
+          setTargetFilterActive(false);
+        }
+        status.textContent = `Overlaying ${resourceName} patches...`;
+        const src = originalSrc || preview.src;
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => {
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const { data, width, height } = imageData;
+          const pixelCount = width * height;
+          const state = new Int16Array(pixelCount);
+          const [low, high] = bounds;
+
+          for (let i = 0; i < pixelCount; i++) {
+            const idx = i * 4;
+            const r = data[idx];
+            const g = data[idx + 1];
+            const b = data[idx + 2];
+            if (
+              r >= low[0] && r <= high[0] &&
+              g >= low[1] && g <= high[1] &&
+              b >= low[2] && b <= high[2]
+            ) {
+              state[i] = 1;
+            }
+          }
+
+          const chunkSize = 4;
+          const chunkDensityThreshold = Number.parseFloat(checkerDensity.value);
+          const halfLow = Math.floor((chunkSize - 1) / 2);
+          const halfHigh = chunkSize - halfLow - 1;
+          const neighborDx = [-1, 0, 1, -1, 1, -1, 0, 1];
+          const neighborDy = [-1, -1, -1, 0, 0, 1, 1, 1];
+
+          const chunkPassesDensity = (x, y) => {
+            const x0 = Math.max(0, x - halfLow);
+            const x1 = Math.min(width - 1, x + halfHigh);
+            const y0 = Math.max(0, y - halfLow);
+            const y1 = Math.min(height - 1, y + halfHigh);
+            let inRangeCount = 0;
+            let total = 0;
+            for (let yy = y0; yy <= y1; yy++) {
+              let rowIdx = yy * width + x0;
+              for (let xx = x0; xx <= x1; xx++, rowIdx++) {
+                if (state[rowIdx] !== 0) {
+                  inRangeCount++;
+                }
+                total++;
+              }
+            }
+            return total > 0 && inRangeCount / total >= chunkDensityThreshold;
+          };
+
+          const queue = new Int32Array(pixelCount);
+          const componentFlag = new Uint8Array(pixelCount);
+          let keptPatches = 0;
+
+          for (let i = 0; i < pixelCount; i++) {
+            if (state[i] !== 1) {
+              continue;
+            }
+            const sx = i % width;
+            const sy = (i / width) | 0;
+            if (!chunkPassesDensity(sx, sy)) {
+              continue;
+            }
+            let qHead = 0;
+            let qTail = 0;
+            queue[qTail++] = i;
+            state[i] = -1;
+            const component = [];
+            while (qHead < qTail) {
+              const cur = queue[qHead++];
+              component.push(cur);
+              componentFlag[cur] = 1;
+              const cx = cur % width;
+              const cy = (cur / width) | 0;
+              for (let k = 0; k < 8; k++) {
+                const nx = cx + neighborDx[k];
+                const ny = cy + neighborDy[k];
+                if (nx < 0 || ny < 0 || nx >= width || ny >= height) {
+                  continue;
+                }
+                const ni = ny * width + nx;
+                if (state[ni] !== 1) {
+                  continue;
+                }
+                if (!chunkPassesDensity(nx, ny)) {
+                  continue;
+                }
+                state[ni] = -1;
+                queue[qTail++] = ni;
+              }
+            }
+
+            if (component.length < minArea) {
+              for (const pix of component) {
+                componentFlag[pix] = 0;
+              }
+              continue;
+            }
+            keptPatches++;
+
+            for (const pix of component) {
+              const x = pix % width;
+              const y = (pix / width) | 0;
+              const left = x - 1;
+              const right = x + 1;
+              const up = y - 1;
+              const down = y + 1;
+              const border =
+                left < 0 || right >= width || up < 0 || down >= height ||
+                !componentFlag[y * width + left] ||
+                !componentFlag[y * width + right] ||
+                !componentFlag[up * width + x] ||
+                !componentFlag[down * width + x];
+              if (!border) {
+                continue;
+              }
+              const di = pix * 4;
+              data[di] = 255;
+              data[di + 1] = 40;
+              data[di + 2] = 40;
+              data[di + 3] = 255;
+            }
+            for (const pix of component) {
+              componentFlag[pix] = 0;
+            }
+          }
+
+          ctx.putImageData(imageData, 0, 0);
+          preview.src = canvas.toDataURL("image/png");
+          status.textContent = `Overlay complete: ${keptPatches} patch(es) for ${resourceName}.`;
+        };
+        img.onerror = () => {
+          status.textContent = "Failed to load image for overlay.";
+        };
+        img.src = src;
+      }
+      function shouldPaintBlobPattern(x, y, blobId) {
+        const period = 5 + (blobId % 4);
+        const mode = blobId % 5;
+        if (mode === 0) {
+          return ((x + y) % period) < 2;
+        }
+        if (mode === 1) {
+          return ((x - y + 4096) % period) < 2;
+        }
+        if (mode === 2) {
+          return (x % period) < 2;
+        }
+        if (mode === 3) {
+          return (y % period) < 2;
+        }
+        return ((2 * x + y) % period) < 2;
+      }
+      async function buildResourceMask(data, pixelCount) {
+        const ranges = await getRangesForOverlay();
+        const boundsList = Object.keys(ranges)
+          .map((resourceName) => {
+            try {
+              return getValidatedRange(ranges, resourceName);
+            } catch (_err) {
+              return null;
+            }
+          })
+          .filter(Boolean);
+        if (boundsList.length === 0) {
+          throw new Error("No valid resource ranges found.");
+        }
+
+        const mask = new Uint8Array(pixelCount);
+        for (let i = 0; i < pixelCount; i++) {
+          const idx = i * 4;
+          const r = data[idx];
+          const g = data[idx + 1];
+          const b = data[idx + 2];
+          for (const [low, high] of boundsList) {
+            if (
+              r >= low[0] && r <= high[0] &&
+              g >= low[1] && g <= high[1] &&
+              b >= low[2] && b <= high[2]
+            ) {
+              mask[i] = 1;
+              break;
+            }
+          }
+        }
+        return mask;
+      }
+      async function applyColorBlobPatterns() {
+        if (!preview.src) {
+          status.textContent = "Load an image first.";
+          return;
+        }
+        if (targetFilterActive) {
+          setTargetFilterActive(false);
+        }
+        const similarity = Math.max(0, parseInt(colorBlobThreshold.value, 10));
+        const radius = Math.max(1, parseInt(colorBlobRadius.value, 10));
+        const maxAspect = Math.max(1, Number.parseFloat(colorBlobAspect.value));
+        const minArea = Math.max(1, parseInt(colorBlobMinArea.value || "1", 10));
+        const parsedMaxArea = parseInt(colorBlobMaxArea.value || "", 10);
+        const maxArea = Number.isFinite(parsedMaxArea) && parsedMaxArea >= minArea
+          ? parsedMaxArea
+          : Number.POSITIVE_INFINITY;
+        const runPattern = colorBlobRunPattern.checked;
+        const useTargetFilter = colorBlobUseTargetFilter.checked;
+        const includeFilters = getColorBlobIncludeFilters();
+        status.textContent = "Detecting color blobs...";
+        const src = originalSrc || preview.src;
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = async () => {
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const { data, width, height } = imageData;
+          const pixelCount = width * height;
+          const visited = new Uint8Array(pixelCount);
+          const queue = new Int32Array(pixelCount);
+          let resourceMask = null;
+          if (colorBlobResourceMask.checked) {
+            try {
+              resourceMask = await buildResourceMask(data, pixelCount);
+            } catch (err) {
+              status.textContent = `Failed to build resource mask: ${err.message || err}`;
+              return;
+            }
+          }
+          if (!runPattern) {
+            let matchedPixels = 0;
+            for (let i = 0; i < pixelCount; i++) {
+              const idx = i * 4;
+              const matchesInclude = pixelMatchesIncludeFilters(data[idx], data[idx + 1], data[idx + 2], includeFilters);
+              const matchesResourceMask = !resourceMask || resourceMask[i];
+              const matchesTarget = !useTargetFilter || pixelMatchesTargetTolerance(data[idx], data[idx + 1], data[idx + 2]);
+              if (matchesInclude && matchesResourceMask && matchesTarget) {
+                matchedPixels++;
+                data[idx + 3] = 255;
+                continue;
+              }
+              data[idx] = 0;
+              data[idx + 1] = 0;
+              data[idx + 2] = 0;
+              data[idx + 3] = 255;
+            }
+            ctx.putImageData(imageData, 0, 0);
+            preview.src = canvas.toDataURL("image/png");
+            status.textContent = `Inclusion filter preview complete: ${matchedPixels} pixel(s).`;
+            return;
+          }
+          const offsets = [];
+          for (let dy = -radius; dy <= radius; dy++) {
+            for (let dx = -radius; dx <= radius; dx++) {
+              if (dx === 0 && dy === 0) {
+                continue;
+              }
+              if (dx * dx + dy * dy <= radius * radius) {
+                offsets.push([dx, dy]);
+              }
+            }
+          }
+
+          let paintedBlobs = 0;
+          for (let i = 0; i < pixelCount; i++) {
+            if (visited[i]) {
+              continue;
+            }
+            visited[i] = 1;
+            if (resourceMask && !resourceMask[i]) {
+              continue;
+            }
+            const seedIdx = i * 4;
+            const seedR = data[seedIdx];
+            const seedG = data[seedIdx + 1];
+            const seedB = data[seedIdx + 2];
+            if (!pixelMatchesIncludeFilters(seedR, seedG, seedB, includeFilters)) {
+              continue;
+            }
+            if (useTargetFilter && !pixelMatchesTargetTolerance(seedR, seedG, seedB)) {
+              continue;
+            }
+
+            let qHead = 0;
+            let qTail = 0;
+            queue[qTail++] = i;
+            const component = [i];
+            while (qHead < qTail) {
+              const cur = queue[qHead++];
+              const cx = cur % width;
+              const cy = (cur / width) | 0;
+              for (const offset of offsets) {
+                const nx = cx + offset[0];
+                const ny = cy + offset[1];
+                if (nx < 0 || ny < 0 || nx >= width || ny >= height) {
+                  continue;
+                }
+                const ni = ny * width + nx;
+                if (visited[ni]) {
+                  continue;
+                }
+                if (resourceMask && !resourceMask[ni]) {
+                  continue;
+                }
+                const di = ni * 4;
+                if (!pixelMatchesIncludeFilters(data[di], data[di + 1], data[di + 2], includeFilters)) {
+                  continue;
+                }
+                if (useTargetFilter && !pixelMatchesTargetTolerance(data[di], data[di + 1], data[di + 2])) {
+                  continue;
+                }
+                const dr = Math.abs(data[di] - seedR);
+                const dg = Math.abs(data[di + 1] - seedG);
+                const db = Math.abs(data[di + 2] - seedB);
+                if (dr > similarity || dg > similarity || db > similarity) {
+                  continue;
+                }
+                visited[ni] = 1;
+                queue[qTail++] = ni;
+                component.push(ni);
+              }
+            }
+
+            let minX = width;
+            let minY = height;
+            let maxX = 0;
+            let maxY = 0;
+            for (const pix of component) {
+              const x = pix % width;
+              const y = (pix / width) | 0;
+              if (x < minX) minX = x;
+              if (x > maxX) maxX = x;
+              if (y < minY) minY = y;
+              if (y > maxY) maxY = y;
+            }
+            const boxW = Math.max(1, maxX - minX + 1);
+            const boxH = Math.max(1, maxY - minY + 1);
+            const aspect = Math.max(boxW / boxH, boxH / boxW);
+
+            if (component.length < minArea || component.length > maxArea || aspect > maxAspect) {
+              continue;
+            }
+            paintedBlobs++;
+            const blobId = paintedBlobs;
+            for (const pix of component) {
+              const x = pix % width;
+              const y = (pix / width) | 0;
+              if (!shouldPaintBlobPattern(x, y, blobId)) {
+                continue;
+              }
+              const di = pix * 4;
+              data[di] = 255;
+              data[di + 1] = 230;
+              data[di + 2] = 30;
+              data[di + 3] = 255;
+            }
+          }
+
+          ctx.putImageData(imageData, 0, 0);
+          preview.src = canvas.toDataURL("image/png");
+          status.textContent = `Pattern overlay complete: ${paintedBlobs} blob(s).`;
+        };
+        img.onerror = () => {
+          status.textContent = "Failed to load image for color blob overlay.";
+        };
+        img.src = src;
+      }
+      function saveRangeForResource(resourceName) {
+        resourceRanges[resourceName] = getCurrentColorRange();
+        renderResourceRanges();
+        overlayRangesCache = null;
+        renderOverlayResourceOptions(resourceRanges);
+      }
+      function initializeResourceButtons() {
+        for (const resource of resourceTypes) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.textContent = resource;
+          button.addEventListener("click", () => {
+            saveRangeForResource(resource);
+          });
+          resourceButtons.appendChild(button);
+        }
+        renderResourceRanges();
+      }
+      copyResourceJsonBtn.addEventListener("click", async () => {
+        const json = JSON.stringify(resourceRanges, null, 2);
+        try {
+          await navigator.clipboard.writeText(json);
+          status.textContent = "Resource range JSON copied to clipboard.";
+        } catch (err) {
+          status.textContent = `Failed to copy JSON: ${err}`;
+        }
+      });
+      updateResourceJsonBtn.addEventListener("click", async () => {
+        try {
+          const resp = await fetch("/api/update-resource-ranges", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(resourceRanges),
+          });
+          if (!resp.ok) {
+            const msg = await resp.text();
+            status.textContent = `Failed to update JSON file: ${msg}`;
+            return;
+          }
+          overlayRangesCache = null;
+          status.textContent = "Updated resources_separated_by_color_ranges.json";
+        } catch (err) {
+          status.textContent = `Failed to update JSON file: ${err}`;
+        }
+      });
+      overlayResourceBtn.addEventListener("click", () => {
+        overlayResourcePatches();
+      });
+      colorBlobBtn.addEventListener("click", () => {
+        applyColorBlobPatterns();
+      });
+      colorBlobAddFilter.addEventListener("click", () => {
+        addColorBlobIncludeFilter();
+        scheduleColorBlobRedraw();
+      });
+      colorBlobRunPattern.addEventListener("change", () => {
+        scheduleColorBlobRedraw();
+      });
+      colorBlobUseTargetFilter.addEventListener("change", () => {
+        scheduleColorBlobRedraw();
+      });
+      colorBlobThreshold.addEventListener("input", () => {
+        colorBlobThresholdValue.textContent = colorBlobThreshold.value;
+        scheduleColorBlobRedraw();
+      });
+      colorBlobRadius.addEventListener("input", () => {
+        colorBlobRadiusValue.textContent = colorBlobRadius.value;
+        scheduleColorBlobRedraw();
+      });
+      colorBlobAspect.addEventListener("input", () => {
+        colorBlobAspectValue.textContent = Number.parseFloat(colorBlobAspect.value).toFixed(1);
+        scheduleColorBlobRedraw();
+      });
+      colorBlobResourceMask.addEventListener("change", () => {
+        if (preview.src) {
+          applyColorBlobPatterns();
+        }
+      });
+      targetTolerance.addEventListener("input", () => {
+        targetToleranceValue.textContent = targetTolerance.value;
+        if (targetFilterActive && targetFilterBaseSrc) {
+          applyTargetColorFilter(targetFilterBaseSrc);
+        }
+        if (colorBlobUseTargetFilter.checked) {
+          scheduleColorBlobRedraw();
+        }
+      });
+      targetColorPicker.addEventListener("input", () => {
+        updateTargetFilterButtonStyle();
+        if (targetFilterActive && targetFilterBaseSrc) {
+          applyTargetColorFilter(targetFilterBaseSrc);
+        }
+        if (colorBlobUseTargetFilter.checked) {
+          scheduleColorBlobRedraw();
+        }
+      });
+      targetFilterBtn.addEventListener("click", () => {
+        setTargetFilterActive(!targetFilterActive);
+      });
+      window.addEventListener("keydown", (evt) => {
+        if (evt.code !== "Space" || evt.repeat) {
+          return;
+        }
+        if (isFormFieldFocused()) {
+          return;
+        }
+        evt.preventDefault();
+        setTargetFilterActive(!targetFilterActive);
+      });
+      window.addEventListener("keydown", (evt) => {
+        if (evt.repeat || isFormFieldFocused()) {
+          return;
+        }
+        if (evt.code === "ArrowLeft") {
+          evt.preventDefault();
+          nudgeSampledPixel(-1, 0);
+        } else if (evt.code === "ArrowRight") {
+          evt.preventDefault();
+          nudgeSampledPixel(1, 0);
+        } else if (evt.code === "ArrowUp") {
+          evt.preventDefault();
+          nudgeSampledPixel(0, -1);
+        } else if (evt.code === "ArrowDown") {
+          evt.preventDefault();
+          nudgeSampledPixel(0, 1);
+        }
+      });
+      minColorPicker.addEventListener("input", () => {
+        const rgb = hexToRgb(minColorPicker.value);
+        rgbRangeRSlider.update({ from: rgb.r });
+        rgbRangeGSlider.update({ from: rgb.g });
+        rgbRangeBSlider.update({ from: rgb.b });
+        updateRgbSliderLabels();
+        applyColorFilter();
+      });
+      maxColorPicker.addEventListener("input", () => {
+        const rgb = hexToRgb(maxColorPicker.value);
+        rgbRangeRSlider.update({ to: rgb.r });
+        rgbRangeGSlider.update({ to: rgb.g });
+        rgbRangeBSlider.update({ to: rgb.b });
+        updateRgbSliderLabels();
+        applyColorFilter();
+      });
+      initializeMainRgbRangeSliders();
+      targetToleranceValue.textContent = targetTolerance.value;
+      checkerDensityValue.textContent = Number.parseFloat(checkerDensity.value).toFixed(2);
+      colorBlobThresholdValue.textContent = colorBlobThreshold.value;
+      colorBlobRadiusValue.textContent = colorBlobRadius.value;
+      colorBlobAspectValue.textContent = Number.parseFloat(colorBlobAspect.value).toFixed(1);
+      addColorBlobIncludeFilter();
+      updateTargetFilterButtonStyle();
+      initializeResourceButtons();
+      getRangesForOverlay()
+        .then((ranges) => {
+          renderOverlayResourceOptions(ranges);
+        })
+        .catch(() => {
+          renderOverlayResourceOptions(resourceRanges);
+        });
 
       function buildCheckerMask(gray, width, height, delta = 20, windowSize = 5, densityThreshold = 0.55) {
         const base = new Uint8ClampedArray(width * height);
@@ -220,7 +1648,7 @@
                 height,
                 20,
                 5,
-                parseInt(checkerDensity.value, 10) / 100
+                Number.parseFloat(checkerDensity.value)
               )
             : null;
           const gxKernel = [-1, 0, 1, -2, 0, 2, -1, 0, 1];
@@ -291,7 +1719,7 @@
                 height,
                 20,
                 5,
-                parseInt(checkerDensity.value, 10) / 100
+                Number.parseFloat(checkerDensity.value)
               )
             : null;
           const gxKernel = [-1, 0, 1, -2, 0, 2, -1, 0, 1];
@@ -332,63 +1760,35 @@
         img.src = originalSrc || preview.src;
       });
 
-      colorFilterBtn.addEventListener("click", async () => {
-        if (!preview.src) {
-          status.textContent = "Load an image first.";
-          return;
-        }
-        status.textContent = "Click a color in the image to filter by.";
-        const img = new Image();
-        img.crossOrigin = "anonymous";
-        img.onload = () => {
-          const ctx = canvas.getContext("2d", { willReadFrequently: true });
-          canvas.width = img.naturalWidth;
-          canvas.height = img.naturalHeight;
-          ctx.drawImage(img, 0, 0);
-          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          const { data, width, height } = imageData;
-
-          const clickHandler = (e) => {
-            const rect = preview.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
-            const x = Math.floor((e.clientX - rect.left) * scaleX);
-            const y = Math.floor((e.clientY - rect.top) * scaleY);
-            if (x < 0 || y < 0 || x >= width || y >= height) return;
-            const idx = (y * width + x) * 4;
-            const tr = data[idx];
-            const tg = data[idx + 1];
-            const tb = data[idx + 2];
-            const tol = parseInt(colorRange.value, 10);
-            for (let i = 0; i < data.length; i += 4) {
-              const r = data[i];
-              const g = data[i + 1];
-              const b = data[i + 2];
-              const dist =
-                Math.abs(r - tr) + Math.abs(g - tg) + Math.abs(b - tb);
-              if (dist > tol * 3) {
-                data[i] = 0;
-                data[i + 1] = 0;
-                data[i + 2] = 0;
-                data[i + 3] = 255;
-              }
-            }
-            ctx.putImageData(imageData, 0, 0);
-            preview.src = canvas.toDataURL("image/png");
+      // Auto-load the newest local screenshot/image on page load; fall back to
+      // the generated overlay, then the latest screenshot endpoint.
+      window.addEventListener("load", async () => {
+        try {
+          const resp = await fetch(`/api/default-image?t=${Date.now()}`);
+          if (resp.ok) {
+            const blob = await resp.blob();
+            const url = URL.createObjectURL(blob);
+            preview.src = url;
+            originalSrc = url;
             status.textContent = "";
-            preview.removeEventListener("click", clickHandler);
-          };
-
-          preview.addEventListener("click", clickHandler);
-        };
-        img.onerror = () => {
-          status.textContent = "Failed to load image for color filter.";
-        };
-        img.src = originalSrc || preview.src;
-      });
-
-      // Auto-load latest screenshot on page load.
-      window.addEventListener("load", () => {
+            return;
+          }
+        } catch (_err) {
+          // Fallback below.
+        }
+        try {
+          const resp = await fetch(`/api/patches-overlay?t=${Date.now()}`);
+          if (resp.ok) {
+            const blob = await resp.blob();
+            const url = URL.createObjectURL(blob);
+            preview.src = url;
+            originalSrc = url;
+            status.textContent = "";
+            return;
+          }
+        } catch (_err) {
+          // Fallback below.
+        }
         latestBtn.click();
       });
     </script>
