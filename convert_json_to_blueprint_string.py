@@ -2,8 +2,34 @@ import sys, os, json, zlib, base64, pyperclip
 
 def convertoToBlueprint(data,header=""):
 	return "0"+"".join([ i for i in str(base64.b64encode(zlib.compress(bytes(json.dumps(data),"utf-8"))))[2:-1]])
+
 def convertoToJson(s):
-	return json.loads(zlib.decompress(base64.b64decode(s[1:])).decode("utf-8")) 
+    # Normalize strings copied from Factorio, terminals, or quoted Python text.
+    s = "".join(str(s).split()).strip("'\"")
+    
+    # Factorio blueprint strings start with '0'
+    if s.startswith('0'):
+        b64_str = s[1:]
+    else:
+        b64_str = s
+
+    b64_str = b64_str.rstrip("=")
+    remainder = len(b64_str) % 4
+    if remainder == 1:
+        raise ValueError(
+            "The Factorio blueprint string is truncated or corrupt: "
+            f"its Base64 payload has {len(b64_str)} characters, which cannot be decoded."
+        )
+    b64_str += "=" * ((-len(b64_str)) % 4)
+
+    # Decode and decompress
+    try:
+        decoded_data = base64.b64decode(b64_str, validate=True)
+        return json.loads(zlib.decompress(decoded_data).decode("utf-8"))
+    except Exception as e:
+        print(f"Error decoding string of length {len(s)} (sliced length {len(b64_str)}): {e}")
+        raise
+
 def writeJsonFile(filename,filestring, absolute_path = False):
 	if absolute_path:
 		with open(os.path.join(filename)) as f:
@@ -122,5 +148,4 @@ def writeFileFromJson(filename):
 # 	# 	recipe["blueprint"]["entities"][index]["direction"] = (direction+4) % 8
 
 # pyperclip.copy(convertoToBlueprint(recipe))
-
 

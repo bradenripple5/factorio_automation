@@ -1,9 +1,9 @@
 import json
 import copy
 from recipe_extraction import *
+from recipe_extraction import getMaterialHeirarchy as calculateMaterialHeirarchy
 import pyperclip 
 from convert_json_to_blueprint_string import *
-
 #ok, so what I have to do here is to 
 # with open ("blueprints\\receiving_station_with_assemblers.json") as f:
 # with open ("blueprints\\electric_engine_unit.json") as f:
@@ -18,7 +18,11 @@ from convert_json_to_blueprint_string import *
 
 
 
-def make_assembling_machine(what_you_want_make):
+def make_assembling_machine(
+	what_you_want_make,
+	assembling_machine="assembling-machine-2",
+	module="speed-module",
+):
 	with open ("blueprints\\assembling_machines\\mining_drill") as f:
 		blueprint = convertoToJson(f.read())
 
@@ -26,10 +30,22 @@ def make_assembling_machine(what_you_want_make):
 	recipe = get_recipe(what_you_want_make)
 	if recipe is None:
 		raise ValueError(f"unknown recipe: {what_you_want_make}")
-	machine_name = "assembling-machine-2"
-	if is_smelted(recipe_name) or "plate" in recipe_name or recipe_name in ["stone", "brick"]:
-		machine_name = "electric-furnace"
+	machine_name = get_recipe_machine(recipe_name)
+	if machine_name is None:
+		raise ValueError(
+			f"unsupported recipe category for {recipe_name}: "
+			f"{recipes_dict[recipe_name].get('category', 'crafting')}"
+		)
+	if machine_name.startswith("assembling-machine"):
+		machine_name = assembling_machine
 	requestable_ingredients = [ingredient for ingredient in recipe if not is_fluid(ingredient)]
+	module_slots = {
+		"assembling-machine-1": 0,
+		"assembling-machine-2": 2,
+		"assembling-machine-3": 4,
+		"chemical-plant": 3,
+		"electric-furnace": 2,
+	}
 	#this changes every requester chest to what you want
 	for index, entity in enumerate(blueprint["blueprint"]["entities"]):
 		if entity["name"] == "requester-chest":
@@ -37,6 +53,18 @@ def make_assembling_machine(what_you_want_make):
 		elif "assembling-machine" in entity["name"]:
 			blueprint["blueprint"]["entities"][index]["name"] = machine_name
 			blueprint["blueprint"]["entities"][index]["recipe"] = recipe_name
+			if module_slots[machine_name]:
+				blueprint["blueprint"]["entities"][index]["items"] = [{
+					"id": {"name": module, "quality": "normal"},
+					"items": {
+						"in_inventory": [
+							{"inventory": 4, "stack": slot, "count": 1}
+							for slot in range(module_slots[machine_name])
+						]
+					},
+				}]
+			else:
+				blueprint["blueprint"]["entities"][index].pop("items", None)
 	return blueprint
 
 	return blueprint
@@ -167,14 +195,7 @@ def getAllNecessaryItems(item):
 		items = items.union(getAllNecessaryItems(element["id"]))
 	return items
 def getMaterialHeirarchy(item,amount =1):
-	material_dict = ingredient_dictionary[item]
-	if material_dict["recipe"]["time"] == None:
-		return None
-	subDict = {}
-	for element in material_dict["recipe"]["ingredients"]:
-		subDict[element["id"]+"-amount"] = element["amount"]*amount
-		subDict[element["id"]] =  getMaterialHeirarchy(element["id"],element["amount"]*amount)
-	return subDict
+	return calculateMaterialHeirarchy(item, amount)
 
 # print(json.dumps(getMaterialHeirarchy("nuclear-reactor"),indent=2))
 if __name__ == "__main__":

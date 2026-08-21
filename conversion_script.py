@@ -10,6 +10,7 @@ print(ingredients)
 # print(json.dumps(ingredients[-1],indent=2))
 
 from convert_json_to_blueprint_string import convertoToBlueprint
+from recipe_extraction import getMaterialHeirarchy as calculateMaterialHeirarchy
 
 
 def make_assembling_machine(what_you_want_make,multiplication_factor):
@@ -65,14 +66,7 @@ def getAllNecessaryItems(item):
 		items = items.union(getAllNecessaryItems(element["id"]))
 	return items
 def getMaterialHeirarchy(item,amount =1):
-	material_dict = ingredient_dictionary[item]
-	if material_dict["recipe"]["time"] == None:
-		return None
-	subDict = {}
-	for element in material_dict["recipe"]["ingredients"]:
-		subDict[element["id"]+"-amount"] = element["amount"]*amount
-		subDict[element["id"]] =  getMaterialHeirarchy(element["id"],element["amount"]*amount)
-	return subDict
+	return calculateMaterialHeirarchy(item, amount)
 # print(json.dumps(getMaterialHeirarchy("space-science-pack"),indent=2))
 	
 if __name__ == "__main__":

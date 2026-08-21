@@ -1,0 +1,1443 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "name": "rail"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "substation",
+        "position": {
+          "x": -24,
+          "y": -251
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -18.5,
+          "y": -250.5
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "rail-chain-signal",
+        "position": {
+          "x": -17.5,
+          "y": -250.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_close_signal": true,
+          "circuit_read_signal": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-S"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 4,
+        "name": "small-electric-pole",
+        "position": {
+          "x": -17.5,
+          "y": -251.5
+        }
+      },
+      {
+        "entity_number": 5,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -16.5,
+          "y": -250.5
+        }
+      },
+      {
+        "entity_number": 6,
+        "name": "rail-chain-signal",
+        "position": {
+          "x": -15.5,
+          "y": -250.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_close_signal": true,
+          "circuit_read_signal": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-S"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 7,
+        "name": "rail-signal",
+        "position": {
+          "x": -12.5,
+          "y": -250.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 8,
+        "name": "train-stop",
+        "position": {
+          "x": -11,
+          "y": -251
+        },
+        "direction": 12,
+        "station": "James Shield"
+      },
+      {
+        "entity_number": 9,
+        "name": "rail-signal",
+        "position": {
+          "x": 31.5,
+          "y": -250.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_close_signal": false,
+          "circuit_read_signal": true
+        }
+      },
+      {
+        "entity_number": 10,
+        "name": "straight-rail",
+        "position": {
+          "x": -21,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 11,
+        "name": "straight-rail",
+        "position": {
+          "x": -19,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 12,
+        "name": "straight-rail",
+        "position": {
+          "x": -17,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 13,
+        "name": "straight-rail",
+        "position": {
+          "x": -15,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 14,
+        "name": "straight-rail",
+        "position": {
+          "x": -13,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 15,
+        "name": "straight-rail",
+        "position": {
+          "x": -11,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 16,
+        "name": "straight-rail",
+        "position": {
+          "x": -9,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 17,
+        "name": "straight-rail",
+        "position": {
+          "x": -7,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 18,
+        "name": "straight-rail",
+        "position": {
+          "x": -5,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 19,
+        "name": "straight-rail",
+        "position": {
+          "x": -3,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 20,
+        "name": "straight-rail",
+        "position": {
+          "x": -1,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 21,
+        "name": "straight-rail",
+        "position": {
+          "x": 1,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 22,
+        "name": "straight-rail",
+        "position": {
+          "x": 3,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 23,
+        "name": "straight-rail",
+        "position": {
+          "x": 5,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 24,
+        "name": "straight-rail",
+        "position": {
+          "x": 7,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 25,
+        "name": "straight-rail",
+        "position": {
+          "x": 9,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 26,
+        "name": "straight-rail",
+        "position": {
+          "x": 11,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 27,
+        "name": "straight-rail",
+        "position": {
+          "x": 13,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 28,
+        "name": "straight-rail",
+        "position": {
+          "x": 15,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 29,
+        "name": "straight-rail",
+        "position": {
+          "x": 17,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 30,
+        "name": "straight-rail",
+        "position": {
+          "x": 19,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 31,
+        "name": "straight-rail",
+        "position": {
+          "x": 21,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 32,
+        "name": "straight-rail",
+        "position": {
+          "x": 23,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 33,
+        "name": "straight-rail",
+        "position": {
+          "x": 25,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 34,
+        "name": "straight-rail",
+        "position": {
+          "x": 27,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 35,
+        "name": "straight-rail",
+        "position": {
+          "x": 29,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 36,
+        "name": "straight-rail",
+        "position": {
+          "x": 31,
+          "y": -249
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 37,
+        "name": "big-electric-pole",
+        "position": {
+          "x": -15,
+          "y": -247
+        }
+      },
+      {
+        "entity_number": 38,
+        "name": "rail-signal",
+        "position": {
+          "x": -12.5,
+          "y": -247.5
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 39,
+        "name": "big-electric-pole",
+        "position": {
+          "x": -1,
+          "y": -247
+        }
+      },
+      {
+        "entity_number": 40,
+        "name": "fast-inserter",
+        "position": {
+          "x": 5.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 41,
+        "name": "requester-chest",
+        "position": {
+          "x": 5.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 42,
+        "name": "fast-inserter",
+        "position": {
+          "x": 9.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 43,
+        "name": "requester-chest",
+        "position": {
+          "x": 9.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 44,
+        "name": "fast-inserter",
+        "position": {
+          "x": 11.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 45,
+        "name": "fast-inserter",
+        "position": {
+          "x": 10.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 46,
+        "name": "requester-chest",
+        "position": {
+          "x": 10.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 47,
+        "name": "requester-chest",
+        "position": {
+          "x": 11.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 48,
+        "name": "fast-inserter",
+        "position": {
+          "x": 13.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 49,
+        "name": "fast-inserter",
+        "position": {
+          "x": 12.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 50,
+        "name": "requester-chest",
+        "position": {
+          "x": 12.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 51,
+        "name": "requester-chest",
+        "position": {
+          "x": 13.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 52,
+        "name": "fast-inserter",
+        "position": {
+          "x": 15.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 53,
+        "name": "fast-inserter",
+        "position": {
+          "x": 14.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 54,
+        "name": "requester-chest",
+        "position": {
+          "x": 14.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 55,
+        "name": "requester-chest",
+        "position": {
+          "x": 15.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 56,
+        "name": "fast-inserter",
+        "position": {
+          "x": 17.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 57,
+        "name": "fast-inserter",
+        "position": {
+          "x": 16.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 58,
+        "name": "requester-chest",
+        "position": {
+          "x": 16.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 59,
+        "name": "requester-chest",
+        "position": {
+          "x": 17.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 60,
+        "name": "fast-inserter",
+        "position": {
+          "x": 19.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 61,
+        "name": "requester-chest",
+        "position": {
+          "x": 19.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 62,
+        "name": "fast-inserter",
+        "position": {
+          "x": 18.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 63,
+        "name": "requester-chest",
+        "position": {
+          "x": 18.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1,
+              "filters": [
+                {
+                  "index": 2,
+                  "name": "coal",
+                  "quality": "normal",
+                  "comparator": "=",
+                  "count": 500
+                },
+                {
+                  "index": 3,
+                  "name": "wood",
+                  "quality": "normal",
+                  "comparator": "=",
+                  "count": 100
+                },
+                {
+                  "index": 4,
+                  "name": "solid-fuel",
+                  "quality": "normal",
+                  "comparator": "=",
+                  "count": 50
+                },
+                {
+                  "index": 5,
+                  "name": "rocket-fuel",
+                  "quality": "normal",
+                  "comparator": "=",
+                  "count": 20
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 64,
+        "name": "fast-inserter",
+        "position": {
+          "x": 21.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 65,
+        "name": "fast-inserter",
+        "position": {
+          "x": 20.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 66,
+        "name": "requester-chest",
+        "position": {
+          "x": 21.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 67,
+        "name": "requester-chest",
+        "position": {
+          "x": 20.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 68,
+        "name": "fast-inserter",
+        "position": {
+          "x": 22.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 69,
+        "name": "requester-chest",
+        "position": {
+          "x": 22.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 70,
+        "name": "requester-chest",
+        "position": {
+          "x": 24.5,
+          "y": -246.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 71,
+        "name": "fast-inserter",
+        "position": {
+          "x": 24.5,
+          "y": -247.5
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 72,
+        "name": "train-stop",
+        "position": {
+          "x": 29,
+          "y": -247
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          },
+          "send_to_train": false,
+          "read_stopped_train": true,
+          "train_stopped_signal": {
+            "type": "virtual",
+            "name": "signal-T"
+          }
+        },
+        "station": "Rallias"
+      },
+      {
+        "entity_number": 73,
+        "name": "rail-signal",
+        "position": {
+          "x": 31.5,
+          "y": -247.5
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 74,
+        "name": "substation",
+        "position": {
+          "x": -7,
+          "y": -246
+        }
+      },
+      {
+        "entity_number": 75,
+        "name": "steel-chest",
+        "position": {
+          "x": 18.5,
+          "y": -244.5
+        }
+      },
+      {
+        "entity_number": 76,
+        "name": "fast-inserter",
+        "position": {
+          "x": 18.5,
+          "y": -245.5
+        },
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 77,
+        "name": "requester-chest",
+        "position": {
+          "x": 22.5,
+          "y": -245.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 78,
+        "name": "arithmetic-combinator",
+        "position": {
+          "x": 25,
+          "y": -245.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "arithmetic_conditions": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-C"
+            },
+            "second_constant": 0,
+            "operation": "+",
+            "output_signal": {
+              "type": "virtual",
+              "name": "signal-C"
+            }
+          }
+        }
+      },
+      {
+        "entity_number": 79,
+        "name": "small-lamp",
+        "position": {
+          "x": 27.5,
+          "y": -244.5
+        },
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-S"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 80,
+        "name": "decider-combinator",
+        "position": {
+          "x": 27,
+          "y": -245.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "second_signal": {
+                  "type": "virtual",
+                  "name": "signal-D"
+                },
+                "comparator": ">"
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "type": "virtual",
+                  "name": "signal-C"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 81,
+        "name": "arithmetic-combinator",
+        "position": {
+          "x": 29,
+          "y": -245.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "arithmetic_conditions": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "second_constant": 1,
+            "operation": "*",
+            "output_signal": {
+              "type": "virtual",
+              "name": "signal-D"
+            }
+          }
+        }
+      },
+      {
+        "entity_number": 82,
+        "name": "big-electric-pole",
+        "position": {
+          "x": 31,
+          "y": -246
+        }
+      },
+      {
+        "entity_number": 83,
+        "name": "substation",
+        "position": {
+          "x": 33,
+          "y": -246
+        }
+      },
+      {
+        "entity_number": 84,
+        "name": "substation",
+        "position": {
+          "x": 14,
+          "y": -244
+        }
+      }
+    ],
+    "wires": [
+      [
+        1,
+        5,
+        4,
+        5
+      ],
+      [
+        1,
+        5,
+        74,
+        5
+      ],
+      [
+        2,
+        1,
+        3,
+        1
+      ],
+      [
+        2,
+        1,
+        37,
+        1
+      ],
+      [
+        2,
+        5,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        37,
+        5
+      ],
+      [
+        5,
+        1,
+        37,
+        1
+      ],
+      [
+        5,
+        1,
+        6,
+        1
+      ],
+      [
+        9,
+        1,
+        79,
+        1
+      ],
+      [
+        37,
+        1,
+        39,
+        1
+      ],
+      [
+        37,
+        2,
+        39,
+        2
+      ],
+      [
+        37,
+        5,
+        39,
+        5
+      ],
+      [
+        39,
+        5,
+        74,
+        5
+      ],
+      [
+        39,
+        5,
+        84,
+        5
+      ],
+      [
+        40,
+        2,
+        42,
+        2
+      ],
+      [
+        42,
+        2,
+        45,
+        2
+      ],
+      [
+        44,
+        2,
+        49,
+        2
+      ],
+      [
+        44,
+        2,
+        45,
+        2
+      ],
+      [
+        48,
+        2,
+        53,
+        2
+      ],
+      [
+        48,
+        2,
+        49,
+        2
+      ],
+      [
+        52,
+        2,
+        57,
+        2
+      ],
+      [
+        52,
+        2,
+        53,
+        2
+      ],
+      [
+        56,
+        2,
+        62,
+        2
+      ],
+      [
+        56,
+        2,
+        57,
+        2
+      ],
+      [
+        60,
+        2,
+        65,
+        2
+      ],
+      [
+        60,
+        2,
+        62,
+        2
+      ],
+      [
+        62,
+        2,
+        76,
+        2
+      ],
+      [
+        64,
+        2,
+        68,
+        2
+      ],
+      [
+        64,
+        2,
+        65,
+        2
+      ],
+      [
+        68,
+        2,
+        71,
+        2
+      ],
+      [
+        71,
+        2,
+        72,
+        2
+      ],
+      [
+        72,
+        1,
+        80,
+        1
+      ],
+      [
+        72,
+        1,
+        81,
+        1
+      ],
+      [
+        72,
+        2,
+        82,
+        2
+      ],
+      [
+        78,
+        1,
+        80,
+        3
+      ],
+      [
+        78,
+        2,
+        78,
+        4
+      ],
+      [
+        79,
+        1,
+        80,
+        3
+      ],
+      [
+        79,
+        1,
+        83,
+        1
+      ],
+      [
+        80,
+        2,
+        81,
+        4
+      ],
+      [
+        82,
+        5,
+        83,
+        5
+      ],
+      [
+        82,
+        5,
+        84,
+        5
+      ]
+    ],
+    "item": "blueprint",
+    "version": 562949958467584
+  }
+}

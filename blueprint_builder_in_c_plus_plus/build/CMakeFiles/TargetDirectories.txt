@@ -1,0 +1,4 @@
+C:/Users/brade.DESKTOP-E538E75/gitrepos/factorio_software_automation/blueprint_builder_in_c_plus_plus/build/CMakeFiles/blueprint_builder.dir
+C:/Users/brade.DESKTOP-E538E75/gitrepos/factorio_software_automation/blueprint_builder_in_c_plus_plus/build/CMakeFiles/test.dir
+C:/Users/brade.DESKTOP-E538E75/gitrepos/factorio_software_automation/blueprint_builder_in_c_plus_plus/build/CMakeFiles/edit_cache.dir
+C:/Users/brade.DESKTOP-E538E75/gitrepos/factorio_software_automation/blueprint_builder_in_c_plus_plus/build/CMakeFiles/rebuild_cache.dir

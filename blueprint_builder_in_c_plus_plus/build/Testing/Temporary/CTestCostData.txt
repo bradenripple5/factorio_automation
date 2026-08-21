@@ -1,0 +1,3 @@
+solar_20x10 1 0.523257
+station_defaults 1 0.0267716
+---

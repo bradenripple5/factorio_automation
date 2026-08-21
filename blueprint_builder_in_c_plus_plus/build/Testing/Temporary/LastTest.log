@@ -1,0 +1,37 @@
+Start testing: Aug 16 17:15 Pacific Daylight Time
+----------------------------------------------------------
+1/2 Testing: solar_20x10
+1/2 Test: solar_20x10
+Command: "C:/Users/brade.DESKTOP-E538E75/gitrepos/factorio_software_automation/blueprint_builder_in_c_plus_plus/build/blueprint_builder.exe" "solar" "20" "10" "--no-clipboard"
+Directory: C:/Users/brade.DESKTOP-E538E75/gitrepos/factorio_software_automation/blueprint_builder_in_c_plus_plus/build
+"solar_20x10" start time: Aug 16 17:15 Pacific Daylight Time
+Output:
+----------------------------------------------------------
+176 solar panels, 8 substations, 10.56 MW peak output
+0eJyVm9Fq21gURX/F6NktutK90pX/oU99mIcSBntGtAbHDrYzNAT/eyUPtkKr7b13oZSEZMmVFivn+pD3YrN77V+O2/25WL0X23P/XKw+fG5Z7Nabfjd87uthtz4u1sfj+m1RlT9Dufi0COXn1JTDn8WXv4Yv/a8/nraHfbFKTdXFrkupzWVT5mWx/eewPxWrb+/Faft9v96N1zq/vfQD93rJZbFfP48fncarfHpZ74drXobv2//b/yxW4bLk3/m6OZ3X5/H60zdWl6dl0e/P2/O2///61w/e/t6/Pm/640CevfKyeDmctlfWcLnxBXxOy+Lt+u9lfC2/USqNEh9Tao3SPqZE8X9UPsYkEVM/xjQipnmMaUVM9xiTNUxVPcZ0IiY9xoRS5GTCESWuicVB1LgmHgdR5JqYHESVI1E5iC5H4nIQZY5E5iDaHInNQdQ5EZ2D6HMiPleiz4n4XJlRjgBjVhlhzCwjjNtlxHHDjDhumRHHTTPiuG1GHDfOgFO7cUYcN86I48YZcdw4I44bZ8Rx44w4bpwRx40z4rhxRhw3zoAT3TgjjhnnFmDMOCOMaPO9hoij1rkhHLXOHeGINt8rhjiizfeKIY5oc80eu2hzTZ57Em2+1wdxRJsj8SepOhN/kuhzIs89iT4n8tyT6vNtoisBR60z46jTRs1AotDTwRSBRKOnoykANerAkRhIdHo6ViKQOnKwp9+oMwd7/I19IkQg+0iIQPaZEIFEsxN9/OrgQR+/avaNU4P3btRWM47odcs4otbTO2QI5A4fEOROHxDkjh8QpM4fFQOpA0hiIPV8mBlIHUGY11n0umZiZ/WIyMzO6hTCzM6i2ZGZndVgM7OzGmxmdhbNTszsbAcbgexgI5Ab7Aa8ve0GG3HcYCOOHWwEsoONQHawEcgONgLZwUYgO9gIZAcbgexgA1Ao7WJDkp1sSLKbDUl2tCHJrjYk2dmGJLvbkGSHG5LsckOSm+4OrQLddkOQ+j5fTUlqvhtKUvvdUZJo+FQ5SBINnzIHSaLhNZdANLzmFoiGT3WCJNHwSH1S14yR+qQuGhO1QN01JmqBum68STD+QJ8HqRGnIHfjiEnuzhGT3K0jJqljSqIkdfOYGUndPdZUAnn7SC1Q94/3EmCSO6dgkjunYJLoeKIWqHvIxC1QHb+BEgKpEacg0fCWgdRl5P1Eh0numIJJ7piCSe6YgknqmFJRkjqmJEpST5qZktQxhRouryep4vKCkjpurygxyV1SYpK7psQkNeLUcXlVSR1Xl5WJOq6uKxN1XF5Y3kAZgdyIQ5AbcQRSF5ZTxCHJjjgk2RGHJDvikGRHHJLsiEOSHXFIsiMOSXbEIcmOOCLJu0vquLq9jNRxdX8ZqePqAjNSx9UNZqKOqyvMRB1Xd5iJOv5xiTn9lskfoO5K6S7DF/fb7z82h9fj+Dsnoc3LkMPTLDlL5PFNgXl0uwxtN+CreXwn4ceTBn7l5fC3nsV/3IA+wI/zyzx+fOVxHh2MW16FP9C5Gm5MO4+unHs+xw7jHRn4eZ5fOzcdvPYcxwc7z4/OXZ/j1+NTfbo8XS6/ANHbNjc=
+<end of output>
+Test time =   0.52 sec
+----------------------------------------------------------
+Test Passed.
+"solar_20x10" end time: Aug 16 17:15 Pacific Daylight Time
+"solar_20x10" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: station_defaults
+2/2 Test: station_defaults
+Command: "C:/Users/brade.DESKTOP-E538E75/gitrepos/factorio_software_automation/blueprint_builder_in_c_plus_plus/build/blueprint_builder.exe" "station-plan" "advanced-circuit" "copper-cable"
+Directory: C:/Users/brade.DESKTOP-E538E75/gitrepos/factorio_software_automation/blueprint_builder_in_c_plus_plus/build
+"station_defaults" start time: Aug 16 17:15 Pacific Daylight Time
+Output:
+----------------------------------------------------------
+advanced-circuit-001 product=advanced-circuit trains=1
+copper-cable-002 product=copper-cable trains=1
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"station_defaults" end time: Aug 16 17:15 Pacific Daylight Time
+"station_defaults" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Aug 16 17:15 Pacific Daylight Time

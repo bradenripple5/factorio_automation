@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\blueprint_builder.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\blueprint_builder.dir/objects.a @CMakeFiles\blueprint_builder.dir\objects1.rsp
+C:\msys64\ucrt64\bin\c++.exe -O3 -DNDEBUG -Wl,--whole-archive CMakeFiles\blueprint_builder.dir/objects.a -Wl,--no-whole-archive -o blueprint_builder.exe -Wl,--out-implib,libblueprint_builder.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\blueprint_builder.dir\linkLibs.rsp

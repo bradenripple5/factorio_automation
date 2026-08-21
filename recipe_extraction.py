@@ -1,30 +1,89 @@
-import json, os, sys, math, pathlib, math, numpy
-from slpp import slpp as lua
+import json
+import os
+import pathlib
+import subprocess
+import tempfile
+
+import numpy
 from collections import defaultdict
-from fraction import Fraction
+
+
 def convertPathForOs(path):
-	if sys.platform != "windows":
-		return str(pathlib.PurePosixPath(path))
-	else:
-		return str(pathlib.PureWindowsPath(path))
-# import json
+	return os.path.normpath(path)
 
 FAC_HOME = os.getenv("FACTORIO_HOME")
-# RECIPE_HOME should equal C:\Program Files\Factorio\data\base\prototypes\recipe.lua
-relative_recipe_string = "/data/base/prototypes/recipe"
-relative_items_string = "/data/base/prototypes/item"
-relative_items_string,relative_recipe_string = convertPathForOs(relative_items_string),convertPathForOs(relative_recipe_string)
-RECIPE_HOME =  f"{FAC_HOME}{relative_recipe_string}"
-ITEMS_HOME = FAC_HOME + relative_items_string
-RECIPE_HOME, ITEMS_HOME = convertPathForOs(RECIPE_HOME),convertPathForOs(ITEMS_HOME)
-print(RECIPE_HOME, " = recipe home")
+if not FAC_HOME and os.name == "nt":
+	FAC_HOME = r"C:\Program Files\Factorio"
+if not FAC_HOME:
+	raise RuntimeError("Set FACTORIO_HOME to the Factorio installation directory.")
 
-recipe_files = os.listdir(RECIPE_HOME)
-items_files = os.listdir(ITEMS_HOME)
-fluids = []
-recipes_dict = {}
-recipes_list = []
-smelted_list = set()
+FACTORIO_HOME = pathlib.Path(FAC_HOME).expanduser().resolve()
+RECIPE_HOME = FACTORIO_HOME / "data" / "base" / "prototypes" / "recipe.lua"
+FACTORIO_EXE = FACTORIO_HOME / "bin" / "x64" / "factorio.exe"
+
+
+def _load_factorio_prototypes():
+	"""Load Factorio's evaluated data.raw instead of trying to parse executable Lua."""
+	if not RECIPE_HOME.is_file():
+		raise FileNotFoundError(f"Factorio 2.0 recipe file was not found: {RECIPE_HOME}")
+	if not FACTORIO_EXE.is_file():
+		raise FileNotFoundError(f"Factorio executable was not found: {FACTORIO_EXE}")
+
+	cache_root = pathlib.Path(tempfile.gettempdir()) / "factorio-software-automation"
+	write_data = cache_root / "factorio-data"
+	dump_file = write_data / "script-output" / "data-raw-dump.json"
+	config_file = cache_root / "config.ini"
+	cache_root.mkdir(parents=True, exist_ok=True)
+
+	# Refresh after Factorio or its base recipe definitions are updated.
+	source_mtime = max(FACTORIO_EXE.stat().st_mtime, RECIPE_HOME.stat().st_mtime)
+	if not dump_file.is_file() or dump_file.stat().st_mtime < source_mtime:
+		config_file.write_text(
+			"[path]\n"
+			f"read-data={FACTORIO_HOME.joinpath('data').as_posix()}\n"
+			f"write-data={write_data.as_posix()}\n\n"
+			"[general]\nlocale=en\n",
+			encoding="utf-8",
+		)
+		result = subprocess.run(
+			[str(FACTORIO_EXE), "--config", str(config_file), "--dump-data"],
+			capture_output=True,
+			text=True,
+		)
+		if result.returncode != 0 or not dump_file.is_file():
+			details = (result.stderr or result.stdout).strip()
+			raise RuntimeError(f"Factorio could not dump prototype data: {details}")
+
+	with dump_file.open(encoding="utf-8") as f:
+		return json.load(f)
+
+
+prototype_data = _load_factorio_prototypes()
+recipes_dict = {
+	name: recipe
+	for name, recipe in prototype_data.get("recipe", {}).items()
+	# Parameter and unknown prototypes are editor internals, not craftable recipes.
+	if isinstance(recipe.get("ingredients"), list)
+}
+recipes_list = list(recipes_dict.values())
+fluids = set(prototype_data.get("fluid", {}))
+smelted_list = {
+	name for name, recipe in recipes_dict.items()
+	if recipe.get("category") == "smelting"
+}
+
+# Stackable prototypes are spread across item, ammo, module, armor, and other
+# prototype groups in Factorio 2.0, so collect them by capability.
+items_dict = {}
+for prototype_group in prototype_data.values():
+	if not isinstance(prototype_group, dict):
+		continue
+	for name, prototype in prototype_group.items():
+		if isinstance(prototype, dict) and "stack_size" in prototype:
+			items_dict[name] = prototype
+
+print(f"Loaded {len(recipes_dict)} Factorio recipes from {RECIPE_HOME}")
+
 #a station needs to be created for each scenario
 chemical_plant_products_from_two_fluids = ["sulfur","light-oil","petroleum-gas"]
 chemical_plant_fluids_from_two_fluids = ["light-oil","petroleum-gas"]
@@ -34,76 +93,32 @@ chemical_plant_fluids_from_one_fluid = ["sulfuric-acid","lubricant"]
 chemical_plant_solids_from_one_fluid = ["solid-fuel","plastic-bar","lubricant","battery","explosives","processing-unit"]
 raw_materials = ["wood","petroleum-gas","raw-fish","water","crude-oil","coal","stone","copper-ore","iron-ore","water","light-oil","heavy-oil","petroleum-gas"]
 
-
-with open(RECIPE_HOME+convertPathForOs("//demo-furnace-recipe.lua")) as f:
-	s = f.read()
-	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-	list_of_recipes =  lua.decode(stripped_string) # actually a list
-	# print(json.dumps(list_of_recipes,indent=2))
-	for index,item in enumerate(list_of_recipes[:]):
-		if isinstance(item,dict):
-			if "name" in item:
-				smelted_list.add(item["name"])
-
-RECIPE_LUA_FILE_HOME = FAC_HOME +   convertPathForOs(f"//data//base//prototypes//recipe//recipe.lua")
-OTHER_RECIPE_LUA_FILE_HOME = FAC_HOME +   convertPathForOs(f"//data//base//prototypes//recipe.lua")
-
-for file in recipe_files+[RECIPE_LUA_FILE_HOME]+[OTHER_RECIPE_LUA_FILE_HOME]:
-	if file == OTHER_RECIPE_LUA_FILE_HOME:
-		with open(file) as f:
-			s = f.read()
-			s = "".join(s.split("\n\n")[2:]).strip().removeprefix("data:extend\n(").removesuffix(")")
-
-	elif file == RECIPE_LUA_FILE_HOME:
-		with open(file) as f:
-			s = f.read()
-
-	else:
-		with open (RECIPE_HOME+"//"+file) as f:
-			s = f.read()
-			# print(s)
-
-	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-	list_of_recipes =  lua.decode(stripped_string) # actually a list
-	for index,recipe in enumerate(list_of_recipes[:]):
-
-		recipes_list.append(recipe)
-		if isinstance(recipe,dict):
-			if "name" in recipe:
-				if file == "demo-recipe.lua":
-					recipe["energy_required"] = 0.5
-				recipes_dict[recipe["name"]] = recipe
+ASSEMBLER_RECIPE_CATEGORIES = {"crafting", "advanced-crafting", "crafting-with-fluid"}
+CHEMICAL_PLANT_RECIPE_CATEGORIES = {"chemistry"}
+FURNACE_RECIPE_CATEGORIES = {"smelting"}
 
 
+def get_recipe_machine(product):
+	"""Return the machine for a supported recipe, or None if this layout cannot produce it."""
+	recipe_name = resolve_recipe_name(product)
+	if recipe_name is None:
+		return None
+	category = recipes_dict[recipe_name].get("category", "crafting")
+	if category in ASSEMBLER_RECIPE_CATEGORIES:
+		return "assembling-machine-3"
+	if category in CHEMICAL_PLANT_RECIPE_CATEGORIES:
+		return "chemical-plant"
+	if category in FURNACE_RECIPE_CATEGORIES:
+		return "electric-furnace"
+	return None
 
 
-stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-list_of_recipes =  lua.decode(stripped_string) # actually a list
-# if OTHER_RECIPE_LUA_FILE_HOME == file:
-# 	print(list_of_recipes, " = stripped_string")
-for index,recipe in enumerate(list_of_recipes[:]):
-	recipes_list.append(recipe)
-	if isinstance(recipe,dict):
-		if "name" in recipe:
-			recipes_dict[recipe["name"]] = recipe
-
-items_dict = {}
-for file in items_files:
-	with open (ITEMS_HOME+convertPathForOs("/")+file) as f:
-		s = f.read()
-	lines = s.split("\n")
-	if file != "demo-crash-site-item.lua":
-		lines = s.split("\n")
-		if "require" in lines[0]:
-			s = "\n".join(lines[1:])
-		stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-		list_of_recipes =  lua.decode(stripped_string) # actually a list
-		# print(json.dumps(list_of_recipes,indent=2))
-		for index,item in enumerate(list_of_recipes[:]):
-
-			if isinstance(item,dict):
-				if "name" in item and item["type"] not in ["item-subgroup","item-group"]:
-					items_dict[item["name"]] = item
+def can_produce_in_assembler_or_chemical_plant(product, include_furnaces=True):
+	# Kept for compatibility; supported production now includes electric furnaces.
+	machine = get_recipe_machine(product)
+	if machine == "electric-furnace" and not include_furnaces:
+		return False
+	return machine is not None
 
 def get_energy(item):
 	try:
@@ -118,34 +133,14 @@ def is_smelted(item):
 
 
 #i.e. the amount of items that can fit into one square of a chest.
-def get_fluids():
-	fluids = set()
-	with open(RECIPE_HOME+convertPathForOs("/")+"fluid-recipe.lua") as f:
-		s = f.read()
-	stripped_string = s.strip().removeprefix("data:extend(").removesuffix(")")
-	list_of_recipes =  lua.decode(stripped_string) # actually a list
-	# print(json.dumps(list_of_recipes,indent=2))
-	for index,recipe in enumerate(list_of_recipes[:]):
-		if isinstance(recipe,dict):
-			for key in ["results","ingredients"]:
-				if key in recipe:
-					for i in recipe[key]:
-						if i["type"] == "fluid":
-							fluids.add(i["name"])
-	return fluids
-fluids = get_fluids()
-for fluid in fluids:
-	recipes_dict["fill-"+fluid+"-barrel"] = {"ingredients": [["empty-barrel",1]]}
-	recipes_dict["empty-"+fluid+"-barrel"] ={"ingredients": [[fluid+"-barrel",1]]}
 
 
 def is_fluid(product):
 	return product in fluids
 def get_stack_size(item):
-	if "module" in item:
-		return 50
-	if "barrel" in item:
-		item = "empty-barrel"
+	# Factorio 2.0 renamed the empty-barrel item to simply "barrel".
+	if item == "empty-barrel":
+		item = "barrel"
 	if item in fluids:
 		return 10
 	if item not in items_dict:
@@ -158,34 +153,82 @@ def get_stack_size(item):
 	# 	ingredients = fullinfo["ingredients"]
 	# return [i[0] if isinstance(i,list) else i["name"] for i in ingredients]print(get_recipe("plastic-bar"))
 
-def getMaterialHeirarchy(item):
-	non_addables = []
-	material_dict = defaultdict(int)
-	def get_ingredients(prod, amount = 1):
-		ingredients = recipes_dict[prod]["expensive"]["ingredients"] if "expensive" in recipes_dict[prod] else recipes_dict[prod]["ingredients"]
-		for ingredient in ingredients:
-			if isinstance(ingredient, dict):
-				material_dict[ingredient["name"]] += ingredient["amount"]
-			else:
-				material_dict[ingredient[0]] += ingredient[1]*amount
-		for ingredient in ingredients:
+def _expected_amount(component):
+	"""Return the expected amount represented by a Factorio ingredient/result."""
+	if isinstance(component, (list, tuple)):
+		return component[1]
+	if "amount" in component:
+		amount = component["amount"]
+	else:
+		amount = (component.get("amount_min", 0) + component.get("amount_max", 0)) / 2
+	return amount * component.get("probability", 1)
 
-			if isinstance(ingredient,dict):
-				name,amount = ingredient["name"],ingredient["amount"]
-			else:
-				name,amount = ingredient[:2]
 
-			if "ore" not in name and name not in ["wood","petroleum-gas","raw-fish","water","crude-oil","coal","stone"]:
-					try:
-						get_ingredients(name,amount)
-					except:
-						non_addables.append(name)
+def _recipe_output_amount(recipe, product):
+	"""Return how many units of product one execution of recipe produces."""
+	results = recipe.get("results")
+	if results:
+		for result in results:
+			name = result[0] if isinstance(result, (list, tuple)) else result.get("name")
+			if name == product:
+				return _expected_amount(result)
+		return 0
+	if recipe.get("result") == product:
+		return recipe.get("result_count", 1)
+	# Most recipes share their name with their sole product.
+	return 1 if recipe.get("name", product) == product else 0
 
-		
-	get_ingredients(item)
-	if non_addables:
-		print(non_addables, ' = non_addables')
-	return dict(material_dict)
+
+def getMaterialHeirarchy(item, amount=1):
+	"""
+	Return the total ingredients needed to produce ``amount`` of ``item``.
+
+	The result includes both intermediate and raw ingredients. Quantities account
+	for parent quantities, recipe yields, probabilistic results, and repeated
+	materials reached through different recipe branches.
+	"""
+	if amount < 0:
+		raise ValueError("amount must be non-negative")
+
+	material_totals = defaultdict(float)
+
+	def add_ingredients(product, required_amount, active_path):
+		recipe_name = resolve_recipe_name(product)
+		if recipe_name is None:
+			return
+		if recipe_name in active_path:
+			cycle = " -> ".join((*active_path, recipe_name))
+			raise ValueError(f"recipe cycle detected: {cycle}")
+
+		recipe = recipes_dict[recipe_name]
+		output_amount = _recipe_output_amount(recipe, product)
+		if output_amount <= 0:
+			raise ValueError(f"recipe {recipe_name!r} does not produce {product!r}")
+
+		executions = required_amount / output_amount
+		for ingredient in recipe.get("ingredients", []):
+			name = ingredient[0] if isinstance(ingredient, (list, tuple)) else ingredient["name"]
+			ingredient_amount = _expected_amount(ingredient) * executions
+			material_totals[name] += ingredient_amount
+			add_ingredients(name, ingredient_amount, (*active_path, recipe_name))
+
+	add_ingredients(item, amount, ())
+	return {
+		name: int(quantity) if quantity.is_integer() else quantity
+		for name, quantity in sorted(material_totals.items())
+	}
+
+
+def get_non_raw_materials_for_recipe(item, amount=1):
+	"""Return required intermediate products, excluding all raw materials."""
+	material_hierarchy = getMaterialHeirarchy(item, amount)
+	raw_material_names = set(raw_materials)
+	return {
+		name: quantity
+		for name, quantity in material_hierarchy.items()
+		if name not in raw_material_names
+	}
+
 #i.e. where the product is produced, in a smelter, assembling-machine, or a chemical-plant, or a centrifuge, refinery here not included
 def get_production_time(product):
 
@@ -287,15 +330,26 @@ def get_non_raw_materials_from_material_heirarchy(material_heirarchy):
 
 RECIPE_ALIASES = {
 	"wall": "stone-wall",
+	"empty-barrel": "barrel",
 }
 
 def resolve_recipe_name(product):
 	"""
-	Return a canonical recipe key from user-facing shorthand.
+	Return a canonical Factorio 2.0 recipe key from user-facing or 1.1 names.
 	"""
 	if product in recipes_dict:
 		return product
-	return RECIPE_ALIASES.get(product)
+	alias = RECIPE_ALIASES.get(product)
+	if alias in recipes_dict:
+		return alias
+
+	# Factorio 1.1 called these "fill-<fluid>-barrel". Factorio 2.0 uses
+	# "<fluid>-barrel" for filling and keeps "empty-<fluid>-barrel".
+	if product.startswith("fill-") and product.endswith("-barrel"):
+		factorio_2_name = product.removeprefix("fill-")
+		if factorio_2_name in recipes_dict:
+			return factorio_2_name
+	return None
 
 def get_recipe(product):
 	product = resolve_recipe_name(product)

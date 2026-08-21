@@ -18,9 +18,100 @@ with open(filename) as f:
 blueprint = convertoToJson(filestring)
 
 
-def make_single_assembler(recipe="stack-inserter",dx=0,dy=0):
+def _fluid_ingredients(recipe_name):
+	return [
+		ingredient["name"]
+		for ingredient in recipes_dict[recipe_name].get("ingredients", [])
+		if isinstance(ingredient, dict) and ingredient.get("type") == "fluid"
+	]
+
+
+def _request_filter(item, count):
+	return {
+		"sections": [{
+			"index": 1,
+			"filters": [{
+				"index": 1,
+				"name": item,
+				"quality": "normal",
+				"comparator": "=",
+				"count": count,
+			}],
+		}],
+	}
+
+
+def _add_fluid_unbarreler(blueprint_copy, assembler, fluid):
+	"""Attach a barrel-emptying assembler to a fluid-consuming assembler."""
+	empty_recipe = resolve_recipe_name(f"empty-{fluid}-barrel")
+	if empty_recipe is None:
+		raise ValueError(f"no barrel-emptying recipe exists for fluid: {fluid}")
+
+	x = assembler["position"]["x"]
+	y = assembler["position"]["y"]
+	# Chemical-plant input ports are one tile left/right of center.
+	if assembler["name"] == "chemical-plant":
+		x += 1
+	# Direction 8 is south in Factorio 2.0. Rotating both machines makes the
+	# consumer's input and the emptier's output meet along their shared edge.
+	assembler["direction"] = 8
+	entities = blueprint_copy["blueprint"]["entities"]
+	entities.extend([
+		{
+			"entity_number": 0,
+			"name": "assembling-machine-3",
+			"position": {"x": x, "y": y + 3},
+			"direction": 8,
+			"recipe": empty_recipe,
+			"items": {"speed-module-3": 4},
+		},
+		{
+			"entity_number": 0,
+			"name": "requester-chest",
+			"position": {"x": x, "y": y + 6},
+			"request_filters": _request_filter(f"{fluid}-barrel", 100),
+		},
+		{
+			"entity_number": 0,
+			"name": "active-provider-chest",
+			"position": {"x": x + 1, "y": y + 6},
+		},
+		{
+			"entity_number": 0,
+			"name": "fast-inserter",
+			"position": {"x": x, "y": y + 5},
+			"direction": 0,
+		},
+		{
+			"entity_number": 0,
+			"name": "fast-inserter",
+			"position": {"x": x + 1, "y": y + 5},
+			"direction": 8,
+		},
+		{
+			"entity_number": 0,
+			"name": "medium-electric-pole",
+			"position": {"x": x - 1, "y": y + 5},
+		},
+	])
+
+
+def make_single_assembler(
+	recipe="stack-inserter", dx=0, dy=0,
+	assembling_machine="assembling-machine-2",
+	module="speed-module",
+):
 	# print(f"def make_single_assembler(recipe={recipe}, dx={dx}, dy = {dy}")
+	recipe_name = resolve_recipe_name(recipe)
+	if recipe_name is None:
+		raise ValueError(f"unknown recipe: {recipe}")
 	blueprint_copy = copy.deepcopy(blueprint)
+	fluids = _fluid_ingredients(recipe_name)
+	if len(fluids) > 1:
+		raise ValueError(
+			f"{recipe_name} uses multiple fluids; the single fluid-port layout cannot attach all of them"
+		)
+	assembler = None
 	for i,v in enumerate(blueprint["blueprint"]["entities"]):
 		# print(f"name {v["name"]}")
 		v_copy = copy.deepcopy(v)
@@ -28,18 +119,52 @@ def make_single_assembler(recipe="stack-inserter",dx=0,dy=0):
 		v_copy["position"]["y"]+=dy
 
 		if v["name"] == "logistic-chest-requester":
-			v_copy["request_filters"] = make_request_filters(recipe)
+			v_copy["request_filters"] = [
+				request
+				for request in make_request_filters(recipe_name)
+				if request["name"] not in {f"{fluid}-barrel" for fluid in fluids}
+			]
+		elif "storage" in  v["name"]:# == "storage-chest":
+			v_copy["name"] = "active-provider-chest"
 
 		elif "inserter" in v["name"]:
 			v_copy["name"] = "fast-inserter"
 		elif "assembling-machine" in v["name"]:
-
-			v_copy["name"] = "assembling-machine-3"
-			v_copy["recipe"] = recipe
-			v_copy["items"] = {"speed-module-3": 4}
-			if is_smelted(v["recipe"]) or "plate" in recipe or "stone" in recipe:
-				v_copy["name"] = "electric-furnace"
+			machine_name = get_recipe_machine(recipe_name)
+			if machine_name is None:
+				raise ValueError(
+					f"{recipe_name} cannot be produced in a supported production machine"
+				)
+			v_copy["name"] = assembling_machine
+			v_copy["recipe"] = recipe_name
+			module_slots = {
+				"assembling-machine-1": 0,
+				"assembling-machine-2": 2,
+				"assembling-machine-3": 4,
+				"chemical-plant": 3,
+				"electric-furnace": 2,
+			}
+			if assembling_machine not in module_slots:
+				raise ValueError(f"unsupported assembling machine: {assembling_machine}")
+			if module_slots[assembling_machine]:
+				v_copy["items"] = {
+					module: module_slots[assembling_machine]
+				}
+			else:
+				v_copy.pop("items", None)
+			assembler = v_copy
 		blueprint_copy["blueprint"]["entities"][i] = v_copy
+	if fluids:
+		_add_fluid_unbarreler(blueprint_copy, assembler, fluids[0])
+	re_index(blueprint_copy)
+	if fluids:
+		poles = [
+			entity for entity in blueprint_copy["blueprint"]["entities"]
+			if "electric-pole" in entity["name"]
+		]
+		if len(poles) >= 2:
+			poles[0].setdefault("neighbours", []).append(poles[-1]["entity_number"])
+			poles[-1].setdefault("neighbours", []).append(poles[0]["entity_number"])
 	return blueprint_copy
 
 def re_index(blueprint):

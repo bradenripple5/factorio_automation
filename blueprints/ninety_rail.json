@@ -1,0 +1,52 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "name": "rail"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "curved-rail-a",
+        "position": {
+          "x": 91,
+          "y": -948
+        },
+        "direction": 10
+      },
+      {
+        "entity_number": 2,
+        "name": "curved-rail-b",
+        "position": {
+          "x": 89,
+          "y": -943
+        },
+        "direction": 10
+      },
+      {
+        "entity_number": 3,
+        "name": "curved-rail-b",
+        "position": {
+          "x": 85,
+          "y": -939
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 4,
+        "name": "curved-rail-a",
+        "position": {
+          "x": 80,
+          "y": -937
+        },
+        "direction": 4
+      }
+    ],
+    "item": "blueprint",
+    "version": 562949958467584
+  }
+}
