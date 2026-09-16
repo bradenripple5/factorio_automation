@@ -9,20 +9,34 @@ from recipe_extraction import *
 import ast
 import json,copy,math,pyperclip, numpy
 import itertools
+from collections import defaultdict
 from pathlib import Path
 
 
 SOLID_INGREDIENT_STATION_TEMPLATE = Path(
-	"blueprints/advanced_circuit_station.json"
+	"blueprints/stations/assembling_machine_or_furnace/copper_cable_station.json"
 )
 ROBOPORT_STATION_TEMPLATE = Path(
 	"blueprints/stations/repositories/roboport_station.json"
 )
 INTERSECTION_TEMPLATE = Path(
-	"blueprints/train_track_intersection.json"
+	"blueprints/intersection.json"
 )
 PLASTIC_BAR_STATION_TEMPLATE = Path(
 	"blueprints/stations/plastic_bar.json"
+)
+PLASTIC_BAR_TRAIN_TEMPLATE = Path(
+	"blueprints/advanced_circuit_station.json"
+)
+ONE_FLUID_CHEMICAL_STATION_TEMPLATE = Path(
+	"blueprints/stations/chemical_plant_fluids_from_one_fluid/lubricant.json"
+)
+ONE_SOLID_ONE_FLUID_CHEMICAL_STATION_TEMPLATE = Path(
+	"blueprints/stations/chemical_plant_fluid_from_one_solid_and_one_fluid/"
+	"sulfuric_acid_station.json"
+)
+TWO_FLUID_SOLID_CHEMICAL_STATION_TEMPLATE = Path(
+	"blueprints/stations/chemical_plant_solids_from_two_fluids/sulfur_station.json"
 )
 ROBOPORT_STATION_ALIASES = {"roboport_station", "robort_station"}
 
@@ -80,6 +94,7 @@ def _pair_midpoints_with_physical_stops(entities):
 		entity for entity in entities
 		if entity.get("name") == "train-stop"
 		and not entity.get("station", "").endswith(" midpoint")
+		and not entity.get("station", "").endswith(" backup")
 	]
 	midpoints = [
 		entity for entity in entities
@@ -289,28 +304,48 @@ def filter_rail_transfer_inserters(blueprint):
 	return blueprint
 
 
-def _load_roboport_station_with_center_pole(place_roboports=True):
-	"""Load the roboport station and place a big pole between its substations."""
+def _load_roboport_station_with_center_pole(
+	place_roboports=True,
+	roboport_columns=4,
+	roboport_rows=6,
+	place_roboports_between_stations=False,
+):
+	"""Load only the powered roboport array, without empty station rails."""
+	for name, value in (
+		("roboport_columns", roboport_columns),
+		("roboport_rows", roboport_rows),
+	):
+		if not isinstance(value, int) or isinstance(value, bool) or value < 1:
+			raise ValueError(f"{name} must be a positive integer")
 	blueprint = copy.deepcopy(_load_blueprint_file(ROBOPORT_STATION_TEMPLATE))
 	root = blueprint["blueprint"]
 	roboports = [
 		entity for entity in root["entities"] if entity["name"] == "roboport"
 	]
-	kept_roboports = roboports[:16] if place_roboports else []
+	if place_roboports and not roboports:
+		raise ValueError("Roboport station template needs at least one roboport")
+	kept_roboports = []
 	if place_roboports:
 		x_values = [entity["position"]["x"] for entity in root["entities"]]
 		y_values = [entity["position"]["y"] for entity in root["entities"]]
 		center_x = (min(x_values) + max(x_values)) / 2
 		bottom_y = max(y_values) - 6
-		for index, entity in enumerate(kept_roboports):
-			row, column = divmod(index, 4)
-			entity["position"] = {
-				"x": center_x + (column - 1.5) * 4,
-				"y": bottom_y + (row - 3) * 4,
-			}
+		next_number = max(entity["entity_number"] for entity in root["entities"]) + 1
+		for row in range(roboport_rows):
+			for column in range(roboport_columns):
+				entity = copy.deepcopy(roboports[0])
+				entity["entity_number"] = next_number
+				next_number += 1
+				entity.pop("neighbours", None)
+				entity.pop("connections", None)
+				entity["position"] = {
+					"x": center_x + (column - (roboport_columns - 1) / 2) * 4,
+					"y": bottom_y + (row - (roboport_rows - 1)) * 4,
+				}
+				kept_roboports.append(entity)
+		root["entities"].extend(kept_roboports)
 	removed_numbers = {
 		entity["entity_number"] for entity in roboports
-		if entity not in kept_roboports
 	}
 	if removed_numbers:
 		root["entities"] = [
@@ -329,20 +364,116 @@ def _load_roboport_station_with_center_pole(place_roboports=True):
 				]
 	entities = root["entities"]
 	substations = [entity for entity in entities if entity["name"] == "substation"]
-	if len(substations) < 2:
-		raise ValueError("Roboport station template needs at least two substations")
-	first, second = substations[:2]
-	entities.append({
-		"entity_number": max(entity["entity_number"] for entity in entities) + 1,
-		"name": "big-electric-pole",
-		"position": {
-			"x": (first["position"]["x"] + second["position"]["x"]) / 2,
-			"y": (first["position"]["y"] + second["position"]["y"]) / 2,
+	if not substations:
+		raise ValueError("Roboport station template needs at least one substation")
+	if place_roboports:
+		substation_numbers = {
+			entity["entity_number"] for entity in substations
+		}
+		entities[:] = [
+			entity for entity in entities
+			if entity["entity_number"] not in substation_numbers
+		]
+		root["wires"] = [
+			wire for wire in root.get("wires", [])
+			if wire[0] not in substation_numbers and wire[2] not in substation_numbers
+		]
+		robo_x = [entity["position"]["x"] for entity in kept_roboports]
+		robo_y = [entity["position"]["y"] for entity in kept_roboports]
+		minimum_y, maximum_y = min(robo_y), max(robo_y)
+		y_span = maximum_y - minimum_y
+		y_count = max(1, math.ceil(y_span / 16) + 1)
+		side_y_positions = (
+			[(minimum_y + maximum_y) / 2]
+			if y_count == 1 else
+			[
+				minimum_y + index * y_span / (y_count - 1)
+				for index in range(y_count)
+			]
+		)
+		next_number = max(entity["entity_number"] for entity in entities) + 1
+		for x in (min(robo_x) - 5, max(robo_x) + 5):
+			for y in side_y_positions:
+				entity = copy.deepcopy(substations[0])
+				entity["entity_number"] = next_number
+				next_number += 1
+				entity.pop("neighbours", None)
+				entity.pop("connections", None)
+				entity["position"] = {"x": x, "y": y}
+				entities.append(entity)
+	# Roboports use a four-tile grid. Put the first pole one full roboport
+	# spacing below the bottom row, then put a second pole 28 tiles lower
+	# and connect the pair explicitly. A radar sits immediately above it.
+	lower_pole_x = (
+		sum(entity["position"]["x"] for entity in kept_roboports)
+		/ len(kept_roboports) if kept_roboports else 0
+	)
+	upper_pole_y = (
+		max(entity["position"]["y"] for entity in kept_roboports) + 4
+		if kept_roboports else 4
+	)
+	upper_pole_number = max(entity["entity_number"] for entity in entities) + 1
+	lower_pole_number = upper_pole_number + 1
+	radar_number = lower_pole_number + 1
+	entities.extend([
+		{
+			"entity_number": upper_pole_number,
+			"name": "big-electric-pole",
+			"position": {"x": lower_pole_x, "y": upper_pole_y},
+			"neighbours": [lower_pole_number],
 		},
-	})
+		{
+			"entity_number": lower_pole_number,
+			"name": "big-electric-pole",
+			"position": {"x": lower_pole_x, "y": upper_pole_y + 28},
+			"neighbours": [upper_pole_number],
+		},
+		{
+			"entity_number": radar_number,
+			"name": "radar",
+			"position": {"x": lower_pole_x, "y": upper_pole_y + 25},
+		},
+	])
+	if place_roboports_between_stations:
+		# The radar is at upper_pole_y + 25. A four-tile center separation
+		# places the roboport/substation immediately above it without overlap.
+		between_y = upper_pole_y + 21
+		between_roboport_number = radar_number + 1
+		between_substation_number = between_roboport_number + 1
+		entities.extend([
+			{
+				"entity_number": between_roboport_number,
+				"name": "roboport",
+				"position": {"x": lower_pole_x, "y": between_y},
+			},
+			{
+				"entity_number": between_substation_number,
+				"name": "substation",
+				"position": {"x": lower_pole_x + 3, "y": between_y},
+			},
+		])
+	kept_names = {"roboport", "substation", "big-electric-pole", "radar"}
+	removed_numbers = {
+		entity["entity_number"] for entity in entities
+		if entity["name"] not in kept_names
+	}
+	root["entities"] = [
+		entity for entity in entities if entity["name"] in kept_names
+	]
+	root["wires"] = [
+		wire for wire in root.get("wires", [])
+		if wire[0] not in removed_numbers and wire[2] not in removed_numbers
+	]
+	for entity in root["entities"]:
+		if "neighbours" in entity:
+			entity["neighbours"] = [
+				neighbour for neighbour in entity["neighbours"]
+				if neighbour not in removed_numbers
+			]
+	root.pop("schedules", None)
+	root.pop("stock_connections", None)
+	_connect_adjacent_electric_poles(root)
 	return blueprint
-
-
 def _connect_adjacent_electric_poles(root):
 	"""Explicitly wire mutually reachable poles, closest pairs first."""
 	wire_reach = {
@@ -406,7 +537,7 @@ def _make_plastic_bar_station_with_trains(
 	"""Load the plastic-bar station and add trains from the matching rail map."""
 	blueprint = copy.deepcopy(_load_blueprint_file(PLASTIC_BAR_STATION_TEMPLATE))
 	root = blueprint["blueprint"]
-	train_source_root = _load_blueprint_file(SOLID_INGREDIENT_STATION_TEMPLATE)["blueprint"]
+	train_source_root = _load_blueprint_file(PLASTIC_BAR_TRAIN_TEMPLATE)["blueprint"]
 	entities = root["entities"]
 	source_entities = train_source_root["entities"]
 	_normalize_factorio_2_entity_names(entities, inserter)
@@ -575,24 +706,114 @@ def make_solid_ingredient_station(
 	if not ingredients:
 		raise ValueError(f"Recipe has no ingredients: {canonical_recipe}")
 	fluid_ingredients = [ingredient for ingredient in ingredients if is_fluid(ingredient)]
-	if fluid_ingredients:
+	solid_ingredients = [ingredient for ingredient in ingredients if not is_fluid(ingredient)]
+	production_machine = get_recipe_machine(canonical_recipe)
+	use_one_solid_one_fluid_chemical_template = (
+		production_machine == "chemical-plant"
+		and len(fluid_ingredients) == 1
+		and (
+			canonical_recipe == "sulfuric-acid"
+			or len(set(solid_ingredients)) == 1
+		)
+		and is_fluid(canonical_recipe)
+	)
+	use_one_fluid_chemical_template = (
+		production_machine == "chemical-plant"
+		and len(fluid_ingredients) == 1
+		and not solid_ingredients
+		and is_fluid(canonical_recipe)
+	)
+	recipe_results = recipes_dict[canonical_recipe].get("results", [])
+	produces_solid_item = any(
+		result.get("name") == canonical_recipe and result.get("type", "item") == "item"
+		for result in recipe_results if isinstance(result, dict)
+	)
+	use_two_fluid_solid_template = (
+		production_machine == "chemical-plant"
+		and len(fluid_ingredients) == 2
+		and produces_solid_item
+	)
+	if fluid_ingredients and not (
+		use_one_solid_one_fluid_chemical_template
+		or use_one_fluid_chemical_template
+		or use_two_fluid_solid_template
+	):
 		raise ValueError(
 			f"{canonical_recipe} is not an all-solid recipe; fluid ingredients: "
 			+ ", ".join(fluid_ingredients)
 		)
+	if use_one_solid_one_fluid_chemical_template:
+		template_path = ONE_SOLID_ONE_FLUID_CHEMICAL_STATION_TEMPLATE
+	elif use_one_fluid_chemical_template:
+		template_path = ONE_FLUID_CHEMICAL_STATION_TEMPLATE
+	elif use_two_fluid_solid_template:
+		template_path = TWO_FLUID_SOLID_CHEMICAL_STATION_TEMPLATE
 
 	blueprint = _load_blueprint_file(template_path)
 	blueprint = copy.deepcopy(blueprint)
 	entities = blueprint["blueprint"]["entities"]
 	_normalize_factorio_2_entity_names(entities, inserter)
+	if (
+		use_one_solid_one_fluid_chemical_template
+		or use_one_fluid_chemical_template
+		or use_two_fluid_solid_template
+	):
+		template_recipe = (
+			"sulfuric-acid" if use_one_solid_one_fluid_chemical_template
+			else "lubricant" if use_one_fluid_chemical_template
+			else "sulfur"
+		)
+		fluid_replacements = {}
+		solid_replacements = {}
+		if use_one_solid_one_fluid_chemical_template:
+			fluid_replacements["water"] = fluid_ingredients[0]
+			if canonical_recipe != "sulfuric-acid":
+				solid_replacements["sulfur"] = solid_ingredients[0]
+				solid_replacements["iron-plate"] = solid_ingredients[0]
+		elif use_one_fluid_chemical_template:
+			fluid_replacements["heavy-oil"] = fluid_ingredients[0]
+		else:
+			remaining_fluids = list(fluid_ingredients)
+			if "water" in remaining_fluids:
+				fluid_replacements["water"] = "water"
+				remaining_fluids.remove("water")
+			if remaining_fluids:
+				fluid_replacements["petroleum-gas"] = remaining_fluids[0]
+
+		def replace_template_names(value):
+			if isinstance(value, dict):
+				for key, nested in value.items():
+					value[key] = replace_template_names(nested)
+			elif isinstance(value, list):
+				for index, nested in enumerate(value):
+					value[index] = replace_template_names(nested)
+			elif isinstance(value, str):
+				value = value.replace(template_recipe, canonical_recipe)
+				for template_fluid, input_fluid in fluid_replacements.items():
+					value = value.replace(template_fluid, input_fluid)
+				for template_solid, input_solid in solid_replacements.items():
+					value = value.replace(template_solid, input_solid)
+				return value
+			return value
+
+		replace_template_names(blueprint)
+		for entity in entities:
+			if entity["name"] == "chemical-plant":
+				entity["recipe"] = canonical_recipe
+				entity["recipe_quality"] = "normal"
+		blueprint["blueprint"]["label"] = f"{canonical_recipe} station"
+		return fill_locomotives_with_coal(
+			set_trains_per_stop(blueprint, trains_per_stop)
+		)
 
 	assembler_entities = [
-		entity for entity in entities if entity["name"].startswith("assembling-machine-")
+		entity for entity in entities
+		if entity["name"].startswith("assembling-machine-")
+		or entity["name"] == "chemical-plant"
 	]
 	if not assembler_entities:
 		raise ValueError("Solid-ingredient station template contains no assemblers")
-	production_machine = get_recipe_machine(canonical_recipe)
-	if production_machine not in ("assembling-machine-3", "electric-furnace"):
+	if production_machine not in ("assembling-machine-3", "electric-furnace", "chemical-plant"):
 		raise ValueError(
 			f"{canonical_recipe} cannot be made in an assembler or electric furnace"
 		)
@@ -604,12 +825,17 @@ def make_solid_ingredient_station(
 
 	dropoff_number = 0
 	for entity in entities:
-		if entity["name"].startswith("assembling-machine-"):
+		if entity["name"].startswith("assembling-machine-") or entity["name"] == "chemical-plant":
 			entity["name"] = production_machine
 			entity["recipe"] = canonical_recipe
 			entity["recipe_quality"] = "normal"
 		elif entity["name"] == "train-stop" and "station" in entity:
 			station = entity["station"]
+			if station.endswith(" backup"):
+				entity["station"] = station.replace(
+					template_recipe, canonical_recipe, 1
+				)
+				continue
 			if station.endswith(" midpoint"):
 				continue
 			if " pickup" in station:
@@ -721,6 +947,7 @@ def make_solid_ingredient_station(
 		entity for entity in entities
 		if entity["name"] == "train-stop"
 		and not entity["station"].endswith(" midpoint")
+		and not entity["station"].endswith(" backup")
 	], key=coordinate_key)
 	midpoints = sorted([
 		entity for entity in entities
@@ -895,15 +1122,25 @@ def make_solid_ingredient_station_array(
 	cols=None,
 	horizontal_spacing=10,
 	vertical_spacing=10,
+	station_center_spacing_x=None,
+	station_center_spacing_y=None,
 	include_roboports=False,
 	place_roboports_in_squares=True,
 	place_roboports_between_stations=True,
+	roboport_columns=4,
+	roboport_rows=6,
+	roboport_array_x_offset=0,
+	roboport_array_y_offset=0,
+	radial_layout=False,
 	include_intersections=True,
+	intersections_between_rows=False,
 	intersection_x_offset=0,
-	intersection_y_offset=-6,
-	intersection_signal_y_offset=1,
+	intersection_y_offset=0,
+	intersection_signal_x_offset=0,
+	intersection_signal_y_offset=0,
 	empty_requester_chests=True,
 	inserter="bulk-inserter",
+	layout_metadata=None,
 	**station_options,
 ):
 	"""Create a grid from a recipe name or list of recipe names.
@@ -911,10 +1148,9 @@ def make_solid_ingredient_station_array(
 	A list is laid out in order. If an explicit ``rows`` by ``cols`` grid is too
 	small, recipes beyond its capacity are discarded. If ``include_roboports``
 	is true, every production row gets a full roboport-station row above it.
-	An intersection blueprint is centered at every corner shared by four cells.
-	``intersection_x_offset`` and ``intersection_y_offset`` adjust its position.
+	One intersection blueprint is copied over each production station's origin.
+	``intersection_x_offset`` and ``intersection_y_offset`` adjust that position.
 	Negative X/Y values move it left/up; positive values move it right/down.
-	``intersection_signal_y_offset`` moves only its rail signals vertically.
 	"""
 	for name, value in (
 		("count", count),
@@ -926,19 +1162,43 @@ def make_solid_ingredient_station_array(
 	for name, value in (
 		("horizontal_spacing", horizontal_spacing),
 		("vertical_spacing", vertical_spacing),
+		("roboport_array_x_offset", roboport_array_x_offset),
+		("roboport_array_y_offset", roboport_array_y_offset),
 	):
-		if not isinstance(value, (int, float)) or value < 0:
+		if not isinstance(value, (int, float)):
+			raise ValueError(f"{name} must be a number")
+		if name in ("horizontal_spacing", "vertical_spacing") and value < 0:
 			raise ValueError(f"{name} must be a non-negative number")
+	for name, value in (
+		("station_center_spacing_x", station_center_spacing_x),
+		("station_center_spacing_y", station_center_spacing_y),
+	):
+		if value is not None and (
+			not isinstance(value, (int, float)) or value <= 0 or value % 2
+		):
+			raise ValueError(f"{name} must be a positive even number")
 	if not isinstance(include_roboports, bool):
 		raise ValueError("include_roboports must be true or false")
 	if not isinstance(place_roboports_in_squares, bool):
 		raise ValueError("place_roboports_in_squares must be true or false")
 	if not isinstance(place_roboports_between_stations, bool):
 		raise ValueError("place_roboports_between_stations must be true or false")
+	if not isinstance(radial_layout, bool):
+		raise ValueError("radial_layout must be true or false")
+	for name, value in (
+		("roboport_columns", roboport_columns),
+		("roboport_rows", roboport_rows),
+	):
+		if not isinstance(value, int) or isinstance(value, bool) or value < 1:
+			raise ValueError(f"{name} must be a positive integer")
 	if not isinstance(include_intersections, bool):
 		raise ValueError("include_intersections must be true or false")
+	if not isinstance(intersections_between_rows, bool):
+		raise ValueError("intersections_between_rows must be true or false")
 	if not isinstance(empty_requester_chests, bool):
 		raise ValueError("empty_requester_chests must be true or false")
+	if layout_metadata is not None and not isinstance(layout_metadata, dict):
+		raise ValueError("layout_metadata must be a dictionary")
 	trains_per_stop = station_options.get("trains_per_stop", 1)
 	if not isinstance(trains_per_stop, int) or isinstance(trains_per_stop, bool):
 		raise ValueError("trains_per_stop must be a positive integer")
@@ -947,6 +1207,7 @@ def make_solid_ingredient_station_array(
 	for name, value in (
 		("intersection_x_offset", intersection_x_offset),
 		("intersection_y_offset", intersection_y_offset),
+		("intersection_signal_x_offset", intersection_signal_x_offset),
 		("intersection_signal_y_offset", intersection_signal_y_offset),
 	):
 		if not isinstance(value, (int, float)):
@@ -979,7 +1240,8 @@ def make_solid_ingredient_station_array(
 			station_model_list = station_model_list[:count]
 		count = len(recipe_list)
 
-	if rows is None and cols is None:
+	automatic_grid = rows is None and cols is None
+	if automatic_grid:
 		cols = math.ceil(math.sqrt(count))
 		rows = math.ceil(count / cols)
 	elif rows is None:
@@ -994,18 +1256,74 @@ def make_solid_ingredient_station_array(
 	if count == 0:
 		raise ValueError("The requested grid has no room for a station")
 
+	if automatic_grid:
+		base_row_length, longer_rows = divmod(count, rows)
+		row_lengths = [
+			base_row_length + (row < longer_rows)
+			for row in range(rows)
+		]
+	else:
+		row_lengths = [
+			min(cols, max(0, count - row * cols))
+			for row in range(rows)
+		]
+
+	production_positions = []
+	if radial_layout and all(model is not None for model in station_model_list):
+		center = (rows // 2, cols // 2)
+		slots = sorted(
+			((row, col) for row in range(rows) for col in range(cols)),
+			key=lambda slot: (
+				abs(slot[0] - center[0]) + abs(slot[1] - center[1]),
+				(slot[0] - center[0]) ** 2 + (slot[1] - center[1]) ** 2,
+				slot,
+			),
+		)
+		by_id = {model.id: model for model in station_model_list}
+		depths = {station_model_list[0].id: 0}
+		queue = [station_model_list[0].id]
+		while queue:
+			station_id = queue.pop(0)
+			model = by_id[station_id]
+			neighbours = (
+				set(model.parent_ids) | set(model.child_ids)
+			) & by_id.keys()
+			for neighbour in neighbours:
+				if neighbour not in depths:
+					depths[neighbour] = depths[station_id] + 1
+					queue.append(neighbour)
+		ordered_indices = sorted(
+			range(count),
+			key=lambda index: (
+				depths.get(station_model_list[index].id, math.inf), index
+			),
+		)
+		positions_by_index = {
+			index: slots[position_index]
+			for position_index, index in enumerate(ordered_indices)
+		}
+		production_positions = [positions_by_index[index] for index in range(count)]
+	else:
+		for row, row_length in enumerate(row_lengths):
+			column_offset = cols - row_length
+			production_positions.extend(
+				(row, column_offset + col) for col in range(row_length)
+			)
+
 	station_recipe_list = []
 	station_models = []
+	station_positions = []
 	for row in range(rows):
-		row_recipes = recipe_list[row * cols:(row + 1) * cols]
-		row_models = station_model_list[row * cols:(row + 1) * cols]
-		if not row_recipes:
-			break
 		if include_roboports:
 			station_recipe_list.extend(["roboport_station"] * cols)
 			station_models.extend([None] * cols)
-		station_recipe_list.extend(row_recipes)
-		station_models.extend(row_models)
+			station_positions.extend((row * 2, col) for col in range(cols))
+	for recipe, model, (row, col) in zip(
+		recipe_list, station_model_list, production_positions
+	):
+		station_recipe_list.append(recipe)
+		station_models.append(model)
+		station_positions.append((row * 2 + 1 if include_roboports else row, col))
 
 	def build_station_blueprint(recipe, model):
 		model_trains = (
@@ -1018,7 +1336,12 @@ def make_solid_ingredient_station_array(
 		if model is not None and empty_requester_chests:
 			return model.get_blueprint()
 		if recipe in ROBOPORT_STATION_ALIASES:
-			return _load_roboport_station_with_center_pole(place_roboports_in_squares)
+			return _load_roboport_station_with_center_pole(
+				place_roboports_in_squares,
+				roboport_columns,
+				roboport_rows,
+				place_roboports_between_stations,
+			)
 		if recipe == "plastic-bar":
 			return _make_plastic_bar_station_with_trains(
 				model_inserter,
@@ -1055,8 +1378,20 @@ def make_solid_ingredient_station_array(
 		heights.append(bounds[3] - bounds[2])
 	# Rail positions are tied to Factorio's two-tile grid. Keep every station
 	# translation even so copying it into the array cannot change rail parity.
-	step_x = math.ceil((max(widths) + horizontal_spacing) / 2) * 2
-	step_y = math.ceil((max(heights) + vertical_spacing) / 2) * 2
+	step_x = (
+		station_center_spacing_x
+		if station_center_spacing_x is not None
+		else math.ceil((max(widths) + horizontal_spacing) / 2) * 2
+	)
+	step_y = (
+		station_center_spacing_y
+		if station_center_spacing_y is not None
+		else math.ceil((max(heights) + vertical_spacing) / 2) * 2
+	)
+	if layout_metadata is not None:
+		layout_metadata["station_center_spacing_x"] = step_x
+		layout_metadata["station_center_spacing_y"] = step_y
+		layout_metadata["production_positions"] = list(production_positions)
 
 	result = copy.deepcopy(stations[0])
 	result_root = result["blueprint"]
@@ -1076,9 +1411,10 @@ def make_solid_ingredient_station_array(
 
 	next_entity_number = 1
 	cell_straight_rails = {}
+	production_station_centers = []
 	next_physical_station_id = 1
 	for station_index, station_root in enumerate(station_roots):
-		row, col = divmod(station_index, cols)
+		row, col = station_positions[station_index]
 		station_recipe = station_recipe_list[station_index]
 		station_model = station_models[station_index]
 		station_token = None
@@ -1121,6 +1457,28 @@ def make_solid_ingredient_station_array(
 		else:
 			station_origin_x = math.floor(station_min_x / 2) * 2
 			station_origin_y = math.floor(station_min_y / 2) * 2
+		if station_token is not None:
+			# Machines, chests, and train bodies make the full blueprint bounds
+			# asymmetric. Center intersections against the rails themselves.
+			center_entities = rail_entities or station_entities
+			station_min_x = min(
+				entity["position"]["x"] for entity in center_entities
+			)
+			station_max_x = max(
+				entity["position"]["x"] for entity in center_entities
+			)
+			station_min_y = min(
+				entity["position"]["y"] for entity in center_entities
+			)
+			station_max_y = max(
+				entity["position"]["y"] for entity in center_entities
+			)
+			production_station_centers.append((row, col,
+				(station_min_x + station_max_x) / 2
+				+ col * step_x - station_origin_x + 4,
+				(station_min_y + station_max_y) / 2
+				+ row * step_y - station_origin_y,
+			))
 		entity_numbers = {
 			entity["entity_number"]: next_entity_number + index
 			for index, entity in enumerate(station_entities)
@@ -1130,8 +1488,13 @@ def make_solid_ingredient_station_array(
 			entity_copy = copy.deepcopy(entity)
 			old_number = entity_copy["entity_number"]
 			entity_copy["entity_number"] = entity_numbers[old_number]
-			entity_copy["position"]["x"] += col * step_x - station_origin_x
+			# Shift each station two two-tile rail widths to the right while
+			# leaving the shared rail/intersection scaffold at its fixed origin.
+			entity_copy["position"]["x"] += col * step_x - station_origin_x + 4
 			entity_copy["position"]["y"] += row * step_y - station_origin_y
+			if station_token is None:
+				entity_copy["position"]["x"] += roboport_array_x_offset
+				entity_copy["position"]["y"] += roboport_array_y_offset
 			if "neighbours" in entity_copy:
 				entity_copy["neighbours"] = [
 					entity_numbers[neighbour]
@@ -1258,110 +1621,94 @@ def make_solid_ingredient_station_array(
 		intersection_entities = intersection_root.get("entities", [])
 		if not intersection_entities:
 			raise ValueError("Intersection template contains no entities")
-
-		intersection_x_values = [
-			entity["position"]["x"] for entity in intersection_entities
+		intersection_rails = [
+			entity for entity in intersection_entities if "rail" in entity["name"]
 		]
-		intersection_y_values = [
-			entity["position"]["y"] for entity in intersection_entities
-		]
+		intersection_center_entities = intersection_rails or intersection_entities
 		intersection_center_x = (
-			min(intersection_x_values) + max(intersection_x_values)
+			min(entity["position"]["x"] for entity in intersection_center_entities)
+			+ max(entity["position"]["x"] for entity in intersection_center_entities)
 		) / 2
 		intersection_center_y = (
-			min(intersection_y_values) + max(intersection_y_values)
+			min(entity["position"]["y"] for entity in intersection_center_entities)
+			+ max(entity["position"]["y"] for entity in intersection_center_entities)
 		) / 2
-		occupied_cells = {
-			divmod(index, cols) for index in range(len(station_roots))
-		}
-		existing_rails = {
-			(
-				entity["name"],
-				entity["position"]["x"],
-				entity["position"]["y"],
-				entity.get("direction", 0),
+
+		# Keep the template intact while aligning the centers of its rail network
+		# and the station rail network. UI offsets are applied afterward.
+		intersection_centers = [
+			(center_x, center_y)
+			for _, _, center_x, center_y in production_station_centers
+		]
+		if intersections_between_rows:
+			centers_by_row = {}
+			for row, col, center_x, center_y in production_station_centers:
+				centers_by_row.setdefault(row, {})[col] = (center_x, center_y)
+			ordered_rows = sorted(centers_by_row)
+			for upper_row, lower_row in zip(ordered_rows, ordered_rows[1:]):
+				upper = centers_by_row[upper_row]
+				lower = centers_by_row[lower_row]
+				for col in sorted(upper.keys() | lower.keys()):
+					column_centers = [
+						row_centers[col]
+						for row_centers in (upper, lower)
+						if col in row_centers
+					]
+					center_x = sum(point[0] for point in column_centers) / len(column_centers)
+					center_y = (
+						sum(point[1] for point in upper.values()) / len(upper)
+						+ sum(point[1] for point in lower.values()) / len(lower)
+					) / 2
+					intersection_centers.append((center_x, center_y))
+
+			# Extend the completed intersection layout one position past every
+			# edge. Midpoint rows are one physical cell apart with roboport rows,
+			# and half a physical cell apart without them.
+			center_keys = {
+				(round(center_x, 6), round(center_y, 6))
+				for center_x, center_y in intersection_centers
+			}
+			x_values = sorted({center_x for center_x, _ in center_keys})
+			y_values = sorted({center_y for _, center_y in center_keys})
+			if x_values and y_values:
+				outer_left = x_values[0] - step_x
+				outer_right = x_values[-1] + step_x
+				row_spacing = step_y if include_roboports else step_y / 2
+				outer_top = y_values[0] - row_spacing
+				outer_bottom = y_values[-1] + row_spacing
+				for center_y in y_values:
+					center_keys.add((outer_left, center_y))
+					center_keys.add((outer_right, center_y))
+				for center_x in x_values + [outer_left, outer_right]:
+					center_keys.add((center_x, outer_top))
+					center_keys.add((center_x, outer_bottom))
+			intersection_centers = sorted(center_keys, key=lambda point: (point[1], point[0]))
+
+		for station_center_x, station_center_y in intersection_centers:
+			offset_x = (
+				station_center_x - intersection_center_x + intersection_x_offset
 			)
-			for entity in result_root["entities"]
-			if "rail" in entity["name"]
-		}
-
-		layout_rows = math.ceil(len(station_roots) / cols)
-		for junction_row in range(1, layout_rows):
-			for junction_col in range(1, cols):
-				surrounding_cells = {
-					(junction_row - 1, junction_col - 1),
-					(junction_row - 1, junction_col),
-					(junction_row, junction_col - 1),
-					(junction_row, junction_col),
-				}
-				if not surrounding_cells.issubset(occupied_cells):
-					continue
-
-				# Round the first junction once, then advance by exact cell steps.
-				# Rounding each half-tile center independently causes alternating
-				# rows to move because Python uses tie-to-even rounding.
-				first_offset_x = round(
-					(step_x - intersection_center_x) / 2
-				) * 2 + intersection_x_offset
-				first_offset_y = round(
-					(step_y - intersection_center_y) / 2
-				) * 2 + intersection_y_offset
-				offset_x = first_offset_x + (junction_col - 1) * step_x
-				offset_y = first_offset_y + (junction_row - 1) * step_y
-				for entity in intersection_entities:
-					entity_copy = copy.deepcopy(entity)
-					entity_copy["position"]["x"] += offset_x
-					entity_copy["position"]["y"] += offset_y
-					if entity_copy["name"] in ("rail-signal", "rail-chain-signal"):
-						entity_copy["position"]["y"] += intersection_signal_y_offset
-					rail_key = (
-						entity_copy["name"],
-						entity_copy["position"]["x"],
-						entity_copy["position"]["y"],
-						entity_copy.get("direction", 0),
-					)
-					if rail_key in existing_rails:
-						continue
-					entity_copy["entity_number"] = next_entity_number
-					next_entity_number += 1
-					result_root["entities"].append(entity_copy)
-					existing_rails.add(rail_key)
-
-
-				# Place one roboport near the top eighth of the intersection. Exact
-				# horizontal center overlaps a rail, so use the nearest clear spot.
-				# The second big pole is 30 tiles below the first, the maximum wire
-				# reach, and both poles are explicitly connected.
-				intersection_top = min(intersection_y_values)
-				intersection_height = (
-					max(intersection_y_values) - intersection_top
-				)
-				roboport_x = intersection_center_x - 2 + offset_x
-				roboport_y = round(
-					intersection_top + intersection_height / 8
-				) + offset_y
-				if place_roboports_between_stations:
-					result_root["entities"].append({
-						"entity_number": next_entity_number,
-						"name": "roboport",
-						"position": {"x": roboport_x, "y": roboport_y},
-					})
-					next_entity_number += 1
-				upper_pole_number = next_entity_number
-				lower_pole_number = next_entity_number + 1
-				result_root["entities"].append({
-					"entity_number": upper_pole_number,
-					"name": "big-electric-pole",
-					"position": {"x": roboport_x - 3, "y": roboport_y},
-					"neighbours": [lower_pole_number],
-				})
-				result_root["entities"].append({
-					"entity_number": lower_pole_number,
-					"name": "big-electric-pole",
-					"position": {"x": roboport_x - 3, "y": roboport_y + 30},
-					"neighbours": [upper_pole_number],
-				})
-				next_entity_number += 2
+			offset_y = (
+				station_center_y - intersection_center_y + intersection_y_offset
+			)
+			entity_numbers = {
+				entity["entity_number"]: next_entity_number + index
+				for index, entity in enumerate(intersection_entities)
+			}
+			for entity in intersection_entities:
+				entity_copy = copy.deepcopy(entity)
+				entity_copy["position"]["x"] += offset_x
+				entity_copy["position"]["y"] += offset_y
+				if entity_copy["name"] in ("rail-signal", "rail-chain-signal"):
+					entity_copy["position"]["x"] += intersection_signal_x_offset
+					entity_copy["position"]["y"] += intersection_signal_y_offset
+				entity_copy["entity_number"] = entity_numbers[entity["entity_number"]]
+				if "neighbours" in entity_copy:
+					entity_copy["neighbours"] = [
+						entity_numbers[number] for number in entity_copy["neighbours"]
+					]
+				result_root["entities"].append(entity_copy)
+			next_entity_number += len(intersection_entities)
 
 	products = ", ".join(dict.fromkeys(recipe_list))
 	roboport_label = ", with roboport rows" if include_roboports else ""

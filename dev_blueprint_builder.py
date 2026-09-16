@@ -3,26 +3,35 @@
 import subprocess
 import sys
 import time
+import os
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
 BUILDER = ROOT / "qt_blueprint_builder.py"
-IGNORED_PARTS = {".git", ".venv", "venv", "__pycache__"}
+IGNORED_PARTS = {".git", ".venv", "venv", "__pycache__", "node_modules"}
 
 
 def source_snapshot():
     """Return Python source modification times without requiring watchdog."""
-    return {
-        path: path.stat().st_mtime_ns
-        for path in ROOT.rglob("*.py")
-        if not IGNORED_PARTS.intersection(path.relative_to(ROOT).parts)
-    }
+    snapshot = {}
+    for directory, subdirectories, filenames in os.walk(ROOT, topdown=True):
+        # Prune ignored trees before os.walk tries to enter them. Filtering the
+        # paths after rglob() is too late for broken junctions in node_modules.
+        subdirectories[:] = [
+            name for name in subdirectories if name not in IGNORED_PARTS
+        ]
+        directory = Path(directory)
+        for filename in filenames:
+            if filename.endswith(".py"):
+                path = directory / filename
+                snapshot[path] = path.stat().st_mtime_ns
+    return snapshot
 
 
 def launch_builder():
     return subprocess.Popen(
-        [sys.executable, "-B", str(BUILDER)],
+        [sys.executable, "-B", str(BUILDER), *sys.argv[1:]],
         cwd=ROOT,
     )
 

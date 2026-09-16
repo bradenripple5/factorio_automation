@@ -14,6 +14,10 @@ PANEL_SIZE = 3
 SUBSTATION_SIZE = 2
 SUBSTATION_SUPPLY_DIAMETER = 18
 SUBSTATION_WIRE_REACH = 18
+ROBOPORT_SIZE = 4
+ROBOPORT_GRID_SPACING = 42
+BIG_ELECTRIC_POLE_SIZE = 2
+BIG_ELECTRIC_POLE_WIRE_REACH = 30
 SOLAR_PANEL_OUTPUT_KW = 60
 
 
@@ -48,8 +52,14 @@ def _validate_dimensions(columns, rows):
         raise ValueError("columns and rows must both be at least 1")
 
 
+def _axis_roboport_positions(length):
+    """Return cell-centered positions for a connected roboport network."""
+    count = max(1, math.ceil(length / ROBOPORT_GRID_SPACING))
+    return [round((index + 0.5) * length / count) for index in range(count)]
+
+
 def _solar_layout(columns, rows):
-    """Return pole positions and panel grid cells occupied by those poles."""
+    """Return infrastructure positions and panel cells occupied by it."""
     _validate_dimensions(columns, rows)
     width = columns * PANEL_SIZE
     height = rows * PANEL_SIZE
@@ -58,27 +68,86 @@ def _solar_layout(columns, rows):
         for y in _axis_substation_positions(height)
         for x in _axis_substation_positions(width)
     ]
+    desired_roboports = [
+        (x, y)
+        for y in _axis_roboport_positions(height)
+        for x in _axis_roboport_positions(width)
+    ]
+    offsets = sorted(
+        ((x, y) for x in range(-4, 5) for y in range(-4, 5)),
+        key=lambda offset: (abs(offset[0]) + abs(offset[1]), offset),
+    )
+    roboport_positions = []
+    for desired in desired_roboports:
+        for offset_x, offset_y in offsets:
+            candidate = (desired[0] + offset_x, desired[1] + offset_y)
+            if any(
+                _boxes_overlap(candidate, ROBOPORT_SIZE, pole, SUBSTATION_SIZE)
+                for pole in pole_positions
+            ):
+                continue
+            if any(
+                _boxes_overlap(candidate, ROBOPORT_SIZE, other, ROBOPORT_SIZE)
+                for other in roboport_positions
+            ):
+                continue
+            roboport_positions.append(candidate)
+            break
+        else:
+            raise ValueError("Could not place a roboport without a collision")
+
+    big_pole_positions = []
+    power_offsets = sorted(
+        (
+            (x, y)
+            for x in range(-4, 5)
+            for y in range(-4, 5)
+            if not _boxes_overlap((0, 0), ROBOPORT_SIZE, (x, y), BIG_ELECTRIC_POLE_SIZE)
+        ),
+        key=lambda offset: (abs(offset[0]) + abs(offset[1]), offset),
+    )
+    for roboport in roboport_positions:
+        for offset_x, offset_y in power_offsets:
+            candidate = (roboport[0] + offset_x, roboport[1] + offset_y)
+            if any(_boxes_overlap(candidate, BIG_ELECTRIC_POLE_SIZE, pole, SUBSTATION_SIZE) for pole in pole_positions):
+                continue
+            if any(_boxes_overlap(candidate, BIG_ELECTRIC_POLE_SIZE, other, ROBOPORT_SIZE) for other in roboport_positions):
+                continue
+            if any(_boxes_overlap(candidate, BIG_ELECTRIC_POLE_SIZE, other, BIG_ELECTRIC_POLE_SIZE) for other in big_pole_positions):
+                continue
+            big_pole_positions.append(candidate)
+            break
+        else:
+            raise ValueError("Could not place a big electric pole beside a roboport")
+
     blocked_panels = set()
-    for pole in pole_positions:
-        approximate_column = int(pole[0] // PANEL_SIZE)
-        approximate_row = int(pole[1] // PANEL_SIZE)
+    infrastructure = [
+        *[(position, SUBSTATION_SIZE) for position in pole_positions],
+        *[(position, ROBOPORT_SIZE) for position in roboport_positions],
+        *[(position, BIG_ELECTRIC_POLE_SIZE) for position in big_pole_positions],
+    ]
+    for position, size in infrastructure:
+        approximate_column = int(position[0] // PANEL_SIZE)
+        approximate_row = int(position[1] // PANEL_SIZE)
         for row in range(max(0, approximate_row - 2), min(rows, approximate_row + 3)):
             for column in range(
                 max(0, approximate_column - 2), min(columns, approximate_column + 3)
             ):
                 panel = (column * PANEL_SIZE + 1.5, row * PANEL_SIZE + 1.5)
-                if _boxes_overlap(panel, PANEL_SIZE, pole, SUBSTATION_SIZE):
+                if _boxes_overlap(panel, PANEL_SIZE, position, size):
                     blocked_panels.add((column, row))
-    return pole_positions, blocked_panels
+    return pole_positions, roboport_positions, big_pole_positions, blocked_panels
 
 
 def solar_array_dimension_stats(columns, rows):
     """Calculate exact totals without constructing every blueprint entity."""
-    pole_positions, blocked_panels = _solar_layout(columns, rows)
+    pole_positions, roboport_positions, big_pole_positions, blocked_panels = _solar_layout(columns, rows)
     panel_count = columns * rows - len(blocked_panels)
     return {
         "solar_panels": panel_count,
         "substations": len(pole_positions),
+        "roboports": len(roboport_positions),
+        "big_electric_poles": len(big_pole_positions),
         "peak_output_mw": panel_count * SOLAR_PANEL_OUTPUT_KW / 1000,
     }
 
@@ -86,13 +155,14 @@ def solar_array_dimension_stats(columns, rows):
 def make_solar_array(columns, rows):
     """Build a blueprint containing ``columns`` by ``rows`` solar panels.
 
-    Substations are placed throughout the resulting 3*columns by 3*rows tile
-    field.  Panels that would collide with a substation are omitted.  Every
-    remaining panel center is inside at least one substation's supply area.
+    Substations and roboports are placed throughout the resulting 3*columns by
+    3*rows tile field. Panels that would collide with infrastructure are omitted.
+    Every panel is powered, and the roboports form one connected logistics network
+    whose construction area covers the complete field.
     """
     width = columns * PANEL_SIZE
     height = rows * PANEL_SIZE
-    pole_positions, blocked_panels = _solar_layout(columns, rows)
+    pole_positions, roboport_positions, big_pole_positions, blocked_panels = _solar_layout(columns, rows)
 
     panel_positions = []
     for row in range(rows):
@@ -123,6 +193,26 @@ def make_solar_array(columns, rows):
             }
         )
 
+    for position in roboport_positions:
+        entities.append(
+            {
+                "entity_number": len(entities) + 1,
+                "name": "roboport",
+                "position": {"x": position[0], "y": position[1]},
+            }
+        )
+
+    big_pole_numbers = []
+    for position in big_pole_positions:
+        big_pole_numbers.append(len(entities) + 1)
+        entities.append(
+            {
+                "entity_number": len(entities) + 1,
+                "name": "big-electric-pole",
+                "position": {"x": position[0], "y": position[1]},
+            }
+        )
+
     # Explicit neighbour links make the grid deterministic while retaining all
     # horizontal and vertical connections that are within wire reach.
     pole_by_position = dict(zip(pole_positions, pole_numbers))
@@ -144,6 +234,18 @@ def make_solar_array(columns, rows):
             if neighbours:
                 entity_by_number[number]["neighbours"] = neighbours
 
+    # Tie every roboport's adjacent big pole into the powered substation grid.
+    for position, number in zip(big_pole_positions, big_pole_numbers):
+        nearest_position = min(
+            pole_positions,
+            key=lambda pole: (pole[0] - position[0]) ** 2 + (pole[1] - position[1]) ** 2,
+        )
+        if math.dist(position, nearest_position) > BIG_ELECTRIC_POLE_WIRE_REACH:
+            raise ValueError("A roboport power pole cannot reach the substation grid")
+        substation_number = pole_by_position[nearest_position]
+        entity_by_number[number]["neighbours"] = [substation_number]
+        entity_by_number[substation_number].setdefault("neighbours", []).append(number)
+
     output_mw = len(panel_positions) * SOLAR_PANEL_OUTPUT_KW / 1000
     return {
         "blueprint": {
@@ -153,6 +255,7 @@ def make_solar_array(columns, rows):
             "icons": [
                 {"signal": {"type": "item", "name": "solar-panel"}, "index": 1},
                 {"signal": {"type": "item", "name": "substation"}, "index": 2},
+                {"signal": {"type": "item", "name": "roboport"}, "index": 3},
             ],
             "entities": entities,
         }
@@ -164,9 +267,13 @@ def solar_array_stats(blueprint):
     entities = blueprint["blueprint"]["entities"]
     panel_count = sum(entity["name"] == "solar-panel" for entity in entities)
     substation_count = sum(entity["name"] == "substation" for entity in entities)
+    roboport_count = sum(entity["name"] == "roboport" for entity in entities)
+    big_pole_count = sum(entity["name"] == "big-electric-pole" for entity in entities)
     return {
         "solar_panels": panel_count,
         "substations": substation_count,
+        "roboports": roboport_count,
+        "big_electric_poles": big_pole_count,
         "peak_output_mw": panel_count * SOLAR_PANEL_OUTPUT_KW / 1000,
     }
 

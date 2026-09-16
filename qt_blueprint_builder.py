@@ -3,24 +3,30 @@
 import json
 import math
 import sys
+import argparse
 
 import pyperclip
-from PySide6.QtCore import QSettings, Qt, QTimer
+from PySide6.QtCore import QEvent, QSettings, Qt, QTimer
 from PySide6.QtWidgets import (
     QAbstractSpinBox, QApplication, QCheckBox, QComboBox, QDoubleSpinBox, QFormLayout,
-    QDialog, QGroupBox, QHBoxLayout, QLabel, QLineEdit, QMainWindow, QMessageBox, QPushButton,
+    QDialog, QGroupBox, QHBoxLayout, QLabel, QLineEdit, QMainWindow, QPushButton,
     QScrollArea, QSizePolicy, QSpinBox, QTextEdit, QVBoxLayout, QWidget,
 )
 
 from blueprint_builder import (
     SOLID_ORE_RESOURCES,
+    STATION_LAYOUT_ORDERS,
     build_dropoff_circuit_test,
+    build_center_track_array,
     build_ore_pickup,
     build_product_station_array,
+    build_single_product_station,
+    build_station_roboport_power_array,
     build_train_depot,
     build_single_production_machine,
     build_train,
     build_repeated_blueprint,
+    outfit_roboports_with_inserters,
     plan_product_stations,
 )
 from convert_json_to_blueprint_string import convertoToBlueprint
@@ -38,11 +44,13 @@ class BlueprintBuilderWindow(QMainWindow):
         "personal-roboport-mk2": "personal-roboport-mk2-equipment",
     }
 
-    def __init__(self):
+    def __init__(self, station_center_spacing_x=62, station_center_spacing_y=66):
         super().__init__()
         self.setWindowTitle("Factorio Production Blueprint Builder")
         self.resize(760, 820)
         self.blueprint = None
+        self.default_station_center_spacing_x = station_center_spacing_x
+        self.default_station_center_spacing_y = station_center_spacing_y
         self.settings = QSettings(
             "factorio-software-automation", "blueprint-builder"
         )
@@ -51,9 +59,31 @@ class BlueprintBuilderWindow(QMainWindow):
         self._settings_save_timer.setInterval(300)
         self._settings_save_timer.timeout.connect(self._save_settings)
         self._build_ui()
+        self._install_focus_only_value_controls()
         self._load_settings()
         self._connect_settings_persistence()
         self.refresh_preview()
+
+    def _install_focus_only_value_controls(self):
+        """Prevent scrolling the window from accidentally changing controls."""
+        widgets = (
+            self.findChildren(QSpinBox)
+            + self.findChildren(QDoubleSpinBox)
+            + self.findChildren(QComboBox)
+        )
+        for widget in widgets:
+            widget.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+            widget.installEventFilter(self)
+
+    def eventFilter(self, watched, event):
+        if (
+            isinstance(watched, (QSpinBox, QDoubleSpinBox, QComboBox))
+            and event.type() == QEvent.Type.Wheel
+            and not watched.hasFocus()
+        ):
+            event.ignore()
+            return True
+        return super().eventFilter(watched, event)
 
     def _build_ui(self):
         root = QWidget()
@@ -88,6 +118,7 @@ class BlueprintBuilderWindow(QMainWindow):
         product_form.setFieldGrowthPolicy(QFormLayout.AllNonFixedFieldsGrow)
         self.mode = QComboBox()
         self.mode.addItem("Full production station array", "production")
+        self.mode.addItem("Single production station", "single-station")
         self.mode.addItem("Standalone solar array", "solar-array")
         self.mode.addItem("Ore pickup only", "ore-pickup")
         self.mode.addItem("Single production machine", "single-machine")
@@ -95,6 +126,11 @@ class BlueprintBuilderWindow(QMainWindow):
         self.mode.addItem("Train depot only", "train-depot")
         self.mode.addItem("Dropoff circuit test", "dropoff-circuit-test")
         self.mode.addItem("Repeat pasted blueprint", "repeat-blueprint")
+        self.mode.addItem("Outfit roboports with inserters and steel chests", "outfit-roboports")
+        self.mode.addItem("Center-two track array", "center-track-array")
+        self.mode.addItem(
+            "Below-station roboport array", "station-roboport-array"
+        )
         product_form.addRow("Generation mode", self.mode)
         self.product = QComboBox()
         self.product.setEditable(True)
@@ -105,6 +141,20 @@ class BlueprintBuilderWindow(QMainWindow):
         self.product.addItems(products)
         self.product.setCurrentText("advanced-circuit")
         product_form.addRow("Final product", self.product)
+        self.station_order = QTextEdit()
+        self.station_order.setMaximumHeight(80)
+        self.station_order.setPlaceholderText(
+            "Optional: comma or newline separated station recipe order"
+        )
+        self.station_order.setPlainText(
+            ", ".join(STATION_LAYOUT_ORDERS["advanced-circuit"])
+        )
+        self.use_station_order = QCheckBox("Use station order override")
+        self.use_station_order.setChecked(False)
+        self.station_order.setEnabled(False)
+        self.use_station_order.toggled.connect(self.station_order.setEnabled)
+        product_form.addRow("", self.use_station_order)
+        product_form.addRow("Station order override", self.station_order)
         self.solar_columns = self._integer(20, 1, 1000)
         self.solar_rows = self._integer(10, 1, 1000)
         product_form.addRow("Solar panel columns", self.solar_columns)
@@ -121,9 +171,25 @@ class BlueprintBuilderWindow(QMainWindow):
         form = QFormLayout(options_group)
         form.setFieldGrowthPolicy(QFormLayout.AllNonFixedFieldsGrow)
         self.roboports = self._checkbox(True)
+        self.radial_layout = QCheckBox(
+            "Center final product and radiate ingredient levels outward"
+        )
+        self.radial_layout.setChecked(True)
         self.roboports_in_squares = self._checkbox(True)
+        self.roboport_columns = self._integer(4, 1, 100)
+        self.roboport_rows = self._integer(6, 1, 100)
+        self.roboport_array_x_offset = self._number(0)
+        self.roboport_array_y_offset = self._number(0)
         self.roboports_between_stations = self._checkbox(True)
+        self.roboports_between_only = QCheckBox("Only")
+        self.roboports_between_only.toggled.connect(
+            lambda checked: (
+                self.roboports.setChecked(True),
+                self.roboports_between_stations.setChecked(True),
+            ) if checked else None
+        )
         self.intersections = self._checkbox(True)
+        self.intersections_between_rows = self._checkbox(False)
         self.separate_depot = QCheckBox("Put trains in separate depot")
         self.depot_only = QCheckBox("Make depot only")
         self.empty_chests = self._checkbox(True)
@@ -135,18 +201,38 @@ class BlueprintBuilderWindow(QMainWindow):
         self.wagon_count = self._integer(4, 1, 100)
         self.fluid_wagons = QCheckBox("Use fluid wagons instead of cargo wagons")
         self.double_ended_train = QCheckBox("Put a locomotive on both ends")
-        self.x_offset = self._number(-4)
-        self.y_offset = self._number(-6)
-        self.signal_y_offset = self._number(1)
-        self.horizontal_spacing = self._number(6, minimum=0)
+        self.x_offset = self._number(0)
+        self.y_offset = self._number(0)
+        self.signal_x_offset = self._number(0)
+        self.signal_y_offset = self._number(0)
+        self.horizontal_spacing = self._number(0, minimum=0)
         self.vertical_spacing = self._number(7, minimum=0)
-        form.addRow("Include roboports", self.roboports)
-        form.addRow("Place roboports in roboport squares", self.roboports_in_squares)
-        form.addRow(
-            "Place roboports between stations",
-            self.roboports_between_stations,
+        self.station_center_spacing_x = self._number(
+            self.default_station_center_spacing_x, minimum=2
         )
+        self.station_center_spacing_y = self._number(
+            self.default_station_center_spacing_y, minimum=2
+        )
+        self.track_columns = self._integer(2, 1, 100)
+        self.track_rows = self._integer(2, 1, 100)
+        self.track_intersection_signals = self._checkbox(True)
+        self.below_station_roboport_y = self._number(33)
+        form.addRow("Include roboports", self.roboports)
+        form.addRow("", self.radial_layout)
+        form.addRow("Place roboports in roboport squares", self.roboports_in_squares)
+        form.addRow("Robo array columns", self.roboport_columns)
+        form.addRow("Robo array rows", self.roboport_rows)
+        form.addRow("Robo array X shift", self.roboport_array_x_offset)
+        form.addRow("Robo array Y shift", self.roboport_array_y_offset)
+        between_roboports = QWidget()
+        between_roboports_layout = QHBoxLayout(between_roboports)
+        between_roboports_layout.setContentsMargins(0, 0, 0, 0)
+        between_roboports_layout.addWidget(self.roboports_between_stations)
+        between_roboports_layout.addWidget(self.roboports_between_only)
+        between_roboports_layout.addStretch()
+        form.addRow("Place roboports between stations", between_roboports)
         form.addRow("Include rail intersections", self.intersections)
+        form.addRow("Add intersections between rows", self.intersections_between_rows)
         depot_options = QWidget()
         depot_options_layout = QHBoxLayout(depot_options)
         depot_options_layout.setContentsMargins(0, 0, 0, 0)
@@ -165,9 +251,22 @@ class BlueprintBuilderWindow(QMainWindow):
         form.addRow("", self.double_ended_train)
         form.addRow("Intersection X offset", self.x_offset)
         form.addRow("Intersection Y offset", self.y_offset)
-        form.addRow("Signal Y offset", self.signal_y_offset)
-        form.addRow("Horizontal spacing", self.horizontal_spacing)
+        form.addRow("Intersection signal X shift", self.signal_x_offset)
+        form.addRow("Intersection signal Y shift", self.signal_y_offset)
+        form.addRow("Empty space between station columns", self.horizontal_spacing)
         form.addRow("Vertical spacing", self.vertical_spacing)
+        form.addRow("Manual station center spacing X", self.station_center_spacing_x)
+        form.addRow("Manual station center spacing Y", self.station_center_spacing_y)
+        form.addRow("Track array columns", self.track_columns)
+        form.addRow("Track array rows", self.track_rows)
+        form.addRow(
+            "Include intersection rail signals",
+            self.track_intersection_signals,
+        )
+        form.addRow(
+            "Below-station roboport Y offset",
+            self.below_station_roboport_y,
+        )
         layout.addWidget(options_group)
 
         self.schedule_label = QLabel(
@@ -200,12 +299,33 @@ class BlueprintBuilderWindow(QMainWindow):
         self.repeat_cell_type = QComboBox()
         self.repeat_cell_type.addItem("Product/train-station slots", "product-station")
         self.repeat_cell_type.addItem("Extra-roboport slots", "roboport-station")
+        self.upgrade_pasted_modules = self._checkbox(False)
+        self.pasted_module = QComboBox()
+        self.pasted_module.setEditable(True)
+        self.pasted_module.addItems([
+            "speed-module-3",
+            "productivity-module-3",
+            "efficiency-module-3",
+            "quality-module-3",
+        ])
+        self.pasted_module.setCurrentText("speed-module-3")
+        self.upgrade_pasted_modules.toggled.connect(
+            self.pasted_module.setEnabled
+        )
         self.pasted_copies_label = QLabel("Blueprint copies")
         pasted_row = QHBoxLayout()
         pasted_row.addWidget(self.pasted_copies_label)
         pasted_row.addWidget(self.pasted_copies)
         pasted_row.addWidget(self.repeat_cell_type)
         layout.addLayout(pasted_row)
+        module_row = QHBoxLayout()
+        module_row.addWidget(QLabel("Upgrade pasted machines"))
+        module_row.addWidget(self.upgrade_pasted_modules)
+        module_row.addWidget(self.pasted_module)
+        module_row.addStretch()
+        self.pasted_module_row = QWidget()
+        self.pasted_module_row.setLayout(module_row)
+        layout.addWidget(self.pasted_module_row)
 
         layout.addWidget(QLabel("Stations that will be generated"))
         self.preview = QTextEdit()
@@ -255,15 +375,21 @@ class BlueprintBuilderWindow(QMainWindow):
         self.solar_rows.valueChanged.connect(self.refresh_preview)
         for widget in (
             self.roboports,
+            self.radial_layout,
             self.roboports_in_squares,
             self.roboports_between_stations,
             self.intersections,
+            self.intersections_between_rows,
             self.separate_depot,
             self.depot_only,
             self.empty_chests,
             self.include_trains,
         ):
             widget.toggled.connect(self.refresh_preview)
+        self.roboport_columns.valueChanged.connect(self.refresh_preview)
+        self.roboport_rows.valueChanged.connect(self.refresh_preview)
+        self.roboport_array_x_offset.valueChanged.connect(self.refresh_preview)
+        self.roboport_array_y_offset.valueChanged.connect(self.refresh_preview)
         self.roboports.toggled.connect(
             lambda checked: self.roboports_in_squares.setEnabled(
                 checked and self.mode.currentData() == "production"
@@ -275,9 +401,12 @@ class BlueprintBuilderWindow(QMainWindow):
             self.trains,
             self.x_offset,
             self.y_offset,
+            self.signal_x_offset,
             self.signal_y_offset,
             self.horizontal_spacing,
             self.vertical_spacing,
+            self.station_center_spacing_x,
+            self.station_center_spacing_y,
         ):
             widget.valueChanged.connect(self.refresh_preview)
         self.copy_button.clicked.connect(self.generate_and_copy)
@@ -290,12 +419,21 @@ class BlueprintBuilderWindow(QMainWindow):
         return {
             "mode": self.mode,
             "product": self.product,
+            "station_order": self.station_order,
+            "use_station_order": self.use_station_order,
             "ore_resource": self.ore_resource,
             "include_final": self.include_final,
             "roboports": self.roboports,
+            "radial_layout": self.radial_layout,
             "roboports_in_squares": self.roboports_in_squares,
+            "roboport_columns": self.roboport_columns,
+            "roboport_rows": self.roboport_rows,
+            "roboport_array_x_offset": self.roboport_array_x_offset,
+            "roboport_array_y_offset": self.roboport_array_y_offset,
             "roboports_between_stations": self.roboports_between_stations,
+            "roboports_between_only": self.roboports_between_only,
             "intersections": self.intersections,
+            "intersections_between_rows": self.intersections_between_rows,
             "separate_depot": self.separate_depot,
             "depot_only": self.depot_only,
             "empty_chests": self.empty_chests,
@@ -309,9 +447,16 @@ class BlueprintBuilderWindow(QMainWindow):
             "double_ended_train": self.double_ended_train,
             "x_offset": self.x_offset,
             "y_offset": self.y_offset,
+            "signal_x_offset": self.signal_x_offset,
             "signal_y_offset": self.signal_y_offset,
             "horizontal_spacing": self.horizontal_spacing,
             "vertical_spacing": self.vertical_spacing,
+            "station_center_spacing_x": self.station_center_spacing_x,
+            "station_center_spacing_y": self.station_center_spacing_y,
+            "track_columns": self.track_columns,
+            "track_rows": self.track_rows,
+            "track_intersection_signals": self.track_intersection_signals,
+            "below_station_roboport_y": self.below_station_roboport_y,
             "solar_columns": self.solar_columns,
             "solar_rows": self.solar_rows,
             "schedule": self.schedule,
@@ -319,6 +464,8 @@ class BlueprintBuilderWindow(QMainWindow):
             "layout_blueprint": self.layout_blueprint,
             "pasted_copies": self.pasted_copies,
             "repeat_cell_type": self.repeat_cell_type,
+            "upgrade_pasted_modules": self.upgrade_pasted_modules,
+            "pasted_module": self.pasted_module,
         }
 
     def _depot_option_changed(self, checked):
@@ -341,7 +488,7 @@ class BlueprintBuilderWindow(QMainWindow):
             and self.separate_depot.isChecked()
             and self.mode.currentData() == "production"
         )
-        if self.mode.currentData() == "production":
+        if self.mode.currentData() in {"production", "single-station"}:
             self.trains.setEnabled(checked)
 
     def _load_settings(self):
@@ -369,14 +516,6 @@ class BlueprintBuilderWindow(QMainWindow):
                 elif widget.isEditable():
                     widget.setCurrentText(str(value))
 
-        # Apply the requested station grid once even when older spacing values
-        # were restored from persistent settings.
-        spacing_revision_key = "migrations/station_spacing_6_by_7"
-        if not self.settings.value(spacing_revision_key, False, type=bool):
-            self.horizontal_spacing.setValue(6)
-            self.vertical_spacing.setValue(7)
-            self.settings.setValue(spacing_revision_key, True)
-            self.settings.sync()
         self.mode_changed()
 
     def _connect_settings_persistence(self):
@@ -469,6 +608,8 @@ class BlueprintBuilderWindow(QMainWindow):
                 self.preview.setPlainText(
                     f'{stats["solar_panels"]} solar panels\n'
                     f'{stats["substations"]} substations\n'
+                    f'{stats["roboports"]} roboports\n'
+                    f'{stats["big_electric_poles"]} big electric poles\n'
                     f'{stats["peak_output_mw"]:g} MW peak output'
                 )
                 self.status.setText("Standalone solar array ready to generate")
@@ -480,9 +621,24 @@ class BlueprintBuilderWindow(QMainWindow):
                     f"{self.mining_copies.value()} mining module(s) in a square grid, "
                     f"Rail X offset: {self.rail_x_offset.value()} tiles\n"
                     f"Rail Y offset: {self.rail_y_offset.value()} tiles\n"
-                    "Powered roboport corridor · 24 requester chests · 1 train stop"
+                    "Powered roboport corridor  -  24 requester chests  -  1 train stop"
                 )
                 self.status.setText(f"{resource} pickup ready to generate")
+                return
+            if self.mode.currentData() == "single-station":
+                recipe = self._selected_product()
+                if recipe not in recipes_dict:
+                    raise ValueError(f"Unknown recipe: {recipe}")
+                train_summary = (
+                    f"{self.trains.value()} train(s) per route"
+                    if self.include_trains.isChecked()
+                    else "No trains"
+                )
+                self.preview.setPlainText(
+                    f"One production station for {recipe}\n"
+                    f"{train_summary}  -  midpoint circuits included"
+                )
+                self.status.setText(f"Single {recipe} station ready to generate")
                 return
             if self.mode.currentData() == "single-machine":
                 recipe = self._selected_product()
@@ -540,6 +696,10 @@ class BlueprintBuilderWindow(QMainWindow):
                 )
                 self.status.setText("Paste a blueprint, then generate and preview")
                 return
+            if self.mode.currentData() == "outfit-roboports":
+                self.preview.setPlainText("Every roboport in the pasted blueprint will be inspected.\nAdjacent inserters will face outward and feed steel chests.\nA clear inserter/chest pair will be added when one is missing.")
+                self.status.setText("Paste a blueprint to outfit its roboports")
+                return
             stations = plan_product_stations(
                 self._selected_product(),
                 self.include_final.isChecked(),
@@ -570,13 +730,22 @@ class BlueprintBuilderWindow(QMainWindow):
 
     def mode_changed(self):
         production_mode = self.mode.currentData() == "production"
+        single_station_mode = self.mode.currentData() == "single-station"
+        station_mode = production_mode or single_station_mode
         solar_mode = self.mode.currentData() == "solar-array"
         single_mode = self.mode.currentData() == "single-machine"
         train_mode = self.mode.currentData() == "train"
         repeat_mode = self.mode.currentData() == "repeat-blueprint"
-        self.product.setEnabled(production_mode or single_mode)
+        outfit_roboports_mode = self.mode.currentData() == "outfit-roboports"
+        track_mode = self.mode.currentData() == "center-track-array"
+        station_roboport_mode = (
+            self.mode.currentData() == "station-roboport-array"
+        )
+        self.product.setEnabled(
+            station_mode or single_mode or station_roboport_mode
+        )
         self.include_final.setEnabled(production_mode)
-        self.include_trains.setEnabled(production_mode)
+        self.include_trains.setEnabled(station_mode)
         self.separate_depot.setEnabled(
             production_mode and self.include_trains.isChecked()
         )
@@ -588,7 +757,7 @@ class BlueprintBuilderWindow(QMainWindow):
         self.ore_resource.setEnabled(not production_mode)
         self.ore_resource.setEnabled(self.mode.currentData() == "ore-pickup")
         self.trains.setEnabled(
-            (production_mode and self.include_trains.isChecked())
+            (station_mode and self.include_trains.isChecked())
             or self.mode.currentData() == "ore-pickup"
         )
         self.rail_x_offset.setEnabled(self.mode.currentData() == "ore-pickup")
@@ -599,18 +768,25 @@ class BlueprintBuilderWindow(QMainWindow):
         self.double_ended_train.setEnabled(train_mode)
         self.schedule_label.setVisible(train_mode)
         self.schedule.setVisible(train_mode)
-        self.pasted_label.setVisible(repeat_mode)
-        self.pasted_blueprint.setVisible(repeat_mode)
+        self.pasted_label.setText("Factorio blueprint string to outfit" if outfit_roboports_mode else "Factorio blueprint string to repeat")
+        self.pasted_label.setVisible(repeat_mode or outfit_roboports_mode)
+        self.pasted_blueprint.setVisible(repeat_mode or outfit_roboports_mode)
         self.layout_blueprint_label.setVisible(repeat_mode)
         self.layout_blueprint.setVisible(repeat_mode)
         self.pasted_copies_label.setVisible(repeat_mode)
         self.pasted_copies.setVisible(repeat_mode)
         self.repeat_cell_type.setVisible(repeat_mode)
+        self.pasted_module_row.setVisible(repeat_mode)
+        self.pasted_module.setEnabled(
+            repeat_mode and self.upgrade_pasted_modules.isChecked()
+        )
         for widget in (
             self.intersections,
+            self.intersections_between_rows,
             self.empty_chests,
             self.x_offset,
             self.y_offset,
+            self.signal_x_offset,
             self.signal_y_offset,
             self.horizontal_spacing,
             self.vertical_spacing,
@@ -619,12 +795,32 @@ class BlueprintBuilderWindow(QMainWindow):
                 repeat_mode and widget in (self.horizontal_spacing, self.vertical_spacing)
             ))
         self.roboports.setEnabled(production_mode or repeat_mode)
+        self.radial_layout.setEnabled(production_mode)
         self.roboports_in_squares.setEnabled(
             production_mode and self.roboports.isChecked()
         )
+        self.roboport_columns.setEnabled(
+            production_mode and self.roboports.isChecked()
+        )
+        self.roboport_rows.setEnabled(
+            production_mode and self.roboports.isChecked()
+        )
+        self.roboport_array_x_offset.setEnabled(
+            production_mode and self.roboports.isChecked()
+        )
+        self.roboport_array_y_offset.setEnabled(
+            production_mode and self.roboports.isChecked()
+        )
         self.roboports_between_stations.setEnabled(production_mode)
+        self.roboports_between_only.setEnabled(production_mode)
         self.solar_columns.setEnabled(solar_mode)
         self.solar_rows.setEnabled(solar_mode)
+        self.track_columns.setEnabled(track_mode)
+        self.track_rows.setEnabled(track_mode)
+        self.track_intersection_signals.setEnabled(track_mode)
+        self.below_station_roboport_y.setEnabled(station_roboport_mode)
+        self.station_center_spacing_x.setEnabled(production_mode or track_mode)
+        self.station_center_spacing_y.setEnabled(production_mode or track_mode)
         self.refresh_preview()
 
     def _generate(self):
@@ -645,6 +841,14 @@ class BlueprintBuilderWindow(QMainWindow):
                 rail_y_offset=self.rail_y_offset.value(),
             )
             return [resource]
+        if self.mode.currentData() == "single-station":
+            recipe = self._selected_product()
+            self.blueprint = build_single_product_station(
+                recipe,
+                include_trains=self.include_trains.isChecked(),
+                trains_per_stop=self.trains.value(),
+            )
+            return [recipe]
         if self.mode.currentData() == "single-machine":
             recipe = self._selected_product()
             self.blueprint = build_single_production_machine(recipe)
@@ -663,6 +867,31 @@ class BlueprintBuilderWindow(QMainWindow):
         if self.mode.currentData() == "dropoff-circuit-test":
             self.blueprint = build_dropoff_circuit_test()
             return ["dropoff circuit test"]
+        if self.mode.currentData() == "center-track-array":
+            self.blueprint = build_center_track_array(
+                self.track_columns.value(),
+                self.track_rows.value(),
+                station_center_spacing_x=self.station_center_spacing_x.value(),
+                station_center_spacing_y=self.station_center_spacing_y.value(),
+                include_intersection_signals=(
+                    self.track_intersection_signals.isChecked()
+                ),
+            )
+            return ["center-two track array"]
+        if self.mode.currentData() == "station-roboport-array":
+            station_plan = plan_product_stations(
+                self._selected_product(),
+                self.include_final.isChecked(),
+                self.trains.value(),
+                station_order=self._station_order_override(),
+            )
+            self.blueprint = build_station_roboport_power_array(
+                len(station_plan),
+                station_center_spacing_x=self.station_center_spacing_x.value(),
+                station_center_spacing_y=self.station_center_spacing_y.value(),
+                below_station_y_offset=self.below_station_roboport_y.value(),
+            )
+            return ["below-station roboport array"]
         if self.mode.currentData() == "repeat-blueprint":
             self.blueprint = build_repeated_blueprint(
                 self.pasted_blueprint.toPlainText(),
@@ -672,29 +901,67 @@ class BlueprintBuilderWindow(QMainWindow):
                 vertical_spacing=self.vertical_spacing.value(),
                 cell_type=self.repeat_cell_type.currentData(),
                 include_roboports=self.roboports.isChecked(),
+                module_upgrade=(
+                    self.pasted_module.currentText().strip()
+                    if self.upgrade_pasted_modules.isChecked()
+                    else None
+                ),
             )
             return ["pasted blueprint"]
+        if self.mode.currentData() == "outfit-roboports":
+            self.blueprint = outfit_roboports_with_inserters(self.pasted_blueprint.toPlainText())
+            return ["outfitted roboports"]
         self.blueprint, ingredients = build_product_station_array(
             self._selected_product(),
             include_final_product=self.include_final.isChecked(),
             include_roboports=self.roboports.isChecked(),
+            radial_layout=self.radial_layout.isChecked(),
             place_roboports_in_squares=self.roboports_in_squares.isChecked(),
+            roboport_columns=self.roboport_columns.value(),
+            roboport_rows=self.roboport_rows.value(),
+            roboport_array_x_offset=self.roboport_array_x_offset.value(),
+            roboport_array_y_offset=self.roboport_array_y_offset.value(),
             place_roboports_between_stations=(
                 self.roboports_between_stations.isChecked()
             ),
+            roboports_between_only=self.roboports_between_only.isChecked(),
             include_intersections=self.intersections.isChecked(),
+            intersections_between_rows=self.intersections_between_rows.isChecked(),
             intersection_x_offset=self.x_offset.value(),
             intersection_y_offset=self.y_offset.value(),
+            intersection_signal_x_offset=self.signal_x_offset.value(),
             intersection_signal_y_offset=self.signal_y_offset.value(),
             empty_requester_chests=self.empty_chests.isChecked(),
             include_trains=self.include_trains.isChecked(),
             trains_per_stop=self.trains.value(),
             horizontal_spacing=self.horizontal_spacing.value(),
             vertical_spacing=self.vertical_spacing.value(),
+            station_center_spacing_x=self.station_center_spacing_x.value(),
+            station_center_spacing_y=self.station_center_spacing_y.value(),
             separate_train_depot=self.separate_depot.isChecked(),
             depot_only=self.depot_only.isChecked(),
+            station_order=self._station_order_override(),
         )
         return ingredients
+
+    def _station_order_override(self):
+        if not self.use_station_order.isChecked():
+            return None
+        text = self.station_order.toPlainText().strip()
+        if not text:
+            return None
+        default_advanced = ", ".join(STATION_LAYOUT_ORDERS["advanced-circuit"])
+        if (
+            self._selected_product() != "advanced-circuit"
+            and text == default_advanced
+        ):
+            return None
+        return [
+            value.strip()
+            for line in text.splitlines()
+            for value in line.split(",")
+            if value.strip()
+        ]
 
     def generate_and_copy(self):
         try:
@@ -703,7 +970,7 @@ class BlueprintBuilderWindow(QMainWindow):
             pyperclip.copy(convertoToBlueprint(self.blueprint))
             self.status.setText("Copied the generated blueprint")
         except Exception as error:
-            QMessageBox.warning(self, "Blueprint required", str(error))
+            self._show_copyable_error("Blueprint required", error)
             self.status.setText("Generate the blueprint before copying")
 
     def generate_and_copy_now(self):
@@ -738,8 +1005,34 @@ class BlueprintBuilderWindow(QMainWindow):
                     f"Generated {len(ingredients)} stations — ready to copy or preview"
                 )
         except Exception as error:
-            QMessageBox.critical(self, "Could not generate blueprint", str(error))
+            self._show_copyable_error("Could not generate blueprint", error)
             self.status.setText("Generation failed")
+
+    def _show_copyable_error(self, title, error):
+        """Show an error with selectable text and an explicit copy action."""
+        error_text = str(error)
+        dialog = QDialog(self)
+        dialog.setWindowTitle(title)
+        dialog.resize(680, 260)
+        layout = QVBoxLayout(dialog)
+
+        viewer = QTextEdit()
+        viewer.setReadOnly(True)
+        viewer.setPlainText(error_text)
+        layout.addWidget(viewer)
+
+        buttons = QHBoxLayout()
+        copy_button = QPushButton("Copy error")
+        copy_button.clicked.connect(
+            lambda: QApplication.clipboard().setText(error_text)
+        )
+        close_button = QPushButton("Close")
+        close_button.clicked.connect(dialog.accept)
+        buttons.addStretch()
+        buttons.addWidget(copy_button)
+        buttons.addWidget(close_button)
+        layout.addLayout(buttons)
+        dialog.exec()
 
     def _show_generated_schedules(self):
         schedules = self.blueprint.get("blueprint", {}).get("schedules", [])
@@ -781,7 +1074,7 @@ class BlueprintBuilderWindow(QMainWindow):
             launch_whereis(self.blueprint)
             self.status.setText("Previewing the generated blueprint")
         except Exception as error:
-            QMessageBox.warning(self, "Blueprint required", str(error))
+            self._show_copyable_error("Blueprint required", error)
             self.status.setText("Generate the blueprint before previewing")
 
     def view_json(self):
@@ -811,13 +1104,21 @@ class BlueprintBuilderWindow(QMainWindow):
             layout.addWidget(close_button)
             dialog.exec()
         except Exception as error:
-            QMessageBox.warning(self, "Blueprint required", str(error))
+            self._show_copyable_error("Blueprint required", error)
             self.status.setText("Generate the blueprint before viewing JSON")
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--station-center-spacing-x", type=int, default=62)
+    parser.add_argument("--station-center-spacing-y", type=int, default=66)
+    args, qt_args = parser.parse_known_args()
+    sys.argv = [sys.argv[0], *qt_args]
     app = QApplication.instance() or QApplication(sys.argv)
-    window = BlueprintBuilderWindow()
+    window = BlueprintBuilderWindow(
+        station_center_spacing_x=args.station_center_spacing_x,
+        station_center_spacing_y=args.station_center_spacing_y,
+    )
     window.show()
     return app.exec()
 

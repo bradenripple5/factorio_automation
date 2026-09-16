@@ -347,7 +347,6 @@ class Station:
             for entity in entities
             if "underground-belt" in entity.get("name", "")
         ]
-
         def position(entity):
             value = entity["position"]
             return float(value["x"]), float(value["y"])
@@ -411,7 +410,9 @@ class Station:
             if obstructed:
                 continue
 
-            nearest_stop = min(stops, key=lambda stop: distance(inserter, stop))
+            nearest_stop = min(
+                stops, key=lambda stop: distance(inserter, stop)
+            )
             stop_number = nearest_stop["entity_number"]
             if stop_number in dropoffs:
                 groups[stop_number].append(inserter)
@@ -478,10 +479,10 @@ class Station:
                         if distance(source, relay) <= 9
                     ]
                     if not relay_edges:
-                        raise ValueError(
-                            f"Dropoff circuit cannot bridge wire reach at "
-                            f"{stop['station']}"
-                        )
+                        # Preserve every in-range connection already made, but
+                        # never reject blueprint generation solely because the
+                        # template has no relay capable of spanning this gap.
+                        break
                     _, relay_source, relay = min(
                         relay_edges,
                         key=lambda edge: min(

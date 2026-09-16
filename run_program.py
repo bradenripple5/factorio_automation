@@ -177,7 +177,6 @@ if __name__ == "__main__":
   #     include_intersections=True,
   #     intersection_x_offset=-4,
   #     intersection_y_offset=-7,
-  #     intersection_signal_y_offset=1,
   #     empty_requester_chests=True,
   #     trains_per_stop=1,
   # )

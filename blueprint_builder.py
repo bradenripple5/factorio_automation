@@ -2,12 +2,14 @@
 
 import copy
 import math
+from collections import Counter
 from pathlib import Path
 
+from add_modules import add_max_modules
 from convert_json_to_blueprint_string import convertoToJson
 from make_single_assembler import make_single_assembler
 from make_solar_array import make_solar_array, solar_array_stats
-from Station import build_station_tree
+from Station import Station, build_station_tree
 from recipe_extraction import (
     get_non_raw_materials_for_recipe,
     get_recipe_machine,
@@ -26,11 +28,99 @@ from make_station import (
 
 
 SOLID_ORE_RESOURCES = ("iron-ore", "copper-ore", "coal", "stone", "uranium-ore")
+STATION_LAYOUT_ORDERS = {
+    "advanced-circuit": [
+        # 5
+        "plastic-bar", "copper-plate", "copper-cable", "copper-cable",
+        "advanced-circuit",
+        # 5
+        "plastic-bar", "electronic-circuit", "copper-plate",
+        "copper-cable", "copper-cable",
+        # 4
+        "electronic-circuit", "copper-plate", "copper-cable", "copper-cable",
+        # 4
+        "iron-plate", "copper-plate", "copper-cable", "copper-cable",
+        # 4
+        "iron-plate", "copper-plate", "copper-cable", "copper-cable",
+    ],
+}
 ORE_PICKUP_TEMPLATE = Path(__file__).parent / "blueprints" / "iron_ore_pickup"
 MINING_DRILL_TEMPLATE = Path(__file__).parent / "mining_drills_optimal"
 TRAIN_DEPOT_TEMPLATE = Path(__file__).parent / "blueprints" / "train_depot.json"
 NINETY_RAIL_TEMPLATE = Path(__file__).parent / "blueprints" / "ninety_rail.json"
+TRACK_INTERSECTION_TEMPLATE = Path(__file__).parent / "blueprints" / "intersection.json"
 ROLLING_STOCK_NAMES = {"locomotive", "cargo-wagon", "fluid-wagon", "artillery-wagon"}
+INSERTER_NAMES = {"inserter", "long-handed-inserter", "fast-inserter", "filter-inserter", "stack-inserter", "stack-filter-inserter", "bulk-inserter"}
+
+
+def outfit_roboports_with_inserters(blueprint_string):
+    """Point roboport-adjacent inserters outward and give them steel chests."""
+    if not str(blueprint_string).strip():
+        raise ValueError("Paste a Factorio blueprint string first")
+    result = copy.deepcopy(convertoToJson(blueprint_string))
+    if "blueprint" not in result:
+        raise ValueError("The pasted string must contain one blueprint")
+    entities = result["blueprint"].get("entities", [])
+    roboports = [entity for entity in entities if entity.get("name") == "roboport"]
+    if not roboports:
+        raise ValueError("The pasted blueprint contains no roboports")
+
+    def position(entity):
+        point = entity.get("position", {})
+        return point.get("x"), point.get("y")
+
+    occupied = {position(entity): entity for entity in entities}
+    next_number = max((entity.get("entity_number", 0) for entity in entities), default=0) + 1
+    sides = (
+        (0, 0, -1, ((-0.5, -2.5), (0.5, -2.5), (-1.5, -2.5), (1.5, -2.5))),
+        (4, 1, 0, ((2.5, -0.5), (2.5, 0.5), (2.5, -1.5), (2.5, 1.5))),
+        (8, 0, 1, ((-0.5, 2.5), (0.5, 2.5), (-1.5, 2.5), (1.5, 2.5))),
+        (12, -1, 0, ((-2.5, -0.5), (-2.5, 0.5), (-2.5, -1.5), (-2.5, 1.5))),
+    )
+    for roboport in roboports:
+        center_x, center_y = position(roboport)
+        has_pair = False
+        adjacent = []
+        for direction, dx, dy, candidates in sides:
+            for offset_x, offset_y in candidates:
+                entity = occupied.get((center_x + offset_x, center_y + offset_y))
+                if entity and entity.get("name") in INSERTER_NAMES:
+                    adjacent.append((entity, direction, dx, dy))
+        for inserter, direction, dx, dy in adjacent:
+            inserter["direction"] = direction
+            inserter_x, inserter_y = position(inserter)
+            chest_position = (inserter_x + dx, inserter_y + dy)
+            drop_entity = occupied.get(chest_position)
+            if drop_entity is None:
+                chest = {"entity_number": next_number, "name": "steel-chest", "position": {"x": chest_position[0], "y": chest_position[1]}}
+                next_number += 1
+                entities.append(chest)
+                occupied[chest_position] = chest
+                has_pair = True
+            elif drop_entity.get("name") == "steel-chest":
+                has_pair = True
+        if has_pair:
+            continue
+        for direction, dx, dy, candidates in sides:
+            for offset_x, offset_y in candidates:
+                inserter_position = (center_x + offset_x, center_y + offset_y)
+                chest_position = (inserter_position[0] + dx, inserter_position[1] + dy)
+                if inserter_position in occupied or chest_position in occupied:
+                    continue
+                inserter = {"entity_number": next_number, "name": "inserter", "position": {"x": inserter_position[0], "y": inserter_position[1]}, "direction": direction}
+                chest = {"entity_number": next_number + 1, "name": "steel-chest", "position": {"x": chest_position[0], "y": chest_position[1]}}
+                next_number += 2
+                entities.extend((inserter, chest))
+                occupied[inserter_position] = inserter
+                occupied[chest_position] = chest
+                has_pair = True
+                break
+            if has_pair:
+                break
+        if not has_pair:
+            raise ValueError(f"No clear inserter and steel-chest space around roboport at ({center_x}, {center_y})")
+    result["blueprint"]["entities"] = entities
+    return result
 
 
 def build_dropoff_circuit_test(inserter_type="bulk-inserter"):
@@ -91,7 +181,9 @@ def build_dropoff_circuit_test(inserter_type="bulk-inserter"):
     }
 
 
-def ingredients_for_product(final_product, include_final_product=True):
+def ingredients_for_product(
+    final_product, include_final_product=True, station_order=None
+):
     """Expand a product into the repeated station recipe list used by run_program."""
     final_product = final_product.strip()
     if not final_product:
@@ -106,6 +198,17 @@ def ingredients_for_product(final_product, include_final_product=True):
     ]
     if include_final_product:
         ingredients.insert(0, final_product)
+    if station_order:
+        requested_order = [
+            str(product).strip().replace(" ", "-") for product in station_order
+            if include_final_product or product != final_product
+        ]
+        if Counter(requested_order) != Counter(ingredients):
+            raise ValueError(
+                f"Manual station order for {final_product} does not match "
+                "the calculated recipe quantities"
+            )
+        ingredients = requested_order
     if not ingredients:
         raise ValueError(f"No production stations were found for {final_product}")
     return ingredients
@@ -116,14 +219,113 @@ def plan_product_stations(
     include_final_product=True,
     trains_per_station=1,
     inserter_type="bulk-inserter",
+    station_order=None,
 ):
-    """Return the validated, ID-bound station tree for a production array."""
-    products = ingredients_for_product(final_product, include_final_product)
+    """Return the validated station tree for a production array."""
+    products = ingredients_for_product(
+        final_product, include_final_product, station_order
+    )
     return build_station_tree(
         products,
         trains_per_station=trains_per_station,
         inserter_type=inserter_type,
     )
+
+
+def optimize_station_order(
+    stations, *, spacing_x=62, spacing_y=66, include_roboports=True
+):
+    """Place producer/consumer neighbours into nearby balanced-grid slots."""
+    stations = list(stations)
+    if len(stations) < 3:
+        return stations
+    columns = math.ceil(math.sqrt(len(stations)))
+    rows = math.ceil(len(stations) / columns)
+    base_length, longer_rows = divmod(len(stations), rows)
+    row_lengths = [base_length + (row < longer_rows) for row in range(rows)]
+    slots = [
+        (row, columns - row_length + column)
+        for row, row_length in enumerate(row_lengths)
+        for column in range(row_length)
+    ]
+    y_stride = spacing_y * (2 if include_roboports else 1)
+
+    def distance(first, second):
+        return abs(first[1] - second[1]) * spacing_x + abs(first[0] - second[0]) * y_stride
+
+    by_id = {station.id: station for station in stations}
+    neighbours = {
+        station.id: (set(station.parent_ids) | set(station.child_ids)) & by_id.keys()
+        for station in stations
+    }
+    center_slot = min(
+        slots,
+        key=lambda slot: (
+            abs(slot[0] - (rows - 1) / 2) + abs(slot[1] - (columns - 1) / 2),
+            slot,
+        ),
+    )
+    first = max(stations, key=lambda station: (len(neighbours[station.id]), station.id))
+    assigned = {first.id: center_slot}
+    free_slots = set(slots) - {center_slot}
+    unplaced = set(by_id) - {first.id}
+    while unplaced:
+        station_id = max(
+            unplaced,
+            key=lambda candidate: (
+                len(neighbours[candidate] & assigned.keys()),
+                len(neighbours[candidate]),
+                candidate,
+            ),
+        )
+        connected_slots = [
+            assigned[other] for other in neighbours[station_id] if other in assigned
+        ]
+        reference_slots = connected_slots or list(assigned.values())
+        chosen_slot = min(
+            free_slots,
+            key=lambda slot: (
+                sum(distance(slot, other) for other in reference_slots),
+                slot,
+            ),
+        )
+        assigned[station_id] = chosen_slot
+        free_slots.remove(chosen_slot)
+        unplaced.remove(station_id)
+    station_by_slot = {assigned[station.id]: station for station in stations}
+    return [station_by_slot[slot] for slot in slots]
+
+
+def build_single_product_station(
+    product,
+    *,
+    include_trains=True,
+    trains_per_stop=1,
+    inserter_type="bulk-inserter",
+):
+    """Build one Station object without production-array infrastructure."""
+    product = str(product).strip()
+    if not product:
+        raise ValueError("Product is required")
+    station = Station(
+        product=product,
+        id=f'{product.replace(" ", "-")}-001',
+        trains_per_station=trains_per_stop,
+        inserter_type=inserter_type,
+    )
+    blueprint = station.get_blueprint()
+    if not include_trains:
+        root = blueprint["blueprint"]
+        root["entities"] = [
+            entity for entity in root.get("entities", [])
+            if entity.get("name") not in ROLLING_STOCK_NAMES
+        ]
+        root.pop("schedules", None)
+        root.pop("stock_connections", None)
+    _normalize_factorio_2_entity_names(
+        blueprint.get("blueprint", {}).get("entities", []), inserter_type
+    )
+    return blueprint
 
 
 def build_product_station_array(
@@ -133,47 +335,226 @@ def build_product_station_array(
     include_roboports=True,
     place_roboports_in_squares=True,
     place_roboports_between_stations=True,
+    roboport_columns=4,
+    roboport_rows=6,
+    roboport_array_x_offset=0,
+    roboport_array_y_offset=0,
+    radial_layout=True,
+    roboports_between_only=False,
     include_intersections=True,
-    intersection_x_offset=-4,
-    intersection_y_offset=-6,
-    intersection_signal_y_offset=1,
+    intersections_between_rows=False,
+    intersection_x_offset=0,
+    intersection_y_offset=0,
+    intersection_signal_x_offset=0,
+    intersection_signal_y_offset=0,
     empty_requester_chests=True,
     include_trains=True,
     trains_per_stop=1,
     horizontal_spacing=6,
     vertical_spacing=7,
+    station_center_spacing_x=None,
+    station_center_spacing_y=None,
     separate_train_depot=False,
     depot_only=False,
     include_solar=False,
     solar_columns=20,
     solar_rows=10,
     inserter_type="bulk-inserter",
+    station_order=None,
 ):
     """Build the complete station array currently configured in run_program."""
     station_plan = plan_product_stations(
-        final_product, include_final_product, trains_per_stop, inserter_type
+        final_product,
+        include_final_product,
+        trains_per_stop,
+        inserter_type,
+        station_order,
     )
     ingredients = [station.product for station in station_plan]
+    if roboports_between_only:
+        spacing_x = station_center_spacing_x or 62
+        spacing_y = station_center_spacing_y or 66
+        return (
+            build_station_roboport_power_array(
+                len(station_plan),
+                station_center_spacing_x=spacing_x,
+                station_center_spacing_y=spacing_y,
+                below_station_y_offset=spacing_y / 2,
+            ),
+            ingredients,
+        )
     if depot_only and include_trains:
         blueprint = _build_product_train_depot_from_ingredients(
             final_product, ingredients, trains_per_stop
         )
     else:
+        station_layout = {}
         blueprint = make_solid_ingredient_station_array(
             station_plan,
             horizontal_spacing=horizontal_spacing,
             vertical_spacing=vertical_spacing,
-            include_roboports=include_roboports,
+            station_center_spacing_x=station_center_spacing_x,
+            station_center_spacing_y=station_center_spacing_y,
+            include_roboports=(
+                include_roboports and not roboports_between_only
+            ),
             place_roboports_in_squares=place_roboports_in_squares,
             place_roboports_between_stations=place_roboports_between_stations,
+            roboport_columns=roboport_columns,
+            roboport_rows=roboport_rows,
+            roboport_array_x_offset=roboport_array_x_offset,
+            roboport_array_y_offset=roboport_array_y_offset,
+            radial_layout=radial_layout,
+            # Let the station grid place its one correctly aligned intersection
+            # set. The legacy shared-scaffold fallback below is suppressed when
+            # real station layout metadata is available.
             include_intersections=include_intersections,
+            intersections_between_rows=intersections_between_rows,
             intersection_x_offset=intersection_x_offset,
             intersection_y_offset=intersection_y_offset,
+            intersection_signal_x_offset=intersection_signal_x_offset,
             intersection_signal_y_offset=intersection_signal_y_offset,
             empty_requester_chests=empty_requester_chests,
             trains_per_stop=trains_per_stop,
             inserter=inserter_type,
+            layout_metadata=station_layout,
         )
+
+        if (
+            include_roboports
+            and roboports_between_only
+            and place_roboports_between_stations
+        ):
+            station_count = len(station_plan)
+            station_columns = math.ceil(math.sqrt(station_count))
+            station_rows = math.ceil(station_count / station_columns)
+            base_length, longer_rows = divmod(station_count, station_rows)
+            row_lengths = [
+                base_length + (row < longer_rows)
+                for row in range(station_rows)
+            ]
+            occupied = {
+                (row, station_columns - row_length + local_column)
+                for row, row_length in enumerate(row_lengths)
+                for local_column in range(row_length)
+            }
+            positions = set()
+            spacing_x = station_center_spacing_x or 62
+            spacing_y = station_center_spacing_y or 66
+            for row, column in occupied:
+                if (row + 1, column) in occupied:
+                    positions.add((
+                        column * spacing_x,
+                        (row + 0.5) * spacing_y,
+                    ))
+            entities = blueprint["blueprint"]["entities"]
+            next_number = max(
+                (entity["entity_number"] for entity in entities), default=0
+            ) + 1
+            for x, y in sorted(positions, key=lambda position: (position[1], position[0])):
+                entities.append({
+                    "entity_number": next_number,
+                    "name": "roboport",
+                    "position": {"x": x, "y": y},
+                })
+                next_number += 1
+                entities.append({
+                    "entity_number": next_number,
+                    "name": "big-electric-pole",
+                    "position": {"x": x + 3, "y": y},
+                })
+                next_number += 1
+        # Every generated station cell already contains its saved intersection
+        # and signal geometry. Only use the legacy shared-scaffold fallback for
+        # callers that do not provide real station layout metadata; merging it
+        # into normal production arrays duplicates and shifts intersections.
+        if include_intersections and not station_layout.get(
+            "production_positions"
+        ):
+            station_count = len(station_plan)
+            station_columns = math.ceil(math.sqrt(station_count))
+            station_rows = math.ceil(station_count / station_columns)
+            base_station_spacing_y = (
+                station_center_spacing_y
+                if station_center_spacing_y is not None else 66
+            )
+            effective_station_spacing_x = station_layout.get(
+                "station_center_spacing_x",
+                station_center_spacing_x or 62,
+            )
+            track_station_spacing_y = base_station_spacing_y * (
+                2 if include_roboports else 1
+            )
+            track_layer_y_offset = (
+                (base_station_spacing_y if include_roboports else 0) - 2
+            )
+            # The station templates anchor their primary vertical through-rail
+            # at X=1. The center-track scaffold's matching first lane is X=-27,
+            # so translate the complete rail/intersection layer as one unit.
+            track_layer_x_offset = 28
+            base_row_length, longer_rows = divmod(station_count, station_rows)
+            row_lengths = [
+                base_row_length + (row < longer_rows)
+                for row in range(station_rows)
+            ]
+            occupied_station_positions = station_layout.get(
+                "production_positions"
+            )
+            station_access_crossings = [
+                (
+                    column * effective_station_spacing_x + 32,
+                    row * track_station_spacing_y,
+                )
+                for row, column in (
+                    occupied_station_positions
+                    if occupied_station_positions is not None else
+                    [
+                        (row, station_columns - row_length + column)
+                        for row, row_length in enumerate(row_lengths)
+                        for column in range(row_length)
+                    ]
+                )
+            ] if include_roboports else []
+            track_layer = build_center_track_array(
+                station_columns,
+                station_rows,
+                station_center_spacing_x=effective_station_spacing_x,
+                station_center_spacing_y=track_station_spacing_y,
+                include_intersection_signals=True,
+                additional_crossings=station_access_crossings,
+            )
+            destination = blueprint["blueprint"]["entities"]
+            existing = {
+                (
+                    entity.get("name"),
+                    entity["position"]["x"],
+                    entity["position"]["y"],
+                    entity.get("direction", 0),
+                )
+                for entity in destination
+            }
+            next_number = max(
+                (entity["entity_number"] for entity in destination), default=0
+            ) + 1
+            for source in track_layer["blueprint"]["entities"]:
+                source_x = source["position"]["x"] + track_layer_x_offset
+                source_y = source["position"]["y"] + track_layer_y_offset
+                key = (
+                    source.get("name"),
+                    source_x,
+                    source_y,
+                    source.get("direction", 0),
+                )
+                if key in existing:
+                    continue
+                entity = copy.deepcopy(source)
+                entity["position"]["x"] = source_x
+                entity["position"]["y"] = source_y
+                entity["entity_number"] = next_number
+                next_number += 1
+                destination.append(entity)
+                existing.add(key)
+            blueprint["blueprint"]["label"] += ", with center-track scaffold"
         if not include_trains:
             root = blueprint["blueprint"]
             root["entities"] = [
@@ -282,10 +663,7 @@ def build_pickup_train_fleet(blueprint):
 
     kept_stock = set()
     all_scheduled_stock = set()
-    claimed_midpoints = set()
-
     kept_schedules = []
-    seen_local_stops = set()
     for schedule in schedules:
         stock = consist_numbers(schedule)
         all_scheduled_stock.update(stock)
@@ -306,20 +684,14 @@ def build_pickup_train_fleet(blueprint):
         if not local_endpoints:
             continue
         local = local_endpoints[0]
-        local_key = (token, local)
-        if local_key in seen_local_stops:
-            continue
-        seen_local_stops.add(local_key)
 
         if local == f"{token} pickup":
-            destinations = [
-                destination
-                for destination in dropoffs_by_item.get(recipe, [])
-                if destination not in claimed_midpoints
-            ]
-            if not destinations:
-                continue
-            destination = destinations[0]
+            destinations = dropoffs_by_item.get(recipe, [])
+            # Every physical station owns one product train. Repeated producer
+            # stations intentionally share product-based stop names, and the
+            # final product uses a generic external dropoff when the hierarchy
+            # has no downstream consumer.
+            destination = destinations[0] if destinations else f"{recipe} dropoff"
             records = [
                 {"station": local, "wait_conditions": [{"type": "full", "compare_type": "and"}]},
                 {"station": destination, "wait_conditions": [{"type": "empty", "compare_type": "and"}]},
@@ -345,14 +717,6 @@ def build_pickup_train_fleet(blueprint):
         else:
             continue
         schedule["schedule"] = {"records": normalized}
-        scheduled_endpoints = {
-            record["station"].removesuffix(" midpoint")
-            for record in normalized
-            if record.get("station", "").endswith(" midpoint")
-        } & midpoint_endpoints
-        if scheduled_endpoints & claimed_midpoints:
-            continue
-        claimed_midpoints.update(scheduled_endpoints)
         kept_schedules.append(schedule)
         kept_stock.update(stock)
 
@@ -1121,6 +1485,250 @@ def build_single_production_machine(recipe):
     return make_single_assembler(recipe, assembling_machine=machine)
 
 
+def build_station_roboport_power_array(
+    station_count,
+    *,
+    station_center_spacing_x=62,
+    station_center_spacing_y=66,
+    below_station_y_offset=33,
+):
+    """Build one roboport and adjacent big pole below every station slot."""
+    if (
+        not isinstance(station_count, int)
+        or isinstance(station_count, bool)
+        or station_count < 1
+    ):
+        raise ValueError("Station count must be a positive integer")
+    columns = math.ceil(math.sqrt(station_count))
+    rows = math.ceil(station_count / columns)
+    base_length, longer_rows = divmod(station_count, rows)
+    row_lengths = [
+        base_length + (row < longer_rows) for row in range(rows)
+    ]
+    entities = []
+    for row, row_length in enumerate(row_lengths):
+        column_offset = columns - row_length
+        for local_column in range(row_length):
+            column = column_offset + local_column
+            x = column * station_center_spacing_x
+            y = row * station_center_spacing_y + below_station_y_offset
+            entities.extend([
+                {
+                    "entity_number": len(entities) + 1,
+                    "name": "roboport",
+                    "position": {"x": x, "y": y},
+                },
+                {
+                    "entity_number": len(entities) + 2,
+                    "name": "big-electric-pole",
+                    "position": {"x": x + 3, "y": y},
+                },
+            ])
+    return {"blueprint": {
+        "item": "blueprint",
+        "label": f"{station_count}-station below-roboport power array",
+        "version": 562949958467584,
+        "entities": entities,
+    }}
+
+
+def build_center_track_array(
+    columns=2,
+    rows=2,
+    *,
+    station_center_spacing_x=62,
+    station_center_spacing_y=66,
+    include_intersection_signals=True,
+    additional_crossings=(),
+):
+    """Build two horizontal and two vertical straight rails per station section."""
+    for name, value in (("columns", columns), ("rows", rows)):
+        if not isinstance(value, int) or isinstance(value, bool) or value < 1:
+            raise ValueError(f"Track {name} must be a positive integer")
+    for name, value in (
+        ("station center spacing X", station_center_spacing_x),
+        ("station center spacing Y", station_center_spacing_y),
+    ):
+        if not isinstance(value, (int, float)) or value <= 0 or value % 2:
+            raise ValueError(f"{name} must be a positive even number")
+    if not isinstance(include_intersection_signals, bool):
+        raise ValueError("Include intersection signals must be true or false")
+    additional_crossings = tuple(additional_crossings)
+    if not all(
+        isinstance(point, (tuple, list))
+        and len(point) == 2
+        and all(isinstance(value, (int, float)) for value in point)
+        for point in additional_crossings
+    ):
+        raise ValueError("Additional crossings must be numeric X/Y pairs")
+
+    # Keep both pairs centered on the section axes. Horizontal rails have one
+    # full track-width gap between them (eight tiles center-to-center); the
+    # vertical reference pair remains six tiles apart.
+    horizontal_lane_offsets = (-4, 4)
+    vertical_lane_offsets = (-3, 3)
+    min_x = -station_center_spacing_x // 2
+    max_x = (columns - 1) * station_center_spacing_x + station_center_spacing_x // 2
+    min_y = -station_center_spacing_y // 2
+    max_y = (rows - 1) * station_center_spacing_y + station_center_spacing_y // 2
+    entities = []
+    occupied = set()
+
+    def add_rail(x, y, direction):
+        key = (x, y, direction)
+        if key in occupied:
+            return
+        occupied.add(key)
+        entities.append({
+            "entity_number": len(entities) + 1,
+            "name": "straight-rail",
+            "position": {"x": x, "y": y},
+            "direction": direction,
+        })
+
+    # just_tracks.json places two crossings across every boundary between
+    # station columns, at +32 and +94 from the left station anchor. Vertically,
+    # crossings sit halfway (+33) between adjacent 66-tile station rows.
+    interior_crossing_xs = [
+        boundary_column * station_center_spacing_x + offset
+        for boundary_column in range(columns - 1)
+        for offset in (32, 94)
+    ]
+    crossing_center_xs = [
+        -30,
+        *interior_crossing_xs,
+        (columns - 1) * station_center_spacing_x + 32,
+    ]
+    interior_crossing_ys = [
+        boundary_row * station_center_spacing_y + station_center_spacing_y / 2
+        for boundary_row in range(rows - 1)
+    ]
+    crossing_center_ys = [
+        -station_center_spacing_y / 2,
+        *interior_crossing_ys,
+        (rows - 1) * station_center_spacing_y + station_center_spacing_y / 2,
+    ]
+
+    for center_y in crossing_center_ys:
+        for lane_y in (
+            center_y + offset - 1 for offset in horizontal_lane_offsets
+        ):
+            for x in range(int(min_x), int(max_x) + 1, 2):
+                add_rail(x, lane_y, 4)
+    for _, center_y in additional_crossings:
+        for lane_y in (
+            center_y + offset - 1 for offset in horizontal_lane_offsets
+        ):
+            for x in range(int(min_x), int(max_x) + 1, 2):
+                add_rail(x, lane_y, 4)
+    for center_x in crossing_center_xs:
+        for lane_x in (center_x + offset for offset in vertical_lane_offsets):
+            for y in range(int(min_y), int(max_y) + 1, 2):
+                add_rail(lane_x, y, 0)
+
+    intersection_root = _load_blueprint_file(TRACK_INTERSECTION_TEMPLATE)["blueprint"]
+    intersection_entities = intersection_root["entities"]
+    # The template's paired straight rails establish its exact crossing anchor.
+    vertical_xs = [
+        entity["position"]["x"] for entity in intersection_entities
+        if entity.get("name") == "straight-rail"
+        and entity.get("direction", 0) == 0
+    ]
+    horizontal_ys = [
+        entity["position"]["y"] for entity in intersection_entities
+        if entity.get("name") == "straight-rail"
+        and entity.get("direction", 0) == 4
+    ]
+    template_anchor_x = (min(vertical_xs) + max(vertical_xs)) / 2
+    template_anchor_y = (min(horizontal_ys) + max(horizontal_ys)) / 2
+    template_min_x = min(entity["position"]["x"] for entity in intersection_entities)
+    template_max_x = max(entity["position"]["x"] for entity in intersection_entities)
+    template_min_y = min(entity["position"]["y"] for entity in intersection_entities)
+    template_max_y = max(entity["position"]["y"] for entity in intersection_entities)
+
+    crossings = [
+        (center_x, center_y)
+        for center_y in crossing_center_ys
+        for center_x in crossing_center_xs
+    ]
+    crossings.extend(
+        point for point in additional_crossings if point not in crossings
+    )
+    # Remove the plain rails inside every intersection footprint before laying
+    # down the template. Its own rail signals are therefore the only signals.
+    def inside_any_intersection(entity):
+        x = entity["position"]["x"]
+        y = entity["position"]["y"]
+        return any(
+            center_x + template_min_x - template_anchor_x <= x
+            <= center_x + template_max_x - template_anchor_x
+            and center_y + template_min_y - template_anchor_y <= y
+            <= center_y + template_max_y - template_anchor_y
+            for center_x, center_y in crossings
+        )
+
+    entities = [
+        entity for entity in entities if not inside_any_intersection(entity)
+    ]
+    for number, entity in enumerate(entities, 1):
+        entity["entity_number"] = number
+    for center_x, center_y in crossings:
+        dx = center_x - template_anchor_x
+        dy = center_y - template_anchor_y - 1
+        for source_entity in intersection_entities:
+            if (
+                source_entity.get("name") == "rail-signal"
+                and not include_intersection_signals
+            ):
+                continue
+            entity = copy.deepcopy(source_entity)
+            entity["entity_number"] = len(entities) + 1
+            entity["position"]["x"] += dx
+            entity["position"]["y"] += dy
+            if entity.get("name") in ("rail-signal", "rail-chain-signal"):
+                entity["position"]["y"] += 1
+            entity.pop("neighbours", None)
+            entities.append(entity)
+
+    # intersection.json's right vertical through-lane begins eight tiles below
+    # its left lane. Restore those four straight pieces so both vertical tracks
+    # continue through the full top edge of every intersection.
+    occupied_rails = {
+        (
+            entity["name"],
+            entity["position"]["x"],
+            entity["position"]["y"],
+            entity.get("direction", 0),
+        )
+        for entity in entities
+        if "rail" in entity.get("name", "")
+    }
+    for center_x, center_y in crossings:
+        for relative_y in (-34, -32, -30, -28):
+            key = (
+                "straight-rail",
+                center_x + 3,
+                center_y + relative_y - 1,
+                0,
+            )
+            if key in occupied_rails:
+                continue
+            entities.append({
+                "entity_number": len(entities) + 1,
+                "name": "straight-rail",
+                "position": {"x": key[1], "y": key[2]},
+                "direction": 0,
+            })
+            occupied_rails.add(key)
+
+    return {"blueprint": {
+        "item": "blueprint",
+        "label": f"{columns}x{rows} center-two track array",
+        "version": 562949958467584,
+        "entities": entities,
+    }}
+
+
 TRAIN_WAIT_CONDITIONS = ("time", "inactivity", "full", "empty")
 REPEAT_CELL_TYPES = ("product-station", "roboport-station")
 
@@ -1252,6 +1860,7 @@ def build_repeated_blueprint(
     vertical_spacing=10,
     cell_type="product-station",
     include_roboports=True,
+    module_upgrade=None,
 ):
     """Place pasted copies in the actual slots used by the final station array."""
     if not isinstance(copies, int) or isinstance(copies, bool) or copies < 1:
@@ -1273,6 +1882,8 @@ def build_repeated_blueprint(
     source = convertoToJson(blueprint_string)
     if "blueprint" not in source:
         raise ValueError("The pasted string must contain one blueprint")
+    if module_upgrade:
+        source = add_max_modules(source, module_upgrade)
     source_root = source["blueprint"]
     source_entities = source_root.get("entities", [])
     source_tiles = source_root.get("tiles", [])
