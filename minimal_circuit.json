@@ -1,0 +1,1702 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "name": "rail"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -201,
+          "y": -491
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 2,
+        "name": "straight-rail",
+        "position": {
+          "x": -199,
+          "y": -491
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "straight-rail",
+        "position": {
+          "x": -199,
+          "y": -491
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 4,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -491
+        }
+      },
+      {
+        "entity_number": 5,
+        "name": "rail-signal",
+        "position": {
+          "x": -198.5,
+          "y": -489.5
+        }
+      },
+      {
+        "entity_number": 6,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -489
+        }
+      },
+      {
+        "entity_number": 7,
+        "name": "big-electric-pole",
+        "position": {
+          "x": -195,
+          "y": -490
+        }
+      },
+      {
+        "entity_number": 8,
+        "name": "rail-signal",
+        "position": {
+          "x": -195.5,
+          "y": -488.5
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 9,
+        "name": "train-stop",
+        "position": {
+          "x": -193,
+          "y": -489
+        },
+        "direction": 12,
+        "control_behavior": {
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          },
+          "send_to_train": false,
+          "read_stopped_train": true,
+          "train_stopped_signal": {
+            "type": "virtual",
+            "name": "signal-T"
+          }
+        },
+        "station": "electronic-circuit pickup midpoint",
+        "manual_trains_limit": 1
+      },
+      {
+        "entity_number": 10,
+        "name": "straight-rail",
+        "position": {
+          "x": -201,
+          "y": -487
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 11,
+        "name": "straight-rail",
+        "position": {
+          "x": -199,
+          "y": -487
+        }
+      },
+      {
+        "entity_number": 12,
+        "name": "straight-rail",
+        "position": {
+          "x": -199,
+          "y": -487
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 13,
+        "name": "curved-rail-a",
+        "position": {
+          "x": -200,
+          "y": -487
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 14,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -487
+        }
+      },
+      {
+        "entity_number": 15,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -487
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 16,
+        "name": "straight-rail",
+        "position": {
+          "x": -195,
+          "y": -487
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 17,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -487
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 18,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -485
+        }
+      },
+      {
+        "entity_number": 19,
+        "name": "rail-signal",
+        "position": {
+          "x": -193.5,
+          "y": -484.5
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 20,
+        "name": "curved-rail-b",
+        "position": {
+          "x": -191,
+          "y": -485
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 21,
+        "name": "rail-signal",
+        "position": {
+          "x": -198.5,
+          "y": -483.5
+        },
+        "control_behavior": {
+          "circuit_close_signal": true,
+          "circuit_read_signal": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-S"
+            },
+            "constant": 1,
+            "comparator": "="
+          }
+        }
+      },
+      {
+        "entity_number": 22,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -199.5,
+          "y": -482.5
+        }
+      },
+      {
+        "entity_number": 23,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -483
+        }
+      },
+      {
+        "entity_number": 24,
+        "name": "small-electric-pole",
+        "position": {
+          "x": -199.5,
+          "y": -480.5
+        }
+      },
+      {
+        "entity_number": 25,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -481
+        }
+      },
+      {
+        "entity_number": 26,
+        "name": "curved-rail-b",
+        "position": {
+          "x": -195,
+          "y": -481
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 27,
+        "name": "rail-signal",
+        "position": {
+          "x": -193.5,
+          "y": -480.5
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 28,
+        "name": "curved-rail-b",
+        "position": {
+          "x": -191,
+          "y": -481
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 29,
+        "name": "small-lamp",
+        "position": {
+          "x": -199.5,
+          "y": -479.5
+        },
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-S"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 30,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -479
+        }
+      },
+      {
+        "entity_number": 31,
+        "name": "big-electric-pole",
+        "position": {
+          "x": -199,
+          "y": -478
+        }
+      },
+      {
+        "entity_number": 32,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -477
+        }
+      },
+      {
+        "entity_number": 33,
+        "name": "curved-rail-b",
+        "position": {
+          "x": -195,
+          "y": -477
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 34,
+        "name": "curved-rail-a",
+        "position": {
+          "x": -197,
+          "y": -476
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 35,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -475
+        }
+      },
+      {
+        "entity_number": 36,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -475
+        }
+      },
+      {
+        "entity_number": 37,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -473
+        }
+      },
+      {
+        "entity_number": 38,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -473
+        }
+      },
+      {
+        "entity_number": 39,
+        "name": "curved-rail-a",
+        "position": {
+          "x": -197,
+          "y": -472
+        },
+        "direction": 2
+      },
+      {
+        "entity_number": 40,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -471
+        }
+      },
+      {
+        "entity_number": 41,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -471
+        }
+      },
+      {
+        "entity_number": 42,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -469
+        }
+      },
+      {
+        "entity_number": 43,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -469
+        }
+      },
+      {
+        "entity_number": 44,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -467
+        }
+      },
+      {
+        "entity_number": 45,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -467.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 46,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -466.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 47,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -466.5
+        }
+      },
+      {
+        "entity_number": 48,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -467.5
+        }
+      },
+      {
+        "entity_number": 49,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -467
+        }
+      },
+      {
+        "entity_number": 50,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -465
+        }
+      },
+      {
+        "entity_number": 51,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -464.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 52,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -464.5
+        }
+      },
+      {
+        "entity_number": 53,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -465.5
+        }
+      },
+      {
+        "entity_number": 54,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -465.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 55,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -465
+        }
+      },
+      {
+        "entity_number": 56,
+        "name": "rail-signal",
+        "position": {
+          "x": -199.5,
+          "y": -463.5
+        },
+        "direction": 8
+      },
+      {
+        "entity_number": 57,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -463
+        }
+      },
+      {
+        "entity_number": 58,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -463.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 59,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -462.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 60,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -462.5
+        }
+      },
+      {
+        "entity_number": 61,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -463.5
+        }
+      },
+      {
+        "entity_number": 62,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -463
+        }
+      },
+      {
+        "entity_number": 63,
+        "name": "big-electric-pole",
+        "position": {
+          "x": -199,
+          "y": -461
+        }
+      },
+      {
+        "entity_number": 64,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -461
+        }
+      },
+      {
+        "entity_number": 65,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -460.5
+        }
+      },
+      {
+        "entity_number": 66,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -460.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 67,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -461
+        }
+      },
+      {
+        "entity_number": 68,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -459
+        }
+      },
+      {
+        "entity_number": 69,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -458.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "iron-plate",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 70,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -459.5
+        }
+      },
+      {
+        "entity_number": 71,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -458.5
+        }
+      },
+      {
+        "entity_number": 72,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -459.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "copper-cable",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 73,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -459
+        }
+      },
+      {
+        "entity_number": 74,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -457
+        }
+      },
+      {
+        "entity_number": 75,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -457.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "iron-plate",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 76,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -456.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "iron-plate",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 77,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -457.5
+        }
+      },
+      {
+        "entity_number": 78,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -456.5
+        }
+      },
+      {
+        "entity_number": 79,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -457
+        }
+      },
+      {
+        "entity_number": 80,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -199.5,
+          "y": -454.5
+        }
+      },
+      {
+        "entity_number": 81,
+        "name": "arithmetic-combinator",
+        "position": {
+          "x": -198.5,
+          "y": -455
+        },
+        "direction": 8,
+        "control_behavior": {
+          "arithmetic_conditions": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-C"
+            },
+            "second_constant": 2,
+            "operation": "%",
+            "output_signal": {
+              "type": "virtual",
+              "name": "signal-S"
+            }
+          }
+        }
+      },
+      {
+        "entity_number": 82,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -455
+        }
+      },
+      {
+        "entity_number": 83,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -194.5,
+          "y": -455.5
+        },
+        "direction": 4,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        },
+        "filters": [
+          {
+            "index": 1,
+            "name": "iron-plate",
+            "quality": "normal",
+            "comparator": "="
+          }
+        ]
+      },
+      {
+        "entity_number": 84,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -195.5,
+          "y": -455.5
+        }
+      },
+      {
+        "entity_number": 85,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -455
+        }
+      },
+      {
+        "entity_number": 86,
+        "name": "small-lamp",
+        "position": {
+          "x": -198.5,
+          "y": -453.5
+        },
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-S"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 87,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -453
+        }
+      },
+      {
+        "entity_number": 88,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -453
+        }
+      },
+      {
+        "entity_number": 89,
+        "name": "decider-combinator",
+        "position": {
+          "x": -198.5,
+          "y": -452
+        },
+        "direction": 8,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-R"
+                },
+                "comparator": "="
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "type": "virtual",
+                  "name": "signal-C"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 90,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -451
+        }
+      },
+      {
+        "entity_number": 91,
+        "name": "decider-combinator",
+        "position": {
+          "x": -198.5,
+          "y": -450
+        },
+        "direction": 8,
+        "control_behavior": {
+          "decider_conditions": {
+            "conditions": [
+              {
+                "first_signal": {
+                  "type": "virtual",
+                  "name": "signal-T"
+                },
+                "second_signal": {
+                  "type": "virtual",
+                  "name": "signal-D"
+                },
+                "comparator": ">"
+              }
+            ],
+            "outputs": [
+              {
+                "signal": {
+                  "type": "virtual",
+                  "name": "signal-C"
+                },
+                "copy_count_from_input": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "entity_number": 92,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -449
+        }
+      },
+      {
+        "entity_number": 93,
+        "name": "curved-rail-a",
+        "position": {
+          "x": -197,
+          "y": -450
+        },
+        "direction": 8
+      },
+      {
+        "entity_number": 94,
+        "name": "curved-rail-a",
+        "position": {
+          "x": -193,
+          "y": -450
+        },
+        "direction": 8
+      },
+      {
+        "entity_number": 95,
+        "name": "arithmetic-combinator",
+        "position": {
+          "x": -198.5,
+          "y": -448
+        },
+        "direction": 8,
+        "control_behavior": {
+          "arithmetic_conditions": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "second_constant": 1,
+            "operation": "*",
+            "output_signal": {
+              "type": "virtual",
+              "name": "signal-D"
+            }
+          }
+        }
+      },
+      {
+        "entity_number": 96,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -198.5,
+          "y": -446.5
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 97,
+        "name": "requester-chest",
+        "position": {
+          "x": -199.5,
+          "y": -446.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1,
+              "filters": [
+                {
+                  "index": 7,
+                  "name": "coal",
+                  "quality": "normal",
+                  "comparator": "=",
+                  "count": 50
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 98,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -447
+        }
+      },
+      {
+        "entity_number": 99,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -199.5,
+          "y": -445.5
+        }
+      },
+      {
+        "entity_number": 100,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -445
+        }
+      },
+      {
+        "entity_number": 101,
+        "name": "curved-rail-b",
+        "position": {
+          "x": -195,
+          "y": -445
+        },
+        "direction": 8
+      },
+      {
+        "entity_number": 102,
+        "name": "rail-signal",
+        "position": {
+          "x": -192.5,
+          "y": -445.5
+        },
+        "direction": 15
+      },
+      {
+        "entity_number": 103,
+        "name": "train-stop",
+        "position": {
+          "x": -199,
+          "y": -443
+        },
+        "direction": 8,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": "≥"
+          },
+          "send_to_train": false,
+          "read_stopped_train": true,
+          "train_stopped_signal": {
+            "type": "virtual",
+            "name": "signal-T"
+          }
+        },
+        "station": "electronic-circuit dropoff iron-plate midpoint",
+        "manual_trains_limit": 1
+      },
+      {
+        "entity_number": 104,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -443
+        }
+      },
+      {
+        "entity_number": 105,
+        "name": "rail-signal",
+        "position": {
+          "x": -198.5,
+          "y": -440.5
+        }
+      },
+      {
+        "entity_number": 106,
+        "name": "rail-signal",
+        "position": {
+          "x": -199.5,
+          "y": -441.5
+        },
+        "direction": 8
+      },
+      {
+        "entity_number": 107,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -441
+        }
+      },
+      {
+        "entity_number": 108,
+        "name": "rail-signal",
+        "position": {
+          "x": -195.5,
+          "y": -440.5
+        },
+        "direction": 8
+      },
+      {
+        "entity_number": 109,
+        "name": "rail-signal",
+        "position": {
+          "x": -193.5,
+          "y": -441.5
+        },
+        "direction": 14
+      },
+      {
+        "entity_number": 110,
+        "name": "curved-rail-b",
+        "position": {
+          "x": -191,
+          "y": -441
+        },
+        "direction": 14
+      },
+      {
+        "entity_number": 111,
+        "name": "straight-rail",
+        "position": {
+          "x": -201,
+          "y": -439
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 112,
+        "name": "straight-rail",
+        "position": {
+          "x": -199,
+          "y": -439
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 113,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -439
+        }
+      },
+      {
+        "entity_number": 114,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -439
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 115,
+        "name": "straight-rail",
+        "position": {
+          "x": -195,
+          "y": -439
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 116,
+        "name": "straight-rail",
+        "position": {
+          "x": -193,
+          "y": -439
+        },
+        "direction": 4
+      },
+      {
+        "entity_number": 117,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -199.5,
+          "y": -436.5
+        }
+      },
+      {
+        "entity_number": 118,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -437
+        }
+      },
+      {
+        "entity_number": 119,
+        "name": "small-lamp",
+        "position": {
+          "x": -195.5,
+          "y": -436.5
+        },
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-R"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 120,
+        "name": "rail-signal",
+        "position": {
+          "x": -194.5,
+          "y": -437.5
+        },
+        "direction": 12,
+        "control_behavior": {
+          "circuit_close_signal": true,
+          "circuit_read_signal": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-S"
+            },
+            "constant": 1,
+            "comparator": "="
+          }
+        }
+      },
+      {
+        "entity_number": 121,
+        "name": "medium-electric-pole",
+        "position": {
+          "x": -193.5,
+          "y": -436.5
+        }
+      },
+      {
+        "entity_number": 122,
+        "name": "rail-signal",
+        "position": {
+          "x": -198.5,
+          "y": -435.5
+        },
+        "control_behavior": {
+          "circuit_close_signal": false,
+          "circuit_read_signal": true,
+          "red_output_signal": {
+            "type": "virtual",
+            "name": "signal-R"
+          }
+        }
+      },
+      {
+        "entity_number": 123,
+        "name": "straight-rail",
+        "position": {
+          "x": -197,
+          "y": -435
+        }
+      },
+      {
+        "entity_number": 124,
+        "name": "curved-rail-a",
+        "position": {
+          "x": -197,
+          "y": -432
+        },
+        "direction": 8
+      },
+      {
+        "entity_number": 125,
+        "name": "curved-rail-a",
+        "position": {
+          "x": -197,
+          "y": -432
+        },
+        "direction": 10
+      }
+    ],
+    "wires": [
+      [
+        7,
+        2,
+        9,
+        2
+      ],
+      [
+        7,
+        5,
+        22,
+        5
+      ],
+      [
+        7,
+        5,
+        31,
+        5
+      ],
+      [
+        21,
+        1,
+        22,
+        1
+      ],
+      [
+        22,
+        1,
+        29,
+        1
+      ],
+      [
+        22,
+        5,
+        24,
+        5
+      ],
+      [
+        24,
+        5,
+        31,
+        5
+      ],
+      [
+        31,
+        5,
+        63,
+        5
+      ],
+      [
+        45,
+        2,
+        46,
+        2
+      ],
+      [
+        46,
+        2,
+        54,
+        2
+      ],
+      [
+        51,
+        2,
+        54,
+        2
+      ],
+      [
+        51,
+        2,
+        58,
+        2
+      ],
+      [
+        58,
+        2,
+        59,
+        2
+      ],
+      [
+        59,
+        2,
+        66,
+        2
+      ],
+      [
+        63,
+        5,
+        80,
+        5
+      ],
+      [
+        66,
+        2,
+        72,
+        2
+      ],
+      [
+        69,
+        2,
+        72,
+        2
+      ],
+      [
+        69,
+        2,
+        75,
+        2
+      ],
+      [
+        75,
+        2,
+        76,
+        2
+      ],
+      [
+        76,
+        2,
+        83,
+        2
+      ],
+      [
+        80,
+        1,
+        89,
+        1
+      ],
+      [
+        80,
+        1,
+        99,
+        1
+      ],
+      [
+        80,
+        5,
+        99,
+        5
+      ],
+      [
+        81,
+        1,
+        89,
+        3
+      ],
+      [
+        81,
+        3,
+        86,
+        1
+      ],
+      [
+        89,
+        1,
+        91,
+        3
+      ],
+      [
+        89,
+        2,
+        89,
+        4
+      ],
+      [
+        91,
+        1,
+        103,
+        1
+      ],
+      [
+        91,
+        2,
+        95,
+        4
+      ],
+      [
+        95,
+        1,
+        103,
+        1
+      ],
+      [
+        99,
+        1,
+        117,
+        1
+      ],
+      [
+        99,
+        5,
+        117,
+        5
+      ],
+      [
+        117,
+        1,
+        122,
+        1
+      ],
+      [
+        117,
+        1,
+        119,
+        1
+      ],
+      [
+        117,
+        5,
+        121,
+        5
+      ]
+    ],
+    "item": "blueprint",
+    "version": 562949958467584
+  }
+}

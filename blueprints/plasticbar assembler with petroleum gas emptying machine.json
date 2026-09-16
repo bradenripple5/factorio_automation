@@ -1,0 +1,157 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "name": "assembling-machine-3"
+        },
+        "index": 1
+      },
+      {
+        "signal": {
+          "name": "chemical-plant"
+        },
+        "index": 2
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -154.5,
+          "y": -911.5
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -154.5,
+          "y": -910.5
+        },
+        "direction": 8
+      },
+      {
+        "entity_number": 3,
+        "name": "requester-chest",
+        "position": {
+          "x": -153.5,
+          "y": -911.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1,
+              "filters": [
+                {
+                  "index": 4,
+                  "name": "coal",
+                  "quality": "normal",
+                  "comparator": "=",
+                  "count": 2400
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 4,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -153.5,
+          "y": -910.5
+        }
+      },
+      {
+        "entity_number": 5,
+        "name": "chemical-plant",
+        "position": {
+          "x": -154.5,
+          "y": -908.5
+        },
+        "direction": 8,
+        "recipe": "plastic-bar",
+        "recipe_quality": "normal"
+      },
+      {
+        "entity_number": 6,
+        "name": "pipe",
+        "position": {
+          "x": -154.5,
+          "y": -906.5
+        }
+      },
+      {
+        "entity_number": 7,
+        "name": "pipe",
+        "position": {
+          "x": -155.5,
+          "y": -906.5
+        }
+      },
+      {
+        "entity_number": 8,
+        "name": "pipe",
+        "position": {
+          "x": -153.5,
+          "y": -906.5
+        }
+      },
+      {
+        "entity_number": 9,
+        "name": "assembling-machine-3",
+        "position": {
+          "x": -154.5,
+          "y": -904.5
+        },
+        "direction": 8,
+        "recipe": "empty-petroleum-gas-barrel",
+        "recipe_quality": "normal"
+      },
+      {
+        "entity_number": 10,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -154.5,
+          "y": -902.5
+        }
+      },
+      {
+        "entity_number": 11,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -153.5,
+          "y": -902.5
+        },
+        "direction": 8
+      },
+      {
+        "entity_number": 12,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -154.5,
+          "y": -901.5
+        }
+      },
+      {
+        "entity_number": 13,
+        "name": "requester-chest",
+        "position": {
+          "x": -153.5,
+          "y": -901.5
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      }
+    ],
+    "item": "blueprint",
+    "version": 562949958467584
+  }
+}

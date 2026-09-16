@@ -1,0 +1,1276 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "name": "rail"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "roboport",
+        "position": {
+          "x": -60,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "roboport",
+        "position": {
+          "x": -56,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "roboport",
+        "position": {
+          "x": -52,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 4,
+        "name": "roboport",
+        "position": {
+          "x": -48,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 5,
+        "name": "roboport",
+        "position": {
+          "x": -44,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 6,
+        "name": "roboport",
+        "position": {
+          "x": 64,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 7,
+        "name": "roboport",
+        "position": {
+          "x": 68,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 8,
+        "name": "roboport",
+        "position": {
+          "x": 72,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 9,
+        "name": "roboport",
+        "position": {
+          "x": 76,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 10,
+        "name": "roboport",
+        "position": {
+          "x": 80,
+          "y": -787
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 11,
+        "name": "roboport",
+        "position": {
+          "x": -60,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 12,
+        "name": "roboport",
+        "position": {
+          "x": -56,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 13,
+        "name": "roboport",
+        "position": {
+          "x": -52,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 14,
+        "name": "roboport",
+        "position": {
+          "x": -48,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 15,
+        "name": "roboport",
+        "position": {
+          "x": -44,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 16,
+        "name": "roboport",
+        "position": {
+          "x": 64,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 17,
+        "name": "roboport",
+        "position": {
+          "x": 68,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 18,
+        "name": "roboport",
+        "position": {
+          "x": 72,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 19,
+        "name": "roboport",
+        "position": {
+          "x": 76,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 20,
+        "name": "roboport",
+        "position": {
+          "x": 80,
+          "y": -783
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 21,
+        "name": "roboport",
+        "position": {
+          "x": -104,
+          "y": -780
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 22,
+        "name": "roboport",
+        "position": {
+          "x": -60,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 23,
+        "name": "roboport",
+        "position": {
+          "x": -56,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 24,
+        "name": "roboport",
+        "position": {
+          "x": -52,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 25,
+        "name": "roboport",
+        "position": {
+          "x": -48,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 26,
+        "name": "roboport",
+        "position": {
+          "x": -44,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 27,
+        "name": "roboport",
+        "position": {
+          "x": 20,
+          "y": -780
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 28,
+        "name": "roboport",
+        "position": {
+          "x": 64,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 29,
+        "name": "roboport",
+        "position": {
+          "x": 68,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 30,
+        "name": "roboport",
+        "position": {
+          "x": 72,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 31,
+        "name": "roboport",
+        "position": {
+          "x": 76,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 32,
+        "name": "roboport",
+        "position": {
+          "x": 80,
+          "y": -779
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 33,
+        "name": "roboport",
+        "position": {
+          "x": -60,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 34,
+        "name": "roboport",
+        "position": {
+          "x": -56,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 35,
+        "name": "roboport",
+        "position": {
+          "x": -52,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 36,
+        "name": "roboport",
+        "position": {
+          "x": -48,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 37,
+        "name": "roboport",
+        "position": {
+          "x": -44,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 38,
+        "name": "roboport",
+        "position": {
+          "x": 64,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 39,
+        "name": "roboport",
+        "position": {
+          "x": 68,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 40,
+        "name": "roboport",
+        "position": {
+          "x": 72,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 41,
+        "name": "roboport",
+        "position": {
+          "x": 76,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 42,
+        "name": "roboport",
+        "position": {
+          "x": 80,
+          "y": -775
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 43,
+        "name": "roboport",
+        "position": {
+          "x": -60,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 44,
+        "name": "roboport",
+        "position": {
+          "x": -56,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 45,
+        "name": "roboport",
+        "position": {
+          "x": -52,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 46,
+        "name": "roboport",
+        "position": {
+          "x": -48,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 47,
+        "name": "roboport",
+        "position": {
+          "x": -44,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 48,
+        "name": "roboport",
+        "position": {
+          "x": 64,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 49,
+        "name": "roboport",
+        "position": {
+          "x": 68,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 50,
+        "name": "roboport",
+        "position": {
+          "x": 72,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 51,
+        "name": "roboport",
+        "position": {
+          "x": 76,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 52,
+        "name": "roboport",
+        "position": {
+          "x": 80,
+          "y": -721
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 53,
+        "name": "roboport",
+        "position": {
+          "x": -60,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 54,
+        "name": "roboport",
+        "position": {
+          "x": -56,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 55,
+        "name": "roboport",
+        "position": {
+          "x": -52,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 56,
+        "name": "roboport",
+        "position": {
+          "x": -48,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 57,
+        "name": "roboport",
+        "position": {
+          "x": -44,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 58,
+        "name": "roboport",
+        "position": {
+          "x": 64,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 59,
+        "name": "roboport",
+        "position": {
+          "x": 68,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 60,
+        "name": "roboport",
+        "position": {
+          "x": 72,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 61,
+        "name": "roboport",
+        "position": {
+          "x": 76,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 62,
+        "name": "roboport",
+        "position": {
+          "x": 80,
+          "y": -717
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 63,
+        "name": "roboport",
+        "position": {
+          "x": -104,
+          "y": -714
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 64,
+        "name": "roboport",
+        "position": {
+          "x": -60,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 65,
+        "name": "roboport",
+        "position": {
+          "x": -56,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 66,
+        "name": "roboport",
+        "position": {
+          "x": -52,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 67,
+        "name": "roboport",
+        "position": {
+          "x": -48,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 68,
+        "name": "roboport",
+        "position": {
+          "x": -44,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 69,
+        "name": "roboport",
+        "position": {
+          "x": 20,
+          "y": -714
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 70,
+        "name": "roboport",
+        "position": {
+          "x": 64,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 71,
+        "name": "roboport",
+        "position": {
+          "x": 68,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 72,
+        "name": "roboport",
+        "position": {
+          "x": 72,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 73,
+        "name": "roboport",
+        "position": {
+          "x": 76,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 74,
+        "name": "roboport",
+        "position": {
+          "x": 80,
+          "y": -713
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 75,
+        "name": "roboport",
+        "position": {
+          "x": -60,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 76,
+        "name": "roboport",
+        "position": {
+          "x": -56,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 77,
+        "name": "roboport",
+        "position": {
+          "x": -52,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 78,
+        "name": "roboport",
+        "position": {
+          "x": -48,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 79,
+        "name": "roboport",
+        "position": {
+          "x": -44,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 80,
+        "name": "roboport",
+        "position": {
+          "x": 64,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 81,
+        "name": "roboport",
+        "position": {
+          "x": 68,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 82,
+        "name": "roboport",
+        "position": {
+          "x": 72,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 83,
+        "name": "roboport",
+        "position": {
+          "x": 76,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      },
+      {
+        "entity_number": 84,
+        "name": "roboport",
+        "position": {
+          "x": 80,
+          "y": -709
+        },
+        "request_filters": {
+          "sections": [
+            {
+              "index": 1
+            }
+          ]
+        }
+      }
+    ],
+    "item": "blueprint",
+    "version": 562949958467584
+  }
+}

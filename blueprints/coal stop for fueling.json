@@ -1,0 +1,257 @@
+{
+  "blueprint": {
+    "icons": [
+      {
+        "signal": {
+          "name": "rail"
+        },
+        "index": 1
+      }
+    ],
+    "entities": [
+      {
+        "entity_number": 1,
+        "name": "straight-rail",
+        "position": {
+          "x": -255,
+          "y": -719
+        }
+      },
+      {
+        "entity_number": 2,
+        "name": "straight-rail",
+        "position": {
+          "x": -255,
+          "y": -717
+        }
+      },
+      {
+        "entity_number": 3,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -253.5,
+          "y": -716.5
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 4,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -253.5,
+          "y": -717.5
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 5,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -252.5,
+          "y": -717.5
+        }
+      },
+      {
+        "entity_number": 6,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -252.5,
+          "y": -716.5
+        }
+      },
+      {
+        "entity_number": 7,
+        "name": "straight-rail",
+        "position": {
+          "x": -255,
+          "y": -715
+        }
+      },
+      {
+        "entity_number": 8,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -253.5,
+          "y": -714.5
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 9,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -253.5,
+          "y": -715.5
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 10,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -252.5,
+          "y": -715.5
+        }
+      },
+      {
+        "entity_number": 11,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -252.5,
+          "y": -714.5
+        }
+      },
+      {
+        "entity_number": 12,
+        "name": "straight-rail",
+        "position": {
+          "x": -255,
+          "y": -713
+        }
+      },
+      {
+        "entity_number": 13,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -253.5,
+          "y": -712.5
+        },
+        "direction": 12,
+        "control_behavior": {
+          "circuit_enabled": true,
+          "circuit_condition": {
+            "first_signal": {
+              "type": "virtual",
+              "name": "signal-T"
+            },
+            "constant": 0,
+            "comparator": ">"
+          }
+        }
+      },
+      {
+        "entity_number": 14,
+        "name": "bulk-inserter",
+        "position": {
+          "x": -253.5,
+          "y": -713.5
+        },
+        "direction": 12
+      },
+      {
+        "entity_number": 15,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -252.5,
+          "y": -713.5
+        }
+      },
+      {
+        "entity_number": 16,
+        "name": "active-provider-chest",
+        "position": {
+          "x": -252.5,
+          "y": -712.5
+        }
+      },
+      {
+        "entity_number": 17,
+        "name": "straight-rail",
+        "position": {
+          "x": -255,
+          "y": -711
+        }
+      },
+      {
+        "entity_number": 18,
+        "name": "straight-rail",
+        "position": {
+          "x": -255,
+          "y": -709
+        }
+      },
+      {
+        "entity_number": 19,
+        "name": "substation",
+        "position": {
+          "x": -253,
+          "y": -710
+        }
+      },
+      {
+        "entity_number": 20,
+        "name": "straight-rail",
+        "position": {
+          "x": -255,
+          "y": -707
+        }
+      },
+      {
+        "entity_number": 21,
+        "name": "train-stop",
+        "position": {
+          "x": -257,
+          "y": -705
+        },
+        "direction": 8,
+        "control_behavior": {
+          "send_to_train": false,
+          "read_stopped_train": true,
+          "train_stopped_signal": {
+            "type": "virtual",
+            "name": "signal-T"
+          }
+        },
+        "station": "coal stop for fueling trains"
+      },
+      {
+        "entity_number": 22,
+        "name": "straight-rail",
+        "position": {
+          "x": -255,
+          "y": -705
+        }
+      }
+    ],
+    "wires": [
+      [
+        3,
+        2,
+        9,
+        2
+      ],
+      [
+        3,
+        2,
+        4,
+        2
+      ],
+      [
+        8,
+        2,
+        14,
+        2
+      ],
+      [
+        8,
+        2,
+        9,
+        2
+      ],
+      [
+        13,
+        2,
+        21,
+        2
+      ],
+      [
+        13,
+        2,
+        14,
+        2
+      ]
+    ],
+    "item": "blueprint",
+    "version": 562949958467584
+  }
+}
